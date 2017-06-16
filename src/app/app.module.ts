@@ -13,7 +13,8 @@ import { IconComponent } from './header/icon/icon.component';
 import { LandingpageComponent } from './landingpage/landingpage.component';
 import { LoginComponent } from './login/login.component';
 
-import { AuthService } from './auth.service'
+import { AuthService } from './auth.service';
+import { SignupComponent } from './signup/signup.component'
 
 const appRoutes: Routes = [
   {
@@ -24,6 +25,11 @@ const appRoutes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'signup',
+    component: SignupComponent,
     pathMatch: 'full'
   },
   {
@@ -40,7 +46,8 @@ const appRoutes: Routes = [
     HeaderComponent,
     IconComponent,
     LandingpageComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
