@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-landing',
@@ -7,7 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
-  constructor() { }
+  @Input() page = {
+    colorShade: 'dark',
+    imagePath: ''
+  };
+
+  constructor() {
+  }
 
   ngOnInit() {
   }

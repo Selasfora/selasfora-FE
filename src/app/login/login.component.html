@@ -1,0 +1,58 @@
+<div>
+  <div class="header">
+    <img src="/assets/images/icons/back.png" class="back-btn">
+    <img src="/assets/images/logo-black.png">
+  </div>
+  <div>
+    <h1>Login</h1>
+    <form [formGroup]="loginForm" novalidate (submit)="onSubmit()">
+      <div class="label">Email</div>
+      <input type="email" id="email" name="email" class="form-control"
+          formControlName="email" (blur)="onBlur('email')">
+      <div *ngIf="formErrors.email.length" class="error-msg">
+        <div *ngFor="let item of formErrors.email">{{ item }}</div>
+      </div>
+
+      <div class="label">
+        Password
+        <a href="/forgot" class="forgot">forgot?</a>
+      </div>
+      <input type="password" id="password" name="password" class="form-control"
+          minlength="6" maxlength="25"
+          formControlName="password" (blur)="onBlur('password')">
+      <div *ngIf="formErrors.password.length" class="error-msg">
+        <div *ngFor="let item of formErrors.password">{{ item }}</div>
+      </div>
+      <div class="login-error"></div>
+      <div>
+        <button type="submit">Login</button>
+      </div>
+    </form>
+
+    <div class="signup">I need an account</div>
+
+    <div class="signin-options">
+      <span>Sign in with</span>
+      <div class="login-icons">
+        <a href="facebook.com" class="facebook">
+          <img src="/assets/images/icons/facebook.png">
+        </a>
+        <a href="twitter.com" class="twitter">
+          <img src="/assets/images/icons/twitter.png">
+        </a>
+        <a href="google.com" class="google">
+          <img src="/assets/images/icons/google.png">
+        </a>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="copyright">Copyright © Selasfora 2017</div>
+      <div class="link">
+        <a href="" class="right-separator">Contact</a>
+        <a href="" class="right-separator">Journal</a>
+        <a href="">Shop Charms</a>
+      </div>
+    </div>
+  </div>
+</div>
