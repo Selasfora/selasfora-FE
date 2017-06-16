@@ -1,37 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.less']
+  selector: 'app-passwordreset',
+  templateUrl: './passwordreset.component.html',
+  styleUrls: ['./passwordreset.component.less']
 })
-export class LoginComponent implements OnInit {
+export class PasswordresetComponent implements OnInit {
+
   loginForm: FormGroup;
-
-
 
   validationMessages = {
     'email': {
       'required': 'Email is required.',
       'email': 'Please enter a valid email'
-    },
-    'password': {
-      'required': 'Password is required.',
-      'minlength': 'Password should at least be 6 digits',
-      'maxlength': 'Max characters is 25'
     }
   };
 
   formErrors = {
     'email': [],
-    'password': []
   };
 
-  constructor(private fb: FormBuilder, private auth: AuthService, private _location: Location) {
-
+  constructor(private fb: FormBuilder, private auth: AuthService, private _location: Location, private router: Router) {
+    router.events.subscribe((event) => {
+      window.scrollTo(0, 0);
+    });
   }
 
   backClick() {
@@ -60,7 +56,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     let valid = this.validate();
     if(valid) {
-      this.auth.login(this.loginForm.value)
+      this.auth.resetPassword(this.loginForm.value)
         .subscribe((data) => console.log(data));
     }
     return false;

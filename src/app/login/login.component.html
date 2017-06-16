@@ -1,7 +1,9 @@
 <div>
   <div class="header">
-    <img src="/assets/images/icons/back.png" class="back-btn">
-    <img src="/assets/images/logo-black.png">
+    <img src="/assets/images/icons/back.png" class="back-btn" (click)="backClick()">
+    <a routerLink="/">
+      <img src="/assets/images/logo-black.png">
+    </a>
   </div>
   <div>
     <h1>Login</h1>
@@ -15,7 +17,7 @@
 
       <div class="label">
         Password
-        <a href="/forgot" class="forgot">forgot?</a>
+        <a routerLink="/reset-password" class="forgot">forgot?</a>
       </div>
       <input type="password" id="password" name="password" class="form-control"
           minlength="6" maxlength="25"
@@ -29,7 +31,9 @@
       </div>
     </form>
 
-    <div class="signup">I need an account</div>
+    <div class="signup">
+      <a routerLink="/signup">I need an account</a>
+    </div>
 
     <div class="signin-options">
       <span>Sign in with</span>

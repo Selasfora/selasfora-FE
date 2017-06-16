@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../auth.service'
+import { AuthService } from '../auth.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-signup',
@@ -44,8 +45,12 @@ export class SignupComponent implements OnInit {
     'password2': []
   };
 
-  constructor(private fb: FormBuilder, private auth: AuthService) {
+  constructor(private fb: FormBuilder, private auth: AuthService, private _location: Location) {
 
+  }
+
+  backClick() {
+    this._location.back();
   }
 
   onBlur(field) {

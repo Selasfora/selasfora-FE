@@ -14,7 +14,8 @@ import { LandingpageComponent } from './landingpage/landingpage.component';
 import { LoginComponent } from './login/login.component';
 
 import { AuthService } from './auth.service';
-import { SignupComponent } from './signup/signup.component'
+import { SignupComponent } from './signup/signup.component';
+import { PasswordresetComponent } from './passwordreset/passwordreset.component'
 
 const appRoutes: Routes = [
   {
@@ -32,6 +33,12 @@ const appRoutes: Routes = [
     component: SignupComponent,
     pathMatch: 'full'
   },
+
+  {
+    path: 'reset-password',
+    component: PasswordresetComponent,
+    pathMatch: 'full'
+  },
   {
     path: '**',
     component: PageNotFoundComponent
@@ -47,7 +54,8 @@ const appRoutes: Routes = [
     IconComponent,
     LandingpageComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    PasswordresetComponent
   ],
   imports: [
     BrowserModule,
