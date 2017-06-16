@@ -10,6 +10,8 @@ import { AuthService } from '../auth.service'
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
+
+
   validationMessages = {
     'email': {
       'required': 'Email is required.',
@@ -32,10 +34,11 @@ export class LoginComponent implements OnInit {
   }
 
   onBlur(field) {
-
+    console.log('blur', field)
     this.formErrors[field] = [];
     const control = this.loginForm.get(field);
     if(!control.valid) {
+      console.log('invalid', this.validationMessages[field])
       const messages = this.validationMessages[field];
       for (const key in control.errors) {
         this.formErrors[field].push(messages[key]);
