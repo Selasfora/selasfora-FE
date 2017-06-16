@@ -57,9 +57,10 @@ export class SignupComponent implements OnInit {
         this.formErrors[field].push(messages[key]);
       }
     }
-    if(field == 'email2' && this.signupForm.get('email') != this.signupForm.get('email2')) {
+    if(field == 'email2' && this.signupForm.get('email').value != this.signupForm.get('email2').value) {
       this.formErrors['email'].push('Emails don\'t match');
-    } else if(field == 'password2' && this.signupForm.get('password') != this.signupForm.get('password2')) {
+    } else if(field == 'password2' && this.signupForm.get('password').value != this.signupForm.get('password2').value) {
+      console.log(this.signupForm.get('password').value, this.signupForm.get('password2').value)
       this.formErrors['password'].push('Passwords don\'t match');
     }
   }
