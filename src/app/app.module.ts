@@ -13,6 +13,8 @@ import { IconComponent } from './header/icon/icon.component';
 import { LandingpageComponent } from './landingpage/landingpage.component';
 import { LoginComponent } from './login/login.component';
 
+import { AuthService } from './auth.service'
+
 const appRoutes: Routes = [
   {
     path: '',
@@ -47,7 +49,9 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

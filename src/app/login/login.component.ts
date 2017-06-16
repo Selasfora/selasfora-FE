@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service'
 
 @Component({
   selector: 'app-login',
@@ -26,11 +27,12 @@ export class LoginComponent implements OnInit {
     'password': []
   };
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private auth: AuthService) {
 
   }
 
   onBlur(field) {
+
     this.formErrors[field] = [];
     const control = this.loginForm.get(field);
     if(!control.valid) {
@@ -42,6 +44,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.loginForm = this.fb.group({
       email: ['', [Validators.email, Validators.required]],
       password: ['', [Validators.required, Validators.minLength, Validators.maxLength]]
@@ -49,10 +52,17 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.validate();
+    let valid = this.validate();
+    if(valid) {
+      this.auth.login(this.loginForm.value)
+        .subscribe((data) => console.log(data));
+    }
+    return false;
   }
 
   validate() {
+
+    let valid = true;
     const form = this.loginForm;
 
     for (const field in this.formErrors) {
@@ -63,8 +73,10 @@ export class LoginComponent implements OnInit {
       const messages = this.validationMessages[field];
       for (const key in control.errors) {
         this.formErrors[field].push(messages[key]);
+        valid = false;
       }
     }
+    return valid;
   }
 
 }
