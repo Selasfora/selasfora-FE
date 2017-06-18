@@ -1,0 +1,64 @@
+.side-menu {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 375px;
+  height: 100%;
+  background-color: white;
+  z-index: 10;
+}
+
+.close {
+  position: absolute;
+  right: 30px;
+  top: -25px;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  padding-top: 35px;
+  padding-left: 30px;
+}
+
+.header {
+  height: 100px;
+  background-color: rgba(0, 0, 0, 0.04);
+  text-align: left;
+  /*padding-top: 35px;
+  padding-left: 30px;*/
+  color: #272caa;
+  a {
+    &:active {
+      color: #272caa;
+    }
+  }
+}
+
+.link {
+  text-align: left;
+  height: 60px;
+  /*padding-left: 30px;
+  padding-top: 25px;
+  padding-bottom: 25px;*/
+  border-bottom: solid 1px #ccc;
+  a {
+    color: black;
+    padding-top: 20px;
+    &:active {
+      //color: black;
+    }
+  }
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  li:hover {
+    background-color: #ccc;
+  }
+}

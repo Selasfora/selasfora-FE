@@ -15,7 +15,8 @@ import { LoginComponent } from './login/login.component';
 
 import { AuthService } from './auth.service';
 import { SignupComponent } from './signup/signup.component';
-import { PasswordresetComponent } from './passwordreset/passwordreset.component'
+import { PasswordresetComponent } from './passwordreset/passwordreset.component';
+import { MenuComponent } from './menu/menu.component'
 
 const appRoutes: Routes = [
   {
@@ -55,7 +56,8 @@ const appRoutes: Routes = [
     LandingpageComponent,
     LoginComponent,
     SignupComponent,
-    PasswordresetComponent
+    PasswordresetComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

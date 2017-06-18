@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  menuStatus = true;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  openMenu() {
+    this.menuStatus = false;
+    console.log('opening menu in header');
+  }
+
+  closeMenu() {
+    this.menuStatus = true;
+    console.log('closing menu in header');
+  }
 }
