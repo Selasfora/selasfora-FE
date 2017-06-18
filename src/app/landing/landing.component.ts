@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
-  @Input() page = {
+  @Input() page: any = {
     colorShade: 'dark',
     imagePath: ''
   };
