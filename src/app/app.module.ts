@@ -14,9 +14,14 @@ import { LandingpageComponent } from './landingpage/landingpage.component';
 import { LoginComponent } from './login/login.component';
 
 import { AuthService } from './auth.service';
+import { WindowService } from './window.service';
+import { UserService } from './user.service';
+
 import { SignupComponent } from './signup/signup.component';
 import { PasswordresetComponent } from './passwordreset/passwordreset.component';
-import { MenuComponent } from './menu/menu.component'
+import { MenuComponent } from './menu/menu.component';
+
+import { Angular2SocialLoginModule } from "angular2-social-login";
 
 const appRoutes: Routes = [
   {
@@ -27,12 +32,14 @@ const appRoutes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    pathMatch: 'full'
+    pathMatch: 'full',
+    //canActivate: [UserService]
   },
   {
     path: 'signup',
     component: SignupComponent,
-    pathMatch: 'full'
+    pathMatch: 'full',
+    //canActivate: [UserService]
   },
 
   {
@@ -64,10 +71,13 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    Angular2SocialLoginModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    WindowService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

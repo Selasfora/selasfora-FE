@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-signup',
@@ -45,8 +47,8 @@ export class SignupComponent implements OnInit {
     'password2': []
   };
 
-  constructor(private fb: FormBuilder, private auth: AuthService, private _location: Location) {
-
+  constructor(private fb: FormBuilder, private auth: AuthService, private _location: Location,
+    private router: Router, private user: UserService) {
   }
 
   backClick() {
@@ -71,6 +73,9 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(this.user.isLoggedIn()) {
+      this.router.navigate(['/']);
+    }
 
     this.signupForm = this.fb.group({
       fname: ['', Validators.required],
@@ -86,7 +91,16 @@ export class SignupComponent implements OnInit {
   onSubmit() {
     let valid = this.validate();
     if(valid) {
-      this.auth.signup(this.signupForm.value)
+      let model: any = {};
+      let value = this.signupForm.value;
+      model.email = value.email;
+      model.password = value.password;
+      model.password_confirmation = value.password2;
+      model.phone = value.phone;
+      model.first_name = value.fname;
+      model.last_name = value.lname;
+
+      this.auth.signup(model)
         .subscribe((data) => console.log(data));
     }
     return false;

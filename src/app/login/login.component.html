@@ -1,3 +1,6 @@
+<div id="fb-root"></div>
+<meta name="google-signin-client_id" content="{{googleKey}}">
+
 <div>
   <div class="header">
     <img src="/assets/images/icons/back.png" class="back-btn" (click)="backClick()">
@@ -38,14 +41,14 @@
     <div class="signin-options">
       <span>Sign in with</span>
       <div class="login-icons">
-        <a href="facebook.com" class="facebook">
+        <a class="facebook" (click)="facebook()">
           <img src="/assets/images/icons/facebook.png">
         </a>
-        <a href="twitter.com" class="twitter">
+        <a class="twitter">
           <img src="/assets/images/icons/twitter.png">
         </a>
-        <a href="google.com" class="google">
-          <img src="/assets/images/icons/google.png">
+        <a class="google">
+          <img src="/assets/images/icons/google.png" (click)="signIn('google')">
         </a>
       </div>
     </div>

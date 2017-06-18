@@ -3,14 +3,19 @@
     <a (click)="close()">x</a>
   </div>
   <ul>
-  <li class="header">
+  <li class="header" *ngIf="!isLoggedIn">
     <a routerLink="/login">
       Join / Login to Selasfora
     </a>
   </li>
+  <li class="header" *ngIf="isLoggedIn">
+    <a routerLink="/login">
+      Hi, {{ user.name }}
+    </a>
+  </li>
 
-  <li class="link">
-    <a routerLink="/logout">
+  <li class="link" *ngIf="isLoggedIn">
+    <a href="#" (click)="logout()">
       Logout
     </a>
   </li>

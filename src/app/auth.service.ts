@@ -8,7 +8,11 @@ export class AuthService {
 
   private baseURL = 'https://selasfora-dev.herokuapp.com/';
 
-  constructor(private http: Http) { }
+  public isLoggedIn = false;
+
+  constructor(private http: Http) {
+
+  }
 
   login(data) {
     let url = this.baseURL + 'auth/sign_in';
@@ -18,7 +22,7 @@ export class AuthService {
   }
 
   signup(data) {
-    let url = this.baseURL + 'auth/sign_up';
+    let url = this.baseURL + 'auth';
     let method = 'post';
 
     return this.sendRequest(method, url, data, undefined);
