@@ -1,0 +1,18 @@
+<div class="main-landing" [ngStyle]="{ 'background-image': 'url(' + page.imagePath + ')'}">
+  <app-header></app-header>
+  <div class="text-content">
+    <div class="title" [hidden]="!page.content.title" [ngStyle]="{ color: page.colorShade == 'dark' ? 'white' : 'black' }">
+      {{ page.content.title }}
+    </div>
+    <div class="subtext" [hidden]="!page.content.subtext" [ngStyle]="{ color: page.colorShade == 'dark' ? 'white' : 'black' }">
+      {{ page.content.subtext }}
+    </div>
+    <div class="call-for-action" [hidden]="!page.content.cta" [ngStyle]="{ color: page.colorShade == 'dark' ? 'white' : 'black' }">
+      {{ page.content.cta }}
+    </div>
+    <div class="secondary-btn" *ngIf="page.content.btn">
+      {{ page.content.btn }}
+    </div>
+  </div>
+  <img src="{{page.imagePath}}">
+</div>

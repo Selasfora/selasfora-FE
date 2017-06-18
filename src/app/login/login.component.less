@@ -1,0 +1,139 @@
+h1 {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+input[type="email"], input[type="password"] {
+  max-width: 423px;
+  height: 48px;
+  background-color: #ebebeb;
+  border: 0;
+  width: 100%;
+  margin-bottom: 32px;
+  margin-top: 14px;
+  font-size: 15px;
+  line-height: 26px;
+  padding: 16px 11px;
+  box-sizing: border-box;
+}
+
+:host {
+  text-align: center;
+}
+.header {
+  padding-top: 39px;
+  width: 50%;
+  margin: auto;
+  .back-btn {
+    position: absolute;
+    left: 100px;
+    top: 50px;
+  }
+}
+
+form {
+  width: 50%;
+  margin: auto;
+}
+
+.label {
+  max-width: 423px;
+  width: 100%;
+  text-align: left;
+  margin: auto;
+}
+
+button {
+  max-width: 423px;
+  width: 100%;
+  height: 60px;
+  background-color: #272caa;
+  color: white;
+  font-family: Montserrat;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 2;
+  border: 0;
+}
+
+.signup {
+  width: 125px;
+  height: 26px;
+  font-family: Montserrat;
+  font-size: 14px;
+  line-height: 1.86;
+  text-align: center;
+  color: #272caa;
+  padding-top: 26px;
+  padding-bottom: 50px;
+  margin: auto;
+}
+
+.signin-options {
+  &:before {
+    border-top: solid 1px #ccc;
+    content: ' ';
+    width: 100%;
+    max-width: 423px;
+    height: 10px;
+    display: block;
+    z-index: -1;
+    margin: auto;
+    position: relative;
+    top: 20px;
+  }
+  span {
+    background-color: white;
+    padding: 0 20px;
+  }
+  .login-icons {
+    a {
+      text-decoration: none;
+      img {
+        padding: 20px;
+      }
+    }
+  }
+}
+
+.forgot {
+  font-family: Montserrat;
+  font-size: 14px;
+  line-height: 1.86;
+  text-align: right;
+  color: #272caa;
+  width: 80%;
+  display: inline-block;
+}
+.footer {
+  width: 90%;
+  margin: auto;
+  border-top: solid 1px #ccc;
+  padding-top: 37px;
+  padding-bottom: 30px;
+  position: relative;
+  .copyright {
+    position: absolute;
+    top: 30px;
+  }
+
+  .link, .link a {
+    padding: 0 20px;
+  }
+  .right-separator {
+    border-right: solid 1px #ccc;
+  }
+}
+
+.error-msg {
+  position: relative;
+  top: -25px;
+  font-family: Montserrat;
+  font-size: 14px;
+  line-height: 1.71;
+  color: #d91c1c;
+  max-width: 423px;
+  width: 100%;
+  text-align: left;
+  margin: auto;
+}

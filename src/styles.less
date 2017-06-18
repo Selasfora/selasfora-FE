@@ -1,1 +1,501 @@
-/* You can add global styles to this file, and also import other style files */
+
+/* variables */
+
+@light-blue: #272caa;
+@dark-blue: #1c1f76;
+@dark-black: #191919;
+
+@grey-ligtest: #f0f0f0;
+@grey-ligter: #cccccc;
+@grey-darker: #999999;
+@grey-darkest: #666666;
+
+/* Fonts */
+@font-face {
+  font-family: 'Asar';
+  src: url('/assets/fonts/Asar-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/assets/fonts/Montserrat-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/assets/fonts/Montserrat-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/assets/fonts/Montserrat-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/assets/fonts/Montserrat-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/assets/fonts/Montserrat-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/assets/fonts/Montserrat-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/assets/fonts/Montserrat-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GTAmerica';
+  src: url('/assets/fonts/GT_America_Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'GTAmerica';
+  src: url('/assets/fonts/GT_America_Thin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'GTAmerica';
+  src: url('/assets/fonts/GT_America_Ultra_Light.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'GTAmerica';
+  src: url('/assets/fonts/GT_America_Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Playfair';
+  src: url('/assets/fonts/PlayfairDisplay-Regular') format('truetype');
+}
+@font-face {
+  font-family: 'PTSerif';
+  src: url('/assets/fonts/PT_Serif-Web-Regular') format('truetype');
+}
+@font-face {
+  font-family: 'CircularStd';
+  src: url('/assets/fonts/Asar-Regular') format('truetype');
+}
+
+/* Small Devices, Phones */
+@media only screen and (max-width : 767px) {
+  /* text */
+
+  .main-content {
+    color: black;
+    .h1 {
+      font-family: CircularStd;
+      font-size: 26px;
+      font-weight: bold;
+    }
+    .h2 {
+      font-family: Montserrat;
+      font-size: 17px;
+      font-weight: 600;
+    }
+    .intro-content {
+      font-family: Asar;
+      font-size: 17px;
+    }
+    .secondary-content {
+      font-family: Montserrat;
+      font-size: 14px;
+      color: @grey-darker;
+    }
+    .h3 {
+      font-family: Montserrat;
+      font-size: 17px;
+      font-weight: 600;
+    }
+    .call-for-action {
+      opacity: 0.1;
+      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: 600;
+      color: @dark-black;
+    }
+    .support {
+      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: 600;
+      color: @light-blue;
+    }
+    .regular {
+      font-family: Asar;
+      font-size: 17px;
+    }
+    .smaller {
+      font-family: Asar;
+      font-size: 13px;
+      text-align: left;
+    }
+  }
+
+  .navigation {
+    color: black;
+    .link {
+      font-family: Montserrat;
+      font-size: 13px;
+    }
+    .button-label {
+      font-family: Montserrat;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .icon-label {
+      font-family: Montserrat;
+      font-size: 11px;
+    }
+  }
+
+  .footer {
+    color: black;
+    .copyright {
+      font-family: Asar;
+      font-size: 15px;
+      color: @grey-darker;
+    }
+    .link {
+      font-family: Montserrat;
+      font-size: 12px;
+      color: @grey-darkest;
+    }
+  }
+
+  /* buttons */
+
+  .button {
+    width: 195px;
+    height: 45px;
+    color: white;
+    font-family: Montserrat;
+    font-size: 10px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  .main-btn, .tetiary-btn, .alternative-btn {
+    .button;
+    background-color: @light-blue;
+  }
+
+  .secondary-btn {
+    .button;
+    background-color: @dark-black;
+  }
+}
+
+/* Medium Devices, Tablets */
+@media only screen and (max-width : 991px) and (min-width : 768px) {
+  /* text */
+
+  .main-content {
+    color: black;
+    .h1 {
+      font-family: CircularStd;
+      font-size: 40px;
+      font-weight: bold;
+    }
+    .h2 {
+      font-family: Montserrat;
+      font-size: 24px;
+      font-weight: 600;
+    }
+    .intro-content {
+      font-family: Asar;
+      font-size: 18px;
+    }
+    .secondary-content {
+      font-family: Montserrat;
+      font-size: 12px;
+      color: @grey-darker;
+    }
+    .h3 {
+      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .call-for-action {
+      opacity: 0.1;
+      font-family: Montserrat;
+      font-size: 10px;
+      font-weight: 600;
+      color: @dark-black;
+    }
+    .support {
+      font-family: Montserrat;
+      font-size: 10px;
+      font-weight: 600;
+      color: @light-blue;
+    }
+    .regular {
+      font-family: Asar;
+      font-size: 16px;
+    }
+    .smaller {
+      font-family: Asar;
+      font-size: 13px;
+      text-align: left;
+    }
+  }
+
+  .navigation {
+    color: black;
+    .link {
+      font-family: Montserrat;
+      font-size: 10px;
+    }
+    .button-label {
+      font-family: Montserrat;
+      font-size: 10px;
+      font-weight: 500;
+    }
+    .icon-label {
+      font-family: Montserrat;
+      font-size: 9px;
+    }
+  }
+
+  .footer {
+    color: black;
+    .copyright {
+      font-family: Asar;
+      font-size: 11px;
+      color: @grey-darker;
+    }
+    .link {
+      font-family: Montserrat;
+      font-size: 9px;
+      color: @grey-darkest;
+    }
+  }
+
+  /* buttons */
+
+  .button {
+    width: 195px;
+    height: 45px;
+    color: white;
+    font-family: Montserrat;
+    font-size: 10px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  .main-btn {
+    .button;
+    background-color: @light-blue;
+    &:hover {
+      background-color: @dark-blue;
+    }
+  }
+
+  .secondary-btn {
+    .button;
+    background-color: @dark-black;
+    &:hover {
+      background-color: @light-blue;
+    }
+  }
+
+  .tetiary-btn {
+    .button;
+    border: solid 1px #181818;
+    color: black;
+    &:hover {
+      background-color: @dark-black;
+      color: white;
+    }
+  }
+
+  .alternative-btn {
+    .button;
+    background-color: white;
+    color: black;
+    &:hover {
+      color: @light-blue;
+    }
+  }
+}
+
+/* Large Devices, Screens */
+@media only screen and (min-width : 992px) {
+  /* text */
+
+  .main-content {
+    color: black;
+    .h1 {
+      font-family: CircularStd;
+      font-size: 52px;
+      font-weight: bold;
+    }
+    .h2 {
+      font-family: Montserrat;
+      font-size: 31px;
+      font-weight: 600;
+    }
+    .intro-content {
+      font-family: Asar;
+      font-size: 26px;
+    }
+    .secondary-content {
+      font-family: Montserrat;
+      font-size: 16px;
+      color: @grey-darker;
+    }
+    .h3 {
+      font-family: Montserrat;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .call-for-action {
+      opacity: 0.1;
+      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .support {
+      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: 600;
+      color: @light-blue;
+    }
+    .regular {
+      font-family: Asar;
+      font-size: 21px;
+    }
+    .smaller {
+      font-family: Asar;
+      font-size: 18px;
+      text-align: left;
+    }
+  }
+
+  .navigation {
+    color: black;
+    .link {
+      font-family: Montserrat;
+      font-size: 13px;
+    }
+    .button-label {
+      font-family: Montserrat;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .icon-label {
+      font-family: Montserrat;
+      font-size: 11px;
+    }
+  }
+
+  .footer {
+    color: black;
+    .copyright {
+      font-family: Asar;
+      font-size: 15px;
+      color: @grey-darker;
+    }
+    .link, .link a {
+      font-family: Montserrat;
+      font-size: 12px;
+      color: @grey-darkest;
+      text-decoration: none;
+    }
+  }
+
+  /* buttons */
+
+  .button {
+    max-width: 260px;
+    max-height: 60px;
+    color: white;
+    font-family: Montserrat;
+    font-size: 13px;
+    font-weight: normal;
+    text-align: center;
+    display: inline-block;
+    padding: 25px 50px;
+    cursor: pointer;
+  }
+
+  .main-btn {
+    .button;
+    background-color: @light-blue;
+    &:hover {
+      background-color: @dark-blue;
+    }
+  }
+
+  .secondary-btn {
+    .button;
+    background-color: @dark-black;
+    &:hover {
+      background-color: @light-blue;
+    }
+  }
+
+  .tetiary-btn {
+    .button;
+    border: solid 1px #181818;
+    color: black;
+    &:hover {
+      background-color: @dark-black;
+      color: white;
+    }
+  }
+
+  .alternative-btn {
+    .button;
+    background-color: white;
+    color: black;
+    &:hover {
+      color: @light-blue;
+    }
+  }
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: Montserrat;
+  margin: 0;
+}
+
+.center {
+  text-align: center;
+}
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+.back-btn {
+  cursor: pointer;
+}
