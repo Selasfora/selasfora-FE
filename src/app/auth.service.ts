@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -10,8 +10,10 @@ export class AuthService {
 
   public isLoggedIn = false;
 
-  constructor(private http: Http) {
+  private headers: Headers = new Headers();
 
+  constructor(private http: Http) {
+    this.headers.append('Content-Type', 'application/json');
   }
 
   login(data) {
@@ -25,12 +27,12 @@ export class AuthService {
     let url = this.baseURL + 'auth';
     let method = 'post';
 
-    return this.sendRequest(method, url, data, undefined);
+    return this.sendRequest(method, url, data, { headers: this.headers });
   }
 
   logout(data) {
     let url = this.baseURL + 'auth/sign_out';
-    let method = 'delete';
+    let method = 'post';
 
     return this.sendRequest(method, url, data, undefined);
   }
@@ -42,9 +44,8 @@ export class AuthService {
     return this.sendRequest(method, url, data, undefined);
   }
 
-  private sendRequest(method, url, data, options): Observable<any> {
+  sendRequest(method, url, data, options): Observable<any> {
     return this.http[method](url, data, options)
       .map(res => res.json());
   }
-
 }

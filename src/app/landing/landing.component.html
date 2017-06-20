@@ -1,5 +1,4 @@
-<div class="main-landing" [ngStyle]="{ 'background-image': 'url(' + page.imagePath + ')'}">
-  <app-header></app-header>
+<div class="main-landing" [ngStyle]="{ 'background-image': 'url(' + page.imagePath + ')'}" id="{{idx}}">
   <div class="text-content">
     <div class="title" [hidden]="!page.content.title" [ngStyle]="{ color: page.colorShade == 'dark' ? 'white' : 'black' }">
       {{ page.content.title }}
@@ -13,6 +12,9 @@
     <div class="secondary-btn" *ngIf="page.content.btn">
       {{ page.content.btn }}
     </div>
+  </div>
+  <div href="#{{idx+1}}" class="next-page" pageScroll [pageScrollEasing]="myEasing" id="customEasingButton">
+    <img src="/assets/images/chevron-grey.png">
   </div>
   <img src="{{page.imagePath}}">
 </div>

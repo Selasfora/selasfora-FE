@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="!sentConfirmation">
   <div class="header">
     <img src="/assets/images/icons/back.png" class="back-btn" (click)="backClick()">
     <a routerLink="/">
@@ -49,7 +49,7 @@
             Phone Number
           </div>
           <input type="number" id="phone" name="phone" class="form-control"
-              minlength="6" maxlength="15"
+              minlength="8" maxlength="15"
               formControlName="phone" (blur)="onBlur('phone')">
           <div *ngIf="formErrors.phone.length" class="error-msg">
             <div *ngFor="let item of formErrors.phone">{{ item }}</div>
@@ -63,7 +63,7 @@
             Password
           </div>
           <input type="password" id="password" name="password" class="form-control"
-              minlength="6" maxlength="25"
+              minlength="8" maxlength="25"
               formControlName="password" (blur)="onBlur('password')">
           <div *ngIf="formErrors.password.length" class="error-msg">
             <div *ngFor="let item of formErrors.password">{{ item }}</div>
@@ -74,32 +74,15 @@
             Repeat Password
           </div>
           <input type="password" id="password2" name="password2" class="form-control"
-              minlength="6" maxlength="15"
+              minlength="8" maxlength="15"
               formControlName="password2" (blur)="onBlur('password2')">
         </div>
       </div>
-      <div class="signup-error"></div>
+      <div class="signup-error" *ngIf="errorMessage">{{errorMessage}}</div>
       <div>
         <button type="button" (click)="onSubmit()">Sign up</button>
       </div>
     </form>
-
-    <!-- <div class="signup">I need an account</div>
-
-    <div class="signin-options">
-      <span>Sign in with</span>
-      <div class="signup-icons">
-        <a href="facebook.com" class="facebook">
-          <img src="/assets/images/icons/facebook.png">
-        </a>
-        <a href="twitter.com" class="twitter">
-          <img src="/assets/images/icons/twitter.png">
-        </a>
-        <a href="google.com" class="google">
-          <img src="/assets/images/icons/google.png">
-        </a>
-      </div>
-    </div> -->
 
     <div class="footer">
       <div class="copyright">Copyright © Selasfora 2017</div>
@@ -108,6 +91,34 @@
         <a href="" class="right-separator">Journal</a>
         <a href="">Shop Charms</a>
       </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="sentConfirmation">
+  <div class="header">
+    <img src="/assets/images/icons/back.png" class="back-btn" (click)="backClick()">
+    <a routerLink="/">
+      <img src="/assets/images/logo-black.png">
+    </a>
+  </div>
+  <div class="confirmation">
+    <img src="/assets/images/email-icon.png">
+    <h2>Just one more step...</h2>
+    <div class="confirmation-text">
+      Your information has been sent successfully. In order to complete your registration, please click the confirmation link in the email that we have sent to you.
+    </div>
+    <div class="link">{{signupForm.value.email}}</div>
+    <button>Resend email</button>
+    <div>
+      <a href="" class="return-link">Return to shopping</a>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="copyright">Copyright © Selasfora 2017</div>
+    <div class="link">
+      <a href="" class="right-separator">Contact</a>
+      <a href="" class="right-separator">Journal</a>
+      <a href="">Shop Charms</a>
     </div>
   </div>
 </div>

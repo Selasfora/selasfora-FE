@@ -18,10 +18,19 @@ export class MenuComponent implements OnInit {
 
   constructor(private userService: UserService, private authService: AuthService) {
     this.user = userService.getUser();
+    if(this.user) {
+      this.user.name = this.user.name ||
+        (this.user.first_name + this.user.last_name) || this.user.email;
+    }
     this.isLoggedIn = userService.isLoggedIn();
   }
 
   ngOnInit() {
+  }
+
+  empty() {
+    //just a place holder
+    return false;
   }
 
   close() {
@@ -30,8 +39,9 @@ export class MenuComponent implements OnInit {
   }
 
   logout() {
-    console.log('removing user')
     this.userService.removeUser();
+    this.isLoggedIn = false;
+    this.user = null;
     this.authService.logout(null).subscribe().unsubscribe();
     return false;
   }

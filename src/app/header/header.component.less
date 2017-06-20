@@ -1,7 +1,10 @@
 :host {
-  /*position: absolute;
+  position: fixed;
   top: 0;
-  left: 0;*/
+  left: 0;
+  padding: 0 62px;
+  box-sizing: border-box;
+  z-index: 1;
   text-align: center;
   width: 100%;
   &>div {
@@ -47,10 +50,13 @@
   img {
     max-width: 125px;
     width: 100%;
+    position: relative;
+    left: -2px;
+    top: -8px;
   }
 }
 .Selasfora {
-  width: 66px;
+  width: 80px;
   height: 26px;
   font-family: GTAmerica;
   font-size: 15px;

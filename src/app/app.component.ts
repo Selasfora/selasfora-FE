@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { WindowService } from './window.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
+  window: any;
 
+  constructor(private router: Router, private _window: WindowService) {
+    router.events.subscribe(
+      (event) => {
+        if(event instanceof NavigationEnd) {
+          this.window = _window.nativeWindow;
+          this.window.scrollTo(0, 0);
+        }
+      }
+    )
+  }
 }

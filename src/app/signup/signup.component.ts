@@ -14,6 +14,8 @@ export class SignupComponent implements OnInit {
 
   signupForm: FormGroup;
 
+  sentConfirmation: boolean = false;
+
   validationMessages = {
     'fname': {
       'required': 'First name is required.',
@@ -31,7 +33,7 @@ export class SignupComponent implements OnInit {
     'email2': {},
     'password': {
       'required': 'Password is required.',
-      'minlength': 'Password should at least be 6 digits',
+      'minlength': 'Password should at least be 8 digits',
       'maxlength': 'Max characters is 25'
     },
     'password2': {}
@@ -47,12 +49,18 @@ export class SignupComponent implements OnInit {
     'password2': []
   };
 
+  errorMessage: string = '';
+
   constructor(private fb: FormBuilder, private auth: AuthService, private _location: Location,
     private router: Router, private user: UserService) {
   }
 
   backClick() {
-    this._location.back();
+    if(this.sentConfirmation) {
+      this.sentConfirmation = false;
+    } else {
+      this._location.back();
+    }
   }
 
   onBlur(field) {
@@ -67,7 +75,6 @@ export class SignupComponent implements OnInit {
     if(field == 'email2' && this.signupForm.get('email').value != this.signupForm.get('email2').value) {
       this.formErrors['email'].push('Emails don\'t match');
     } else if(field == 'password2' && this.signupForm.get('password').value != this.signupForm.get('password2').value) {
-      console.log(this.signupForm.get('password').value, this.signupForm.get('password2').value)
       this.formErrors['password'].push('Passwords don\'t match');
     }
   }
@@ -99,9 +106,15 @@ export class SignupComponent implements OnInit {
       model.phone = value.phone;
       model.first_name = value.fname;
       model.last_name = value.lname;
-
       this.auth.signup(model)
-        .subscribe((data) => console.log(data));
+        .subscribe(
+          (data) => {
+            this.sentConfirmation = true;
+          },
+          (error) => {
+            this.errorMessage = error.json().errors.full_messages[0];
+          }
+        );
     }
     return false;
   }

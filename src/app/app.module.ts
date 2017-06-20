@@ -23,6 +23,8 @@ import { MenuComponent } from './menu/menu.component';
 
 import { Angular2SocialLoginModule } from "angular2-social-login";
 
+import { Ng2PageScrollModule } from 'ng2-page-scroll';
+
 const appRoutes: Routes = [
   {
     path: '',
@@ -72,7 +74,8 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
-    Angular2SocialLoginModule
+    Angular2SocialLoginModule,
+    Ng2PageScrollModule.forRoot()
   ],
   providers: [
     AuthService,

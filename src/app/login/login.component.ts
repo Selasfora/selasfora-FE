@@ -55,6 +55,7 @@ export class LoginComponent implements OnInit {
     .subscribe(
       (data) => {
         this.user.persistUser(data);
+        this.router.navigate(['/']);
       }
     )
   }
@@ -156,6 +157,21 @@ export class LoginComponent implements OnInit {
   }
 
   twitter() {
+    let key = '36r0UcbrGLXjCFMAVi9q0tLOW';
+    let secret = 'ygOR3tY5Vc1hXhoQ0v3Sjmded323PEAgIe1hUTX5jscRce0T3j';
+
+    this.auth.sendRequest('post', 'http://api.twitter.com/oauth/request_token', {
+      oauth_callback: "http://localhost:4200/login",
+      oauth_consumer_key: key,
+      oauth_nonce: "ea9ec8429b68d6b77cd5600adbbb0456",
+      oauth_signature: "F1Li3tvehgcraF8DMJ7OyxO4w9Y%3D",
+      oauth_signature_method: "HMAC-SHA1"
+    }, null).subscribe(
+      (response) => {
+        console.log(response)
+        window.open('https://api.twitter.com/oauth/authenticate?oauth_token=' + response.oauth_token);
+      }
+    );
 
   }
 
