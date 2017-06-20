@@ -1,14 +1,13 @@
 .main-landing {
-  /*background-image: url('/assets/images/HeadingImage_hands2.jpg');*/
+  @media only screen and (min-width : 768px) {
+    min-height: 100%;
+    padding: 0 62px;
+  }
   background-repeat: no-repeat;
   background-size: 100%;
-  /*background-position: -40px -80px;*/
   width: 100%;
-  /*height: 100%;*/
   height: auto;
-  min-height: 100%;
   box-sizing: border-box;
-  padding: 0 62px;
   position: relative;
   & > img {
     max-width: 100%;
@@ -17,26 +16,56 @@
   }
   .text-content {
     position: absolute;
-    top: 223px;
-    left: 174px;
-    width: 280px;
+
+    @media only screen and (min-width : 768px) {
+      top: 223px;
+      left: 174px;
+      width: 280px;
+    }
+
+    @media only screen and (max-width : 767px) {
+      bottom: 60px;
+      left: 0px;
+      width: 100%;
+      padding: 0 10%;
+      box-sizing: border-box;
+    }
   }
   .title {
-    font-family: Montserrat;
-    font-size: 50px;
     font-weight: 500;
-    text-align: left;
+    font-family: Montserrat;
     color: #ffffff;
+
+    @media only screen and (min-width : 768px) {
+      font-size: 50px;
+      text-align: left;
+    }
+    @media only screen and (max-width : 767px) {
+      font-size: 26px;
+      font-weight: 600;
+      text-align: center;
+    }
+
   }
 
   .subtext {
     font-family: Asar;
-    font-size: 18px;
-    line-height: 1.43;
-    text-align: left;
     color: #ffffff;
-    padding-top: 30px;
-    padding-bottom: 30px;
+
+    @media only screen and (min-width : 768px) {
+      font-size: 18px;
+      line-height: 1.43;
+      text-align: left;
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
+    @media only screen and (max-width : 767px) {
+      font-size: 17px;
+      line-height: 1.65;
+      text-align: center;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
   }
 
   .call-for-action {
@@ -44,12 +73,5 @@
     font-family: Montserrat;
     font-size: 14px;
     padding-top: 0;
-  }
-
-  .next-page {
-    position: absolute;
-    bottom: 100px;
-    left: 48%;
-    cursor: pointer;
   }
 }

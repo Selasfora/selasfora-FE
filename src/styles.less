@@ -499,3 +499,15 @@ html, body {
 .back-btn {
   cursor: pointer;
 }
+
+.hidden-xs {
+  @media only screen and (max-width : 767px) {
+    display: none !important;
+  }
+}
+
+.visible-xs {
+  @media only screen and (min-width : 768px) {
+    display: none !important;
+  }
+}

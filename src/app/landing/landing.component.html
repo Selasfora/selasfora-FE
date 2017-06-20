@@ -1,4 +1,6 @@
-<div class="main-landing" [ngStyle]="{ 'background-image': 'url(' + page.imagePath + ')'}" id="{{idx}}">
+
+
+<div class="main-landing hidden-xs" [ngStyle]="{ 'background-image': 'url(' + page.imagePath + ')'}" id="{{idx}}">
   <div class="text-content">
     <div class="title" [hidden]="!page.content.title" [ngStyle]="{ color: page.colorShade == 'dark' ? 'white' : 'black' }">
       {{ page.content.title }}
@@ -13,8 +15,24 @@
       {{ page.content.btn }}
     </div>
   </div>
-  <div href="#{{idx+1}}" class="next-page" pageScroll [pageScrollEasing]="myEasing" id="customEasingButton">
-    <img src="/assets/images/chevron-grey.png">
-  </div>
   <img src="{{page.imagePath}}">
+</div>
+
+
+<div class="main-landing visible-xs" [ngStyle]="{ 'background-image': 'url(' + page.mobileImagePath + ')'}" id="{{idx}}">
+  <div class="text-content" [ngStyle]="position">
+    <div class="title" [hidden]="!page.content.title" [ngStyle]="{ color: page.colorShade == 'dark' ? 'white' : 'black' }">
+      {{ page.content.title }}
+    </div>
+    <div class="subtext" [hidden]="!page.content.subtext" [ngStyle]="{ color: page.colorShade == 'dark' ? 'white' : 'black' }">
+      {{ page.content.subtext }}
+    </div>
+    <div class="call-for-action" [hidden]="!page.content.cta" [ngStyle]="{ color: page.colorShade == 'dark' ? 'white' : 'black' }">
+      {{ page.content.cta }}
+    </div>
+    <div class="secondary-btn hidden-xs" *ngIf="page.content.btn">
+      {{ page.content.btn }}
+    </div>
+  </div>
+  <img src="{{page.mobileImagePath}}">
 </div>

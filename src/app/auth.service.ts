@@ -48,4 +48,8 @@ export class AuthService {
     return this.http[method](url, data, options)
       .map(res => res.json());
   }
+
+  resendEmail() {
+    return this.sendRequest('post', '/auth/confirmation', {}, null);
+  }
 }

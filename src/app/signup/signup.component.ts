@@ -138,4 +138,10 @@ export class SignupComponent implements OnInit {
     return valid;
   }
 
+  resend() {
+    this.auth.resendEmail().subscribe(
+      (data) => this.router.navigate(['/'])
+    );
+  }
+
 }

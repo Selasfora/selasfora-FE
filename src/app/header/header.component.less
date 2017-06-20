@@ -2,30 +2,30 @@
   position: fixed;
   top: 0;
   left: 0;
-  padding: 0 62px;
   box-sizing: border-box;
   z-index: 1;
   text-align: center;
   width: 100%;
-  &>div {
-    padding-top: 37px;
+  @media only screen and (min-width : 768px) {
+    padding: 0 62px;
+    &>div {
+      padding-top: 37px;
+    }
   }
 }
 
 .left-part {
   float: left;
   width: 40%;
+  @media only screen and (max-width : 767px) {
+    padding-top: 5px;
+  }
 }
 
 .right-part {
   float: right;
   width: 50%;
   text-align: right;
-  /*div.button {
-    padding: 25px 0;
-    width: 31.5%;
-    float: left;
-  }*/
   .secondary-btn {
     font-size: 13px;
     font-weight: 200;
@@ -52,11 +52,22 @@
     width: 100%;
     position: relative;
     left: -2px;
-    top: -8px;
+    @media only screen and (min-width : 768px) {
+      top: -8px;
+    }
+    @media only screen and (max-width : 767px) {
+      top: -6px;
+    }
   }
 }
 .Selasfora {
-  width: 80px;
+  @media only screen and (min-width : 768px) {
+    width: 80px;
+  }
+  @media only screen and (max-width : 767px) {
+    width: 60px;
+    top: 10px;
+  }
   height: 26px;
   font-family: GTAmerica;
   font-size: 15px;
