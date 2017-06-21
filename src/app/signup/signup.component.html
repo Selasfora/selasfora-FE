@@ -80,11 +80,12 @@
       </div>
       <div class="signup-error" *ngIf="errorMessage">{{errorMessage}}</div>
       <div>
-        <button type="button" (click)="onSubmit()">Sign up</button>
+        <button type="button" (click)="onSubmit()" class="hidden-xs">Sign up</button>
       </div>
     </form>
+    <button type="button" (click)="onSubmit()" class="visible-xs">Sign up</button>
 
-    <div class="footer">
+    <div class="footer hidden-xs">
       <div class="copyright">Copyright © Selasfora 2017</div>
       <div class="link">
         <a href="" class="right-separator">Contact</a>

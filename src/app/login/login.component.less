@@ -26,14 +26,24 @@ input[type="email"], input[type="password"] {
   margin: auto;
   .back-btn {
     position: absolute;
-    left: 100px;
     top: 50px;
+    @media only screen and (max-width : 767px) {
+      left: 50px;
+    }
+    @media only screen and (min-width : 768px) {
+      left: 100px;
+    }
   }
 }
 
 form {
-  width: 50%;
   margin: auto;
+  @media only screen and (max-width : 767px) {
+    width: 70%;
+  }
+  @media only screen and (min-width : 768px) {
+    width: 50%;
+  }
 }
 
 .label {
@@ -104,24 +114,68 @@ button {
   line-height: 1.86;
   text-align: right;
   color: #272caa;
-  width: 80%;
+
   display: inline-block;
+  @media only screen and (max-width : 767px) {
+    float: right
+  }
+  @media only screen and (min-width : 768px) {
+    width: 80%;
+  }
 }
 .footer {
-  width: 90%;
+  @media only screen and (min-width : 768px) {
+    width: 90%;
+  }
+  @media only screen and (max-width : 767px) {
+    width: 100%;
+  }
   margin: auto;
   border-top: solid 1px #ccc;
   padding-top: 37px;
   padding-bottom: 30px;
   position: relative;
   .copyright {
-    position: absolute;
-    top: 30px;
+    @media only screen and (min-width : 768px) {
+      position: absolute;
+      top: 30px;
+    }
+    @media only screen and (max-width : 767px) {
+      width: 70%;
+      text-align: left;
+      margin: auto;
+    }
   }
 
   .link, .link a {
-    padding: 0 20px;
+    @media only screen and (min-width : 768px) {
+      padding: 0 20px;
+    }
+    @media only screen and (max-width : 767px) {
+      width: 70%;
+      text-align: left;
+      margin: auto;
+    }
   }
+
+  @media only screen and (max-width : 767px) {
+    .link a {
+      opacity: 0.6;
+      font-family: Montserrat;
+      font-size: 12px;
+      line-height: 2.17;
+      color: #000000;
+      margin-top: 20px;
+      text-decoration: none;
+      &:not(:first-child) {
+        padding: 0 20px;
+      }
+      &:first-child {
+        padding-right: 20px;
+      }
+    }
+  }
+
   .right-separator {
     border-right: solid 1px #ccc;
   }
@@ -138,4 +192,14 @@ button {
   width: 100%;
   text-align: left;
   margin: auto;
+}
+
+.signup {
+  font-family: Montserrat;
+  font-size: 14px;
+  line-height: 1.86;
+  text-align: right;
+  color: #272caa;
+  display: inline-block;
+  text-decoration: none;
 }
