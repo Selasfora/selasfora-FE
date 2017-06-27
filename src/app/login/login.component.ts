@@ -84,17 +84,6 @@ export class LoginComponent implements OnInit {
     this._location.back();
   }
 
-  onBlur(field) {
-    this.formErrors[field] = [];
-    const control = this.loginForm.get(field);
-    if(!control.valid) {
-      const messages = this.validationMessages[field];
-      for (const key in control.errors) {
-        this.formErrors[field].push(messages[key]);
-      }
-    }
-  }
-
   ngOnInit() {
     if(this.user.isLoggedIn()) {
       this.router.navigate(['/']);

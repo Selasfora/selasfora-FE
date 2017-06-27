@@ -12,7 +12,7 @@
         <div class="group">
           <div class="label">First name</div>
           <input type="text" id="fname" name="fname" class="form-control"
-              formControlName="fname" (blur)="onBlur('fname')">
+              formControlName="fname">
           <div *ngIf="formErrors.fname.length" class="error-msg">
             <div *ngFor="let item of formErrors.fname">{{ item }}</div>
           </div>
@@ -20,7 +20,7 @@
         <div class="group">
           <div class="label">Last name</div>
           <input type="text" id="lname" name="lname" class="form-control"
-              formControlName="lname" (blur)="onBlur('lname')">
+              formControlName="lname">
           <div *ngIf="formErrors.lname.length" class="error-msg">
             <div *ngFor="let item of formErrors.lname">{{ item }}</div>
           </div>
@@ -31,7 +31,7 @@
         <div class="group">
           <div class="label">Email</div>
           <input type="email" id="email" name="email" class="form-control"
-              formControlName="email" (blur)="onBlur('email')">
+              formControlName="email">
           <div *ngIf="formErrors.email.length" class="error-msg">
             <div *ngFor="let item of formErrors.email">{{ item }}</div>
           </div>
@@ -39,7 +39,7 @@
         <div class="group">
           <div class="label">Repeat email</div>
           <input type="email" id="email2" name="email2" class="form-control"
-              formControlName="email2" (blur)="onBlur('email2')">
+              formControlName="email2">
         </div>
       </div>
 
@@ -50,7 +50,7 @@
           </div>
           <input type="number" id="phone" name="phone" class="form-control"
               minlength="8" maxlength="15"
-              formControlName="phone" (blur)="onBlur('phone')">
+              formControlName="phone">
           <div *ngIf="formErrors.phone.length" class="error-msg">
             <div *ngFor="let item of formErrors.phone">{{ item }}</div>
           </div>
@@ -64,7 +64,7 @@
           </div>
           <input type="password" id="password" name="password" class="form-control"
               minlength="8" maxlength="25"
-              formControlName="password" (blur)="onBlur('password')">
+              formControlName="password">
           <div *ngIf="formErrors.password.length" class="error-msg">
             <div *ngFor="let item of formErrors.password">{{ item }}</div>
           </div>
@@ -75,7 +75,7 @@
           </div>
           <input type="password" id="password2" name="password2" class="form-control"
               minlength="8" maxlength="15"
-              formControlName="password2" (blur)="onBlur('password2')">
+              formControlName="password2">
         </div>
       </div>
       <div class="signup-error" *ngIf="errorMessage">{{errorMessage}}</div>

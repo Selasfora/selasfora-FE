@@ -13,7 +13,7 @@
     <form [formGroup]="loginForm" novalidate>
       <div class="label">Email</div>
       <input type="email" id="email" name="email" class="form-control"
-          formControlName="email" (blur)="onBlur('email')">
+          formControlName="email">
       <div *ngIf="formErrors.email.length" class="error-msg">
         <div *ngFor="let item of formErrors.email">{{ item }}</div>
       </div>
@@ -24,7 +24,7 @@
       </div>
       <input type="password" id="password" name="password" class="form-control"
           minlength="6" maxlength="25"
-          formControlName="password" (blur)="onBlur('password')">
+          formControlName="password">
       <div *ngIf="formErrors.password.length" class="error-msg">
         <div *ngFor="let item of formErrors.password">{{ item }}</div>
       </div>

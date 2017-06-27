@@ -63,22 +63,6 @@ export class SignupComponent implements OnInit {
     }
   }
 
-  onBlur(field) {
-    this.formErrors[field] = [];
-    const control = this.signupForm.get(field);
-    if(!control.valid) {
-      const messages = this.validationMessages[field];
-      for (const key in control.errors) {
-        this.formErrors[field].push(messages[key]);
-      }
-    }
-    if(field == 'email2' && this.signupForm.get('email').value != this.signupForm.get('email2').value) {
-      this.formErrors['email'].push('Emails don\'t match');
-    } else if(field == 'password2' && this.signupForm.get('password').value != this.signupForm.get('password2').value) {
-      this.formErrors['password'].push('Passwords don\'t match');
-    }
-  }
-
   ngOnInit() {
     if(this.user.isLoggedIn()) {
       this.router.navigate(['/']);

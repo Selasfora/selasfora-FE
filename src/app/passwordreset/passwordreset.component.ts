@@ -24,6 +24,9 @@ export class PasswordresetComponent implements OnInit {
     'email': [],
   };
 
+  resultClass = '';
+  resultText = '';
+
   constructor(private fb: FormBuilder, private auth: AuthService, private _location: Location, private router: Router) {
     router.events.subscribe((event) => {
       window.scrollTo(0, 0);
@@ -34,22 +37,10 @@ export class PasswordresetComponent implements OnInit {
     this._location.back();
   }
 
-  onBlur(field) {
-    this.formErrors[field] = [];
-    const control = this.loginForm.get(field);
-    if(!control.valid) {
-      const messages = this.validationMessages[field];
-      for (const key in control.errors) {
-        this.formErrors[field].push(messages[key]);
-      }
-    }
-  }
-
   ngOnInit() {
 
     this.loginForm = this.fb.group({
-      email: ['', [Validators.email, Validators.required]],
-      password: ['', [Validators.required, Validators.minLength, Validators.maxLength]]
+      email: ['', [Validators.email, Validators.required]]
     });
   }
 
@@ -57,7 +48,16 @@ export class PasswordresetComponent implements OnInit {
     let valid = this.validate();
     if(valid) {
       this.auth.resetPassword(this.loginForm.value)
-        .subscribe((data) => console.log(data));
+        .subscribe(
+          (data) => {
+            this.resultClass = 'success';
+            this.resultText = data.message;
+          },
+          (error) => {
+            this.resultClass = 'error';
+            this.resultText = error.statusText;
+          }
+        );
     }
     return false;
   }

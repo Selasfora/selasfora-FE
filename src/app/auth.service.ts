@@ -41,7 +41,7 @@ export class AuthService {
     let url = this.baseURL + 'auth/password';
     let method = 'post';
 
-    return this.sendRequest(method, url, data, undefined);
+    return this.sendRequest(method, url, { 'redirect_url': '/login', 'email': data.email }, undefined);
   }
 
   sendRequest(method, url, data, options): Observable<any> {
