@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { routing } from './app.routes';
 
-import { RouterModule, Routes } from '@angular/router';
 import { LandingComponent } from './landing/landing.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HeaderComponent } from './header/header.component';
@@ -25,36 +26,6 @@ import { Angular2SocialLoginModule } from "angular2-social-login";
 
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
 
-const appRoutes: Routes = [
-  {
-    path: '',
-    component: LandingpageComponent,
-    pathMatch: 'full'
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
-    pathMatch: 'full',
-    //canActivate: [UserService]
-  },
-  {
-    path: 'signup',
-    component: SignupComponent,
-    pathMatch: 'full',
-    //canActivate: [UserService]
-  },
-
-  {
-    path: 'reset-password',
-    component: PasswordresetComponent,
-    pathMatch: 'full'
-  },
-  {
-    path: '**',
-    component: PageNotFoundComponent
-  }
-];
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,7 +44,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes),
+    routing,
     Angular2SocialLoginModule,
     Ng2PageScrollModule.forRoot()
   ],

@@ -20,7 +20,7 @@ export class MenuComponent implements OnInit {
     this.user = userService.getUser();
     if(this.user) {
       this.user.name = this.user.name ||
-        (this.user.first_name + this.user.last_name) || this.user.email;
+        (this.user.first_name + ' ' + this.user.last_name) || this.user.email;
     }
     this.isLoggedIn = userService.isLoggedIn();
   }
