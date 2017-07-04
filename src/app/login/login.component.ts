@@ -127,8 +127,8 @@ export class LoginComponent implements OnInit {
   }
 
   fbSetup() {
-    let appKey = '1389149917845163';
-    let appSecret = 'c3c48939366edcb08f20f354455bb080';
+    let appKey = '253526608467931';
+    let appSecret = 'c3a591cceb4382ccb4689df09837857a';
 
     this.window.fbAsyncInit = function() {
       this.window.FB.init({
@@ -142,7 +142,37 @@ export class LoginComponent implements OnInit {
   }
 
   facebook() {
-    this.window.FB.login();
+    let that = this;
+    this.window.FB.getLoginStatus(function(response) {
+      if (response.status === 'connected') {
+        var uid = response.authResponse.userID;
+        var accessToken = response.authResponse.accessToken;
+        that.window.FB.api(
+          uid,
+          function (response) {
+            if (response && !response.error) {
+              that.user.persistUser(response);
+              that.router.navigate(['/']);
+            }
+          }
+        );
+      } else {
+        // the user isn't logged in to Facebook.
+        this.window.FB.login(function(response) {
+          if(response && !response.error) {
+            that.window.FB.api(
+              response.authResponse.userID,
+              function (response) {
+                if (response && !response.error) {
+                  that.user.persistUser(response);
+                  that.router.navigate(['/']);
+                }
+              }
+            );
+          }
+        }, {scope: 'email'});
+      }
+    });
   }
 
   twitter() {
