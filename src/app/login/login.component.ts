@@ -54,6 +54,7 @@ export class LoginComponent implements OnInit {
     this.subscription = this._auth.login(provider)
     .subscribe(
       (data) => {
+        this.auth.registerSocialUser(data);
         this.user.persistUser(data);
         this.router.navigate(['/']);
       }
@@ -61,6 +62,13 @@ export class LoginComponent implements OnInit {
   }
 
   logout() {
+    let that = this;
+    this.window.FB.getLoginStatus(function(response) {
+      if (response.status === 'connected') {
+        that.window.FB.logout();
+      }
+    });
+
     this._auth.logout().subscribe(
       (data) => {
         //return a boolean value.
@@ -164,6 +172,7 @@ export class LoginComponent implements OnInit {
               response.authResponse.userID,
               function (response) {
                 if (response && !response.error) {
+                  that.auth.registerSocialUser(response);
                   that.user.persistUser(response);
                   that.router.navigate(['/']);
                 }

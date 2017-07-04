@@ -32,6 +32,13 @@ export class AuthService {
     return this.sendRequest(method, url, data, { headers: this.headers });
   }
 
+  registerSocialUser(data) {
+    let url = this.baseURL + 'users/update';
+    let method = 'post';
+
+    return this.sendRequest(method, url, data, null);
+  }
+
   logout(data) {
     let url = this.baseURL + 'auth/sign_out';
     let method = 'post';
