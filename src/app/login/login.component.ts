@@ -54,9 +54,12 @@ export class LoginComponent implements OnInit {
     this.subscription = this._auth.login(provider)
     .subscribe(
       (data) => {
-        this.auth.registerSocialUser(data);
-        this.user.persistUser(data);
-        this.router.navigate(['/']);
+        let res:any = data;
+        res.provider = 'google'
+        this.auth.registerSocialUser(res);
+        this.user.persistUser(res);
+        //this.router.navigate(['/']);
+        this.window.location.href = '/';
       }
     )
   }
@@ -110,7 +113,8 @@ export class LoginComponent implements OnInit {
         .map ((data: any) => data.data)
         .subscribe((data) => {
           this.user.persistUser(data);
-          this.router.navigate(['/']);
+          //this.router.navigate(['/']);
+          this.window.location.href = '/';
         });
     }
     return false;
@@ -160,26 +164,40 @@ export class LoginComponent implements OnInit {
           function (response) {
             if (response && !response.error) {
               that.user.persistUser(response);
-              that.router.navigate(['/']);
+              //that.router.navigate(['/']);
+              that.window.location.href = '/';
             }
           }
         );
       } else {
         // the user isn't logged in to Facebook.
         this.window.FB.login(function(response) {
+          let res = response;
+          console.log('res', res);
           if(response && !response.error) {
             that.window.FB.api(
               response.authResponse.userID,
               function (response) {
                 if (response && !response.error) {
-                  that.auth.registerSocialUser(response);
-                  that.user.persistUser(response);
-                  that.router.navigate(['/']);
+                  response.provider = 'facebook';
+                  if(!response.email) {
+                    response.email = response.id + '@facebook.com'
+                  }
+                  response.uid = response.id;
+                  delete response.id;
+                  console.log('response', response)
+                  that.auth.registerSocialUser(response).subscribe(
+                    (data) => {
+                      that.user.persistUser(response);
+                      //that.router.navigate(['/']);
+                      that.window.location.href = '/';
+                    }
+                  );
                 }
-              }
+              }, {fields: 'name, first_name, last_name, email'}
             );
           }
-        }, {scope: 'email'});
+        }, {scope: 'public_profile,email'});
       }
     });
   }

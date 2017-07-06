@@ -4,12 +4,12 @@
   </div>
   <ul>
   <li class="header" *ngIf="!isLoggedIn">
-    <a routerLink="/login">
+    <a (click)="login()">
       Join / Login to Selasfora
     </a>
   </li>
   <li class="header" *ngIf="isLoggedIn">
-    <a routerLink="/login">
+    <a href="#">
       Hi, {{ user.name }}
     </a>
   </li>

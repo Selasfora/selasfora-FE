@@ -51,7 +51,8 @@ export class AuthService {
     let method = 'post';
 
     return this.sendRequest(method, url, {
-      'redirect_url': environment.urlPath + '/reset-password?step=2',
+      //'redirect_url': environment.urlPath + 'reset-password?step=2',
+      'redirect_url': 'http://selasfora.surge.sh/reset-password?step=2',
       'email': data.email
     }, undefined);
   }

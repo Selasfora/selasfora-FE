@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 import { AuthService } from '../auth.service';
-
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -16,7 +16,8 @@ export class MenuComponent implements OnInit {
   isLoggedIn: boolean;
   user: any;
 
-  constructor(private userService: UserService, private authService: AuthService) {
+  constructor(private userService: UserService, private authService: AuthService
+    , private router: Router) {
     this.user = userService.getUser();
     if(this.user) {
       this.user.name = this.user.name ||
@@ -31,6 +32,12 @@ export class MenuComponent implements OnInit {
   empty() {
     //just a place holder
     return false;
+  }
+
+  login() {
+    this.menuHidden = true;
+    this.closeMenu.emit(true);
+    this.router.navigate(['/login']);
   }
 
   close() {
