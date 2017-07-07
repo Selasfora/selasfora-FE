@@ -75,3 +75,25 @@
     padding-top: 0;
   }
 }
+
+.instagram {
+  position: relative;
+  z-index: 5;
+  @media only screen and (max-width : 767px) {
+    bottom: -150px;
+    left: -10px;
+  }
+
+  a {
+    color: white;
+    position: absolute;
+    @media only screen and (min-width : 768px) {
+      right: 380px;
+      top: -40px;
+    }
+    @media only screen and (max-width : 767px) {
+      left: 0;
+      bottom: 0;
+    }
+  }
+}

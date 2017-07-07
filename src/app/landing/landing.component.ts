@@ -15,9 +15,11 @@ export class LandingComponent {
   };
 
   @Input() idx: any;
+  @Input() last: any;
 
   private window: any;
   public position: any = {};
+  public ctaText = '';
 
   constructor(private $window: WindowService) {
     this.window = $window.nativeWindow;
@@ -27,5 +29,10 @@ export class LandingComponent {
     this.position[this.page.position] = '60px';
   }
 
+  follow(type) {
+    if(type == 'insta') {
+      console.log('insta clicked');
+    }
+  }
 
 }

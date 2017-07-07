@@ -16,6 +16,11 @@
     </div>
   </div>
   <img src="{{page.imagePath}}">
+  <div class="instagram" *ngIf="idx == 5">
+    <a href="https://www.instagram.com/selasfora/" target="_blank">
+      <img src="/assets/images/insta.png">
+    </a>
+  </div>
 </div>
 
 
@@ -32,6 +37,11 @@
     </div>
     <div class="secondary-btn hidden-xs" *ngIf="page.content.btn">
       {{ page.content.btn }}
+    </div>
+    <div class="instagram" *ngIf="idx == 5">
+      <a href="https://www.instagram.com/selasfora/" target="_blank">
+        <img src="/assets/images/insta.png">
+      </a>
     </div>
   </div>
   <img src="{{page.mobileImagePath}}">
