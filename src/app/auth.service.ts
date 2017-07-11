@@ -67,6 +67,11 @@ export class AuthService {
     return this.sendRequest(method, url, data, { headers: this.headers });
   }
 
+  fetchProduct(type) {
+    let url = this.baseURL + 'products/' + type +'?page=1&limit=6';
+    return this.sendRequest('get', url, {}, null)
+  }
+
   sendRequest(method, url, data, options): Observable<any> {
     return this.http[method](url, data, options)
       .map(res => res.json());

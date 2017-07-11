@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service'
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'app-catalog',
@@ -7,9 +10,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CatalogComponent implements OnInit {
 
-  constructor() { }
+  mode: string = 'grid';
+  list: Array<object> = [];
+  type: string = '';
+
+  constructor(public service: AuthService, public route: ActivatedRoute, private router: Router) {
+  }
 
   ngOnInit() {
+    this.route.paramMap
+      .subscribe((data) => {
+        this.type = data.get('type');
+
+        if(this.type.toLowerCase() !== 'charm' && this.type.toLowerCase() !== 'bracelet') {
+          this.router.navigate(['/404']);
+          return;
+        }
+
+        let that = this;
+        that.service.fetchProduct(this.type)
+        .subscribe(
+          (data) => {
+            that.list = data;
+          }
+        );
+      }
+    );
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'app-product',
@@ -7,11 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductComponent implements OnInit {
 
-  mode: string = 'grid';
+  @Input() item;
+  @HostBinding('class.bracelet') bracelet: boolean = false;
+  @HostBinding('class.charm') charm: boolean = false;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
+    if(this.item.product_type == 'charm') this.charm = true;
+    if(this.item.product_type == 'bracelet') this.bracelet = true;
   }
 
 }

@@ -9,6 +9,7 @@ export class HeaderComponent implements OnInit {
 
   menuStatus = true;
   @Input() type;
+  @Input() page;
 
   constructor() { }
 
@@ -17,11 +18,9 @@ export class HeaderComponent implements OnInit {
 
   openMenu() {
     this.menuStatus = false;
-    console.log('opening menu in header');
   }
 
   closeMenu() {
     this.menuStatus = true;
-    console.log('closing menu in header');
   }
 }

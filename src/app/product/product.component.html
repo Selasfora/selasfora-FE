@@ -1,17 +1,17 @@
 <div>
   <div class="image">
-    <img src="/assets/images/product-placeholder.png">
+    <img *ngIf="item.image" src="{{ item.image.src }}">
   </div>
 
   <div class="title">
-    ceramic white
+    {{ item.title }}
   </div>
 
   <div class="desc show-on-hover">
-    glossy black capsule, matte metal button, matte red rubber locking slot
+    {{ item.body_html }}
   </div>
 
-  <div class="price"> 89 EUR</div>
+  <div class="price"> {{ item.variants[0].price || '89 EUR' }}</div>
 
   <div class="main-btn show-on-hover">
     + Add charm to cart

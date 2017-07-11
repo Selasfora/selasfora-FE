@@ -1,16 +1,46 @@
 :host {
   display: inline-flex;
   text-align: center;
-  width: 30%;
-  max-width: 300px;
   padding: 20px;
-  min-height: 600px;
   transition: all 700ms linear;
   &:hover {
     .show-on-hover {
       opacity: 1;
       height: auto;
+      max-width: 100%;
     }
+  }
+  & > div {
+    width: 100%;
+  }
+}
+:host(.charm) {
+  @media only screen and (min-width : 768px) {
+    width: 30%;
+    min-height: 600px;
+    max-width: 300px;
+  }
+  @media only screen and (max-width : 767px) {
+    width: 50%;
+    max-width: 50%;
+    float: left;
+    box-sizing: border-box;
+    min-height: 350px;
+  }
+}
+
+:host(.bracelet) {
+  @media only screen and (min-width : 768px) {
+    width: 50%;
+    min-height: 350px;
+    max-width: 500px;
+  }
+  @media only screen and (max-width : 767px) {
+    width: 80%;
+    max-width: 80%;
+    float: left;
+    box-sizing: border-box;
+    min-height: 350px;
   }
 }
 
@@ -18,4 +48,8 @@
   transition: all 200ms linear;
   opacity: 0;
   height: 0;
+}
+
+img {
+  max-width: 100%;
 }

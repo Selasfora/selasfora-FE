@@ -73,8 +73,14 @@
 .transparent-btn {
   padding: 15px;
   cursor: pointer;
-  &:hover {
+  text-decoration: none;
+  &:visited, &:active {
+    color: black;
+    text-decoration: none;
+  }
+  &:hover, &.active {
     color: #272caa;
+    text-decoration: none;
   }
 }
 

@@ -1,9 +1,9 @@
-<div class="header">
-  <app-header type="catalog"></app-header>
-</div>
+<div>
+  <div class="header">
+    <app-header page="catalog" [type]="type"></app-header>
+  </div>
 
-<div class="body">
-  <app-product></app-product>
-  <app-product></app-product>
-  <app-product></app-product>
+  <div class="body">
+    <app-product *ngFor="let item of list" [item]="item"></app-product>
+  </div>
 </div>
