@@ -25,6 +25,8 @@ import { MenuComponent } from './menu/menu.component';
 import { Angular2SocialLoginModule } from "angular2-social-login";
 
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
+import { CatalogComponent } from './catalog/catalog.component';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { Ng2PageScrollModule } from 'ng2-page-scroll';
     LoginComponent,
     SignupComponent,
     PasswordresetComponent,
-    MenuComponent
+    MenuComponent,
+    CatalogComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,21 @@
+:host {
+  display: inline-flex;
+  text-align: center;
+  width: 30%;
+  max-width: 300px;
+  padding: 20px;
+  min-height: 600px;
+  transition: all 700ms linear;
+  &:hover {
+    .show-on-hover {
+      opacity: 1;
+      height: auto;
+    }
+  }
+}
+
+.show-on-hover {
+  transition: all 200ms linear;
+  opacity: 0;
+  height: 0;
+}

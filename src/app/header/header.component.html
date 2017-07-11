@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="type != 'catalog'">
   <div class="left-part">
     <app-icon title="Menu" image="/assets/images/menu@2x.png" (click)="openMenu()"></app-icon>
     <app-icon title="Cart" image="/assets/images/cart.png" class="hidden-xs"></app-icon>
@@ -14,4 +14,22 @@
     <div class="secondary-btn">Create yours</div>
   </div>
 </div>
+
+<div *ngIf="type == 'catalog'" class="catalog-header">
+  <div class="left-part">
+    <app-icon title="Menu" image="/assets/images/menu-black.png" (click)="openMenu()"></app-icon>
+    <app-icon title="Cart" image="/assets/images/cart-black.png" class="hidden-xs"></app-icon>
+    <app-icon title="Filter" image="/assets/images/filter.png" class="hidden-xs"></app-icon>
+  </div>
+
+  <div class="buttons">
+    <a class="transparent-btn">Bracelets</a>
+    <a class="transparent-btn">Charms</a>
+    <a class="transparent-btn">Mix & Match</a>
+  </div>
+
+  <div class="right-part hidden-xs">
+  </div>
+</div>
+
 <app-menu [menuStatus]="menuStatus" (closeMenu)="closeMenu()"></app-menu>

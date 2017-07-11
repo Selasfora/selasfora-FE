@@ -5,10 +5,15 @@ import { LandingComponent } from './landing/landing.component';
 import { LandingpageComponent } from './landingpage/landingpage.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginComponent } from './login/login.component';
+import { CatalogComponent } from './catalog/catalog.component';
 import { SignupComponent } from './signup/signup.component';
 import { PasswordresetComponent } from './passwordreset/passwordreset.component';
 
 const appRoutes: Routes = [
+  {
+    path: 'catalog/:type',
+    component: CatalogComponent,
+  },
   {
     path: 'login',
     component: LoginComponent,
