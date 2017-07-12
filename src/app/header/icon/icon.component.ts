@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class IconComponent implements OnInit {
   @Input() title: string = 'menu';
   @Input() image: string = '';
+  @Input() black: boolean = false;
 
   constructor() { }
 

@@ -13,6 +13,7 @@ export class CatalogComponent implements OnInit {
   mode: string = 'grid';
   list: Array<object> = [];
   type: string = '';
+  pageTitle: string = 'Selasfora ';
 
   constructor(public service: AuthService, public route: ActivatedRoute, private router: Router) {
   }
@@ -26,6 +27,9 @@ export class CatalogComponent implements OnInit {
           this.router.navigate(['/404']);
           return;
         }
+
+        if(this.type == 'charm') this.pageTitle = 'Selasfora Charms';
+        if(this.type == 'bracelet') this.pageTitle = 'Selasfora Bracelets';
 
         let that = this;
         that.service.fetchProduct(this.type)

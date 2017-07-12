@@ -1,9 +1,10 @@
 <div>
   <div class="header">
-    <app-header page="catalog" [type]="type"></app-header>
+    <app-header page="black" [type]="type"></app-header>
   </div>
 
   <div class="body">
+    <div class="page-title"> {{ pageTitle }} </div>
     <app-product *ngFor="let item of list" [item]="item"></app-product>
   </div>
 </div>

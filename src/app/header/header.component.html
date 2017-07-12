@@ -1,17 +1,39 @@
-<div *ngIf="page != 'catalog'">
+<div *ngIf="page != 'catalog' && page != 'black'">
   <div class="left-part">
-    <app-icon title="Menu" image="/assets/images/menu@2x.png" (click)="openMenu()"></app-icon>
-    <app-icon title="Cart" image="/assets/images/cart.png" class="hidden-xs"></app-icon>
+    <app-icon title="Menu" image="/assets/images/menu@2x.png" (click)="openMenu()" *ngIf="page !== 'black'"></app-icon>
+    <app-icon title="Menu" image="/assets/images/menu-black.png" (click)="openMenu()" *ngIf="page == 'black'"></app-icon>
+
+    <app-icon title="Cart" image="/assets/images/cart.png" class="hidden-xs" *ngIf="page !== 'black'"></app-icon>
+    <app-icon title="Cart" image="/assets/images/cart-black.png" class="hidden-xs" *ngIf="page == 'black'"></app-icon>
   </div>
 
   <div class="center-part Selasfora">
-    <img src="/assets/images/logo.png">Selasfora
+    <img src="/assets/images/logo.png" *ngIf="page !== 'black'">Selasfora {{page}}
+    <img src="/assets/images/logo-black.png" *ngIf="page == 'black'">Selasfora{{page}}
   </div>
 
   <div class="right-part hidden-xs">
-    <div class="main-btn">Bracelet</div>
-    <div class="main-btn">Charm</div>
+    <a routerLink="/catalog/bracelet" class="main-btn">Bracelet</a>
+    <a routerLink="/catalog/bracelet" class="main-btn">Charm</a>
     <div class="secondary-btn">Create yours</div>
+  </div>
+</div>
+
+<div *ngIf="page == 'black'">
+  <div class="left-part">
+    <app-icon title="Menu" image="/assets/images/menu-black.png" (click)="openMenu()" black="true"></app-icon>
+
+    <app-icon title="Cart" image="/assets/images/cart-black.png" class="hidden-xs" black="true"></app-icon>
+  </div>
+
+  <div class="center-part Selasfora">
+    <img src="/assets/images/logo-black.png"> <span class="black">Selasfora</span>
+  </div>
+
+  <div class="right-part hidden-xs">
+    <a routerLink="/catalog/bracelet" class="tetiary-btn">Bracelet</a>
+    <a routerLink="/catalog/charm" class="tetiary-btn">Charm</a>
+    <div class="main-btn">Create yours</div>
   </div>
 </div>
 
