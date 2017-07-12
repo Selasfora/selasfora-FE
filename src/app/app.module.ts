@@ -28,6 +28,7 @@ import { Ng2PageScrollModule } from 'ng2-page-scroll';
 import { CatalogComponent } from './catalog/catalog.component';
 import { ProductComponent } from './product/product.component';
 import { FooterComponent } from './footer/footer.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { FooterComponent } from './footer/footer.component';
     MenuComponent,
     CatalogComponent,
     ProductComponent,
-    FooterComponent
+    FooterComponent,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule,

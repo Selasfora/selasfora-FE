@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { SignupComponent } from './signup/signup.component';
 import { PasswordresetComponent } from './passwordreset/passwordreset.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 const appRoutes: Routes = [
   {
@@ -22,10 +23,13 @@ const appRoutes: Routes = [
     path: 'signup',
     component: SignupComponent,
   },
-
   {
     path: 'reset-password',
     component: PasswordresetComponent,
+  },
+  {
+    path: 'contact',
+    component: ContactUsComponent,
   },
   {
     path: '',

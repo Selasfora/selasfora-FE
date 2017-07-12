@@ -1,0 +1,219 @@
+* {
+  transition: all 300ms linear;
+}
+
+h1 {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  @media only screen and (max-width : 767px) {
+    font-size: 27px;
+  }
+}
+
+input, select, textarea {
+  max-width: 312px;
+  height: 48px;
+  background-color: #ebebeb;
+  border: 0;
+  width: 100%;
+  margin-bottom: 32px;
+  margin-top: 14px;
+  font-size: 15px;
+  line-height: 26px;
+  padding: 16px 11px;
+  box-sizing: border-box;
+}
+
+textarea#message {
+  max-width: 600px;
+  min-height: 150px;
+}
+
+:host {
+  text-align: center;
+}
+.header {
+  width: 90%;
+  margin: auto;
+  @media only screen and (min-width : 768px) {
+    min-height: 140px;
+    padding-top: 39px;
+  }
+  @media only screen and (max-width : 767px) {
+    min-height: 70px;
+    padding-top: 20px;
+  }
+  .back-btn {
+    position: absolute;
+    top: 50px;
+    @media only screen and (max-width : 767px) {
+      left: 50px;
+    }
+    @media only screen and (min-width : 768px) {
+      left: 100px;
+    }
+  }
+}
+
+form {
+  @media only screen and (max-width : 767px) {
+    width: 80%;
+  }
+  @media only screen and (min-width : 768px) {
+    width: 50%;
+  }
+
+  margin: auto;
+}
+
+.label {
+  max-width: 312px;
+  width: 100%;
+  text-align: left;
+  margin: auto;
+}
+
+.text-line {
+  @media only screen and (min-width : 768px) {
+    width: 50%;
+  }
+  @media only screen and (max-width : 767px) {
+    width: 80%;
+  }
+  margin: auto;
+  text-align: left;
+  .group {
+    padding-left: 20px;
+    padding-right: 0;
+    padding-bottom: 64px;
+  }
+  .data {
+    font-family: Asar;
+    font-size: 16px;
+    line-height: 1.62;
+    color: #000000;
+  }
+  .contact {
+    font-family: Montserrat;
+    font-size: 16px;
+    line-height: 1.44;
+    color: #272caa;
+  }
+  .links {
+    padding-top: 15px;
+  }
+}
+
+.button-line {
+  text-align: right;
+  padding-right: 20px;
+  padding-bottom: 40px;
+}
+
+.tetiary-btn {
+  @media only screen and (min-width : 768px) {
+    padding: 15px 60px;
+  }
+  cursor: pointer;
+  @media only screen and (max-width : 767px) {
+    border: solid 1px #181818;
+    color: black;
+    max-width: 50%;
+    margin: auto;
+    margin-bottom: 60px;
+    height: 30px;
+    padding-top: 13px;
+    &:hover {
+      background-color: #191919;
+      color: white;
+    }
+  }
+}
+
+.signup {
+  width: 125px;
+  height: 26px;
+  font-family: Montserrat;
+  font-size: 14px;
+  line-height: 1.86;
+  text-align: center;
+  color: #272caa;
+  padding-top: 26px;
+  padding-bottom: 50px;
+  margin: auto;
+}
+
+.signin-options {
+  &:before {
+    border-top: solid 1px #ccc;
+    content: ' ';
+    width: 100%;
+    max-width: 312px;
+    height: 10px;
+    display: block;
+    z-index: -1;
+    margin: auto;
+    position: relative;
+    top: 20px;
+  }
+  span {
+    background-color: white;
+    padding: 0 20px;
+  }
+  .signup-icons {
+    a {
+      text-decoration: none;
+      img {
+        padding: 20px;
+      }
+    }
+  }
+}
+
+
+.error-msg {
+  position: relative;
+  top: -25px;
+  font-family: Montserrat;
+  font-size: 14px;
+  line-height: 1.71;
+  color: #d91c1c;
+  max-width: 312px;
+  width: 100%;
+  text-align: left;
+  margin: auto;
+}
+
+.group {
+  padding-right: 20px;
+  vertical-align: top;
+  &:last-child {
+    padding-right: 0;
+  }
+  @media only screen and (max-width : 767px) {
+    display: block;
+    width: 100%;
+  }
+  @media only screen and (min-width : 768px) {
+    display: inline-block;
+    width: 45%;
+  }
+}
+
+.special-line {
+  text-align: left;
+  @media only screen and (min-width : 768px) {
+    padding-left: 20px;
+  }
+  .group {
+    width: 100%;
+    .label {
+      margin: inherit;
+    }
+  }
+}
+
+.signup-error {
+  .error-msg;
+  text-align: center;
+}
