@@ -85,14 +85,7 @@
     </form>
     <button type="submit" (click)="onSubmit()" class="visible-xs">Sign up</button>
 
-    <div class="footer hidden-xs">
-      <div class="copyright">Copyright © Selasfora 2017</div>
-      <div class="link">
-        <a href="" class="right-separator">Contact</a>
-        <a href="" class="right-separator">Journal</a>
-        <a href="">Shop Charms</a>
-      </div>
-    </div>
+    <app-footer></app-footer>
   </div>
 </div>
 <div *ngIf="sentConfirmation">
@@ -114,12 +107,5 @@
       <a href="" class="return-link">Return to shopping</a>
     </div>
   </div>
-  <div class="footer">
-    <div class="copyright">Copyright © Selasfora 2017</div>
-    <div class="link">
-      <a href="" class="right-separator">Contact</a>
-      <a href="" class="right-separator">Journal</a>
-      <a href="">Shop Charms</a>
-    </div>
-  </div>
+  <app-footer></app-footer>
 </div>

@@ -7,4 +7,42 @@
     <div class="page-title"> {{ pageTitle }} </div>
     <app-product *ngFor="let item of list" [item]="item"></app-product>
   </div>
+
+  <div class="posts">
+    <div class="left">
+      <img src="/assets/images/left-image1.png">
+      <div class="content">
+        <div class="post-title">Daily Life collection</div>
+        <div class="post-body">
+          We side with style over fashion,<br>
+          think timelessness is underrated
+        </div>
+        <div class="button btn">Shop all charms</div>
+      </div>
+    </div>
+    <div class="right right-charm" *ngIf="type=='charm'">
+      <img src="/assets/images/right-image1.png">
+      <div class="content">
+        <div class="post-title black">Sprint collection</div>
+        <div class="post-body black">
+          We side with style over fashion,<br>
+          think timelessness is underrated
+        </div>
+        <div class="button btn">Shop all charms</div>
+      </div>
+    </div>
+    <div class="right right-bracelet" *ngIf="type=='bracelet'">
+      <img src="/assets/images/right-image2.png">
+      <div class="content">
+        <div class="post-title">Sprint collection</div>
+        <div class="post-body">
+          We side with style over fashion,<br>
+          think timelessness is underrated
+        </div>
+        <div class="button btn">Shop all charms</div>
+      </div>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
 </div>

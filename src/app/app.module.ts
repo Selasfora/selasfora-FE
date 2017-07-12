@@ -27,6 +27,7 @@ import { Angular2SocialLoginModule } from "angular2-social-login";
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
 import { CatalogComponent } from './catalog/catalog.component';
 import { ProductComponent } from './product/product.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ProductComponent } from './product/product.component';
     PasswordresetComponent,
     MenuComponent,
     CatalogComponent,
-    ProductComponent
+    ProductComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
