@@ -5,7 +5,8 @@ import { WindowService } from './window.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.less']
+  styleUrls: ['./app.component.less'],
+  /*host: {'class': 'col-xs-12'}*/
 })
 export class AppComponent {
   window: any;

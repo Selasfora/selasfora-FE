@@ -10,7 +10,7 @@
     <form [formGroup]="signupForm" novalidate>
       <div class="line">
         <div class="group">
-          <div class="label">First name</div>
+          <div class="input-label">First name</div>
           <input type="text" id="fname" name="fname" class="form-control"
               formControlName="fname">
           <div *ngIf="formErrors.fname.length" class="error-msg">
@@ -18,7 +18,7 @@
           </div>
         </div>
         <div class="group">
-          <div class="label">Last name</div>
+          <div class="input-label">Last name</div>
           <input type="text" id="lname" name="lname" class="form-control"
               formControlName="lname">
           <div *ngIf="formErrors.lname.length" class="error-msg">
@@ -29,7 +29,7 @@
 
       <div class="line">
         <div class="group">
-          <div class="label">Email</div>
+          <div class="input-label">Email</div>
           <input type="email" id="email" name="email" class="form-control"
               formControlName="email">
           <div *ngIf="formErrors.email.length" class="error-msg">
@@ -37,7 +37,7 @@
           </div>
         </div>
         <div class="group">
-          <div class="label">Repeat email</div>
+          <div class="input-label">Repeat email</div>
           <input type="email" id="email2" name="email2" class="form-control"
               formControlName="email2">
         </div>
@@ -45,7 +45,7 @@
 
       <div class="special-line">
         <div class="group">
-          <div class="label">
+          <div class="input-label">
             Phone Number
           </div>
           <input type="number" id="phone" name="phone" class="form-control"
@@ -59,7 +59,7 @@
 
       <div class="line">
         <div class="group">
-          <div class="label">
+          <div class="input-label">
             Password
           </div>
           <input type="password" id="password" name="password" class="form-control"
@@ -70,7 +70,7 @@
           </div>
         </div>
         <div class="group">
-          <div class="label">
+          <div class="input-label">
             Repeat Password
           </div>
           <input type="password" id="password2" name="password2" class="form-control"

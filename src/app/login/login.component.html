@@ -11,14 +11,14 @@
   <div>
     <h1>Login</h1>
     <form [formGroup]="loginForm" novalidate>
-      <div class="label">Email</div>
+      <div class="input-label">Email</div>
       <input type="email" id="email" name="email" class="form-control"
           formControlName="email">
       <div *ngIf="formErrors.email.length" class="error-msg">
         <div *ngFor="let item of formErrors.email">{{ item }}</div>
       </div>
 
-      <div class="label">
+      <div class="input-label">
         Password
         <a routerLink="/reset-password" class="forgot">forgot?</a>
       </div>

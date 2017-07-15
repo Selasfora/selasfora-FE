@@ -9,11 +9,16 @@ import { CatalogComponent } from './catalog/catalog.component';
 import { SignupComponent } from './signup/signup.component';
 import { PasswordresetComponent } from './passwordreset/passwordreset.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 const appRoutes: Routes = [
   {
     path: 'catalog/:type',
     component: CatalogComponent,
+  },
+  {
+    path: 'catalog/:type/:id',
+    component: ProductDetailsComponent,
   },
   {
     path: 'login',

@@ -4,38 +4,35 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 
 @Component({
-  selector: 'app-catalog',
-  templateUrl: './catalog.component.html',
-  styleUrls: ['./catalog.component.less']
+  selector: 'app-product-details',
+  templateUrl: './product-details.component.html',
+  styleUrls: ['./product-details.component.less']
 })
-export class CatalogComponent implements OnInit {
-
+export class ProductDetailsComponent implements OnInit {
   mode: string = 'grid';
-  list: Array<object> = [];
+  id: any;
   type: string = '';
-  pageTitle: string = 'Selasfora ';
+  product: object = {};
 
-  constructor(public service: AuthService, public route: ActivatedRoute, private router: Router) {
-  }
+  constructor(public service: AuthService, public route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.route.paramMap
       .subscribe((data) => {
         this.type = data.get('type');
+        this.id = data.get('id');
 
         if(this.type.toLowerCase() !== 'charm' && this.type.toLowerCase() !== 'bracelet') {
           this.router.navigate(['/404']);
           return;
         }
 
-        if(this.type == 'charm') this.pageTitle = 'Selasfora Charms';
-        if(this.type == 'bracelet') this.pageTitle = 'Selasfora Bracelets';
-
         let that = this;
-        that.service.fetchProducts(this.type)
+        that.service.fetchProduct(this.id)
         .subscribe(
           (data) => {
-            that.list = data;
+            that.product = data;
+            console.log('product', data);
           }
         );
       }

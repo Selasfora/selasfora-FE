@@ -25,7 +25,7 @@ input, select, textarea {
 }
 
 textarea#message {
-  max-width: 600px;
+  max-width: 90%;
   min-height: 150px;
 }
 
@@ -60,7 +60,7 @@ form {
     width: 80%;
   }
   @media only screen and (min-width : 768px) {
-    width: 50%;
+    width: 60%;
   }
 
   margin: auto;
@@ -71,11 +71,13 @@ form {
   width: 100%;
   text-align: left;
   margin: auto;
+  color: black;
 }
 
 .text-line {
   @media only screen and (min-width : 768px) {
-    width: 50%;
+    width: 60%;
+    padding-left: 20px;
   }
   @media only screen and (max-width : 767px) {
     width: 80%;
@@ -98,6 +100,7 @@ form {
     font-size: 16px;
     line-height: 1.44;
     color: #272caa;
+    padding-left: 15%;
   }
   .links {
     padding-top: 15px;
@@ -106,7 +109,7 @@ form {
 
 .button-line {
   text-align: right;
-  padding-right: 20px;
+  padding-right: 9%;
   padding-bottom: 40px;
 }
 
@@ -187,6 +190,7 @@ form {
 .group {
   padding-right: 20px;
   vertical-align: top;
+  text-align: left;
   &:last-child {
     padding-right: 0;
   }
@@ -203,10 +207,11 @@ form {
 .special-line {
   text-align: left;
   @media only screen and (min-width : 768px) {
-    padding-left: 20px;
+    /*padding-left: 20px;*/
   }
   .group {
     width: 100%;
+    padding-left: 40px;
     .label {
       margin: inherit;
     }

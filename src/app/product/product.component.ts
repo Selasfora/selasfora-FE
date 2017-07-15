@@ -8,15 +8,23 @@ import { Component, OnInit, Input, HostBinding } from '@angular/core';
 export class ProductComponent implements OnInit {
 
   @Input() item;
-  @HostBinding('class.bracelet') bracelet: boolean = false;
-  @HostBinding('class.charm') charm: boolean = false;
+  @Input() mode;
+
+  @HostBinding('class.col-xs-12') bracelet_mobile: boolean = false;
+  @HostBinding('class.col-md-6') bracelet: boolean = false;
+  @HostBinding('class.col-xs-6') charm_mobile: boolean = false;
+  @HostBinding('class.col-md-4') charm: boolean = false;
 
   constructor() {
   }
 
   ngOnInit() {
-    if(this.item.product_type == 'charm') this.charm = true;
-    if(this.item.product_type == 'bracelet') this.bracelet = true;
+    if(this.item.product_type == 'charm') {
+      this.charm = true;
+      this.charm_mobile = true;
+    } else if(this.item.product_type == 'bracelet') {
+      this.bracelet = true;
+      this.bracelet_mobile = true;
+    }
   }
-
 }

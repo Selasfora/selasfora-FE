@@ -67,8 +67,13 @@ export class AuthService {
     return this.sendRequest(method, url, data, { headers: this.headers });
   }
 
-  fetchProduct(type) {
+  fetchProducts(type) {
     let url = this.baseURL + 'products/' + type +'?page=1&limit=6';
+    return this.sendRequest('get', url, {}, null)
+  }
+
+  fetchProduct(id) {
+    let url = this.baseURL + 'product/' + id;
     return this.sendRequest('get', url, {}, null)
   }
 
