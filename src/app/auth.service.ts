@@ -77,6 +77,16 @@ export class AuthService {
     return this.sendRequest('get', url, {}, null)
   }
 
+  fetchJournal() {
+    let url = this.baseURL + 'articles/?page=1&limit=9';
+    return this.sendRequest('get', url, {}, null)
+  }
+
+  fetchArticle(id) {
+    let url = this.baseURL + 'articles/' + id;
+    return this.sendRequest('get', url, {}, null)
+  }
+
   sendRequest(method, url, data, options): Observable<any> {
     return this.http[method](url, data, options)
       .map(res => res.json());

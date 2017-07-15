@@ -30,6 +30,9 @@ import { ProductComponent } from './product/product.component';
 import { FooterComponent } from './footer/footer.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { JournalComponent } from './journal/journal.component';
+import { PostComponent } from './post/post.component';
+import { ArticleComponent } from './article/article.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,10 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     ProductComponent,
     FooterComponent,
     ContactUsComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    JournalComponent,
+    PostComponent,
+    ArticleComponent
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,7 @@ import { CatalogComponent } from './catalog/catalog.component';
 import { SignupComponent } from './signup/signup.component';
 import { PasswordresetComponent } from './passwordreset/passwordreset.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { JournalComponent } from './journal/journal.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 
 const appRoutes: Routes = [
@@ -23,6 +24,10 @@ const appRoutes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'journal',
+    component: JournalComponent,
   },
   {
     path: 'signup',

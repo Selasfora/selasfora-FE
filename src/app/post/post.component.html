@@ -1,0 +1,19 @@
+<div [routerLink]="['/article/' + item.id + '/' + item.id]">
+  <div class="image">
+    <img *ngIf="item.image" src="{{ item.image.src }}">
+  </div>
+
+  <div class="title">
+    {{ item.title }}
+  </div>
+
+  <div class="desc show-on-hover hidden-xs">
+    {{ item.body_html }}
+  </div>
+
+  <div class="price"> {{ item.variants[0].price || '89 EUR' }}</div>
+
+  <a class="tetiary-btn show-on-hover hidden-xs" [routerLink]="['/article/' + item.id + '/' + item.id]">
+    See details
+  </a>
+</div>

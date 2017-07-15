@@ -1,0 +1,14 @@
+<div>
+  <div class="header">
+    <app-header page="black" [type]="type"></app-header>
+  </div>
+
+  <div class="body">
+    <div class="page-title"> {{ pageTitle }} </div>
+    <div>
+      <app-post *ngFor="let item of list" [item]="item"></app-post>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>
