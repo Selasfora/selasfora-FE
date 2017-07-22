@@ -77,6 +77,11 @@ export class AuthService {
     return this.sendRequest('get', url, {}, null)
   }
 
+  fetchFilters() {
+    let url = this.baseURL + 'products/filters';
+    return this.sendRequest('get', url, {}, null)
+  }
+
   fetchJournal() {
     let url = this.baseURL + 'articles/?page=1&limit=9';
     return this.sendRequest('get', url, {}, null)

@@ -11,6 +11,7 @@ export class HeaderComponent implements OnInit {
   menuStatus = true;
   @Input() type;
   @Input() page;
+  @Input() filter = false;
 
   constructor() { }
 

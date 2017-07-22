@@ -17,6 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
 import { WindowService } from './window.service';
 import { UserService } from './user.service';
+import { FiltersService } from './filters.service';
 
 import { SignupComponent } from './signup/signup.component';
 import { PasswordresetComponent } from './passwordreset/passwordreset.component';
@@ -33,6 +34,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { JournalComponent } from './journal/journal.component';
 import { PostComponent } from './post/post.component';
 import { ArticleComponent } from './article/article.component';
+import { FiltersMenuComponent } from './filters-menu/filters-menu.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import { ArticleComponent } from './article/article.component';
     ProductDetailsComponent,
     JournalComponent,
     PostComponent,
-    ArticleComponent
+    ArticleComponent,
+    FiltersMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +70,8 @@ import { ArticleComponent } from './article/article.component';
   providers: [
     AuthService,
     WindowService,
-    UserService
+    UserService,
+    FiltersService
   ],
   bootstrap: [AppComponent]
 })

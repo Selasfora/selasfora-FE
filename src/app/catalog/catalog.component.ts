@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service'
+import { FiltersService } from '../filters.service'
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 
@@ -12,10 +13,19 @@ export class CatalogComponent implements OnInit {
 
   mode: string = 'grid';
   list: Array<object> = [];
+  filters:object = {
+    color: [],
+    size: [],
+    material: [],
+    mood: [],
+    sortBy: []
+  };
+
   type: string = '';
   pageTitle: string = 'Selasfora ';
 
-  constructor(public service: AuthService, public route: ActivatedRoute, private router: Router) {
+  constructor(public service: AuthService, public route: ActivatedRoute, private router: Router,
+      public filterService: FiltersService) {
   }
 
   ngOnInit() {
@@ -35,11 +45,47 @@ export class CatalogComponent implements OnInit {
         that.service.fetchProducts(this.type)
         .subscribe(
           (data) => {
+            console.log('products:', data)
+            //that.parseResponse(data);
             that.list = data;
+          }
+        );
+
+        that.service.fetchFilters().subscribe(
+          (data) => {
+            that.filters = data;
+            that.filterService.filters.next(that.filters);
+            console.log('filters', that.filters)
           }
         );
       }
     );
+  }
+
+  parseResponse(data) {
+    let that = this;
+    data.forEach(function(product) {
+      product.options.forEach(function(item) {
+        let name = item.name.toLowerCase();
+        let values = item.values;
+        if(that.filters[name]) {
+          that.filters[name] = that.arrayUnique(that.filters[name].concat(values));
+        }
+      });
+    });
+    that.filterService.filters.next(that.filters);
+    console.log('filters', this.filters)
+  }
+
+  arrayUnique(array) {
+    var a = array.concat();
+    for(var i = 0; i < a.length; ++i) {
+      for(var j = i + 1; j < a.length; ++j) {
+        if(a[i] === a[j])
+          a.splice(j--, 1);
+      }
+    }
+    return a;
   }
 
 }
