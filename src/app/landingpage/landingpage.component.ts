@@ -73,7 +73,7 @@ export class LandingpageComponent implements OnInit {
       content: {
         title: 'Stay in touch',
         subtext: 'Be the first to know about our new collection and other news',
-        cta: 'Patent pending technology'
+        cta: 'input'
       },
       position: 'top'
     }

@@ -23,13 +23,14 @@ export class CatalogComponent implements OnInit {
 
   type: string = '';
   pageTitle: string = 'Selasfora ';
+  subscriptions: Array<any> = [];
 
   constructor(public service: AuthService, public route: ActivatedRoute, private router: Router,
       public filterService: FiltersService) {
   }
 
   ngOnInit() {
-    this.route.paramMap
+    this.subscriptions.push(this.route.paramMap
       .subscribe((data) => {
         this.type = data.get('type');
 
@@ -42,21 +43,36 @@ export class CatalogComponent implements OnInit {
         if(this.type == 'bracelet') this.pageTitle = 'Selasfora Bracelets';
 
         let that = this;
-        that.service.fetchProducts(this.type)
+        this.subscriptions.push(that.service.fetchProducts(this.type)
         .subscribe(
           (data) => {
             that.list = data;
           }
-        );
+        ));
 
-        that.service.fetchFilters().subscribe(
+        this.subscriptions.push(that.service.fetchFilters().subscribe(
           (data) => {
             that.filters = data;
             that.filterService.filters.next(that.filters);
           }
+        ));
+
+        this.subscriptions.push(
+          that.filterService.query.subscribe(
+            (data) => {
+              console.log('data', data)
+              data && this.subscriptions.push(
+                that.service.queryProducts(data).subscribe(
+                  (data) => {
+                    that.list = data;
+                  }
+                )
+              );
+            }
+          )
         );
       }
-    );
+    ));
   }
 
   parseResponse(data) {
@@ -82,6 +98,12 @@ export class CatalogComponent implements OnInit {
       }
     }
     return a;
+  }
+
+  ngOnDesroy() {
+    this.subscriptions.forEach(function(item) {
+      item.unsubscribe();
+    });
   }
 
 }

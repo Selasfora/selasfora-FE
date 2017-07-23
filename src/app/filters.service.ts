@@ -10,6 +10,7 @@ export class FiltersService {
 
   public filters: BehaviorSubject<any> = new BehaviorSubject({});
   public open: BehaviorSubject<boolean> =  new BehaviorSubject(false);
+  public query: BehaviorSubject<string> =  new BehaviorSubject('');
 
   constructor() { }
 

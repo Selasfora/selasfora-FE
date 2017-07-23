@@ -59,27 +59,14 @@ export class FiltersMenuComponent implements OnInit {
     if(type == 'color') {
       filter.active = !filter.active;
     }
-
-    if(type == 'price') {
-      if(this.selectedFilters[type].indexOf(filter.range) < 0) {
-        let range = filter.range.split(' - ');
-        this.selectedFilters['min_price'] = this.selectedFilters['min_price'] || Infinity;
-        this.selectedFilters['max_price'] = this.selectedFilters['max_price'] || 0;
-        if(this.selectedFilters['min_price'] > parseFloat(range[0])) {
-          this.selectedFilters['min_price'] = parseFloat(range[0]);
-        }
-        if(this.selectedFilters['max_price'] < parseFloat(range[1])) {
-          this.selectedFilters['max_price'] = parseFloat(range[1]);
-        }
-      } else {
-        this.selectedFilters[type].splice(this.selectedFilters[type].indexOf(filter.range), 1);
-      }
-    } else {
-      if(this.selectedFilters[type].indexOf(filter.name) < 0) {
-        this.selectedFilters[type].push(filter.name);
-      } else {
-        this.selectedFilters[type].splice(this.selectedFilters[type].indexOf(filter.name), 1);
-      }
+    if(type == 'price' && this.selectedFilters[type].indexOf(filter.range) < 0) {
+      this.selectedFilters[type].push(filter.range);
+    } else if(type !== 'price' && this.selectedFilters[type].indexOf(filter.name) < 0) {
+      this.selectedFilters[type].push(filter.name);
+    } else if(type !== 'price' && this.selectedFilters[type].indexOf(filter.name) >= 0) {
+      this.selectedFilters[type].splice(this.selectedFilters[type].indexOf(filter.name), 1);
+    } else if(type == 'price' && this.selectedFilters[type].indexOf(filter.range) >= 0) {
+      this.selectedFilters[type].splice(this.selectedFilters[type].indexOf(filter.range), 1);
     }
   }
 
@@ -90,17 +77,28 @@ export class FiltersMenuComponent implements OnInit {
       if(key.indexOf('price') < 0) {
         str += this.selectedFilters[key].join(',');
       } else {
-        str += this.selectedFilters[key];
+        let min_price = Infinity;
+        let max_price = 0;
+        this.selectedFilters[key].forEach(function(item) {
+          let range = item.split(' - ');
+          if(min_price > parseFloat(range[0])) {
+            min_price = parseFloat(range[0]);
+          }
+          if(max_price < parseFloat(range[1])) {
+            max_price = parseFloat(range[1]);
+          }
+        });
+        str += 'min_price=' + min_price + '&max_price=' + max_price;
       }
       str += '&';
     }
-    console.log('query string:', str);
     return str;
   }
 
   search() {
     let query = this.flatten();
-    console.log(this.selectedFilters, this.flatten());
+    console.log(this.selectedFilters, query);
+    this.filtersService.query.next(query);
   }
 
 }

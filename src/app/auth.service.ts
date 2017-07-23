@@ -69,27 +69,38 @@ export class AuthService {
 
   fetchProducts(type) {
     let url = this.baseURL + 'products/' + type +'?page=1&limit=6';
-    return this.sendRequest('get', url, {}, null)
+    return this.sendRequest('get', url, {}, null);
   }
 
   fetchProduct(id) {
     let url = this.baseURL + 'product/' + id;
-    return this.sendRequest('get', url, {}, null)
+    return this.sendRequest('get', url, {}, null);
   }
 
   fetchFilters() {
     let url = this.baseURL + 'products/filters';
-    return this.sendRequest('get', url, {}, null)
+    return this.sendRequest('get', url, {}, null);
   }
 
   fetchJournal() {
     let url = this.baseURL + 'articles/?page=1&limit=9';
-    return this.sendRequest('get', url, {}, null)
+    return this.sendRequest('get', url, {}, null);
   }
 
   fetchArticle(id) {
     let url = this.baseURL + 'articles/' + id;
-    return this.sendRequest('get', url, {}, null)
+    return this.sendRequest('get', url, {}, null);
+  }
+
+  queryProducts(query) {
+    let url = this.baseURL + 'products/search' + query;
+    return this.sendRequest('get', url, {}, null);
+  }
+
+  newsLetter(email) {
+    console.log(2, email)
+    let url = this.baseURL + 'newsletter';
+    return this.sendRequest('post', url, {'email': email}, null);
   }
 
   sendRequest(method, url, data, options): Observable<any> {
