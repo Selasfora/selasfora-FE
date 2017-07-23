@@ -13,9 +13,11 @@
   transition: all 700ms ease-in-out;
   padding: 30px;
   .menu-title {
-    font-size: 15px;
-    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: left;
     padding-bottom: 25px;
+    padding-top: 30px;
   }
 }
 
@@ -34,23 +36,31 @@
   width: 100%;
   .title {
     padding-bottom: 20px;
-    padding-top: 30px;
+    padding-top: 0;
     border-bottom: solid 1px #ccc;
+    a span {
+      color: black;
+      font-weight: 600;
+      font-size: 14px;
+    }
   }
   .color-circle {
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     display: inline-block;
     margin-right: 20px;
     margin-top: 20px;
+    cursor: pointer;
     .glyphicon {
       display: none;
     }
     &.active {
+      box-shadow: inset 0px 0px 0px 4px #fff;
+      border: 1px solid #ccc;
       .glyphicon {
-        top: 6px;
-        left: 8px;
+        top: 8px;
+        left: 9px;
         color: #F0F0F0;
         display: inline-block;
       }
@@ -97,4 +107,63 @@ ul {
   li:hover {
     background-color: #f3f3f3;
   }
+}
+
+.collapse {
+  & > div {
+    padding: 20px;
+    padding-left: 40px;
+    padding-bottom: 0;
+  }
+
+  label {
+    padding-left: 20px;
+  }
+}
+
+.collapse#collapseColor > div {
+  padding: 0;
+}
+
+input[type=checkbox].css-checkbox {
+  position: absolute;
+  z-index: -1000;
+  left: -1000px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+input[type=checkbox].css-checkbox + label.css-label {
+  padding-left: 40px;
+  height: 25px;
+  display: inline-block;
+  line-height: 25px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  font-size: 15px;
+  vertical-align: middle;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+input[type=checkbox].css-checkbox:checked + label.css-label {
+  background-position: 0 -25px;
+}
+label.css-label {
+  background-image:url(http://csscheckbox.com/checkboxes/u/csscheckbox_391ce065f36b1460c4845fa9b5173fba.png);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.main-btn {
+  padding: 25px 20px;
 }

@@ -45,8 +45,6 @@ export class CatalogComponent implements OnInit {
         that.service.fetchProducts(this.type)
         .subscribe(
           (data) => {
-            console.log('products:', data)
-            //that.parseResponse(data);
             that.list = data;
           }
         );
@@ -55,7 +53,6 @@ export class CatalogComponent implements OnInit {
           (data) => {
             that.filters = data;
             that.filterService.filters.next(that.filters);
-            console.log('filters', that.filters)
           }
         );
       }
@@ -74,7 +71,6 @@ export class CatalogComponent implements OnInit {
       });
     });
     that.filterService.filters.next(that.filters);
-    console.log('filters', this.filters)
   }
 
   arrayUnique(array) {

@@ -1,4 +1,4 @@
-<div class="side-menu">
+<div class="side-menu" [ngClass]="{'out': !open}">
   <div class="close">
     <a (click)="close()">x</a>
   </div>
@@ -7,62 +7,66 @@
     <div class="section color">
       <div class="title" role="tab" id="color">
         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseColor" aria-expanded="true" aria-controls="collapseColor" (click)="accrodion('color')">
-          Colour
-          <i class="glyphicon glyphicon-menu-up" [hidden]="filters.color && !filters.color.folded"></i>
-          <i class="glyphicon glyphicon-menu-down" [hidden]="filters.color && filters.color.folded"></i>
+          <span class="col-sm-10">Colour</span>
+          <i class="glyphicon glyphicon-menu-up" [hidden]="!filters.material || (filters.color && !filters.color.folded)"></i>
+          <i class="glyphicon glyphicon-menu-down" [hidden]="!filters.material || (filters.color && filters.color.folded)"></i>
         </a>
       </div>
       <div id="collapseColor" class="row collapse in" role="tabpanel"
             aria-labelledby="color">
-          <div *ngFor="let filter of filters.color" class="col-xs-2">
-            <div class="color-circle" [style.background-color]="filter.code">
+        <div *ngFor="let filter of filters.color; let idx=index;">
+          <div class="col-xs-1" *ngIf="idx % 5 == 0;"></div>
+          <div class="col-xs-2">
+            <div class="color-circle" [style.background-color]="filter.code" (click)="filterClick('color', filter)"
+                [ngClass]="{'active': filter.active}">
               <i class="glyphicon glyphicon-ok"></i>
             </div>
           </div>
+        </div>
       </div>
     </div>
     <div class="section material">
       <div class="title" role="tab" id="Material">
         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseMaterial" aria-expanded="true" aria-controls="collapseMaterial" (click)="accrodion('material')">
-          Material
-          <i class="glyphicon glyphicon-menu-up" [hidden]="filters.material && !filters.material.folded"></i>
-          <i class="glyphicon glyphicon-menu-down" [hidden]="filters.material && filters.material.folded"></i>
+          <span class="col-sm-10">Material</span>
+          <i class="glyphicon glyphicon-menu-up" [hidden]="!filters.material || (filters.material && !filters.material.folded)"></i>
+          <i class="glyphicon glyphicon-menu-down" [hidden]="!filters.material || (filters.material && filters.material.folded)"></i>
         </a>
         </div>
       <div id="collapseMaterial" class="collapse" role="tabpanel" aria-labelledby="Material">
         <div *ngFor="let filter of filters.material">
-          <input type="checkbox" name="material-{{filter.id}}">
-          <label>{{ filter.name }}</label>
+          <input id="material_{{filter.id}}" type="checkbox" class="css-checkbox" name="material-{{filter.id}}" (change)="filterClick('material', filter)">
+          <label for="material_{{filter.id}}" class="css-label">{{ filter.name }}</label>
         </div>
       </div>
     </div>
     <div class="section price">
       <div class="title" role="tab" id="Price">
         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsePrice" aria-expanded="true" aria-controls="collapsePrice" (click)="accrodion('price')">
-          Price
-          <i class="glyphicon glyphicon-menu-up" [hidden]="filters.price && !filters.price.folded"></i>
-          <i class="glyphicon glyphicon-menu-down" [hidden]="filters.price && filters.price.folded"></i>
+          <span class="col-sm-10">Price</span>
+          <i class="glyphicon glyphicon-menu-up" [hidden]="!filters.price || (filters.price && !filters.price.folded)"></i>
+          <i class="glyphicon glyphicon-menu-down" [hidden]="!filters.price || (filters.price && filters.price.folded)"></i>
         </a>
         </div>
       <div id="collapsePrice" class="collapse" role="tabpanel" aria-labelledby="Price">
-        <div *ngFor="let filter of filters.price">
-          <input type="checkbox" name="price-{{filter.id}}">
-          <label>{{ filter.range }}</label>
+        <div *ngFor="let filter of filters.price" (change)="filterClick('price', filter)">
+          <input id="price_{{filter.id}}" type="checkbox" class="css-checkbox" name="price-{{filter.id}}">
+          <label for="price_{{filter.id}}" class="css-label">{{ filter.range }}</label>
         </div>
       </div>
     </div>
     <div class="section mood">
       <div class="title" role="tab" id="Mood">
         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseMood" aria-expanded="true" aria-controls="collapseMood" (click)="accrodion('mood')">
-          Mood
-          <i class="glyphicon glyphicon-menu-up" [hidden]="filters.mood && !filters.mood.folded"></i>
-          <i class="glyphicon glyphicon-menu-down" [hidden]="filters.mood && filters.mood.folded"></i>
+          <span class="col-sm-10">Mood</span>
+          <i class="glyphicon glyphicon-menu-up" [hidden]="!filters.mood || (filters.mood && !filters.mood.folded)"></i>
+          <i class="glyphicon glyphicon-menu-down" [hidden]="!filters.mood || (filters.mood && filters.mood.folded)"></i>
         </a>
-        </div>
+      </div>
       <div id="collapseMood" class="collapse" role="tabpanel" aria-labelledby="Mood">
-        <div *ngFor="let filter of filters.mood">
-          <input type="checkbox" name="price-{{filter.id}}">
-          <label>{{ filter.name }}</label>
+        <div *ngFor="let filter of filters.mood" (change)="filterClick('mood', filter)">
+          <input id="mood_{{filter.id}}" type="checkbox" class="css-checkbox" name="price-{{filter.id}}">
+          <label for="mood_{{filter.id}}" class="css-label">{{ filter.name }}</label>
         </div>
       </div>
     </div>
@@ -81,3 +85,8 @@
       </div>
     </div> -->
   </div>
+  <div class="row bottom">
+    <div class="col-sm-6 tetiary-btn">Clear All</div>
+    <div class="col-sm-6 main-btn" (click)="search()">Apply Filters</div>
+  </div>
+</div>

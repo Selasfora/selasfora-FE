@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { FiltersService } from '../filters.service';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,7 @@ export class HeaderComponent implements OnInit {
   @Input() page;
   @Input() filter = false;
 
-  constructor() { }
+  constructor(public filtersService: FiltersService) { }
 
   ngOnInit() {
   }
@@ -24,5 +25,9 @@ export class HeaderComponent implements OnInit {
 
   closeMenu() {
     this.menuStatus = true;
+  }
+
+  openFiltersMenu() {
+    this.filtersService.open.next(true);
   }
 }

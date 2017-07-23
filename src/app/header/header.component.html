@@ -23,7 +23,9 @@
 
     <app-icon title="Cart" image="/assets/images/cart-black.png" class="hidden-xs" black="true"></app-icon>
 
-    <app-icon title="Filter" image="/assets/images/filter.png" class="hidden-xs" black="true" *ngIf="filter"></app-icon>
+    <app-icon title="Filter" image="/assets/images/filter.png"
+        class="hidden-xs" black="true" *ngIf="filter" (click)="openFiltersMenu()">
+    </app-icon>
   </div>
 
   <a [routerLink]="['/']" class="center-part Selasfora col-sm-2 col-xs-4">
