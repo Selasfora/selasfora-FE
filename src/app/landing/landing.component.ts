@@ -1,6 +1,7 @@
 import { Component, Input, Inject } from '@angular/core';
 import { WindowService } from '../window.service';
 import { AuthService } from '../auth.service';
+import { ToastrService } from 'toastr-ng2';
 
 @Component({
   selector: 'app-landing',
@@ -23,7 +24,7 @@ export class LandingComponent {
   public ctaText = '';
   public newsLetterEmail = '';
 
-  constructor(private $window: WindowService, private service: AuthService) {
+  constructor(private $window: WindowService, private service: AuthService, private toastrService: ToastrService) {
     this.window = $window.nativeWindow;
   }
 
@@ -42,6 +43,7 @@ export class LandingComponent {
     this.service.newsLetter(this.newsLetterEmail).subscribe(
       (data) => {
         console.log('success', data)
+        this.toastrService.success('Thank you!', 'You are now subscribed to our newsletter!');
       }
     );
   }
