@@ -38,6 +38,7 @@ import { JournalComponent } from './journal/journal.component';
 import { PostComponent } from './post/post.component';
 import { ArticleComponent } from './article/article.component';
 import { FiltersMenuComponent } from './filters-menu/filters-menu.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { FiltersMenuComponent } from './filters-menu/filters-menu.component';
     JournalComponent,
     PostComponent,
     ArticleComponent,
-    FiltersMenuComponent
+    FiltersMenuComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

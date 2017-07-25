@@ -42,8 +42,6 @@ export class FiltersMenuComponent implements OnInit {
   }
 
   close() {
-    //this.menuStatus = true;
-    //this.out = true;
     this.filtersService.open.next(false);
   }
 
@@ -73,8 +71,8 @@ export class FiltersMenuComponent implements OnInit {
   flatten() {
     let str = '?';
     for(let key in this.selectedFilters) {
-      str += key + '=';
       if(key.indexOf('price') < 0) {
+        str += key + '=';
         str += this.selectedFilters[key].join(',');
       } else {
         let min_price = Infinity;
