@@ -40,6 +40,7 @@ import { PostComponent } from './post/post.component';
 import { ArticleComponent } from './article/article.component';
 import { FiltersMenuComponent } from './filters-menu/filters-menu.component';
 import { AboutComponent } from './about/about.component';
+import { ReportComponent } from './report/report.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { AboutComponent } from './about/about.component';
     PostComponent,
     ArticleComponent,
     FiltersMenuComponent,
-    AboutComponent
+    AboutComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,

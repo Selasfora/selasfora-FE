@@ -12,6 +12,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutComponent } from './about/about.component';
 import { JournalComponent } from './journal/journal.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { ReportComponent } from './report/report.component';
 
 const appRoutes: Routes = [
   {
@@ -45,6 +46,10 @@ const appRoutes: Routes = [
   {
     path: 'about',
     component: AboutComponent,
+  },
+  {
+    path: 'generatereport',
+    component: ReportComponent,
   },
   {
     path: '',

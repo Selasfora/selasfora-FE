@@ -111,4 +111,8 @@ export class AuthService {
   resendEmail() {
     return this.sendRequest('post', '/auth/confirmation', {}, null);
   }
+
+  fetchReport() {
+    return this.sendRequest('get', 'https://selasfora-staging.herokuapp.com/newsletter', {}, null);
+  }
 }

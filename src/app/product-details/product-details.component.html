@@ -5,10 +5,9 @@
 <div class="row body">
   <div class="col-md-4 col-md-offset-2 col-xs-12">
     <div class="title mobile-center">{{ product.title }}</div>
-    <div class="price mobile-center">{{ product.price }}</div>
+    <div class="price mobile-center">{{ product.variants[0].price }}</div>
     <div class="desc hidden-xs">
-      The Limited-edition
-      Paint-splattered Collection is created by set designer Tracy.
+      {{ product.body_html }}
     </div>
     <div class="main-btn hidden-xs" (click)="addToCart()">+ Add to cart</div>
     <div class="shipping hidden-xs">

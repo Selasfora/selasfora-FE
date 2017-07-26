@@ -16,7 +16,7 @@ export class ProductDetailsComponent implements OnInit {
   mode: string = 'grid';
   id: any;
   type: string = '';
-  product: any = {};
+  product: any = {variants: [{price: ''}]};
   window: any = null;
   shopClient: any;
 

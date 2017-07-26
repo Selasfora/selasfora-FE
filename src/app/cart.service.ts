@@ -25,6 +25,7 @@ export class CartService {
 
   createCart() {
     if(this.cart) return this.cart;
+
     this.cart = true; // to prevent multiple creations
     let that = this;
 
@@ -33,7 +34,7 @@ export class CartService {
       if(that.window.shopClient) {
         that.window.clearInterval(interval);
 
-        that.window.shopClient.createCart()
+        that.window.shopClient.fetchRecentCart()
         .then(function (cart) {
           that.cart = cart;
           that.checkoutURL.next(cart.checkoutUrl);
@@ -52,9 +53,7 @@ export class CartService {
     if(!item.quantity) { item.quantity = 1; }
     let that = this;
     return Observable.fromPromise(
-      that.cart.createLineItemsFromVariants(item).then(function(res) {
-        console.log('res', res)
-      })
+      that.cart.createLineItemsFromVariants(item)
     );
   }
 
