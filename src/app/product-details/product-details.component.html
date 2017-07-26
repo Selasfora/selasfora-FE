@@ -4,13 +4,13 @@
 
 <div class="row body">
   <div class="col-md-4 col-md-offset-2 col-xs-12">
-    <div class="title mobile-center">Corian Blue</div>
-    <div class="price mobile-center">99 EUR</div>
+    <div class="title mobile-center">{{ product.title }}</div>
+    <div class="price mobile-center">{{ product.price }}</div>
     <div class="desc hidden-xs">
       The Limited-edition
       Paint-splattered Collection is created by set designer Tracy.
     </div>
-    <div class="main-btn hidden-xs">+ Add to cart</div>
+    <div class="main-btn hidden-xs" (click)="addToCart()">+ Add to cart</div>
     <div class="shipping hidden-xs">
       <div class="shipping-title">
         Shipping

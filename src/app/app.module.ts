@@ -21,6 +21,7 @@ import { AuthService } from './auth.service';
 import { WindowService } from './window.service';
 import { UserService } from './user.service';
 import { FiltersService } from './filters.service';
+import { CartService } from './cart.service';
 
 import { SignupComponent } from './signup/signup.component';
 import { PasswordresetComponent } from './passwordreset/passwordreset.component';
@@ -79,7 +80,8 @@ import { AboutComponent } from './about/about.component';
     AuthService,
     WindowService,
     UserService,
-    FiltersService
+    FiltersService,
+    CartService
   ],
   bootstrap: [AppComponent]
 })

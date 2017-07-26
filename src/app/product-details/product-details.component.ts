@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service'
+import { AuthService } from '../auth.service';
+import { WindowService } from '../window.service';
+import { CartService } from '../cart.service';
+import { Config } from '../config';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
+import { ToastrService } from 'toastr-ng2';
 
 @Component({
   selector: 'app-product-details',
@@ -12,9 +16,14 @@ export class ProductDetailsComponent implements OnInit {
   mode: string = 'grid';
   id: any;
   type: string = '';
-  product: object = {};
+  product: any = {};
+  window: any = null;
+  shopClient: any;
 
-  constructor(public service: AuthService, public route: ActivatedRoute, private router: Router) { }
+  constructor(public service: AuthService, public route: ActivatedRoute, private router: Router,
+      private windowService: WindowService, public _cart: CartService, private toastrService: ToastrService) {
+    this.window = windowService.nativeWindow;
+  }
 
   ngOnInit() {
     this.route.paramMap
@@ -39,4 +48,17 @@ export class ProductDetailsComponent implements OnInit {
     );
   }
 
+  ngAfterViewInit() {
+    this._cart.createCart();
+  }
+
+  addToCart() {
+    this._cart.addToCart({variant: this.product.variants[0], quantity: 1}).subscribe(
+      (data) => {
+        console.log('returned', data)
+        this.toastrService.success('Your product was added successfully!', 'Success!');
+      }
+    );
+
+  }
 }

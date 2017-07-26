@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FiltersService } from '../filters.service';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-header',
@@ -13,8 +14,15 @@ export class HeaderComponent implements OnInit {
   @Input() type;
   @Input() page;
   @Input() filter = false;
+  public url = '';
 
-  constructor(public filtersService: FiltersService) { }
+  constructor(public filtersService: FiltersService, public cart: CartService) {
+    cart.getCheckoutUrl().subscribe(
+      (data) => {
+        this.url = data;
+      }
+    );
+  }
 
   ngOnInit() {
   }

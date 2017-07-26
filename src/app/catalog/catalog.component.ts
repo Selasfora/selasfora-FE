@@ -60,15 +60,12 @@ export class CatalogComponent implements OnInit {
         this.subscriptions.push(
           that.filterService.query.subscribe(
             (data) => {
-              console.log('data', data)
               data && this.subscriptions.push(
-                that.service.queryProducts(data).subscribe(
+                that.service.queryProducts(data + 'product_type=' + that.type).subscribe(
                   (data) => {
                     that.list = data.filter(function(item) {
-                      console.log('products', data)
                       return item.product_type == that.type;
                     });
-                    console.log('list', that.list);
                   }
                 )
               );
