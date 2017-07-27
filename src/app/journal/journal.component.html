@@ -3,10 +3,14 @@
     <app-header page="black" [type]="type"></app-header>
   </div>
 
-  <div class="body">
-    <div class="page-title"> {{ pageTitle }} </div>
-    <div>
-      <app-post *ngFor="let item of list" [item]="item"></app-post>
+  <div class="container body">
+    <div class="row">
+      <div class="page-title col-sm-12"> {{ pageTitle }} </div>
+    </div>
+    <div class="row" style="display: table; padding-bottom: 100px; width: 100%;" *ngFor="let arr of lists">
+      <div *ngFor="let item of arr" class="col-sm-4" style="display: table-cell; float: none; vertical-align: bottom;">
+        <app-post [item]="item"></app-post>
+      </div>
     </div>
   </div>
 

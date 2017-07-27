@@ -11,6 +11,7 @@ import { PasswordresetComponent } from './passwordreset/passwordreset.component'
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutComponent } from './about/about.component';
 import { JournalComponent } from './journal/journal.component';
+import { ArticleComponent } from './article/article.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ReportComponent } from './report/report.component';
 
@@ -30,6 +31,10 @@ const appRoutes: Routes = [
   {
     path: 'journal',
     component: JournalComponent,
+  },
+  {
+    path: 'article/:id',
+    component: ArticleComponent,
   },
   {
     path: 'signup',

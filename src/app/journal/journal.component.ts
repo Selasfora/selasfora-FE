@@ -9,15 +9,22 @@ import { Router } from '@angular/router';
 })
 export class JournalComponent implements OnInit {
 
+  lists: Array<Array<object>> = [];
   list: Array<object> = [];
 
   constructor(private router: Router, public service: AuthService) { }
 
   ngOnInit() {
+    let that = this;
     this.service.fetchJournal()
     .subscribe(
       (data) => {
-        this.list = data;
+        that.list = data;
+        data.forEach(function(item, index) {
+          let n = Math.floor(index / 3);
+          that.lists[n] = that.lists[n] || [];
+          that.lists[n].push(item);
+        });
       }
     );
   }

@@ -1,19 +1,22 @@
 <div [routerLink]="['/article/' + item.id + '/' + item.id]">
+
+  <div class="tags">
+    {{ item.tags }} - {{ item.published_at | date: 'dd/MM/yyyy' }}
+  </div>
+
   <div class="image">
-    <img *ngIf="item.image" src="{{ item.image.src }}">
+    <img *ngIf="item.image" src="{{ item.image.src }}" style="max-width: 100%;">
   </div>
 
   <div class="title">
-    {{ item.title }}
+    {{ item.title }}<!-- <br>
+    {{ item.author }} -->
   </div>
 
-  <div class="desc show-on-hover hidden-xs">
-    {{ item.body_html }}
+  <div class="desc show-on-hover hidden-xs" [innerHTML]="item.summary_html">
   </div>
 
-  <div class="price"> {{ item.variants[0].price || '89 EUR' }}</div>
-
-  <a class="tetiary-btn show-on-hover hidden-xs" [routerLink]="['/article/' + item.id + '/' + item.id]">
-    See details
+  <a class="show-on-hover hidden-xs" [routerLink]="['/article/' + item.id]">
+    See more <i class="fa fa-arrow-right" style="padding-left: 20px;"></i>
   </a>
 </div>

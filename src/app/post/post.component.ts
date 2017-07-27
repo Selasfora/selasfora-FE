@@ -4,7 +4,7 @@ import { Component, OnInit, Input } from '@angular/core';
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.less'],
-  host: {'class': 'col-xs-12 col-md-4'}
+  //host: {'class': 'col-xs-12 col-md-4'}
 })
 export class PostComponent implements OnInit {
   @Input() item;
