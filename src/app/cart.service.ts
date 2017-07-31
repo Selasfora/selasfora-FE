@@ -11,9 +11,10 @@ import { Config } from './Config';
 export class CartService {
   private cart = null;
   private window;
-  private checkoutURL:BehaviorSubject<string> = new BehaviorSubject('');
+  private checkoutURL: BehaviorSubject<string> = new BehaviorSubject('');
+  private basketCount: BehaviorSubject<object> = new BehaviorSubject({});
 
-  constructor(private _window:WindowService) {
+  constructor(private _window: WindowService) {
     this.window = _window.nativeWindow;
     this.window.shopClient = this.window.ShopifyBuy.buildClient({
       accessToken: Config.accessToken,
@@ -30,7 +31,6 @@ export class CartService {
     let that = this;
 
     let interval = this.window.setInterval(function() {
-      console.log('trying')
       if(that.window.shopClient) {
         that.window.clearInterval(interval);
 
@@ -38,7 +38,8 @@ export class CartService {
         .then(function (cart) {
           that.cart = cart;
           that.checkoutURL.next(cart.checkoutUrl);
-          console.log('cart created', cart);
+          console.log('cart', that.cart)
+          that.basketCount.next({ count: that.cart.lineItemCount, price: that.cart.subtotal })
           return that.cart;
         });
       }
@@ -57,7 +58,20 @@ export class CartService {
     );
   }
 
+  updateUrl(url) {
+    this.checkoutURL.next(url);
+  }
+
   getCheckoutUrl() {
     return this.checkoutURL;
+  }
+
+  getCartCount() {
+    return this.basketCount;
+  }
+
+  updateCount(data) {
+    console.log('updating', data)
+    this.basketCount.next(data);
   }
 }

@@ -3,7 +3,7 @@
 </div>
 
 <div class="row body">
-  <div class="col-md-4 col-md-offset-2 col-xs-12">
+  <div class="col-sm-4 col-sm-offset-2 col-xs-12">
     <div class="title mobile-center">{{ product.title }}</div>
     <div class="price mobile-center">{{ product.variants[0].price }}</div>
     <div class="desc hidden-xs">
@@ -15,16 +15,11 @@
         Shipping
       </div>
       <div class="shipping-desc">
-        <div>Slit at centre front</div>
-        <div>Two large patch pockets</div>
-        <div>Triple needle toptitching</div>
-        <div>Belt with aluminum buckle</div>
-        <div>Cotton canvas</div>
-        <div>100% Cotton</div>
+        {{ product.variants[0].shipping }}
       </div>
     </div>
   </div>
-  <div class="col-md-6 col-xs-12 mobile-center">
+  <div class="col-sm-6 col-xs-12 mobile-center">
     <img *ngIf="product && product.image" src={{product.image.src}} >
   </div>
   <div class="col-xs-12 shipping visible-xs">
@@ -32,12 +27,7 @@
         Shipping
       </div>
       <div class="shipping-desc mobile-center">
-        <div>Slit at centre front</div>
-        <div>Two large patch pockets</div>
-        <div>Triple needle toptitching</div>
-        <div>Belt with aluminum buckle</div>
-        <div>Cotton canvas</div>
-        <div>100% Cotton</div>
+        {{ product.variants[0].shipping }}
       </div>
     </div>
 </div>
@@ -45,7 +35,7 @@
 <div class="suggestion"></div>
 
 <div class="row posts">
-  <div class="left col-xs-12 col-md-6">
+  <div class="left col-xs-12 col-sm-6">
     <img src="/assets/images/left-image1.png">
     <div class="content">
       <div class="post-title">Daily Life collection</div>
@@ -56,7 +46,7 @@
       <div class="button btn">Shop all charms</div>
     </div>
   </div>
-  <div class="right right-charm col-xs-12 col-md-6" *ngIf="type=='charm'">
+  <div class="right right-charm col-xs-12 col-sm-6" *ngIf="type=='charm'">
     <img src="/assets/images/right-image1.png">
     <div class="content">
       <div class="post-title black">Sprint collection</div>
@@ -64,10 +54,10 @@
         We side with style over fashion,<br>
         think timelessness is underrated
       </div>
-      <div class="button btn">Shop all charms</div>
+      <div class="button btn" [routerLink]="['/catalog/charm']">Shop all charms</div>
     </div>
   </div>
-  <div class="right right-bracelet col-xs-12 col-md-6" *ngIf="type=='bracelet'">
+  <div class="right right-bracelet col-xs-12 col-sm-6" *ngIf="type=='bracelet'">
     <img src="/assets/images/right-image2.png">
     <div class="content">
       <div class="post-title">Sprint collection</div>
@@ -75,7 +65,7 @@
         We side with style over fashion,<br>
         think timelessness is underrated
       </div>
-      <div class="button btn">Shop all charms</div>
+      <div class="button btn" [routerLink]="['/catalog/charm']">Shop all charms</div>
     </div>
   </div>
 </div>

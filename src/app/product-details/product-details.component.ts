@@ -40,8 +40,8 @@ export class ProductDetailsComponent implements OnInit {
         that.service.fetchProduct(this.id)
         .subscribe(
           (data) => {
+            console.log('product', data)
             that.product = data;
-            console.log('product', data);
           }
         );
       }
@@ -54,8 +54,9 @@ export class ProductDetailsComponent implements OnInit {
 
   addToCart() {
     this._cart.addToCart({variant: this.product.variants[0], quantity: 1}).subscribe(
-      (data) => {
-        console.log('returned', data)
+      (data:any) => {
+        this._cart.updateUrl(data.checkoutUrl);
+        this._cart.updateCount({ count: data.lineItemCount, price: data.subtotal });
         this.toastrService.success('Your product was added successfully!', 'Success!');
       }
     );

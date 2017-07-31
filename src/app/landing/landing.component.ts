@@ -39,10 +39,8 @@ export class LandingComponent {
   }
 
   newsLetter() {
-    console.log(1, this.newsLetterEmail)
     this.service.newsLetter(this.newsLetterEmail).subscribe(
       (data) => {
-        console.log('success', data)
         this.toastrService.success('Thank you!', 'You are now subscribed to our newsletter!');
       }
     );

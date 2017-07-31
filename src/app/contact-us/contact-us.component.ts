@@ -4,6 +4,7 @@ import { AuthService } from '../auth.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
+import { ToastrService } from 'toastr-ng2';
 
 @Component({
   selector: 'app-contact-us',
@@ -43,7 +44,7 @@ export class ContactUsComponent implements OnInit {
   contactForm: FormGroup;
 
   constructor(private fb: FormBuilder, private auth: AuthService, private _location: Location,
-    private router: Router, private user: UserService) {
+    private router: Router, private user: UserService, private toastrService: ToastrService) {
 
   }
   backClick() {
@@ -51,9 +52,6 @@ export class ContactUsComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(this.user.isLoggedIn()) {
-      this.router.navigate(['/']);
-    }
 
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
@@ -66,17 +64,22 @@ export class ContactUsComponent implements OnInit {
 
   onSubmit() {
     let valid = this.validate();
+    console.log('here')
     if(valid) {
+    console.log('here')
       let model: any = {};
       let value = this.contactForm.value;
-      model.email = value.email;
+      model.from = value.email;
       model.name = value.name;
       model.subject = value.subject;
       model.issue = value.issue;
       model.message = value.message;
-      /*this.auth.contactSubmit(model)
+      this.auth.contactSubmit(model)
         .subscribe(
-        );*/
+          (data) => {
+            this.toastrService.success('We Receieved your concern and we will come back to you asap!', 'Success!');
+          }
+        );
     }
     return false;
   }

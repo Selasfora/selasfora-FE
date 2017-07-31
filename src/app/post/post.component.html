@@ -1,4 +1,4 @@
-<div [routerLink]="['/article/' + item.id + '/' + item.id]">
+<div [routerLink]="['/article/' + item.id]">
 
   <div class="tags">
     {{ item.tags }} - {{ item.published_at | date: 'dd/MM/yyyy' }}
@@ -13,7 +13,7 @@
     {{ item.author }} -->
   </div>
 
-  <div class="desc show-on-hover hidden-xs" [innerHTML]="item.summary_html">
+  <div class="desc show-on-hover" [innerHTML]="item.summary_html">
   </div>
 
   <a class="show-on-hover hidden-xs" [routerLink]="['/article/' + item.id]">

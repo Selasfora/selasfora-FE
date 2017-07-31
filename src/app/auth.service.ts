@@ -98,7 +98,6 @@ export class AuthService {
   }
 
   newsLetter(email) {
-    console.log(2, email)
     let url = this.baseURL + 'newsletter';
     return this.sendRequest('post', url, {'email': email}, null);
   }
@@ -109,10 +108,16 @@ export class AuthService {
   }
 
   resendEmail() {
-    return this.sendRequest('post', '/auth/confirmation', {}, null);
+    let url = this.baseURL + 'auth/confirmation';
+    return this.sendRequest('post', url, {}, null);
   }
 
   fetchReport() {
     return this.sendRequest('get', 'https://selasfora-staging.herokuapp.com/newsletter', {}, null);
+  }
+
+  contactSubmit(data) {
+    let url = this.baseURL + 'contact-us';
+    return this.sendRequest('post', url, data, null);
   }
 }

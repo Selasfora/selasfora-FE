@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from '../auth.service'
 import { Router } from '@angular/router';
 
@@ -11,6 +11,9 @@ export class JournalComponent implements OnInit {
 
   lists: Array<Array<object>> = [];
   list: Array<object> = [];
+  @Input() landing = false;
+
+  pageTitle = "Journal";
 
   constructor(private router: Router, public service: AuthService) { }
 

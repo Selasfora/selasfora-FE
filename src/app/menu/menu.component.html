@@ -3,58 +3,77 @@
     <a (click)="close()">x</a>
   </div>
   <ul>
-  <li class="header" *ngIf="!isLoggedIn">
-    <a (click)="login()">
-      Join / Login to Selasfora
-    </a>
-  </li>
-  <li class="header" *ngIf="isLoggedIn">
-    <a href="#">
-      Hi, {{ user.name }}
-    </a>
-  </li>
+    <li class="header" *ngIf="!isLoggedIn">
+      <a (click)="login()">
+        Join / Login to Selasfora
+      </a>
+    </li>
 
-  <li class="link">
-    <a routerLink="/catalog/bracelet">
-      Shop Bracelets
-    </a>
-  </li>
+    <li class="header" *ngIf="isLoggedIn">
+      <a href="#">
+        Hi, {{ user.name }}
+      </a>
+    </li>
 
+    <li class="link">
+      <a routerLink="/catalog/bracelet">
+        Shop Bracelets
+      </a>
+    </li>
 
-  <li class="link">
-    <a routerLink="/catalog/charm">
-      Shop Charms
-    </a>
-  </li>
+    <li class="link">
+      <a routerLink="/catalog/charm">
+        Shop Charms
+      </a>
+    </li>
 
-  <li class="link">
-    <a (click)="empty()">
-      Create your own set
-    </a>
-  </li>
+    <li class="link">
+      <a (click)="empty()">
+        Create your own set
+      </a>
+    </li>
 
-  <li class="link">
-    <a routerLink="/journal">
-      Journal
-    </a>
-  </li>
+    <li class="link">
+      <a routerLink="/journal">
+        Journal
+      </a>
+    </li>
 
-  <li class="link">
-    <a routerLink="/about">
-      About us
-    </a>
-  </li>
+    <li class="link">
+      <a routerLink="/about">
+        About us
+      </a>
+    </li>
 
-  <li class="link">
-    <a routerLink="/contact">
-      Contact us
-    </a>
-  </li>
+    <li class="link">
+      <a routerLink="/contact">
+        Contact us
+      </a>
+    </li>
 
-  <li class="link" *ngIf="isLoggedIn">
-    <a (click)="logout()">
-      Logout
-    </a>
-  </li>
+    <li class="link" *ngIf="isLoggedIn">
+      <a (click)="logout()">
+        Logout
+      </a>
+    </li>
   </ul>
+  <a href="{{checkoutUrl}}" target="_blank" class="cart-link">
+  <div class="cart">
+    <div class="col-xs-2">
+      <img src="/assets/images/cart-count.png">
+      <div class="number">
+        {{ cartCount.count }}
+      </div>
+    </div>
+
+    <div class="col-xs-8">
+      <div>{{ cartCount.count }} items in your cart</div>
+      <div><strong>{{ cartCount.price }}</strong></div>
+    </div>
+
+    <div class="col-xs-1">
+      <i class="fa fa-chevron-right"></i>
+    </div>
+  </div>
+  </a>
 </div>

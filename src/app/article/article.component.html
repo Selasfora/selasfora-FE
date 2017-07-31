@@ -1,3 +1,13 @@
-<p>
-  article works!
-</p>
+<div class="container">
+  <div class="header">
+    <app-header page="black" [type]="type"></app-header>
+  </div>
+
+  <div class="container body">
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1" [innerHTML]="article.body_html"></div>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>
