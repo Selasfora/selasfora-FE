@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { FiltersService } from '../filters.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class FiltersMenuComponent implements OnInit {
   subscriptions: Array<any> = [];
   selectedFilters: any = {};
 
-  constructor(public filtersService: FiltersService) {}
+  constructor(public filtersService: FiltersService, private zone:NgZone) {}
 
   ngOnInit() {
     let that = this;
@@ -72,6 +72,7 @@ export class FiltersMenuComponent implements OnInit {
     let str = '?';
     for(let key in this.selectedFilters) {
       if(key.indexOf('price') < 0) {
+        if(!this.selectedFilters[key] || !this.selectedFilters[key].length) continue;
         str += key + '=';
         str += this.selectedFilters[key].join(',');
       } else {
@@ -86,17 +87,27 @@ export class FiltersMenuComponent implements OnInit {
             max_price = parseFloat(range[1]);
           }
         });
-        str += 'min_price=' + min_price + '&max_price=' + max_price;
+        if(min_price && min_price != Infinity) {
+          str += 'min_price=' + min_price;
+        } if(max_price) {
+          str += '&max_price=' + max_price;
+        }
       }
       str += '&';
+      str.replace('&&', '&').replace('?&', '');
     }
     return str;
   }
 
   search() {
+    this.close();
     let query = this.flatten();
     console.log(this.selectedFilters, query);
     this.filtersService.query.next(query);
+  }
+
+  clear() {
+    window.location.reload();
   }
 
 }

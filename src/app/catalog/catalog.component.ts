@@ -3,6 +3,7 @@ import { AuthService } from '../auth.service'
 import { FiltersService } from '../filters.service'
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
+import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
 
 @Component({
   selector: 'app-catalog',
@@ -13,6 +14,7 @@ export class CatalogComponent implements OnInit {
 
   mode: string = 'grid';
   list: Array<object> = [];
+  lists: Array<any> = [];
   filters:object = {
     color: [],
     size: [],
@@ -26,10 +28,24 @@ export class CatalogComponent implements OnInit {
   subscriptions: Array<any> = [];
 
   constructor(public service: AuthService, public route: ActivatedRoute, private router: Router,
-      public filterService: FiltersService) {
+      public filterService: FiltersService, private slimLoadingBarService: SlimLoadingBarService) {
+  }
+
+  parseList() {
+    this.lists = [];
+    let dev = 3;
+    if(this.type == 'bracelet') dev = 2;
+    let count = 0;
+    let that = this;
+    this.list.forEach(function(item, i) {
+      if(i && i % dev == 0) count++;
+      that.lists[count] = that.lists[count] || [];
+      that.lists[count].push(item)
+    });
   }
 
   ngOnInit() {
+    this.startLoading();
     this.subscriptions.push(this.route.paramMap
       .subscribe((data) => {
         this.type = data.get('type');
@@ -46,12 +62,16 @@ export class CatalogComponent implements OnInit {
         this.subscriptions.push(that.service.fetchProducts(this.type)
         .subscribe(
           (data) => {
+            console.log(1)
+            this.completeLoading();
             that.list = data;
+            that.parseList();
           }
         ));
 
         this.subscriptions.push(that.service.fetchFilters().subscribe(
           (data) => {
+            console.log(2)
             that.filters = data;
             that.filterService.filters.next(that.filters);
           }
@@ -60,15 +80,29 @@ export class CatalogComponent implements OnInit {
         this.subscriptions.push(
           that.filterService.query.subscribe(
             (data) => {
-              data && this.subscriptions.push(
-                that.service.queryProducts(data + 'product_type=' + that.type).subscribe(
+              console.log(3)
+              that.startLoading();
+              if(!data || data == '?') {
+                this.subscriptions.push(that.service.fetchProducts(this.type)
+                .subscribe(
                   (data) => {
-                    that.list = data.filter(function(item) {
-                      return item.product_type == that.type;
-                    });
+                    console.log(1)
+                    this.completeLoading();
+                    that.list = data;
+                    that.parseList();
                   }
-                )
-              );
+                ));
+              } else {
+                data && this.subscriptions.push(
+                  that.service.queryProducts(data + 'product_type=' + that.type).subscribe(
+                    (data) => {
+                      that.completeLoading();
+                      that.list = data;
+                      that.parseList();
+                    }
+                  )
+                );
+              }
             }
           )
         );
@@ -105,6 +139,20 @@ export class CatalogComponent implements OnInit {
     this.subscriptions.forEach(function(item) {
       item.unsubscribe();
     });
+  }
+
+  startLoading() {
+    this.slimLoadingBarService.start(() => {
+      console.log('Loading complete');
+    });
+  }
+
+  stopLoading() {
+    this.slimLoadingBarService.stop();
+  }
+
+  completeLoading() {
+    this.slimLoadingBarService.complete();
   }
 
 }

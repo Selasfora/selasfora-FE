@@ -40,6 +40,11 @@
     <a routerLink="/catalog/charm" class="tetiary-btn">Charm</a>
     <div class="main-btn">Create yours</div>
   </div>
+  <div class="visible-xs col-xs-4">
+    <app-icon title="Filter" image="/assets/images/filter.png"
+        class="visible-xs" black="true" *ngIf="filter" (click)="openFiltersMenu()">
+    </app-icon>
+  </div>
 </div>
 
 <div *ngIf="page == 'catalog'" class="catalog-header row">

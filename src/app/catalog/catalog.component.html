@@ -1,3 +1,5 @@
+<ng2-slim-loading-bar [color]="'#272caa'" [height]="'4px'"></ng2-slim-loading-bar>
+
 <div>
   <div class="header row margin0">
     <app-header page="black" [type]="type" filter="true"></app-header>
@@ -6,11 +8,16 @@
   <div class="body row margin0">
     <div class="page-title"> {{ pageTitle }} </div>
     <div [class.container]="mode != 'grid'">
-      <div class="row">
-        <div *ngFor="let item of list; let i = index">
-          <div class="clearfix" *ngIf="i % 3 == 0"></div>
+      <div class="row hidden-xs" *ngFor="let List of lists">
+        <div *ngFor="let item of List">
           <app-product [item]="item" [mode]="mode"></app-product>
         </div>
+      </div>
+      <div class="row visible-xs">
+        <app-product [item]="item" [mode]="mode" *ngFor="let item of list"></app-product>
+      </div>
+      <div *ngIf="!list.length" class="well well-warning">
+        No products exists with your current filter, please try another combination
       </div>
     </div>
   </div>

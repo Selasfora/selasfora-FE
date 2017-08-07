@@ -30,6 +30,8 @@ import { MenuComponent } from './menu/menu.component';
 import { Angular2SocialLoginModule } from "angular2-social-login";
 
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
+import {SlimLoadingBarModule} from 'ng2-slim-loading-bar';
+
 import { CatalogComponent } from './catalog/catalog.component';
 import { ProductComponent } from './product/product.component';
 import { FooterComponent } from './footer/footer.component';
@@ -41,6 +43,7 @@ import { ArticleComponent } from './article/article.component';
 import { FiltersMenuComponent } from './filters-menu/filters-menu.component';
 import { AboutComponent } from './about/about.component';
 import { ReportComponent } from './report/report.component';
+
 
 @NgModule({
   declarations: [
@@ -76,7 +79,8 @@ import { ReportComponent } from './report/report.component';
     Ng2PageScrollModule.forRoot(),
     CommonModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    SlimLoadingBarModule.forRoot()
   ],
   providers: [
     AuthService,
@@ -85,6 +89,7 @@ import { ReportComponent } from './report/report.component';
     FiltersService,
     CartService
   ],
+  exports: [BrowserModule, SlimLoadingBarModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
