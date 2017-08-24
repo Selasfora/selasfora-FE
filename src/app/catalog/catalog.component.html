@@ -2,11 +2,11 @@
 
 <div>
   <div class="header row margin0">
-    <app-header page="black" [type]="type" filter="true"></app-header>
+    <app-header page="black" [type]="type" [filter]="type == 'charm'"></app-header>
   </div>
 
-  <div class="body row margin0">
-    <div class="page-title"> {{ pageTitle }} </div>
+  <div class="col-md-offset-1 col-md-10 body row">
+    <div class="page-title" *ngIf="pageTitle"> {{ pageTitle }} </div>
     <div [class.container]="mode != 'grid'">
       <div class="row hidden-xs" *ngFor="let List of lists">
         <div *ngFor="let item of List">

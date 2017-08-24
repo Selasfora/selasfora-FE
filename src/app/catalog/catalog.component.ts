@@ -55,7 +55,7 @@ export class CatalogComponent implements OnInit {
           return;
         }
 
-        if(this.type == 'charm') this.pageTitle = 'Selasfora Charms';
+        if(this.type == 'charm') this.pageTitle = '';
         if(this.type == 'bracelet') this.pageTitle = 'Selasfora Bracelets';
 
         let that = this;

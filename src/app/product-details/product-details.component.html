@@ -3,11 +3,10 @@
 </div>
 
 <div class="row body">
-  <div class="col-sm-4 col-sm-offset-2 col-xs-12">
+  <div class="col-sm-3 col-sm-offset-1 col-xs-12">
     <div class="title mobile-center">{{ product.title }}</div>
     <div class="price mobile-center">{{ product.variants[0].price }}</div>
-    <div class="desc hidden-xs">
-      {{ product.body_html }}
+    <div class="desc hidden-xs" [innerHtml]="product.body_html">
     </div>
     <div class="main-btn hidden-xs" (click)="addToCart()">+ Add to cart</div>
     <div class="shipping hidden-xs">
@@ -19,17 +18,26 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-6 col-xs-12 mobile-center">
-    <img *ngIf="product && product.image" src={{product.image.src}} >
+  <div class="col-sm-5 col-xs-12 mobile-center image-container">
+    <img *ngIf="mainImage" src={{mainImage.src}}>
+    <img *ngIf="!mainImage && product && product.images && product.images.length > 1" src={{product.images[1].src}}>
+    <img *ngIf="!mainImage && product && product.images && product.images.length <= 1" src={{product.images[0].src}}>
   </div>
   <div class="col-xs-12 shipping visible-xs">
-      <div class="shipping-title mobile-center">
-        Shipping
-      </div>
-      <div class="shipping-desc mobile-center">
-        {{ product.variants[0].shipping }}
+    <div class="shipping-title mobile-center">
+      Shipping
+    </div>
+    <div class="shipping-desc mobile-center">
+      {{ product.variants[0].shipping }}
+    </div>
+  </div>
+  <div class="col-sm-2">
+    <div *ngFor="let img of product.images" class="thumbs">
+      <div (click)="switchImage(img)">
+        <img src={{img.src}}>
       </div>
     </div>
+  </div>
 </div>
 
 <div class="suggestion"></div>

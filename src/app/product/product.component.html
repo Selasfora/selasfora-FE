@@ -1,14 +1,14 @@
 <div [routerLink]="['/catalog/' + item.product_type + '/' + item.id]">
   <div class="image">
-    <img *ngIf="item.image" src="{{ item.image.src }}">
+    <img *ngIf="item.images.length > 1" src="{{ item.images[1].src }}">
+    <img *ngIf="item.images.length < 2 && item.images" src="{{ item.image.src }}">
   </div>
 
   <div class="title">
     {{ item.title }}
   </div>
 
-  <div class="desc show-on-hover hidden-xs">
-    {{ item.body_html }}
+  <div class="desc show-on-hover hidden-xs" [innerHTML]="item.body_html">
   </div>
 
   <div class="price"> {{ item.variants[0].price || '89 EUR' }}</div>

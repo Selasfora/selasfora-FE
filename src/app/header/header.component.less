@@ -1,22 +1,18 @@
-:host {
-
-}
 
 * {
   transition: all 300ms linear;
 }
 
 .left-part {
-  /*float: left;
-  width: 40%;*/
+  @media only screen and (min-width : 768px) {
+    padding-left: 0;
+  }
   @media only screen and (max-width : 767px) {
     padding-top: 5px;
   }
 }
 
 .right-part {
-  /*float: right;
-  width: 50%;*/
   text-align: right;
   .secondary-btn {
     font-size: 13px;
@@ -26,26 +22,20 @@
   .main-btn  {
     font-size: 13px;
     font-weight: 200;
-    padding: 20px 40px;
+    padding: 18px 42px;
   }
 }
 
 .center-part {
-  /*width: 6%;
-  position: absolute;
-  left: 47%;
-  top: 40px;
-  max-width: 200px;*/
   padding-top: 20px;
   color: white;
   font-weight: 200;
   img {
-    max-width: 60px;
+    max-width: 81px;
     width: 100%;
     position: relative;
-    left: -2px;
     @media only screen and (min-width : 768px) {
-      top: -8px;
+      top: -4px;
     }
     @media only screen and (max-width : 767px) {
       top: -6px;
@@ -93,14 +83,20 @@
   padding-top: 18px;
 }
 
-.tetiary-btn {
+.header-btn {
+  padding-right: 35px;
+  color: black;
+  font-size: 12px;
   border: 0;
-  text-decoration: none;
-  padding: 20px 30px;
+  font-weight: 500;
 }
 
 .black {
   color: black;
+  font-weight: 600;
+  position: relative;
+  top: -2px;
+  font-size: 14px;
 }
 
 a {

@@ -19,6 +19,7 @@ export class ProductDetailsComponent implements OnInit {
   product: any = {variants: [{price: ''}]};
   window: any = null;
   shopClient: any;
+  mainImage = '';
 
   constructor(public service: AuthService, public route: ActivatedRoute, private router: Router,
       private windowService: WindowService, public _cart: CartService, private toastrService: ToastrService) {
@@ -53,13 +54,21 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addToCart() {
-    this._cart.addToCart({variant: this.product.variants[0], quantity: 1}).subscribe(
+    this._cart.addToCart({variant: this.product.variants[0], quantity: 1})
+    .subscribe(
       (data:any) => {
         this._cart.updateUrl(data.checkoutUrl);
         this._cart.updateCount({ count: data.lineItemCount, price: data.subtotal });
         this.toastrService.success('Your product was added successfully!', 'Success!');
+      },
+      (error) => {
+        this.toastrService.error('Your product was not added!', 'Something went wrong!');
       }
     );
 
+  }
+
+  switchImage(img) {
+    this.mainImage = img;
   }
 }

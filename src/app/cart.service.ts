@@ -46,7 +46,7 @@ export class CartService {
     }, 1000);
   }
 
-  addToCart(item) {
+  addToCart(item):any {
     if(!item.variant) {
       return Observable.throw({'status': 'error', 'message': 'no variant selected!'});
     }
