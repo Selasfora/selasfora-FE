@@ -37,7 +37,6 @@ export class MenuComponent implements OnInit {
 
     _cart.getCartCount().subscribe(
       (data) => {
-        console.log('cart count', data)
         this.cartCount = data;
       }
     );

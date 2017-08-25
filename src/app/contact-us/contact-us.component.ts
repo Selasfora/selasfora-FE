@@ -40,6 +40,15 @@ export class ContactUsComponent implements OnInit {
     'message': []
   };
 
+  IssueList = [
+    {title: 'My order'},
+    {title: 'Delivery'},
+    {title: 'Returns and Refunds'},
+    {title: 'My account'},
+    {title: 'A product question'},
+    {title: 'Other'}
+  ];
+
   errorMessage: string = '';
   contactForm: FormGroup;
 
@@ -60,6 +69,10 @@ export class ContactUsComponent implements OnInit {
       issue: ['', Validators.required],
       message: ['', [Validators.required]]
     });
+  }
+
+  setIssueType(value) {
+    this.contactForm.value.issue = value.title;
   }
 
   onSubmit() {

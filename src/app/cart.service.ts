@@ -38,7 +38,6 @@ export class CartService {
         .then(function (cart) {
           that.cart = cart;
           that.checkoutURL.next(cart.checkoutUrl);
-          console.log('cart', that.cart)
           that.basketCount.next({ count: that.cart.lineItemCount, price: that.cart.subtotal })
           return that.cart;
         });
@@ -71,7 +70,6 @@ export class CartService {
   }
 
   updateCount(data) {
-    console.log('updating', data)
     this.basketCount.next(data);
   }
 }

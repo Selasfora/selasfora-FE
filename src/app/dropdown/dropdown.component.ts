@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-dropdown',
@@ -7,9 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DropdownComponent implements OnInit {
   showMenu = '';
-  selectedItem = 'Select';
   
-  itemList = [
+  @Input() selectedItem = 'Select';
+  @Input() isForm = false;
+  @Input() itemList = [
     {
       title: 'Small',
       subtitle: 'Wrist size: < 15 cm'
@@ -25,7 +26,9 @@ export class DropdownComponent implements OnInit {
     {
       title: 'Size Guide'
     }
-  ]
+  ];
+
+  @Output() itemChange =  new EventEmitter();
 
   constructor() { }
 
@@ -39,5 +42,6 @@ export class DropdownComponent implements OnInit {
   selectItem(item) {
     this.showMenu = '';
     this.selectedItem = item;
+    this.itemChange.emit(item);
   }
 }

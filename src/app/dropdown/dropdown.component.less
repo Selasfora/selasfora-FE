@@ -8,11 +8,12 @@
   border: solid 1px black;
   color: black;
   border-radius: 0;
-  &:hover {
+  &:hover, &.show {
     color: white;
     background: black;
   }
 }
+
 
 .drop {
   background: white;
@@ -32,4 +33,34 @@
       cursor: pointer;
     }
   }
+}
+
+.main-btn-form {
+  background: #ebebeb;
+  max-width: 360px;
+  height: 40px;
+  background-color: #ebebeb;
+  border: 0;
+  width: 100%;
+  margin-top: 14px;
+  font-size: 15px;
+  line-height: 26px;
+  padding: 16px 11px;
+  box-sizing: border-box;
+  border-radius: 0;
+  text-align: left;
+  padding-top: 9px;
+  .glyphicon {
+    padding-top: 5px;
+  }
+  &:hover, &.show {
+    color: white;
+    background: black;
+  }
+}
+
+.drop-form {
+  .drop;
+  width: 100%;
+  max-width: 354px;
 }
