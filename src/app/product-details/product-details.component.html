@@ -46,6 +46,14 @@
   </div>
 </div>
 
+<div *ngIf="type=='bracelet'">
+  <app-landing
+    *ngFor="let page of pages; let i = index;"
+    [page]=page
+    [idx]=i
+  ></app-landing>
+</div>
+
 <div class="suggestion"></div>
 
 <div class="row posts">

@@ -21,6 +21,31 @@ export class ProductDetailsComponent implements OnInit {
   shopClient: any;
   mainImage = '';
 
+
+  public pages = [
+    {
+      imagePath: '/assets/images/03@2x.png',
+      mobileImagePath: '/assets/images/03@2x-mobile.png',
+      colorShade: 'light',
+      content: {
+        title: 'Easy to customize',
+        subtext: 'We wanted to capture the color of a summer night\'s sky',
+        cta: 'Patent pending technology'
+      },
+      position: 'top'
+    },
+    {
+      imagePath: '/assets/images/04@2x.png',
+      mobileImagePath: '/assets/images/04@2x-mobile.png',
+      colorShade: 'dark',
+      content: {
+        title: 'Easy to wear',
+        subtext: 'We believe that great style begins with great design. Every single piece is conceived in our studio, where designers sketch, drape, tuck and bead a collection to life'
+      },
+      position: 'top'
+    }
+  ];
+
   constructor(public service: AuthService, public route: ActivatedRoute, private router: Router,
       private windowService: WindowService, public _cart: CartService, private toastrService: ToastrService) {
     this.window = windowService.nativeWindow;
