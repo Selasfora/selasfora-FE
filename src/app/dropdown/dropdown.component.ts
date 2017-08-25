@@ -22,9 +22,6 @@ export class DropdownComponent implements OnInit {
     {
       title: 'Large',
       subtitle: 'Wrist size 15-16.5 cm'
-    },
-    {
-      title: 'Size Guide'
     }
   ];
 

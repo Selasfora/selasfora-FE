@@ -17,7 +17,9 @@
     
     <div class="shipping hidden-xs">
       <div class="shipping-title">
-        Shipping
+        Shipping <span *ngIf="type=='bracelet'">| <span class="style-guide" (click)="openMenu()">Style Guide</span>
+        <app-size-guide [menuStatus]="open" (closeMenu)="closeMenu($event)"></app-size-guide>
+        </span>
       </div>
       <div class="shipping-desc">
         {{ product.variants[0].shipping }}

@@ -20,6 +20,7 @@ export class ProductDetailsComponent implements OnInit {
   window: any = null;
   shopClient: any;
   mainImage = '';
+  open = false;
 
 
   public pages = [
@@ -76,6 +77,16 @@ export class ProductDetailsComponent implements OnInit {
 
   ngAfterViewInit() {
     this._cart.createCart();
+  }
+
+  openMenu() {
+    this.open = true;
+  }
+
+  closeMenu(event) {
+    if(!event) {
+      this.open = false;
+    }
   }
 
   addToCart() {

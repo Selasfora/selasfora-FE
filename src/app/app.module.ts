@@ -44,6 +44,7 @@ import { FiltersMenuComponent } from './filters-menu/filters-menu.component';
 import { AboutComponent } from './about/about.component';
 import { ReportComponent } from './report/report.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
+import { SizeGuideComponent } from './size-guide/size-guide.component';
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import { DropdownComponent } from './dropdown/dropdown.component';
     FiltersMenuComponent,
     AboutComponent,
     ReportComponent,
-    DropdownComponent
+    DropdownComponent,
+    SizeGuideComponent
   ],
   imports: [
     BrowserModule,
