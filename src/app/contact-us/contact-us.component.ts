@@ -17,9 +17,9 @@ export class ContactUsComponent implements OnInit {
     'name': {
       'required': 'name is required.',
     },
-    'issue': {
-      'required': 'Please select an issue',
-    },
+    // 'issue': {
+    //   'required': 'Please select an issue',
+    // },
     'email': {
       'required': 'Email is required.',
       'email': 'Please enter a valid email'
@@ -35,7 +35,6 @@ export class ContactUsComponent implements OnInit {
   formErrors = {
     'name': [],
     'email': [],
-    'issue': [],
     'subject': [],
     'message': []
   };
@@ -72,7 +71,7 @@ export class ContactUsComponent implements OnInit {
   }
 
   setIssueType(value) {
-    this.contactForm.value.issue = value.title;
+    this.contactForm.patchValue({issue: value.title});
   }
 
   onSubmit() {

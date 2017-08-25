@@ -39,6 +39,10 @@ export class LandingComponent {
   }
 
   newsLetter() {
+    if(this.newsLetterEmail.indexOf('@') < 0 || this.newsLetterEmail.indexOf('.') < 0) {
+      this.toastrService.error('Please enter a valid email address', 'Error!');
+      return false;
+    }
     this.service.newsLetter(this.newsLetterEmail).subscribe(
       (data) => {
         this.toastrService.success('Thank you!', 'You are now subscribed to our newsletter!');
