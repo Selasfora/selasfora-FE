@@ -1,0 +1,10 @@
+<div class="btn main-btn" (click)="toggleMenu()">
+  {{selectedItem.title || selectedItem}}
+  <i class="pull-right glyphicon glyphicon-chevron-{{!showMenu ? 'down' : 'up' }}"></i>
+</div>
+<div class="drop {{showMenu}}">
+  <div class="drop-item" *ngFor="let item of itemList" (click)="selectItem(item)">
+    <div class="title">{{item.title}}</div>
+    <div class="subtitle">{{item.subtitle}}</div>
+  </div>
+</div>  

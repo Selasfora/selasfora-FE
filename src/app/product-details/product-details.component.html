@@ -8,7 +8,13 @@
     <div class="price mobile-center">{{ product.variants[0].price }}</div>
     <div class="desc hidden-xs" [innerHtml]="product.body_html">
     </div>
-    <div class="main-btn hidden-xs" (click)="addToCart()">+ Add to cart</div>
+    
+    <app-dropdown *ngIf="type=='bracelet'"></app-dropdown>
+
+    <div class="main-btn hidden-xs margin-top-20" (click)="addToCart()">
+      + Add to cart
+    </div>
+    
     <div class="shipping hidden-xs">
       <div class="shipping-title">
         Shipping

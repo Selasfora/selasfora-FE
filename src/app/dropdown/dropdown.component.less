@@ -1,0 +1,35 @@
+* {
+  transition: all 200ms linear;
+}
+
+.main-btn {
+  width: 181px;
+  background: transparent;
+  border: solid 1px black;
+  color: black;
+  border-radius: 0;
+  &:hover {
+    color: white;
+    background: black;
+  }
+}
+
+.drop {
+  background: white;
+  position: absolute;
+  width: 181px;
+  box-shadow: 0px 5px 15px #c7c7c7;
+  display: none;
+  &.show {
+    display: block;
+  }
+  .drop-item {
+    border-bottom: solid 1px #ccc;
+    padding: 15px 20px;
+    &:hover {
+      background: #272caa;
+      color: white;
+      cursor: pointer;
+    }
+  }
+}

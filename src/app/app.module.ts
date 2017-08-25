@@ -43,6 +43,7 @@ import { ArticleComponent } from './article/article.component';
 import { FiltersMenuComponent } from './filters-menu/filters-menu.component';
 import { AboutComponent } from './about/about.component';
 import { ReportComponent } from './report/report.component';
+import { DropdownComponent } from './dropdown/dropdown.component';
 
 
 @NgModule({
@@ -67,7 +68,8 @@ import { ReportComponent } from './report/report.component';
     ArticleComponent,
     FiltersMenuComponent,
     AboutComponent,
-    ReportComponent
+    ReportComponent,
+    DropdownComponent
   ],
   imports: [
     BrowserModule,
