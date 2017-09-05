@@ -6,18 +6,17 @@
   <div class="col-sm-3 col-sm-offset-1 col-xs-12">
     <div class="title mobile-center">{{ product.title }}</div>
     <div class="price mobile-center">{{ product.variants[0].price }}</div>
-    <div class="desc hidden-xs" [innerHtml]="product.body_html">
-    </div>
-    
-    <app-dropdown *ngIf="type=='bracelet'"></app-dropdown>
+    <div class="desc hidden-xs" [innerHtml]="product.body_html"></div>
+
+    <app-dropdown *ngIf="type=='bracelet'" class="hidden-xs"></app-dropdown>
 
     <div class="main-btn hidden-xs margin-top-20" (click)="addToCart()">
       + Add to cart
     </div>
-    
+
     <div class="shipping hidden-xs">
       <div class="shipping-title">
-        Shipping <span *ngIf="type=='bracelet'">| <span class="style-guide" (click)="openMenu()">Style Guide</span>
+        Shipping <span *ngIf="type=='bracelet'">| <span class="style-guide" (click)="openMenu()">Size Guide</span>
         <app-size-guide [menuStatus]="open" (closeMenu)="closeMenu($event)"></app-size-guide>
         </span>
       </div>
@@ -32,19 +31,27 @@
     <img *ngIf="!mainImage && product && product.images && product.images.length <= 1" src={{product.images[0].src}}>
   </div>
   <div class="col-xs-12 shipping visible-xs">
+    <div class="desc" [innerHtml]="product.body_html"></div>
     <div class="shipping-title mobile-center">
-      Shipping
+      Shipping <span *ngIf="type=='bracelet'">| <span class="style-guide" (click)="openMenu()">Size Guide</span>
+        <app-size-guide [menuStatus]="open" (closeMenu)="closeMenu($event)"></app-size-guide>
+      </span>
     </div>
     <div class="shipping-desc mobile-center">
       {{ product.variants[0].shipping }}
     </div>
   </div>
-  <div class="col-sm-2">
+  <div class="col-sm-2 hidden-xs">
     <div *ngFor="let img of product.images" class="thumbs">
       <div (click)="switchImage(img)">
         <img src={{img.src}}>
       </div>
     </div>
+  </div>
+  <app-dropdown *ngIf="type=='bracelet'" class="visible-xs"></app-dropdown>
+
+  <div class="main-btn visible-xs margin-top-20" (click)="addToCart()">
+    + Add to cart
   </div>
 </div>
 

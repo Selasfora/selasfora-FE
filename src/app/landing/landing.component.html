@@ -9,7 +9,10 @@
       {{ page.content.subtext }}
     </div>
     <div class="call-for-action" [hidden]="!page.content.cta" [ngStyle]="{ color: page.colorShade == 'dark' ? 'white' : 'black' }">
-      <span *ngIf="page.content.cta !== 'input'">
+      <span *ngIf="page.content.cta !== 'input' && page.content.cta != 'Patent pending technology'">
+        {{ page.content.cta }}
+      </span>
+      <span *ngIf="page.content.cta !== 'input' && page.content.cta == 'Patent pending technology'" style="font-size: 14px; color: #999;">
         {{ page.content.cta }}
       </span>
       <span *ngIf="page.content.cta == 'input'">
@@ -27,9 +30,9 @@
         </div>
       </span>
     </div>
-    <div class="secondary-btn" *ngIf="page.content.btn">
+    <a href="{{page.content.href}}" class="{{page.content.class}}" *ngIf="page.content.btn">
       {{ page.content.btn }}
-    </div>
+    </a>
   </div>
   <img src="{{page.imagePath}}">
   <div class="instagram" *ngIf="idx == 5">
@@ -67,9 +70,9 @@
         </div>
       </span>
     </div>
-    <div class="secondary-btn hidden-xs" *ngIf="page.content.btn">
+    <a href="{{page.content.href}}" class="{{page.content.class}} hidden-xs" class="secondary-btn " *ngIf="page.content.btn">
       {{ page.content.btn }}
-    </div>
+    </a>
     <div class="instagram" *ngIf="idx == 5">
       <a href="https://www.instagram.com/selasfora/" target="_blank">
         <img src="/assets/images/insta.png">

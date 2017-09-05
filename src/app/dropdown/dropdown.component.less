@@ -2,6 +2,16 @@
   transition: all 200ms linear;
 }
 
+:host {
+  @media only screen and (max-width : 768px) {
+    text-align: center;
+    position: relative;
+    width: 100%;
+    margin: auto;
+    //display: inline-block !important;
+  }
+}
+
 .main-btn {
   width: 181px;
   background: transparent;
@@ -9,9 +19,15 @@
   color: black;
   border-radius: 0;
   padding: 22px 45px;
+  @media only screen and (max-width : 767px) {
+    margin: 20px auto;
+    padding-top: 16px;
+    width: 195px;
+  }
   &:hover, &.show {
     color: white;
     background: black;
+    display: inline-block !important;
   }
   .glyphicon {
     padding-top: 2px;
@@ -20,11 +36,22 @@
 }
 
 .drop {
-  background: white;
-  position: absolute;
-  width: 181px;
-  box-shadow: 0px 5px 15px #c7c7c7;
-  display: none;
+  @media only screen and (min-width : 768px) {
+    background: white;
+    position: absolute;
+    width: 181px;
+    box-shadow: 0px 5px 15px #c7c7c7;
+    display: none;
+  }
+  @media only screen and (max-width : 767px) {
+    background: white;
+    position: absolute;
+    left: 90px;
+    bottom: 65px;
+    width: 195px;
+    box-shadow: 0px -5px 15px #c7c7c7;
+    display: none;
+  }
   &.show {
     display: block;
   }

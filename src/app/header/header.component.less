@@ -8,7 +8,7 @@
     padding-left: 0;
   }
   @media only screen and (max-width : 767px) {
-    padding-top: 5px;
+    padding-top: 15px;
   }
 }
 
@@ -17,27 +17,36 @@
   .secondary-btn {
     font-size: 13px;
     font-weight: 200;
-    padding: 20px 40px;
+    padding: 18px 40px;
   }
   .main-btn  {
     font-size: 13px;
     font-weight: 200;
     padding: 18px 42px;
+    &:hover {
+      color: white;
+    }
   }
 }
 
 .center-part {
-  padding-top: 20px;
+  @media only screen and (min-width : 768px) {
+    padding-top: 20px;
+  }
+  @media only screen and (max-width : 767px) {
+    padding-top: 10px;
+  }
   color: white;
   font-weight: 200;
   img {
-    max-width: 81px;
     width: 100%;
     position: relative;
     @media only screen and (min-width : 768px) {
+      max-width: 81px;
       top: -4px;
     }
     @media only screen and (max-width : 767px) {
+      max-width: 50px;
       top: -6px;
     }
   }
@@ -48,7 +57,7 @@
   }
   @media only screen and (max-width : 767px) {
     /*width: 60px;*/
-    top: 10px;
+    /*top: 10px;*/
   }
   height: 26px;
   font-family: GTAmerica;

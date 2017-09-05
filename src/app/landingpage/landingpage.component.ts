@@ -19,7 +19,9 @@ export class LandingpageComponent implements OnInit {
         title: 'Selasfora bracelet',
         subtext: 'The Limited-edition Paint-splattered Collection is created by set designer Tracy.',
         cta: 'Watch the film',
-        btn: 'Create your own'
+        btn: 'Create your own',
+        class: 'secondary-btn',
+        href: ''
       },
       position: 'bottom'
     },
@@ -51,7 +53,9 @@ export class LandingpageComponent implements OnInit {
       content: {
         title: 'Perfect for any occasion',
         subtext: 'Sophisticated and perfectly chunky, this is the kind of piece that adds a touch of effortless polish to just about any outfit.',
-        btn: 'Get your bracelet'
+        btn: 'Get your bracelet',
+        class: 'secondary-btn',
+        href: '/catalog/bracelet'
       },
       position: 'top'
     },
@@ -62,7 +66,9 @@ export class LandingpageComponent implements OnInit {
       content: {
         title: 'The magic is in the mix',
         subtext: 'We side with style over fashion, think timelessness is underrated and find that style look best when they’re lived in.',
-        cta: 'Shop charms'
+        btn: 'Shop Charms',
+        class: 'tetiary-btn',
+        href: '/catalog/charm'
       },
       position: 'top'
     },

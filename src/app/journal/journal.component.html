@@ -7,8 +7,8 @@
     <div class="row">
       <div class="page-title col-sm-12"> {{ pageTitle }} </div>
     </div>
-    <div class="row" style="display: table; padding-bottom: 100px; width: 100%;" *ngFor="let arr of lists">
-      <div *ngFor="let item of arr" class="col-sm-4" style="display: table-cell; float: none; vertical-align: bottom;">
+    <div class="row journal-entry" *ngFor="let arr of lists">
+      <div *ngFor="let item of arr" class="col-sm-4 item">
         <app-post [item]="item"></app-post>
       </div>
     </div>
@@ -36,7 +36,7 @@
   <app-footer></app-footer>
 </div>
 
-<div *ngIf="landing">
+<div *ngIf="landing" class="landing">
 
   <div class="container body visible-xs">
     <div class="row" style="margin-bottom: 40px;">
@@ -57,12 +57,11 @@
       <a [routerLink]="['/journal']" class="col-md-2" style="margin-top: 30px;">All entries</a>
     </div>
     <div class="row">
-      <div>
-        <div *ngFor="let item of lists[0]" class="col-md-4">
+      <div class="row journal-entry">
+        <div *ngFor="let item of lists[0]" class="col-sm-4 item">
           <app-post [item]="item"></app-post>
         </div>
       </div>
-    </div>
   </div>
 
 </div>
