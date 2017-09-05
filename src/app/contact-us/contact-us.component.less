@@ -19,7 +19,7 @@ h1 {
 }
 
 input, select, textarea {
-  max-width: 360px;
+  //max-width: 360px;
   height: 40px;
   background-color: #ebebeb;
   border: 0;
@@ -33,6 +33,10 @@ input, select, textarea {
   border-radius: 0;
 }
 
+.col-md-6 {
+  text-align: left;
+}
+
 // select {
 //   padding-bottom: 0px;
 //   padding-top: 0;
@@ -42,9 +46,12 @@ input, select, textarea {
 //   background-position: 100% 50%;
 //   background-repeat: no-repeat;
 // }
+.message-area {
+  text-align: left;
+}
 
 textarea#message {
-  max-width: 93%;
+  max-width: 100%;
   min-height: 150px;
 }
 
@@ -74,55 +81,20 @@ textarea#message {
   }
 }
 
-form {
-  @media only screen and (max-width : 767px) {
-    width: 80%;
-  }
-  @media only screen and (min-width : 768px) {
-    width: 65%;
-  }
-
-  margin: auto;
-}
-
-.label {
-  max-width: 312px;
-  width: 100%;
-  text-align: left;
-  margin: auto;
-  color: black;
-  font-size: 13px;
-  font-weight: 400;
-  padding-left: 0;
-}
-
-.text-line {
-  @media only screen and (min-width : 768px) {
-    width: 66%;
-    padding-left: 20px;
-  }
-  @media only screen and (max-width : 767px) {
-    width: 80%;
-  }
-  margin: auto;
-  text-align: left;
-  .group {
-    padding-left: 20px;
-    padding-right: 0;
-    padding-bottom: 64px;
-  }
   .data {
     font-family: Asar;
     font-size: 18px;
     line-height: 1.85;
     color: #000000;
+    text-align: left;
   }
   .contact {
     font-family: Montserrat;
     font-size: 15px;
     line-height: 1.44;
     color: #272caa;
-    padding-left: 17%;
+    //padding-left: 17%;
+    text-align: center;
     & > div {
       padding-bottom: 8px;
     }
@@ -133,11 +105,27 @@ form {
       padding-left: 20px;
     }
   }
-}
+
+// .text-line {
+//   @media only screen and (min-width : 768px) {
+//     width: 66%;
+//     padding-left: 20px;
+//   }
+//   @media only screen and (max-width : 767px) {
+//     width: 80%;
+//   }
+//   margin: auto;
+//   text-align: left;
+//   .group {
+//     padding-left: 20px;
+//     padding-right: 0;
+//     padding-bottom: 64px;
+//   }
+// }
 
 .button-line {
   text-align: right;
-  padding-right: 7%;
+  //padding-right: 7%;
   padding-bottom: 40px;
 }
 

@@ -2,97 +2,87 @@
   <div class="header">
     <app-header page="black"></app-header>
   </div>
-  <div>
+  <div class="container">
     <h1>Contact Us</h1>
-
-    <div class="text-line">
-      <div class="group data">
-        We're here to help and aim to respond to your query within the next working day. (Please note our opening hours are Monday - Friday from 10am - 6.30pm.)
-      </div>
-      <div class="group contact">
-        <div>support@selasfora.com</div>
-        <div>press@selasfora.com</div>
-        <div class="links">
-          <a href=""><img src="/assets/images/insta-blue.png"></a>
-          <a href=""><img src="/assets/images/facebook-blue.png"></a>
-          <a href=""><img src="/assets/images/twitter-blue.png"></a>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 row">
+        <div class="col-md-6 data">
+          We're here to help and aim to respond to your query within the next working day. (Please note our opening hours are Monday - Friday from 10am - 6.30pm.)
+        </div>
+        <div class="col-md-6 contact">
+          <div>support@selasfora.com</div>
+          <div>press@selasfora.com</div>
+          <div class="links">
+            <a href=""><img src="/assets/images/insta-blue.png"></a>
+            <a href=""><img src="/assets/images/facebook-blue.png"></a>
+            <a href=""><img src="/assets/images/twitter-blue.png"></a>
+          </div>
         </div>
       </div>
     </div>
-    <form [formGroup]="contactForm" novalidate>
-      <div class="line">
-        <div class="group">
-          <div class="label">Name</div>
-          <input type="text" id="name" name="name" class="form-control"
-              formControlName="name">
-          <div *ngIf="formErrors.name.length" class="error-msg">
-            <div *ngFor="let item of formErrors.name">{{ item }}</div>
+    <div class="row">
+      <form [formGroup]="contactForm" class="col-md-8 col-md-offset-2" novalidate>
+        <div class="row">
+          <div class="col-md-6">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" class="form-control"
+                formControlName="name">
+            <div *ngIf="formErrors.name.length" class="error-msg">
+              <div *ngFor="let item of formErrors.name">{{ item }}</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" class="form-control"
+                formControlName="email">
+            <div *ngIf="formErrors.email.length" class="error-msg">
+              <div *ngFor="let item of formErrors.email">{{ item }}</div>
+            </div>
           </div>
         </div>
-        <div class="group">
-          <div class="label">Email</div>
-          <input type="email" id="email" name="email" class="form-control"
-              formControlName="email">
-          <div *ngIf="formErrors.email.length" class="error-msg">
-            <div *ngFor="let item of formErrors.email">{{ item }}</div>
+
+        <div class="row">
+          <div class="col-md-6" style="z-index: 200;">
+            <label>Issue</label>
+
+            <app-dropdown [itemList]="IssueList" [isForm]=true (itemChange)="setIssueType($event)">
+            </app-dropdown>
+          </div>
+
+          <div class="col-md-6">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" class="form-control"
+                formControlName="subject">
+
+            <div *ngIf="formErrors.subject.length" class="error-msg">
+              <div *ngFor="let item of formErrors.subject">{{ item }}</div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="line">
-        <div class="group">
-          <div class="label">Issue</div>
-
-          <app-dropdown [itemList]="IssueList" [isForm]=true (itemChange)="setIssueType($event)">
-          </app-dropdown>
-
-          <!-- <select id="issue" name="issue" class="form-control"
-              formControlName="issue">
-            <option value="Select">Select</option>
-            <option value="My_order">My order</option>
-            <option value="Delivery">Delivery</option>
-            <option value="Returns_and_Refunds">Returns and Refunds</option>
-            <option value="My_account">My account</option>
-            <option value="product_question">A product question</option>
-            <option value="Other">Other</option>
-          </select> -->
-
-          <!-- <div *ngIf="formErrors.issue.length" class="error-msg">
-            <div *ngFor="let item of formErrors.issue">{{ item }}</div>
-          </div> -->
-        </div>
-
-        <div class="group">
-          <div class="label">Subject</div>
-          <input type="text" id="subject" name="subject" class="form-control"
-              formControlName="subject">
-
-          <div *ngIf="formErrors.subject.length" class="error-msg">
-            <div *ngFor="let item of formErrors.subject">{{ item }}</div>
+        <div class="row">
+          <div class="col-md-12 message-area">
+            <label for="message">
+              Message
+            </label>
+            <textarea maxlength="300" id="message" name="message" class="form-control"
+                formControlName="message"></textarea>
           </div>
         </div>
-      </div>
 
-      <div class="special-line">
-        <div class="group">
-          <div class="label">
-            Message
+        <div class="signup-error" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+        <div class="button-line">
+          <div type="submit" (click)="onSubmit()" class="tetiary-btn hidden-xs">
+            Send
           </div>
-          <textarea maxlength="300" id="message" name="message" class="form-control"
-              formControlName="message"></textarea>
         </div>
-      </div>
-      <div class="signup-error" *ngIf="errorMessage">{{ errorMessage }}</div>
-      <div class="button-line">
-        <div type="submit" (click)="onSubmit()" class="tetiary-btn hidden-xs">
-          Send
-        </div>
-      </div>
-    </form>
+      </form>
+    </div>
     <div type="submit" (click)="onSubmit()" class="tetiary-btn visible-xs">
       Send
     </div>
 
-    <app-footer></app-footer>
   </div>
 </div>
+<app-footer></app-footer>

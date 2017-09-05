@@ -8,17 +8,17 @@
   <div>
     <h1>Signup with email</h1>
     <form [formGroup]="signupForm" novalidate>
-      <div class="line">
-        <div class="group">
-          <div class="input-label">First name</div>
+      <div class="row">
+        <div class="col-md-6">
+          <label>First name</label>
           <input type="text" id="fname" name="fname" class="form-control"
               formControlName="fname">
           <div *ngIf="formErrors.fname.length" class="error-msg">
             <div *ngFor="let item of formErrors.fname">{{ item }}</div>
           </div>
         </div>
-        <div class="group">
-          <div class="input-label">Last name</div>
+        <div class="col-md-6">
+          <label>Last name</label>
           <input type="text" id="lname" name="lname" class="form-control"
               formControlName="lname">
           <div *ngIf="formErrors.lname.length" class="error-msg">
@@ -27,27 +27,27 @@
         </div>
       </div>
 
-      <div class="line">
-        <div class="group">
-          <div class="input-label">Email</div>
+      <div class="row">
+        <div class="col-md-6">
+          <label for="email">Email</label>
           <input type="email" id="email" name="email" class="form-control"
               formControlName="email">
           <div *ngIf="formErrors.email.length" class="error-msg">
             <div *ngFor="let item of formErrors.email">{{ item }}</div>
           </div>
         </div>
-        <div class="group">
-          <div class="input-label">Repeat email</div>
+        <div class="col-md-6">
+          <label for="email2">Repeat email</label>
           <input type="email" id="email2" name="email2" class="form-control"
               formControlName="email2">
         </div>
       </div>
 
-      <div class="special-line">
-        <div class="group">
-          <div class="input-label">
+      <div class="row">
+        <div class="col-md-6">
+          <label for="phone">
             Phone Number
-          </div>
+          </label>
           <input type="number" id="phone" name="phone" class="form-control"
               minlength="8" maxlength="15"
               formControlName="phone">
@@ -57,11 +57,11 @@
         </div>
       </div>
 
-      <div class="line">
-        <div class="group">
-          <div class="input-label">
+      <div class="row">
+        <div class="col-md-6">
+          <label for="password">
             Password
-          </div>
+          </label>
           <input type="password" id="password" name="password" class="form-control"
               minlength="8" maxlength="25"
               formControlName="password">
@@ -69,10 +69,10 @@
             <div *ngFor="let item of formErrors.password">{{ item }}</div>
           </div>
         </div>
-        <div class="group">
-          <div class="input-label">
+        <div class="col-md-6">
+          <label for="password2">
             Repeat Password
-          </div>
+          </label>
           <input type="password" id="password2" name="password2" class="form-control"
               minlength="8" maxlength="15"
               formControlName="password2">
