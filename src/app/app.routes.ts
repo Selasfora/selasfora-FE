@@ -14,6 +14,7 @@ import { JournalComponent } from './journal/journal.component';
 import { ArticleComponent } from './article/article.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ReportComponent } from './report/report.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const appRoutes: Routes = [
   {
@@ -27,6 +28,10 @@ const appRoutes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
   },
   {
     path: 'journal',
