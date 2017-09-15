@@ -11,134 +11,163 @@
   <img src="/assets/images/profile.png" alt="profile">
 </div>
 <div class="container">
-  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-    <div class="panel panel-default">
-      <div class="panel-heading" role="tab" id="headingOne">
-        <h4 class="panel-title">
-          <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            My Details
+  <div class="row">
+    <div class="panel-group col-xs-12 col-sm-8 col-sm-offset-2" id="accordion" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+          <a role="button" data-toggle="collapse" (click)="flipArrow(0)"
+              data-parent="#accordion" href="#collapseOne"
+              aria-expanded="true" aria-controls="collapseOne">
+            <h4 class="panel-title">
+              My Details
+              <i class="fa fa-chevron-{{arrows[0]}} pull-right"></i>
+            </h4>
           </a>
-        </h4>
-      </div>
-      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-        <div class="panel-body">
-          <div>
-            <form [formGroup]="profileForm" novalidate>
-              <div class="row">
-                <div class="col-md-6">
-                  <label>First name</label>
-                  <input type="text" id="fname" name="fname" class="form-control"
-                      formControlName="fname">
-                  <div *ngIf="formErrors.fname.length" class="error-msg">
-                    <div *ngFor="let item of formErrors.fname">{{ item }}</div>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            <div>
+              <form [formGroup]="profileForm" novalidate>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>First name</label>
+                    <input type="text" id="fname" name="fname" class="form-control"
+                        formControlName="fname">
+                    <div *ngIf="formErrors.fname.length" class="error-msg">
+                      <div *ngFor="let item of formErrors.fname">{{ item }}</div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label>Last name</label>
+                    <input type="text" id="lname" name="lname" class="form-control"
+                        formControlName="lname">
+                    <div *ngIf="formErrors.lname.length" class="error-msg">
+                      <div *ngFor="let item of formErrors.lname">{{ item }}</div>
+                    </div>
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <label>Last name</label>
-                  <input type="text" id="lname" name="lname" class="form-control"
-                      formControlName="lname">
-                  <div *ngIf="formErrors.lname.length" class="error-msg">
-                    <div *ngFor="let item of formErrors.lname">{{ item }}</div>
-                  </div>
-                </div>
-              </div>
 
-              <div class="row">
-                <div class="col-md-6">
-                  <label for="email">Email</label>
-                  <input type="email" id="email" name="email" class="form-control"
-                      formControlName="email">
-                  <div *ngIf="formErrors.email.length" class="error-msg">
-                    <div *ngFor="let item of formErrors.email">{{ item }}</div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" class="form-control"
+                        formControlName="email">
+                    <div *ngIf="formErrors.email.length" class="error-msg">
+                      <div *ngFor="let item of formErrors.email">{{ item }}</div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="phone">
+                      Phone Number
+                    </label>
+                    <input type="number" id="phone" name="phone" class="form-control"
+                        minlength="8" maxlength="15"
+                        formControlName="phone">
+                    <div *ngIf="formErrors.phone.length" class="error-msg">
+                      <div *ngFor="let item of formErrors.phone">{{ item }}</div>
+                    </div>
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <label for="phone">
-                    Phone Number
-                  </label>
-                  <input type="number" id="phone" name="phone" class="form-control"
-                      minlength="8" maxlength="15"
-                      formControlName="phone">
-                  <div *ngIf="formErrors.phone.length" class="error-msg">
-                    <div *ngFor="let item of formErrors.phone">{{ item }}</div>
-                  </div>
-                </div>
-              </div>
 
-              <div class="row">
-                <div class="col-md-6">
-                  <label for="password">
-                    Password
-                  </label>
-                  <input type="password" id="password" name="password" class="form-control"
-                      minlength="8" maxlength="25"
-                      formControlName="password">
-                  <div *ngIf="formErrors.password.length" class="error-msg">
-                    <div *ngFor="let item of formErrors.password">{{ item }}</div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="password">
+                      Password
+                    </label>
+                    <input type="password" id="password" name="password" class="form-control"
+                        minlength="8" maxlength="25"
+                        formControlName="password">
+                    <div *ngIf="formErrors.password.length" class="error-msg">
+                      <div *ngFor="let item of formErrors.password">{{ item }}</div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
                   </div>
                 </div>
-                <div class="col-md-6">
-                </div>
-              </div>
 
-              <div class="row">
-                <div class="col-md-6">
-                  <label for="dob">
-                    Date Of Birth
-                  </label><span> (DD/MM/YYYY)</span>
-                  <input type="date" id="dob" name="dob" class="form-control"
-                      minlength="8" maxlength="25"
-                      formControlName="dob">
-                  <div *ngIf="formErrors.dob.length" class="error-msg">
-                    <div *ngFor="let item of formErrors.dob">{{ item }}</div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="dob">
+                      Date Of Birth
+                    </label><span> (DD/MM/YYYY)</span>
+                    <input type="date" id="dob" name="dob" class="form-control"
+                        minlength="8" maxlength="25"
+                        formControlName="dob">
+                    <div *ngIf="formErrors.dob.length" class="error-msg">
+                      <div *ngFor="let item of formErrors.dob">{{ item }}</div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="gender">
+                      Gender
+                    </label>
+                    <app-dropdown [itemList]="genderList" [isForm]=true (itemChange)="setGender($event)">
+                    </app-dropdown>
+                    <div *ngIf="formErrors.dob.length" class="error-msg">
+                      <div *ngFor="let item of formErrors.dob">{{ item }}</div>
+                    </div>
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <label for="gender">
-                    Gender
-                  </label>
-                  <app-dropdown [itemList]="genderList" [isForm]=true (itemChange)="setGender($event)">
-                  </app-dropdown>
-                  <div *ngIf="formErrors.dob.length" class="error-msg">
-                    <div *ngFor="let item of formErrors.dob">{{ item }}</div>
-                  </div>
+                <div class="signup-error" *ngIf="errorMessage">{{errorMessage}}</div>
+                <div>
+                  <button type="submit" (click)="onSubmit()" class="hidden-xs">Save</button>
                 </div>
-              </div>
-              <div class="signup-error" *ngIf="errorMessage">{{errorMessage}}</div>
-              <div>
-                <button type="submit" (click)="onSubmit()" class="hidden-xs">Save</button>
-              </div>
-            </form>
-            <button type="submit" (click)="onSubmit()" class="visible-xs">Save</button>
+              </form>
+              <button type="submit" (click)="onSubmit()" class="visible-xs">Save</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading" role="tab" id="headingTwo">
-        <h4 class="panel-title">
-          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            My Order History
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingTwo">
+          <a class="collapsed" role="button" data-toggle="collapse" (click)="flipArrow(1)"
+              data-parent="#accordion" href="#collapseTwo"
+              aria-expanded="false" aria-controls="collapseTwo">
+            <h4 class="panel-title">
+              My Order History
+              <i class="fa fa-chevron-{{arrows[1]}} pull-right"></i>
+            </h4>
           </a>
-        </h4>
-      </div>
-      <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-        <div class="panel-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body order">
+            <div class="well">
+              <div class="row">
+                <div class="col-xs-4">
+                  <img src="https://cdn.shopify.com/s/files/1/2148/2715/products/Charm_1.png?v=1499947524" alt="" class="img-responsive">
+                </div>
+                <div class="col-xs-8">
+                  <div class="row top">
+                    <div class="col-xs-8">
+                      <h4 style="text-align: left;">1 item</h4>
+                    </div>
+                    <h5 class="col-xs-4">180.00$</h5>
+                  </div>
+                  <div class="bottom">
+                    <div>Expected to arrive on</div>
+                    <strong>Monday 24 March 2014</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading" role="tab" id="headingThree">
-        <h4 class="panel-title">
-          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-            Shipping Address
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingThree">
+          <a class="collapsed" role="button" data-toggle="collapse" (click)="flipArrow(2)"
+              data-parent="#accordion" href="#collapseThree"
+              aria-expanded="false" aria-controls="collapseThree">
+            <h4 class="panel-title">
+              Shipping Address
+              <i class="fa fa-chevron-{{arrows[2]}} pull-right"></i>
+            </h4>
           </a>
-        </h4>
-      </div>
-      <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-        <div class="panel-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+          </div>
         </div>
       </div>
     </div>

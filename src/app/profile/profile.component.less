@@ -31,10 +31,10 @@ input {
 
 form {
   @media only screen and (max-width : 767px) {
-    width: 80%;
+    //width: 80%;
   }
   @media only screen and (min-width : 768px) {
-    width: 50%;
+    //width: 50%;
   }
 
   margin: auto;
@@ -194,14 +194,10 @@ button {
 .header {
   width: 100%;
   background: url('/assets/images/profile.png') no-repeat;
-  @media only screen and (min-width : 768px) {
-    //height: 150px;
-  }
-  @media only screen and (max-width : 767px) {
-    //height: 160px;
-  }
   .bar {
     padding: 30px 40px;
+    position: absolute;
+    width: 100%;
   }
   &>img {
     width: 100%;
@@ -226,5 +222,24 @@ button {
   .panel-heading {
     background: white;
     text-align: left;
+    a {
+      color: black;
+      &:hover, &:active {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.order {
+  img {
+    max-height: 150px;
+  }
+  .top {
+    border-bottom: solid 1px #ccc;
+  }
+  .bottom {
+    text-align: left;
+    padding-top: 20px;
   }
 }

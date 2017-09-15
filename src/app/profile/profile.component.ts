@@ -53,6 +53,7 @@ export class ProfileComponent implements OnInit {
   };
 
   errorMessage: string = '';
+  arrows = ['up', 'down', 'down'];
 
   constructor(private fb: FormBuilder, private auth: AuthService, private _location: Location,
     private router: Router, private userService: UserService) { }
@@ -71,6 +72,11 @@ export class ProfileComponent implements OnInit {
       password: [this.user.password],
       gender: [this.user.gender]
     });
+
+  }
+
+  flipArrow(n) {
+    this.arrows[n] = this.arrows[n] === 'up' ? 'down' : 'up';
   }
 
   setGender(value) {
