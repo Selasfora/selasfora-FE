@@ -58,7 +58,6 @@ export class LoginComponent implements OnInit {
         res.provider = 'google'
         this.auth.registerSocialUser(res);
         this.user.persistUser(res);
-        //this.router.navigate(['/']);
         this.window.location.href = '/';
       }
     )

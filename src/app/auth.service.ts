@@ -19,46 +19,47 @@ export class AuthService {
   }
 
   login(data) {
-    let url = this.baseURL + 'auth/sign_in';
+    let url = this.baseURL + 'users/login';
     let method = 'post';
 
     return this.sendRequest(method, url, data, undefined);
   }
 
   signup(data) {
-    let url = this.baseURL + 'auth';
+    let url = this.baseURL + 'users';
     let method = 'post';
 
     return this.sendRequest(method, url, data, { headers: this.headers });
   }
 
   registerSocialUser(data) {
-    let url = this.baseURL + 'users/update';
+    console.log('register user', data)
+    let url = this.baseURL + 'users/signup/' + data.provider;
     let method = 'post';
 
     return this.sendRequest(method, url, data, null);
   }
 
   logout(data) {
-    let url = this.baseURL + 'auth/sign_out';
+    console.log('logout user', data)
+    let url = this.baseURL + 'users/' + data.id + '/logout';
     let method = 'post';
 
     return this.sendRequest(method, url, data, undefined);
   }
 
   resetPassword(data) {
-    let url = this.baseURL + 'auth/password';
+    let url = this.baseURL + 'users/reset_password';
     let method = 'post';
 
     return this.sendRequest(method, url, {
-      //'redirect_url': environment.urlPath + 'reset-password?step=2',
       'redirect_url': 'http://selasfora.surge.sh/reset-password?step=2',
       'email': data.email
     }, undefined);
   }
 
   setPassword(data) {
-    let url = this.baseURL + 'auth/password';
+    let url = this.baseURL + 'users/reset_password';
     let method = 'put';
     this.headers.append('access-token', data.token);
     this.headers.append('uid', data.uid);
@@ -68,12 +69,12 @@ export class AuthService {
   }
 
   fetchProducts(type) {
-    let url = this.baseURL + 'products/' + type +'?page=1&limit=6';
+    let url = this.baseURL + 'products?product_type=' + type +'&page=1&limit=9';
     return this.sendRequest('get', url, {}, null);
   }
 
   fetchProduct(id) {
-    let url = this.baseURL + 'product/' + id;
+    let url = this.baseURL + 'products/' + id;
     return this.sendRequest('get', url, {}, null);
   }
 
@@ -83,7 +84,7 @@ export class AuthService {
   }
 
   fetchJournal() {
-    let url = this.baseURL + 'articles/?page=1&limit=9';
+    let url = this.baseURL + 'articles?page=1&limit=9';
     return this.sendRequest('get', url, {}, null);
   }
 
@@ -98,7 +99,7 @@ export class AuthService {
   }
 
   newsLetter(email) {
-    let url = this.baseURL + 'newsletter';
+    let url = this.baseURL + 'newsletters';
     return this.sendRequest('post', url, {'email': email}, null);
   }
 
@@ -108,12 +109,12 @@ export class AuthService {
   }
 
   resendEmail() {
-    let url = this.baseURL + 'auth/confirmation';
+    let url = this.baseURL + 'users/confirmation';
     return this.sendRequest('post', url, {}, null);
   }
 
   fetchReport() {
-    return this.sendRequest('get', 'https://selasfora-staging.herokuapp.com/newsletter', {}, null);
+    return this.sendRequest('get', this.baseURL + '/newsletters', {}, null);
   }
 
   contactSubmit(data) {

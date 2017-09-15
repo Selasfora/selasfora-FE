@@ -16,7 +16,7 @@ export class UserService implements CanActivate, CanDeactivate<any> {
   persistUser(user: any) {
     this.window.user = user;
     if(this.window.localStorage && typeof this.window.localStorage === 'object') {
-      this.window.localStorage.setItem('user',JSON.stringify(user));
+      this.window.localStorage.setItem('user', JSON.stringify(user));
     }
   }
 

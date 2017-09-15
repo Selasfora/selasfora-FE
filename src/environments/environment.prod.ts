@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
   urlPath: 'http://selasfora.surge.sh/',
-  apiPath: 'https://selasfora-staging.herokuapp.com/'
+  apiPath: 'https://selasfora-api-stg.herokuapp.com/api/'
 };
