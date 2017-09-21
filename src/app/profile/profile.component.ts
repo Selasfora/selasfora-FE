@@ -4,6 +4,7 @@ import { AuthService } from '../auth.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
+import { ToastrService } from 'toastr-ng2';
 
 @Component({
   selector: 'app-profile',
@@ -17,7 +18,10 @@ export class ProfileComponent implements OnInit {
     {title: 'Male'},
     {title: 'Female'}
   ];
-  user:any = {};
+  user: any = {};
+
+  addresses = [1, 2];
+  orders = [1, 2];
 
   validationMessages = {
     'fname': {
@@ -52,15 +56,16 @@ export class ProfileComponent implements OnInit {
     'gender': []
   };
 
-  errorMessage: string = '';
+  errorMessage = '';
   arrows = ['up', 'down', 'down'];
 
   constructor(private fb: FormBuilder, private auth: AuthService, private _location: Location,
-    private router: Router, private userService: UserService) { }
+    private router: Router, private userService: UserService, private toastrService: ToastrService) { }
 
   ngOnInit() {
-    if(!this.userService.isLoggedIn()) {
+    if (!this.userService.isLoggedIn()) {
       this.router.navigate(['/']);
+      return;
     }
     this.user = this.userService.getUser();
     this.profileForm = this.fb.group({
@@ -72,6 +77,18 @@ export class ProfileComponent implements OnInit {
       password: [this.user.password],
       gender: [this.user.gender]
     });
+
+    this.userService.getAddresses().subscribe(
+      data => {
+        this.addresses = data;
+      }
+    );
+
+    this.userService.getOrders().subscribe(
+      data => {
+        this.orders = data;
+      }
+    );
 
   }
 
@@ -93,41 +110,57 @@ export class ProfileComponent implements OnInit {
     const form = this.profileForm;
 
     for (const field in this.formErrors) {
-      // clear previous error message (if any)
-      this.formErrors[field] = [];
-      const control = form.get(field);
+      if (this.formErrors.hasOwnProperty(field)) {
+        // clear previous error message (if any)
+        this.formErrors[field] = [];
+        const control = form.get(field);
 
-      const messages = this.validationMessages[field];
-      for (const key in control.errors) {
-        this.formErrors[field].push(messages[key]);
-        valid = false;
+        const messages = this.validationMessages[field];
+        for (const key in control.errors) {
+          if (control.errors.hasOwnProperty(key)) {
+            this.formErrors[field].push(messages[key]);
+            valid = false;
+          }
+        }
       }
     }
     return valid;
   }
   onSubmit() {
-    let valid = this.validate();
-    let value = this.profileForm.value;
-    if(valid) {
-      let model: any = {};
+    const valid = this.validate();
+    const value = this.profileForm.value;
+    if (valid) {
+      const model: any = {};
+      model.id = this.user.id;
       model.email = value.email;
-      model.password = value.password;
+      if (value.password) {
+        model.password = value.password;
+      }
       model.dob = value.dob;
       model.phone = value.phone;
       model.first_name = value.fname;
       model.last_name = value.lname;
-      model.gender = value.gender;
-      console.log('valid', model)
-      // this.auth.saveUser(model)
-      //   .subscribe(
-      //     (data) => {
-      //     },
-      //     (error) => {
-      //     }
-      //   );
+      model.gender = value.gender[0].toUpperCase();
+
+      this.auth.saveUser(model)
+        .subscribe(
+          (data) => {
+            this.userService.persistUser(data);
+            this.toastrService.success(
+              'Your Profile was saved successfully!',
+              'Success!'
+            );
+          },
+          (error) => {
+            this.toastrService.error(
+              'Something went wrong, couldn\'t save profile!',
+              'Error!'
+            );
+          }
+        );
       return true;
     }
-    console.log('invalid', value)
+
     return false;
   }
 

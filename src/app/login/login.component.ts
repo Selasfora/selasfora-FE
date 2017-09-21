@@ -77,6 +77,7 @@ export class LoginComponent implements OnInit {
         this.user.removeUser();
       }
     )
+    this.auth.removeAuthHeader();
   }
 
   private addFB() {
@@ -109,10 +110,9 @@ export class LoginComponent implements OnInit {
     let valid = this.validate();
     if(valid) {
       this.auth.login(this.loginForm.value)
-        .map ((data: any) => data.data)
         .subscribe((data) => {
+          this.auth.setAuthHeader(data.session_token)
           this.user.persistUser(data);
-          //this.router.navigate(['/']);
           this.window.location.href = '/';
         });
     }

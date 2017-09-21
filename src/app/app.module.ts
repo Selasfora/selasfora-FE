@@ -46,6 +46,8 @@ import { ReportComponent } from './report/report.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { SizeGuideComponent } from './size-guide/size-guide.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AddressComponent } from './profile/address/address.component';
+import { MixmatchComponent } from './mixmatch/mixmatch.component';
 
 
 @NgModule({
@@ -73,7 +75,9 @@ import { ProfileComponent } from './profile/profile.component';
     ReportComponent,
     DropdownComponent,
     SizeGuideComponent,
-    ProfileComponent
+    ProfileComponent,
+    AddressComponent,
+    MixmatchComponent
   ],
   imports: [
     BrowserModule,

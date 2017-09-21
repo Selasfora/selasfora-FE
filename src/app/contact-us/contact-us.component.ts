@@ -76,9 +76,7 @@ export class ContactUsComponent implements OnInit {
 
   onSubmit() {
     let valid = this.validate();
-    console.log('here')
     if(valid) {
-    console.log('here')
       let model: any = {};
       let value = this.contactForm.value;
       model.from = value.email;
@@ -89,9 +87,12 @@ export class ContactUsComponent implements OnInit {
       this.auth.contactSubmit(model)
         .subscribe(
           (data) => {
-            this.toastrService.success('We Receieved your concern and we will come back to you asap!', 'Success!');
-          }
-        );
+            this.toastrService.success(
+              'We Receieved your concern and we will come back to you asap!',
+              'Success!'
+          );
+        }
+      );
     }
     return false;
   }

@@ -1,0 +1,85 @@
+<form [formGroup]="addressForm" novalidate>
+  <div class="panel-body order">
+    <div class="well" *ngIf="editMode">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="row country">
+            <div class="col-xs-6">
+              <label>Country</label>
+              <app-dropdown [itemList]="countries" [isForm]=true (itemChange)="setCountry($event)">
+              </app-dropdown>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">
+              <label>Address 1</label>
+              <input type="text" id="address" name="address" class="form-control"
+                  formControlName="address">
+            </div>
+            <div class="col-xs-6">
+              <label>Address 2</label>
+              <input type="text" id="address2" name="address2" class="form-control"
+                  formControlName="address2">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">
+              <label>City</label>
+              <input type="text" id="city" name="city" class="form-control"
+                  formControlName="city">
+            </div>
+            <div class="col-xs-6">
+              <label>Postcode</label>
+              <input type="text" id="zip" name="zip" class="form-control"
+                  formControlName="zip">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" id="default" name="default"
+                  formControlName="default"> Default
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 remove" (click)="remove()">
+          Remove
+        </div>
+        <div class="col-xs-6 save" (click)="save()">
+          Save
+        </div>
+      </div>
+    </div>
+
+    <div class="well" *ngIf="!editMode">
+      <div class="row">
+        <div class="col-xs-12 title">
+          {{adderss.address}}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 title">
+          <p>{{address.city}}, {{address.country}}, {{address.zip}}</p>
+          <p>Delivery to: {{name}}</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-11 title">
+          <label>
+            <input type="checkbox" (change)="setDefault()"> Default address
+          </label>
+        </div>
+        <div class="col-xs-1 title">
+          <div class="edit" (click)="edit()">Edit</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
