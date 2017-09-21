@@ -15,6 +15,7 @@ import { ArticleComponent } from './article/article.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ReportComponent } from './report/report.component';
 import { ProfileComponent } from './profile/profile.component';
+import { MixmatchComponent } from './mixmatch/mixmatch.component';
 
 const appRoutes: Routes = [
   {
@@ -56,6 +57,10 @@ const appRoutes: Routes = [
   {
     path: 'about',
     component: AboutComponent,
+  },
+  {
+    path: 'mixmatch',
+    component: MixmatchComponent,
   },
   {
     path: 'generatereport',
