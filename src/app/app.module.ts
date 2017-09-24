@@ -27,7 +27,8 @@ import { SignupComponent } from './signup/signup.component';
 import { PasswordresetComponent } from './passwordreset/passwordreset.component';
 import { MenuComponent } from './menu/menu.component';
 
-import { Angular2SocialLoginModule } from "angular2-social-login";
+import { Angular2SocialLoginModule } from 'angular2-social-login';
+import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
 import {SlimLoadingBarModule} from 'ng2-slim-loading-bar';
@@ -90,7 +91,8 @@ import { MixmatchComponent } from './mixmatch/mixmatch.component';
     CommonModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    SlimLoadingBarModule.forRoot()
+    SlimLoadingBarModule.forRoot(),
+    DragulaModule
   ],
   providers: [
     AuthService,

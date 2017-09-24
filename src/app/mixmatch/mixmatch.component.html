@@ -1,3 +1,16 @@
-<p>
-  mixmatch works!
-</p>
+<h1>{{msg}}</h1>
+<div class="drawContainer">
+  <div class="bracelet">
+  </div>
+  <div class="charm-container" [dragula]='"bag-charms"' [dragulaModel]='usedCharms'>
+    <div class="charm" *ngFor="let charm of usedCharms; let i=index;">
+      {{charm}}
+    </div>
+  </div>
+</div>
+
+<div class="store" [dragula]='"bag-charms"' [dragulaModel]='emptyCharms'>
+  <div class="charm" *ngFor="let charm of emptyCharms; let i=index;">
+    {{charm}}
+  </div>
+</div>
