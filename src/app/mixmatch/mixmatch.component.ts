@@ -7,7 +7,8 @@ import { DragulaService } from 'ng2-dragula/ng2-dragula';
   styleUrls: ['./mixmatch.component.less']
 })
 export class MixmatchComponent implements OnInit {
-  emptyCharms = [1, 2, 3];
+  url = '/assets/images/mixmatch/charm';
+  emptyCharms = [this.url + 1 + '.png', this.url + 2 + '.png', this.url + 3 + '.png'];
   usedCharms = [];
   msg = '';
 
@@ -21,14 +22,14 @@ export class MixmatchComponent implements OnInit {
     this.dragula
       .drag
       .subscribe(value => {
-        this.msg = `Dragging the ${ value[1].innerText }!`;
+        //this.msg = `Dragging the ${ value[1].innerText }!`;
         console.log('drag', value);
       });
 
     this.dragula
       .drop
       .subscribe(value => {
-        this.msg = `Dropped the ${ value[1].innerText }!`;
+        //this.msg = `Dropped the ${ value[1].innerText }!`;
         console.log('drop', value);
         setTimeout(() => {
           this.msg = '';
