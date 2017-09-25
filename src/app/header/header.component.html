@@ -48,7 +48,7 @@
 </div>
 
 <div *ngIf="page == 'catalog'" class="catalog-header row">
-  <div class="left-part col-sm-5 col-xs-4">
+  <div class="left-part col-sm-4 col-xs-4">
     <app-icon title="Menu" image="/assets/images/menu-black.png" (click)="openMenu()"></app-icon>
     <a href="{{ url }}" target="_blank">
       <app-icon title="Cart" image="/assets/images/cart-black.png" class="hidden-xs"></app-icon>
@@ -56,7 +56,7 @@
     <app-icon title="Filter" image="/assets/images/filter.png" class="hidden-xs"></app-icon>
   </div>
 
-  <div class="buttons hidden-xs hidden-sm col-sm-2">
+  <div class="buttons hidden-xs hidden-sm col-sm-4 text-center">
     <a routerLink="/catalog/bracelet" class="transparent-btn" [class.active]="type == 'bracelet'">
       Bracelets
     </a>
@@ -66,7 +66,7 @@
     <a routerLink="/mixmatch" class="transparent-btn" [class.active]="type == 'mix'">Mix & Match</a>
   </div>
 
-  <div class="right-part hidden-xs col-sm-5">
+  <div class="right-part hidden-xs col-sm-3">
   </div>
 </div>
 

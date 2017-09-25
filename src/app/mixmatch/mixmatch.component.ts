@@ -10,11 +10,11 @@ export class MixmatchComponent implements OnInit {
   url = '/assets/images/mixmatch/charm';
   emptyCharms = [this.url + 1 + '.png', this.url + 2 + '.png', this.url + 3 + '.png'];
   usedCharms = [];
-  msg = '';
+  highlightStore = false;
 
   constructor(private dragula: DragulaService) {
-    this.dragula.setOptions('bag-items', {
-      revertOnSpill: true
+    this.dragula.setOptions('bag-charms', {
+      //removeOnSpill: true
     });
   }
 
@@ -22,18 +22,33 @@ export class MixmatchComponent implements OnInit {
     this.dragula
       .drag
       .subscribe(value => {
-        //this.msg = `Dragging the ${ value[1].innerText }!`;
-        console.log('drag', value);
+        //console.log('drag', value);
+        this.highlightStore = true;
       });
 
     this.dragula
       .drop
       .subscribe(value => {
-        //this.msg = `Dropped the ${ value[1].innerText }!`;
-        console.log('drop', value);
-        setTimeout(() => {
-          this.msg = '';
-        }, 1000);
+        console.log('drop', this.emptyCharms, this.usedCharms);
+      });
+
+    this.dragula
+      .out
+      .subscribe(value => {
+        //console.log('out', value);
+      });
+
+    this.dragula
+      .remove
+      .subscribe(value => {
+        console.log('remove', this.emptyCharms, this.usedCharms);
+      });
+
+    this.dragula
+      .dragend
+      .subscribe(value => {
+        console.log('dragend', this.emptyCharms, this.usedCharms);
+        this.highlightStore = false;
       });
   }
 

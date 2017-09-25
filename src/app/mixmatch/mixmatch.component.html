@@ -1,15 +1,24 @@
-<div class="drawContainer">
-  <div class="bracelet">
-    <div class="charm-container" [dragula]='"bag-charms"' [dragulaModel]='usedCharms'>
-      <div class="charm" *ngFor="let charm of usedCharms; let i=index;">
-        <img src="{{charm}}" alt="">
+<ng2-slim-loading-bar [color]="'#272caa'" [height]="'4px'"></ng2-slim-loading-bar>
+
+<div>
+  <div class="header row margin0">
+    <app-header page="catalog" [type]="type" [filter]="type == 'charm'"></app-header>
+  </div>
+  <div class="body">
+    <div class="col-xs-10 col-xs-offset-1 drawContainer">
+      <div class="bracelet">
+        <div class="charm-container" [dragula]='"bag-charms"' [dragulaModel]='usedCharms'>
+          <div class="charm" *ngFor="let charm of usedCharms; let i=index;">
+            <img src="{{charm}}" alt="">
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="store" [dragula]='"bag-charms"' [dragulaModel]='emptyCharms'>
-  <div class="charm" *ngFor="let charm of emptyCharms; let i=index;">
-    <img src="{{charm}}" alt="">
+  <div class="store {{highlightStore && 'highlight'}}" [dragula]='"bag-charms"' [dragulaModel]='emptyCharms'>
+    <div class="charm" *ngFor="let charm of emptyCharms; let i=index;">
+      <img src="{{charm}}" alt="">
+    </div>
   </div>
 </div>
