@@ -13,6 +13,7 @@ export class CartService {
   private window;
   private checkoutURL: BehaviorSubject<string> = new BehaviorSubject('');
   private basketCount: BehaviorSubject<object> = new BehaviorSubject({});
+  private basketItems: BehaviorSubject<object> = new BehaviorSubject([]);
 
   constructor(private _window: WindowService) {
     this.window = _window.nativeWindow;
@@ -24,34 +25,42 @@ export class CartService {
     this.createCart();
   }
 
+  getCart() {
+    return this.basketItems;
+  }
+
   createCart() {
-    if(this.cart) return this.cart;
+    if (this.cart) {
+      return this.cart;
+    }
 
     this.cart = true; // to prevent multiple creations
-    let that = this;
+    const that = this;
 
-    let interval = this.window.setInterval(function() {
-      if(that.window.shopClient) {
+    const interval = this.window.setInterval(function() {
+      if (that.window.shopClient) {
         that.window.clearInterval(interval);
 
         that.window.shopClient.fetchRecentCart()
         .then(function (cart) {
+          console.log('we got the cart', cart.lineItemCount, cart.lineItems)
           that.cart = cart;
           that.checkoutURL.next(cart.checkoutUrl);
-          that.basketCount.next({ count: that.cart.lineItemCount, price: that.cart.subtotal })
+          that.basketCount.next({ count: that.cart.lineItemCount, price: that.cart.subtotal });
+          that.basketItems.next({ items: that.cart.lineItems });
           return that.cart;
         });
       }
     }, 1000);
   }
 
-  addToCart(item):any {
-    if(!item.variant) {
+  addToCart(item): any {
+    if (!item.variant) {
       return Observable.throw({'status': 'error', 'message': 'no variant selected!'});
     }
 
-    if(!item.quantity) { item.quantity = 1; }
-    let that = this;
+    if (!item.quantity) { item.quantity = 1; }
+    const that = this;
     return Observable.fromPromise(
       that.cart.createLineItemsFromVariants(item)
     );

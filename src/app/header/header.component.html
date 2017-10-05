@@ -14,7 +14,7 @@
   <div class="right-part hidden-xs hidden-sm col-sm-5">
     <a routerLink="/catalog/bracelet" class="main-btn">Bracelet</a>
     <a routerLink="/catalog/bracelet" class="main-btn">Charm</a>
-    <div class="secondary-btn">Create yours</div>
+    <a href="/mixmatch?step=1" class="secondary-btn">Create yours</a>
   </div>
 </div>
 
@@ -38,7 +38,7 @@
   <div class="right-part hidden-xs hidden-sm col-sm-5">
     <a routerLink="/catalog/bracelet" class="header-btn">Bracelets</a>
     <a routerLink="/catalog/charm" class="header-btn">Charms</a>
-    <div class="main-btn">Create yours</div>
+    <a href="/mixmatch?step=1" class="main-btn">Create yours</a>
   </div>
   <div class="visible-xs col-xs-4">
     <app-icon title="Filter" image="/assets/images/filter.png"
@@ -63,7 +63,7 @@
     <a routerLink="/catalog/charm" class="transparent-btn" [class.active]="type == 'charm'">
       Charms
     </a>
-    <a routerLink="/mixmatch" class="transparent-btn" [class.active]="type == 'mix'">Mix & Match</a>
+    <a href="/mixmatch?step=1" class="transparent-btn" [class.active]="type == 'mix'">Mix & Match</a>
   </div>
 
   <div class="right-part hidden-xs col-sm-3">

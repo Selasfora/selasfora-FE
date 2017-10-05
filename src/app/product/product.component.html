@@ -1,4 +1,4 @@
-<div [routerLink]="['/catalog/' + item.product_type + '/' + item.id]">
+<div [routerLink]="['/catalog/' + item.product_type + '/' + item.id]" *ngIf="_mode === 'grid'">
   <div class="image">
     <img *ngIf="item.images.length > 1" src="{{ item.images[1].src }}">
     <img *ngIf="item.images.length < 2 && item.images" src="{{ item.image.src }}">
@@ -16,4 +16,33 @@
   <a class="tetiary-btn show-on-hover hidden-xs" [routerLink]="['/catalog/' + item.product_type + '/' + item.id]">
     See details
   </a>
+</div>
+<!-- [routerLink]="['/catalog/' + item.product_type + '/' + item.id]"  -->
+<div *ngIf="_mode !== 'grid'">
+  <div class="image slide-image">
+    <img *ngIf="item.images.length > 1" src="{{ item.images[0].src }}">
+    <img *ngIf="item.images.length < 2 && item.images" src="{{ item.image.src }}">
+  </div>
+  <div class="content">
+    <div class="title">
+      {{ item.title }}
+    </div>
+
+    <div class="desc show-on-hover hidden-xs" [innerHTML]="item.body_html">
+    </div>
+
+    <div class="price"> {{ item.variants[0].price || '89 EUR' }}</div>
+
+    <a class="main-btn show-on-hover hidden-xs"
+       *ngIf="item.product_type == 'bracelet'"
+       href="/mixmatch?step=2"
+       (click)="selectContinue(item)">
+      + Select & Continue
+    </a>
+    <a class="main-btn show-on-hover hidden-xs"
+       *ngIf="item.product_type == 'charm'"
+       (click)="addToCart(item)">
+      Add to Cart
+    </a>
+  </div>
 </div>

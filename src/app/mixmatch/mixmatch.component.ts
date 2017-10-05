@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-mixmatch',
@@ -12,24 +14,27 @@ export class MixmatchComponent implements OnInit {
   usedCharms = [];
   highlightStore = false;
 
-  constructor(private dragula: DragulaService) {
-    this.dragula.setOptions('bag-charms', {
-      //removeOnSpill: true
-    });
+  step = 1;
+
+  constructor(private dragula: DragulaService, public route: ActivatedRoute, private router: Router,
+              public _cart: CartService) {
+    this.dragula.setOptions('bag-charms', { });
+    _cart.getCart().subscribe(
+      data => console.log('from mixmatch', data)
+    )
   }
 
   ngOnInit() {
     this.dragula
       .drag
       .subscribe(value => {
-        //console.log('drag', value);
         this.highlightStore = true;
       });
 
     this.dragula
       .drop
       .subscribe(value => {
-        console.log('drop', this.emptyCharms, this.usedCharms);
+        //console.log('drop', this.emptyCharms, this.usedCharms);
       });
 
     this.dragula
@@ -41,15 +46,22 @@ export class MixmatchComponent implements OnInit {
     this.dragula
       .remove
       .subscribe(value => {
-        console.log('remove', this.emptyCharms, this.usedCharms);
+        //console.log('remove', this.emptyCharms, this.usedCharms);
       });
 
     this.dragula
       .dragend
       .subscribe(value => {
-        console.log('dragend', this.emptyCharms, this.usedCharms);
+        //console.log('dragend', this.emptyCharms, this.usedCharms);
         this.highlightStore = false;
       });
+
+    this.route.queryParams
+      .subscribe((data) => {
+        const s = parseInt(data.step, 10);
+        this.step = !s || s > 3 || s < 1 ? 1 : s;
+      }
+    );
   }
 
 }

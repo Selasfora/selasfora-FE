@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service'
-import { FiltersService } from '../filters.service'
+import { Component, OnInit, Input } from '@angular/core';
+import { AuthService } from '../auth.service';
+import { FiltersService } from '../filters.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
-import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
+import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 
 @Component({
   selector: 'app-catalog',
@@ -12,35 +12,48 @@ import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
 })
 export class CatalogComponent implements OnInit {
 
-  mode: string = 'grid';
+  @Input() mode = 'grid';
   list: Array<object> = [];
   lists: Array<any> = [];
-  filters:object = {
+  filters: object = {
     color: [],
     size: [],
     material: [],
     mood: [],
     sortBy: []
   };
+  slideContainerWidth = 'auto';
 
-  type: string = '';
-  pageTitle: string = 'Selasfora ';
+  @Input() type = '';
+  pageTitle = 'Selasfora ';
   subscriptions: Array<any> = [];
 
   constructor(public service: AuthService, public route: ActivatedRoute, private router: Router,
       public filterService: FiltersService, private slimLoadingBarService: SlimLoadingBarService) {
+        console.log('constructor');
+      const that = this;
+      const interval = setInterval(function() {
+        if (that.type) {
+          clearInterval(interval);
+          that.fetchProducts();
+        }
+      }, 1000);
   }
 
   parseList() {
     this.lists = [];
     let dev = 3;
-    if(this.type == 'bracelet') dev = 2;
+    if (this.type === 'bracelet') {
+      dev = 2;
+    }
     let count = 0;
-    let that = this;
+    const that = this;
     this.list.forEach(function(item, i) {
-      if(i && i % dev == 0) count++;
+      if (i && i % dev === 0) {
+        count++;
+      }
       that.lists[count] = that.lists[count] || [];
-      that.lists[count].push(item)
+      that.lists[count].push(item);
     });
   }
 
@@ -48,60 +61,55 @@ export class CatalogComponent implements OnInit {
     this.startLoading();
     this.subscriptions.push(this.route.paramMap
       .subscribe((data) => {
-        this.type = data.get('type');
+        const t = data.get('type');
+        if (t) {
+          this.type = t;
+          if (this.type.toLowerCase() !== 'charm' && this.type.toLowerCase() !== 'bracelet') {
+            this.router.navigate(['/404']);
+            return;
+          }
 
-        if(this.type.toLowerCase() !== 'charm' && this.type.toLowerCase() !== 'bracelet') {
-          this.router.navigate(['/404']);
-          return;
+          if (this.type === 'charm') {
+            this.pageTitle = '';
+          }
+
+          if (this.type === 'bracelet') {
+            this.pageTitle = 'Selasfora Bracelets';
+          }
         }
 
-        if(this.type == 'charm') this.pageTitle = '';
-        if(this.type == 'bracelet') this.pageTitle = 'Selasfora Bracelets';
-
-        let that = this;
-        this.subscriptions.push(that.service.fetchProducts(this.type)
-        .subscribe(
-          (data) => {
-            console.log(1)
-            this.completeLoading();
-            that.list = data;
-            that.parseList();
-          }
-        ));
+        const that = this;
+        this.fetchProducts();
 
         this.subscriptions.push(that.service.fetchFilters().subscribe(
-          (data) => {
-            console.log(2)
-            that.filters = data;
+          (res) => {
+            that.filters = res;
             that.filterService.filters.next(that.filters);
           }
         ));
 
         this.subscriptions.push(
           that.filterService.query.subscribe(
-            (data) => {
-              console.log(3)
+            (d) => {
               that.startLoading();
-              if(!data || data == '?') {
+              if (!d || d === '?') {
                 this.subscriptions.push(that.service.fetchProducts(this.type)
                 .subscribe(
-                  (data) => {
-                    console.log(1)
+                  (res) => {
                     this.completeLoading();
-                    that.list = data;
+                    that.list = res;
                     that.parseList();
                   }
                 ));
               } else {
-                data && this.subscriptions.push(
-                  that.service.queryProducts(data + 'product_type=' + that.type).subscribe(
-                    (data) => {
-                      that.completeLoading();
-                      that.list = data;
-                      that.parseList();
-                    }
-                  )
+                const s = that.service.queryProducts(d + 'product_type=' + that.type).subscribe(
+                  (res) => {
+                    that.completeLoading();
+                    that.list = res;
+                    that.parseList();
+                  }
                 );
+                d && this.subscriptions.push(s);
               }
             }
           )
@@ -110,13 +118,37 @@ export class CatalogComponent implements OnInit {
     ));
   }
 
+  fetchProducts() {
+    const that = this;
+    if (!this.type) {
+      return ;
+    }
+    console.log('fetching', this.type)
+    this.subscriptions.push(
+      that.service.fetchProducts(this.type)
+      .subscribe(
+        (res) => {
+          this.completeLoading();
+          that.list = res;
+          that.parseList();
+          if (this.mode !== 'grid') {
+            const l = 350;
+            this.slideContainerWidth = this.list.length * l + 200 + 'px';
+          } else {
+            this.slideContainerWidth = 'auto';
+          }
+        }
+      )
+    );
+  }
+
   parseResponse(data) {
-    let that = this;
+    const that = this;
     data.forEach(function(product) {
       product.options.forEach(function(item) {
-        let name = item.name.toLowerCase();
-        let values = item.values;
-        if(that.filters[name]) {
+        const name = item.name.toLowerCase();
+        const values = item.values;
+        if (that.filters[name]) {
           that.filters[name] = that.arrayUnique(that.filters[name].concat(values));
         }
       });
@@ -125,11 +157,12 @@ export class CatalogComponent implements OnInit {
   }
 
   arrayUnique(array) {
-    var a = array.concat();
-    for(var i = 0; i < a.length; ++i) {
-      for(var j = i + 1; j < a.length; ++j) {
-        if(a[i] === a[j])
+    const a = array.concat();
+    for (let i = 0; i < a.length; ++i) {
+      for (let j = i + 1; j < a.length; ++j) {
+        if (a[i] === a[j]) {
           a.splice(j--, 1);
+        }
       }
     }
     return a;
@@ -153,6 +186,20 @@ export class CatalogComponent implements OnInit {
 
   completeLoading() {
     this.slimLoadingBarService.complete();
+  }
+
+  switchMode(e) {
+    this.mode = this.mode === 'slide' ? 'grid' : 'slide';
+
+    if (this.mode !== 'grid') {
+      const l = 350;
+      this.slideContainerWidth = this.list.length * l + 200 + 'px';
+    } else {
+      this.slideContainerWidth = 'auto';
+    }
+
+    e.preventDefault();
+    return false;
   }
 
 }

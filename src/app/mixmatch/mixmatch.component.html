@@ -1,6 +1,14 @@
 <ng2-slim-loading-bar [color]="'#272caa'" [height]="'4px'"></ng2-slim-loading-bar>
 
-<div>
+<div *ngIf="step == 1">
+  <app-catalog [type]="'bracelet'" [mode]="'slide'"></app-catalog>
+</div>
+
+<div *ngIf="step == 2">
+  <app-catalog [type]="'charm'" [mode]="'slide'"></app-catalog>
+</div>
+
+<div *ngIf="step == 3">
   <div class="header row margin0">
     <app-header page="catalog" [type]="type" [filter]="type == 'charm'"></app-header>
   </div>
@@ -13,6 +21,9 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="text-center">
+      <a href="" class="secondary-btn">Review order & Checkout</a>
     </div>
   </div>
 

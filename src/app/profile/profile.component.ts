@@ -86,7 +86,7 @@ export class ProfileComponent implements OnInit {
 
     this.userService.getOrders().subscribe(
       data => {
-        this.orders = data;
+        this.orders = data.orders;
       }
     );
 

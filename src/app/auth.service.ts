@@ -37,7 +37,6 @@ export class AuthService {
   }
 
   login(data) {
-    console.log('here', data);
     const headers: Headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
@@ -55,7 +54,6 @@ export class AuthService {
   }
 
   registerSocialUser(data) {
-    console.log('register user', data);
     const url = this.baseURL + 'users/signup/' + data.provider;
     const method = 'post';
 
@@ -63,7 +61,6 @@ export class AuthService {
   }
 
   logout(data) {
-    console.log('logout user', data)
     const url = this.baseURL + 'users/' + data.id + '/logout';
     const method = 'post';
 
@@ -151,7 +148,6 @@ export class AuthService {
 
   sendRequest(method, url, data, options): Observable<any> {
     const auth = {headers: this.headers};
-    console.log('headers', auth);
     if (method !== 'get') {
       return this.http[method](url, data, auth)
         .map(res => res.json());

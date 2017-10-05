@@ -13,9 +13,9 @@ import { ToastrService } from 'toastr-ng2';
   styleUrls: ['./product-details.component.less']
 })
 export class ProductDetailsComponent implements OnInit {
-  mode: string = 'grid';
+  mode = 'grid';
   id: any;
-  type: string = '';
+  type = '';
   product: any = {variants: [{price: ''}]};
   window: any = null;
   shopClient: any;

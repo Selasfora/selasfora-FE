@@ -7,18 +7,34 @@
 
   <div class="col-md-offset-1 col-md-10 body row">
     <div class="page-title" *ngIf="pageTitle"> {{ pageTitle }} </div>
-    <div [class.container]="mode != 'grid'">
-      <div class="row hidden-xs" *ngFor="let List of lists">
-        <div *ngFor="let item of List">
+    <!-- [class.container]="mode != 'grid'" -->
+    <div style="overflow: auto;" [ngClass]="{'p-b-400': type == 'bracelet' && mode != 'grid'}">
+      <div class="hidden-xs"
+          [class.row]="mode == 'grid'"
+          [class.slide-container]="mode != 'grid'"
+          [style.width]="slideContainerWidth">
+        <div *ngFor="let item of list">
           <app-product [item]="item" [mode]="mode"></app-product>
         </div>
       </div>
+
       <div class="row visible-xs">
         <app-product [item]="item" [mode]="mode" *ngFor="let item of list"></app-product>
       </div>
       <div *ngIf="!list.length" class="well well-warning">
         No products exists with your current filter, please try another combination
       </div>
+    </div>
+
+
+    <div class="text-center" *ngIf="type=='charm' && list.length">
+      <a href="#" (click)="switchMode($event)" class="mode-change">
+        Browse charms in {{ mode == 'grid' ? 'slide' : 'grid' }} mode
+      </a>
+
+      <a href="/mixmatch?step=3" class="secondary-btn">
+        Next
+      </a>
     </div>
   </div>
 
