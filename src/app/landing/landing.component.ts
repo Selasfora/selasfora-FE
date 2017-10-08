@@ -18,6 +18,7 @@ export class LandingComponent {
 
   @Input() idx: any;
   @Input() last: any;
+  @Input() bgcolor:string;
 
   private window: any;
   public position: any = {};

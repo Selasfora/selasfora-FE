@@ -5,6 +5,7 @@
   *ngFor="let page of pages; let i = index;"
   [page]=page
   [idx]=i
+  [bgcolor]=bgColors[i]
 ></app-landing>
 
 <app-journal [landing]="true"></app-journal>
