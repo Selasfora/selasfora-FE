@@ -11,8 +11,8 @@
 
 .bracelet {
   width: 100%;
-  min-height: 200px;
-  background: url(/assets/images/mixmatch/bracelet.png);
+  min-height: 60vh;
+  background: url(/assets/images/mask.png);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -34,31 +34,36 @@
 }
 .charm-container {
   position: absolute;
-  top: 76%;
-  left: 31%;
-  width: 36%;
+  top: 57%;
+  left: 17vw;
+  width: 45vw;
   height: 60px;
   background: transparent;
   text-align: center;
 
+  @media (min-width:1366px){
+    left:30%;
+    width:40%;
+  }
+
   .charm {
     display: inline-block;
-    &:last-child:not(:only-child):not(:nth-child(2)) {
-      transform: rotate(-18deg);
+    &:last-child:not(:only-child) {
+      transform: rotate(180deg);
       position: relative;
-      top: -3px;
+      top:6px;
     }
     &:first-child:not(:only-child):not(:last-child) {
-      transform: rotate(10deg);
+      //transform: rotate(10deg);
       position: relative;
-      top: -8px;
+      top: 6px;
     }
     &:not(:first-child):not(:last-child) {
-      transform: rotate(-6deg);
+     // transform: rotate(-6deg);
       position: relative;
-      top: 7px;
+      top: 10px;
     }
-    width: 100px;
+    width: 7vw;
     text-align: center;
   }
 }
