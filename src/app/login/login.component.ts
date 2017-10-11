@@ -22,7 +22,7 @@ Angular2SocialLoginModule.loadProvidersScripts(providers);
 
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-
+  googleKey:string;
   validationMessages = {
     'email': {
       'required': 'Email is required.',
