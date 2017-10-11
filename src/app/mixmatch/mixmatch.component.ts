@@ -13,15 +13,22 @@ export class MixmatchComponent implements OnInit {
   emptyCharms = [this.url + 1 + '.png', this.url + 2 + '.png', this.url + 3 + '.png'];
   usedCharms = [];
   highlightStore = false;
-
+  checkoutUrl = '';
   step = 1;
 
   constructor(private dragula: DragulaService, public route: ActivatedRoute, private router: Router,
-              public _cart: CartService) {
-    this.dragula.setOptions('bag-charms', { });
+    public _cart: CartService) {
+    this.dragula.setOptions('bag-charms', {});
     _cart.getCart().subscribe(
       data => console.log('from mixmatch', data)
     )
+
+      _cart.getCheckoutUrl().subscribe(
+      (data) => {
+        this.checkoutUrl = data;
+      }
+    );
+
   }
 
   ngOnInit() {
@@ -61,7 +68,8 @@ export class MixmatchComponent implements OnInit {
         const s = parseInt(data.step, 10);
         this.step = !s || s > 3 || s < 1 ? 1 : s;
       }
-    );
+      );
   }
+
 
 }
