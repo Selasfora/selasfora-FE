@@ -292,17 +292,18 @@ export class AddressComponent implements OnInit {
     private auth: AuthService, private toaster: ToastrService) { }
 
   setCountry(c) {
+    this.addressForm.get('country').setValue(c.title);
     console.log('country', c);
   }
 
   ngOnInit() {
     this.addressForm = this.fb.group({
       country: [this.address.country, Validators.required],
-      address: [this.address.address, Validators.required],
+      address1: [this.address.address, Validators.required],
       address2: [this.address.address2],
       city: [this.address.city, Validators.required],
       zip: [this.address.zip, Validators.required],
-      default: [this.address.default]
+      default: [this.address.default || false]
     });
   }
 
