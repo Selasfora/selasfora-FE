@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input ,EventEmitter,Output} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'toastr-ng2';
 import { AuthService } from '../../auth.service';
@@ -11,6 +11,7 @@ import { UserService } from '../../user.service';
 })
 //selasfora-api-stg.herokuapp.com/documentation#/
 export class AddressComponent implements OnInit {
+  @Output('onRemoved') removeEvent = new EventEmitter<any>();
   countries = [ 
     {title: 'Afghanistan'}, 
     {title: 'Åland Islands'}, 
@@ -287,7 +288,7 @@ export class AddressComponent implements OnInit {
   errorMessage = '';
 
   editMode = false;
-
+  addid = null;
   constructor(private fb: FormBuilder, private user: UserService,
     private auth: AuthService, private toaster: ToastrService) { }
 
@@ -297,9 +298,10 @@ export class AddressComponent implements OnInit {
   }
 
   ngOnInit() {
+   this.addid =  this.address ? this.address.id : null;
     this.addressForm = this.fb.group({
       country: [this.address.country, Validators.required],
-      address1: [this.address.address, Validators.required],
+      address1: [this.address.address1, Validators.required],
       address2: [this.address.address2],
       city: [this.address.city, Validators.required],
       zip: [this.address.zip, Validators.required],
@@ -312,8 +314,9 @@ export class AddressComponent implements OnInit {
   }
 
   save() {
-    this.user.saveAddress(this.addressForm.value).subscribe(
+    this.user.saveAddress(this.addressForm.value,this.addid).subscribe(
       data => {
+        this.editMode = false;
         console.log('success')
       },
       err => {
@@ -323,8 +326,13 @@ export class AddressComponent implements OnInit {
   }
 
   remove() {
-    this.user.removeAddress(this.addressForm.value).subscribe(
+    if(!this.addid){
+      this.removeEvent.emit();
+      return;
+    }
+    this.user.removeAddress(this.addid).subscribe(
       data => {
+        this.removeEvent.emit();
         console.log('success')
       },
       err => {

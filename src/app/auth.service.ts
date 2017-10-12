@@ -148,7 +148,7 @@ export class AuthService {
 
   sendRequest(method, url, data, options): Observable<any> {
     const auth = {headers: this.headers};
-    if (method !== 'get') {
+    if (method !== 'get' && method !='delete') {
       return this.http[method](url, data, auth)
         .map(res => res.json());
     } else {

@@ -175,7 +175,10 @@
           </a>
         </div>
         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-          <app-address *ngFor="let address of addresses" [address]="address"></app-address>
+          <app-address *ngFor="let address of addresses; let aid = index;" [address]="address" (onRemoved)="popAddress(aid)"></app-address>
+          <div class="add-address" (click)="addAddress()">
+          Add
+        </div>
         </div>
       </div>
     </div>

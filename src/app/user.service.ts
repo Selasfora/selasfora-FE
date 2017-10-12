@@ -67,12 +67,12 @@ export class UserService implements CanActivate, CanDeactivate<any> {
     }
   }
 
-  saveAddress(address) {
+  saveAddress(address,id) {
     let url = this.baseURL + 'users/' +  this.user.id + '/addresses';
     let method = 'post';
-    if (address.id) {
+    if (id) {
       method = 'put';
-      url += address.id;
+      url += "/"+id;
     }
     console.log('saving', address, 'method', method);
     return this.auth.sendRequest(method, url, address, null);
@@ -80,12 +80,12 @@ export class UserService implements CanActivate, CanDeactivate<any> {
   // { headers: {
   //     Authorization: this.window.sessionStorage.getItem('Authorization')
   //   }}
-  removeAddress(address) {
-    const url = this.baseURL + 'users/' +  this.user.id + '/addresses/' + address.id;
+  removeAddress(id) {
+    const url = this.baseURL + 'users/' +  this.user.id + '/addresses/' + id;
     const method = 'delete';
 
-    console.log('saving', address, 'method', method);
-    return this.auth.sendRequest(method, url, address, null);
+    
+    return this.auth.sendRequest(method, url, {}, null);
   }
 
   getAddresses() {

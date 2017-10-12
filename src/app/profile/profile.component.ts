@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
   ];
   user: any = {};
 
-  addresses = [1, 2];
+  addresses = [1];
   orders = [1, 2];
 
   validationMessages = {
@@ -171,4 +171,11 @@ export class ProfileComponent implements OnInit {
     return false;
   }
 
+  addAddress(){
+    this.addresses.push(this.addresses.length+1);
+  }
+
+  popAddress(index){
+    this.addresses.splice(index,1);
+  }
 }
