@@ -68,7 +68,7 @@ export class UserService implements CanActivate, CanDeactivate<any> {
   }
 
   saveAddress(address) {
-    let url = this.baseURL + 'users/' +  this.user.id + '/addresses/';
+    let url = this.baseURL + 'users/' +  this.user.id + '/addresses';
     let method = 'post';
     if (address.id) {
       method = 'put';
