@@ -15,6 +15,7 @@ export class CatalogComponent implements OnInit {
   @Input() mode = 'grid';
   list: Array<object> = [];
   lists: Array<any> = [];
+  collectionSelected:any = false;
   filters: object = {
     color: [],
     size: [],
@@ -28,7 +29,7 @@ export class CatalogComponent implements OnInit {
   pageTitle = 'Selasfora ';
   subscriptions: Array<any> = [];
 
-  constructor(public service: AuthService, public route: ActivatedRoute, private router: Router,
+  constructor(public service: AuthService, private route: ActivatedRoute, private router: Router,
       public filterService: FiltersService, private slimLoadingBarService: SlimLoadingBarService) {
         console.log('constructor');
       const that = this;
@@ -38,6 +39,14 @@ export class CatalogComponent implements OnInit {
           that.fetchProducts();
         }
       }, 1000);
+
+    
+
+      router.events.subscribe((events:any)=>{
+     
+        var d = router.parseUrl(events.url)
+        this.collectionSelected = d.queryParams.hasOwnProperty('collection') ? d.queryParams.collection : '';
+      })
   }
 
   parseList() {
