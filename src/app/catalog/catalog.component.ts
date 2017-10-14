@@ -143,6 +143,7 @@ export class CatalogComponent implements OnInit {
           if (this.mode !== 'grid') {
             const l = 350;
             this.slideContainerWidth = this.list.length * l + 200 + 'px';
+            window.scrollTo(0,0)
           } else {
             this.slideContainerWidth = 'auto';
           }
@@ -203,6 +204,7 @@ export class CatalogComponent implements OnInit {
     if (this.mode !== 'grid') {
       const l = 350;
       this.slideContainerWidth = this.list.length * l + 200 + 'px';
+      window.scrollTo(0,0);
     } else {
       this.slideContainerWidth = 'auto';
     }

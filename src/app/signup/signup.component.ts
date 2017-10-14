@@ -96,7 +96,7 @@ export class SignupComponent implements OnInit {
             this.sentConfirmation = true;
           },
           (error) => {
-            this.errorMessage = error.json().errors.full_messages[0];
+            this.errorMessage = error.json().errors ? error.json().errors.full_messages[0] : error.json().message;
           }
         );
     }
