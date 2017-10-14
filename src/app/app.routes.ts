@@ -46,6 +46,10 @@ const appRoutes: Routes = [
     path: 'signup',
     component: SignupComponent,
   },
+   {
+    path: 'verifyEmail',
+    component: SignupComponent,
+  },
   {
     path: 'reset-password',
     component: PasswordresetComponent,
