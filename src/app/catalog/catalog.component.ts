@@ -213,4 +213,8 @@ export class CatalogComponent implements OnInit {
     return false;
   }
 
+  gotoMixMatch(){
+    this.router.navigate(["/mixmatch"],{queryParams:{step:3}})
+  }
+
 }

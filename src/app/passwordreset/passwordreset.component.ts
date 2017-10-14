@@ -34,7 +34,7 @@ export class PasswordresetComponent implements OnInit {
   uid:any;
   client:any;
   window: any;
-
+  email = '';
   constructor(private fb: FormBuilder, private auth: AuthService,
     private _location: Location, private router: Router,
     private route: ActivatedRoute, _window: WindowService) {
@@ -58,10 +58,8 @@ export class PasswordresetComponent implements OnInit {
       .queryParams
       .subscribe(params => {
         // Defaults to 0 if no query param provided.
-        this.reset_password_token = params['token'];
-        this.client = params['client_id'];
-        this.uid = this.window.unescape(params['uid']);
-        this.step = params['step'];
+        this.reset_password_token = params['auth'];
+        this.step = this.reset_password_token ? 2 : 1;
         if(this.step == 2) {
           this.loginForm = this.fb.group({
             newPass: '',
@@ -75,7 +73,8 @@ export class PasswordresetComponent implements OnInit {
     if(this.step != 2) {
       let valid = this.validate();
       if(valid) {
-        this.auth.resetPassword(this.loginForm.value)
+        this.email = this.loginForm.get('email').value;
+        this.auth.resetPassword(this.loginForm.get('email').value)
           .subscribe(
             (data) => {
               this.resultClass = 'success';
@@ -103,10 +102,8 @@ export class PasswordresetComponent implements OnInit {
       }
       this.auth.setPassword({
         password: p1,
-        password_confirmation: p2,
-        client_id: this.client,
-        token: this.reset_password_token,
-        uid: this.uid
+        email: this.email,
+        reset_password_token: this.reset_password_token,
       }).subscribe(
           (data) => {
             this.router.navigate(['/login']);

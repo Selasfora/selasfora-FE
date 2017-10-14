@@ -13,7 +13,7 @@ export class AuthService {
 
   public isLoggedIn = false;
 
-  private headers: any = {};
+  private headers: Headers = new Headers();
 
   private window: any;
 
@@ -67,23 +67,22 @@ export class AuthService {
     return this.sendRequest(method, url, data, undefined);
   }
 
-  resetPassword(data) {
-    const url = this.baseURL + 'users/reset_password';
-    const method = 'post';
+  forgotPassword(email){
+        const url = this.baseURL + 'users/forgot_password?email='+email;
+        const method = 'get';
+        return this.sendRequest(method, url, { }, undefined);
+  }
 
-    return this.sendRequest(method, url, {
-      'redirect_url': 'http://selasfora.surge.sh/reset-password?step=2',
-      'email': data.email
-    }, undefined);
+  resetPassword(email) {
+      const url = this.baseURL + 'users/forgot_password?email='+email;
+        const method = 'get';
+        return this.sendRequest(method, url, { }, undefined);
   }
 
   setPassword(data) {
     const url = this.baseURL + 'users/reset_password';
-    const method = 'put';
-    this.headers.append('access-token', data.token);
-    this.headers.append('uid', data.uid);
-    this.headers.append('client', data.client_id);
-
+    const method = 'post';
+    this.headers.append('Authorization', data.token);
     return this.sendRequest(method, url, data, { headers: this.headers });
   }
 

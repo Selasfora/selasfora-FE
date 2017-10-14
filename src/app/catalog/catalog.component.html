@@ -29,7 +29,7 @@
         Browse charms in {{ mode == 'grid' ? 'slide' : 'grid' }} mode
       </a>
 
-      <a [routerLink]="['/mixmatch']" [queryParams]="{step:3}" class="secondary-btn next">
+      <a (click)="gotoMixMatch()" class="secondary-btn next">
         Next
       </a>
     </div>
