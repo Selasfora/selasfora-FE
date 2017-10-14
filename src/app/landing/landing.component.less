@@ -1,5 +1,6 @@
 .main-landing {
    min-height: 100vh;
+   
   @media only screen and (min-width : 768px) {
    min-height: 100vh;
     //padding: 0 62px;
@@ -8,7 +9,7 @@
 
 
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: contain;
   width: 100%;
   height: auto;
   box-sizing: border-box;
@@ -93,13 +94,23 @@
   a {
     color: white;
     position: absolute;
-    @media only screen and (min-width : 768px) {
-      right: 380px;
-      top: -40px;
+    @media only screen and (max-width : 768px) {
+      right: 37vw;
+      top: -130px;
     }
     @media only screen and (max-width : 767px) {
       left: 0;
       bottom: 0;
+    }
+
+      @media only screen and (max-width : 768px) {
+      right: 33vw;
+      top: -60px;
+    }
+
+      @media only screen and (min-width:768px) and (max-width : 1024px) {
+      right: 33vw;
+      top: -80px;
     }
   }
 }
@@ -133,3 +144,12 @@
   min-height: 100vh;
 }
 
+#\30{background-color: #272caa;}
+
+#\34 > div > div.call-for-action{
+      width: 230px;
+    height: 60px;
+    border: solid 1px #181818;
+    margin: auto;
+    color: black;
+}

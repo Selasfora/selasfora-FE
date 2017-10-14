@@ -209,6 +209,12 @@ button {
 .header {
   width: 100%;
   background: url('/assets/images/profile.png') no-repeat;
+  background-size:cover;
+
+  min-height:54vh;
+
+
+
   .bar {
     padding: 30px 40px;
     position: absolute;
@@ -229,12 +235,18 @@ button {
     .link {
       font-weight: 600;
     }
+
+    @media screen and (max-height:414px){
+    top:-40px;
+    }
   }
 }
 
 .panel {
   border: 0;
   .panel-heading {
+    min-height:10vh;
+    padding-top:4vh;
     background: white;
     text-align: left;
     a {
@@ -257,4 +269,8 @@ button {
     text-align: left;
     padding-top: 20px;
   }
+}
+
+a{
+  color:#272caa;
 }
