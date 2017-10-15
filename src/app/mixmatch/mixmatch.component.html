@@ -1,16 +1,22 @@
 <ng2-slim-loading-bar [color]="'#272caa'" [height]="'4px'"></ng2-slim-loading-bar>
 
 <div *ngIf="step == 1">
-  <app-catalog [type]="'bracelet'" [mode]="'slide'" showCollections=false canAddToCart=false></app-catalog>
+  <div class="header row margin0">
+    <app-header page="mixmatch" [type]="type" [filter]="type == 'charm'"></app-header>
+  </div>
+  <app-catalog [type]="'bracelet'" [mode]="'slide'" showCollections=false canAddToCart=false hideMainHeader="true"></app-catalog>
 </div>
 
 <div *ngIf="step == 2">
-  <app-catalog [type]="'charm'" [mode]="'slide'" showCollections=false canAddToCart=false></app-catalog>
+  <div class="header row margin0">
+    <app-header page="mixmatch" [type]="type" [filter]="type == 'charm'"></app-header>
+  </div>
+  <app-catalog [type]="'charm'" [mode]="'slide'" showCollections=false canAddToCart=false hideMainHeader="true"></app-catalog>
 </div>
 
 <div *ngIf="step == 3">
   <div class="header row margin0">
-    <app-header page="catalog" [type]="type" [filter]="type == 'charm'"></app-header>
+    <app-header page="mixmatch" [type]="type" [filter]="type == 'charm'"></app-header>
   </div>
   <div class="body">
      <div class="empty-charm-container" [dragula]='"bag-charms"' [dragulaModel]='emptyCharms'>

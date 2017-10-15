@@ -1,12 +1,12 @@
-<ng2-slim-loading-bar [color]="'#272caa'" [height]="'4px'"></ng2-slim-loading-bar>
+<ng2-slim-loading-bar [color]="'#272caa'" [height]="'4px'" *ngIf="!hideheader"></ng2-slim-loading-bar>
 
 <div>
-  <div class="header row margin0">
-    <app-header page="black" [type]="type" [filter]="type == 'charm'"></app-header>
+  <div class="header row margin0" *ngIf="!hideheader">
+    <app-header page="black" [type]="type" [filter]="type == 'charm'" ></app-header>
   </div>
 
   <div *ngIf="(showCollections && type =='charm') || (!showCollections && type=='bracelet') || (showCollections && type=='bracelet')" class="col-md-offset-1 col-md-10 body row ">
-    <div class="page-title" *ngIf="pageTitle"> {{ pageTitle }} </div>
+    <div class="page-title" *ngIf="pageTitle && !hideheader"> {{ pageTitle }} </div>
     <!-- [class.container]="mode != 'grid'" -->
     <div style="overflow: auto;" [ngClass]="{'p-b-400': type == 'bracelet' && mode != 'grid'}">
       <div class="hidden-xs" [class.row]="mode == 'grid'" [class.slide-container]="mode != 'grid'" [style.width]="slideContainerWidth">

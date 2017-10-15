@@ -1,4 +1,4 @@
-<div *ngIf="page != 'catalog' && page != 'black'" class="row">
+<div *ngIf="page != 'catalog' && page != 'black' && page !='mixmatch'" class="row">
   <div class="left-part col-sm-5 col-xs-4">
     <app-icon title="Menu" image="/assets/images/menu@2x.png" (click)="openMenu()"></app-icon>
     <a href="{{ url }}" target="_blank">
@@ -64,6 +64,35 @@
       Charms
     </a>
     <a [routerLink]="['/mixmatch']" [queryParams]="{step:1}" class="transparent-btn" [class.active]="type == 'mix'">Mix & Match</a>
+  </div>
+  
+
+  <div class="right-part  col-sm-2 col-md-2 col-xs-1">
+    <button routerLink="/" type="button" class="close" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>
+
+<!-- mix match header -->
+
+<div *ngIf="page == 'mixmatch'" class="catalog-header row">
+  <div class="left-part col-sm-4 col-xs-4 hidden-xs">
+    <app-icon title="Menu" image="/assets/images/menu-black.png" (click)="openMenu()"></app-icon>
+    <a href="{{ url }}" target="_blank">
+      <app-icon title="Cart" image="/assets/images/cart-black.png" class="hidden-xs"></app-icon>
+    </a>
+   
+  </div>
+
+  <div class="buttons col-xs-11  col-sm-6 col-md-6 text-center">
+    <a [routerLink]="['/mixmatch']" [queryParams]="{step:1}" class="transparent-btn" [class.active]="type == 'bracelet'">
+      Bracelets
+    </a>
+    <a [routerLink]="['/mixmatch']" [queryParams]="{step:2}" class="transparent-btn" [class.active]="type == 'charm'">
+      Charms
+    </a>
+    <a [routerLink]="['/mixmatch']" [queryParams]="{step:3}" class="transparent-btn" [class.active]="type == 'mix'">Mix & Match</a>
   </div>
   
 

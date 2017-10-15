@@ -15,6 +15,7 @@ export class CatalogComponent implements OnInit {
   @Input() mode = 'grid';
   @Input('showCollections') showCollections  = true;
   @Input('canAddToCart') canAddToCart = true;
+  @Input('hideMainHeader') hideheader = false;
   list: Array<object> = [];
   lists: Array<any> = [];
   collectionSelected:any = false;
