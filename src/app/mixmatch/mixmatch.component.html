@@ -1,11 +1,11 @@
 <ng2-slim-loading-bar [color]="'#272caa'" [height]="'4px'"></ng2-slim-loading-bar>
 
 <div *ngIf="step == 1">
-  <app-catalog [type]="'bracelet'" [mode]="'slide'"></app-catalog>
+  <app-catalog [type]="'bracelet'" [mode]="'slide'" showCollections=false canAddToCart=false></app-catalog>
 </div>
 
 <div *ngIf="step == 2">
-  <app-catalog [type]="'charm'" [mode]="'slide'"></app-catalog>
+  <app-catalog [type]="'charm'" [mode]="'slide'" showCollections=false canAddToCart=false></app-catalog>
 </div>
 
 <div *ngIf="step == 3">
@@ -13,17 +13,22 @@
     <app-header page="catalog" [type]="type" [filter]="type == 'charm'"></app-header>
   </div>
   <div class="body">
+     <div class="empty-charm-container" [dragula]='"bag-charms"' [dragulaModel]='emptyCharms'>
+          <div class="charm" *ngFor="let charm of emptyCharms; let i=index;">
+            <img [attr.src]="charm.img" alt="">
+          </div>
+        </div>
     <div class="col-xs-10 col-xs-offset-1 drawContainer">
       <div class="bracelet">
         <div class="charm-container" [dragula]='"bag-charms"' [dragulaModel]='usedCharms'>
           <div class="charm" *ngFor="let charm of usedCharms; let i=index;">
-            <img src="{{charm}}" alt="">
+            <img [attr.src]="charm.img" alt="">
           </div>
         </div>
       </div>
     </div>
     <div class="text-center">
-      <a href="{{checkoutUrl}}" class="secondary-btn">Review order & Checkout</a>
+      <a (click)="checkout()" class="secondary-btn">Review order & Checkout</a>
     </div>
   </div>
 

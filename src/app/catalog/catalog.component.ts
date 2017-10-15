@@ -13,9 +13,12 @@ import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 export class CatalogComponent implements OnInit {
 
   @Input() mode = 'grid';
+  @Input('showCollections') showCollections  = true;
+  @Input('canAddToCart') canAddToCart = true;
   list: Array<object> = [];
   lists: Array<any> = [];
   collectionSelected:any = false;
+  
   filters: object = {
     color: [],
     size: [],
@@ -45,7 +48,7 @@ export class CatalogComponent implements OnInit {
       router.events.subscribe((events:any)=>{
      
         var d = router.parseUrl(events.url)
-        this.collectionSelected = d.queryParams.hasOwnProperty('collection') ? d.queryParams.collection : '';
+        this.showCollections = d.queryParams.hasOwnProperty('collection') ? true : false;
       })
   }
 

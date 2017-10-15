@@ -5,18 +5,18 @@
     <app-header page="black" [type]="type" [filter]="type == 'charm'"></app-header>
   </div>
 
-  <div *ngIf="(collectionSelected && type =='charm') || (!collectionSelected && type=='bracelet') || (collectionSelected && type=='bracelet')" class="col-md-offset-1 col-md-10 body row ">
+  <div *ngIf="(showCollections && type =='charm') || (!showCollections && type=='bracelet') || (showCollections && type=='bracelet')" class="col-md-offset-1 col-md-10 body row ">
     <div class="page-title" *ngIf="pageTitle"> {{ pageTitle }} </div>
     <!-- [class.container]="mode != 'grid'" -->
     <div style="overflow: auto;" [ngClass]="{'p-b-400': type == 'bracelet' && mode != 'grid'}">
       <div class="hidden-xs" [class.row]="mode == 'grid'" [class.slide-container]="mode != 'grid'" [style.width]="slideContainerWidth">
         <div *ngFor="let item of list" class="product-container">
-          <app-product [item]="item" [mode]="mode"></app-product>
+          <app-product [item]="item" [mode]="mode" [canAddToCart]="canAddToCart"></app-product>
         </div>
       </div>
 
       <div class="row visible-xs hidden-md product-container" >
-        <app-product [item]="item" [mode]="mode" *ngFor="let item of list"></app-product>
+        <app-product [item]="item" [mode]="mode" [canAddToCart]="canAddToCart" *ngFor="let item of list"></app-product>
       </div>
       <div *ngIf="!list.length" class="well well-warning">
         No products exists with your current filter, please try another combination

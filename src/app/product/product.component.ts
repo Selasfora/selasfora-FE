@@ -12,6 +12,7 @@ export class ProductComponent implements OnInit {
   public _mode;
 
   @Input() item;
+   @Input('canAddToCart') canAddToCart:any = true;
   @Input() set mode(value) {
     console.log('changing to ', value)
     this._mode = value;
@@ -48,10 +49,17 @@ export class ProductComponent implements OnInit {
     }
   }
 
-  addToCart() {
+  addToCart(item) {
+    
+
+     // add the same to the cart;
+
+    this.storeItem(item);
+    if( this.canAddToCart == "false") return;
+
     this._cart.addToCart({variant: this.item.variants[0], quantity: 1})
     .subscribe(
-      (data: any) => {
+      (data: any) => {      
         this._cart.updateUrl(data.checkoutUrl);
         this._cart.updateCount({ count: data.lineItemCount, price: data.subtotal });
         this.toastrService.success('Your product was added successfully!', 'Success!');
@@ -63,6 +71,25 @@ export class ProductComponent implements OnInit {
   }
 
   selectContinue(item) {
-    this.addToCart();
+    this.addToCart(item);
+  }
+
+  storeItem(item){
+     // add stuff to local storage 
+    let selected_items:any[]  = JSON.parse(localStorage.getItem('selected_items')||'[]');
+
+    
+
+    let item_to_add = {
+      title:item.title,
+      img:item.image.src,
+      type:item.product_type,
+      id:item.id,
+      cartItem:item
+    }
+
+     selected_items.push(item_to_add);
+
+     localStorage.setItem('selected_items',JSON.stringify(selected_items));
   }
 }

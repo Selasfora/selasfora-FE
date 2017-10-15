@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { CartService } from '../cart.service';
-
+declare var window;
 @Component({
   selector: 'app-mixmatch',
   templateUrl: './mixmatch.component.html',
@@ -19,16 +19,23 @@ export class MixmatchComponent implements OnInit {
   constructor(private dragula: DragulaService, public route: ActivatedRoute, private router: Router,
     public _cart: CartService) {
     this.dragula.setOptions('bag-charms', {});
-    _cart.getCart().subscribe(
-      data => console.log('from mixmatch', data)
-    )
 
-      _cart.getCheckoutUrl().subscribe(
+    // clear the local storage when the cart is loaded
+
+    // clear local storage and the cart as well
+    let selected_items = JSON.parse(localStorage.getItem('selected_items') || '[]');
+
+
+    _cart.getCheckoutUrl().subscribe(
       (data) => {
         this.checkoutUrl = data;
       }
     );
 
+  }
+
+  ngOnDestroy() {
+    localStorage.setItem("selected_items",'[]');
   }
 
   ngOnInit() {
@@ -41,7 +48,7 @@ export class MixmatchComponent implements OnInit {
     this.dragula
       .drop
       .subscribe(value => {
-        //console.log('drop', this.emptyCharms, this.usedCharms);
+        console.log('drop', this.emptyCharms, this.usedCharms);
       });
 
     this.dragula
@@ -53,13 +60,13 @@ export class MixmatchComponent implements OnInit {
     this.dragula
       .remove
       .subscribe(value => {
-        //console.log('remove', this.emptyCharms, this.usedCharms);
+        console.log('remove', this.emptyCharms, this.usedCharms);
       });
 
     this.dragula
       .dragend
       .subscribe(value => {
-        //console.log('dragend', this.emptyCharms, this.usedCharms);
+        console.log('dragend', this.emptyCharms, this.usedCharms);
         this.highlightStore = false;
       });
 
@@ -67,8 +74,32 @@ export class MixmatchComponent implements OnInit {
       .subscribe((data) => {
         const s = parseInt(data.step, 10);
         this.step = !s || s > 3 || s < 1 ? 1 : s;
+
+        // if step 3 , load all the charms 
+        if (this.step == 3) {
+          let selected_charms = JSON.parse(localStorage.getItem('selected_items')).filter(i => i.type == "charm");
+          this.emptyCharms = selected_charms;
+        }
+
       }
       );
+  }
+
+  checkout(){
+
+    // add existing items to cart and checkout 
+    let selected_items = JSON.parse(localStorage.getItem('selected_items'));
+  
+  
+    Promise.all(
+    selected_items.map(item=>{
+     return this._cart.addToCart({variant: item.cartItem.variants[0], quantity: 1});
+    })
+    ).then((done:any)=>{
+       window.location.href = done[0].checkoutUrl;
+    })
+
+   
   }
 
 
