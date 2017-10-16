@@ -38,6 +38,7 @@ export class MixmatchComponent implements OnInit {
 
   ngOnDestroy() {
     localStorage.setItem("selected_items",'[]');
+    this.dragula.destroy('bag-charms');
   }
 
   ngOnInit() {
