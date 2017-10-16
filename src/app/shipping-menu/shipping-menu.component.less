@@ -1,4 +1,11 @@
 .side-menu {
+  *:not(.close):not(.country-selector){
+    margin:0.5em auto;
+  }
+
+  img{
+    width:10vw;
+  }
   position: fixed;
   left: 0;
   top: 0;
@@ -6,7 +13,7 @@
   overflow: auto;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
   @media only screen and (max-width : 767px) {
     width: 300px;
   }
@@ -22,6 +29,15 @@
     text-align: left;
     padding-bottom: 25px;
     padding-top: 30px;
+  }
+
+  .menu-sub-title{
+     font-family: Asar;
+  font-size: 17px;
+  line-height: 1.65;
+  text-align: center;
+  color: #000000;
+  text-align: center;
   }
 }
 
@@ -193,5 +209,31 @@ label.css-label {
       padding: 25px 20px;
       text-align: center;
     }
+  }
+}
+
+.img {
+  margin:1em auto;
+}
+
+.delivery{
+width:20vw;
+  .delivery-header{
+  font-family: Montserrat;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.86;
+  text-align: center;
+  color: #191919;
+  }
+
+  .delivery-text{
+      font-family: Montserrat;
+      font-size: 14px;
+      line-height: 1.71;
+      text-align: center;
+      color: #999999;
+  text-align: center;
   }
 }

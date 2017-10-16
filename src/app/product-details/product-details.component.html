@@ -16,7 +16,7 @@
 
     <div class="shipping hidden-xs">
       <div class="shipping-title">
-        Shipping <span *ngIf="type=='bracelet'">| <span class="style-guide" (click)="openMenu()">Size Guide</span>
+        <span class="style-guide" (click)="openShippingMenu()"> Shipping </span> <span *ngIf="type=='bracelet'">| <span class="style-guide" (click)="openMenu()">Size Guide</span>
         <app-size-guide [menuStatus]="open" (closeMenu)="closeMenu($event)"></app-size-guide>
         </span>
       </div>
@@ -33,7 +33,7 @@
   <div class="col-xs-12 shipping visible-xs">
     <div class="desc" [innerHtml]="product.body_html"></div>
     <div class="shipping-title mobile-center">
-      Shipping <span *ngIf="type=='bracelet'">| <span class="style-guide" (click)="openMenu()">Size Guide</span>
+     <span class="style-guide" (click)="openShippingMenu()"> Shipping </span> <span *ngIf="type=='bracelet'">| <span class="style-guide" (click)="openMenu()">Size Guide</span>
         <app-size-guide [menuStatus]="open" (closeMenu)="closeMenu($event)"></app-size-guide>
       </span>
     </div>
@@ -103,3 +103,5 @@
 </div>
 
 <app-footer></app-footer>
+
+<app-shipping-menu #shippingMenu></app-shipping-menu>

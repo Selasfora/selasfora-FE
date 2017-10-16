@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { WindowService } from '../window.service';
 import { CartService } from '../cart.service';
@@ -6,6 +6,7 @@ import { Config } from '../config';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { ToastrService } from 'toastr-ng2';
+import {ShippingMenuComponent} from '../shipping-menu/shipping-menu.component'
 
 @Component({
   selector: 'app-product-details',
@@ -13,6 +14,7 @@ import { ToastrService } from 'toastr-ng2';
   styleUrls: ['./product-details.component.less']
 })
 export class ProductDetailsComponent implements OnInit {
+  @ViewChild('shippingMenu') shippingMenu: ShippingMenuComponent;
   mode = 'grid';
   id: any;
   type = '';
@@ -81,6 +83,10 @@ export class ProductDetailsComponent implements OnInit {
 
   openMenu() {
     this.open = true;
+  }
+
+  openShippingMenu(){
+    this.shippingMenu.open = true;
   }
 
   closeMenu(event) {
