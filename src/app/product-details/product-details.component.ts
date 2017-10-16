@@ -96,8 +96,6 @@ export class ProductDetailsComponent implements OnInit {
     this._cart.addToCart({variant: this.product.variants[0], quantity: 1})
     .subscribe(
       (data:any) => {
-        item.id = data.id;
-        this.storeItem(item);
         this._cart.updateUrl(data.checkoutUrl);
         this._cart.updateCount({ count: data.lineItemCount, price: data.subtotal });
         this.toastrService.success('Your product was added successfully!', 'Success!');
@@ -113,7 +111,7 @@ export class ProductDetailsComponent implements OnInit {
     this.mainImage = img;
   }
 
- storeItem(item){
+ /*storeItem(item){
      // add stuff to local storage 
     let selected_items:any[]  = JSON.parse(localStorage.getItem('selected_items')||'[]');
 
@@ -128,6 +126,6 @@ export class ProductDetailsComponent implements OnInit {
      selected_items.push(item_to_add);
 
      localStorage.setItem('selected_items',JSON.stringify(selected_items));
-  }
+  }*/
 
 }

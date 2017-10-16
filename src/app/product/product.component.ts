@@ -53,9 +53,12 @@ export class ProductComponent implements OnInit {
     
 
      // add the same to the cart;
-
-    this.storeItem(item);
-    if( this.canAddToCart == "false") return;
+  
+    
+    if( this.canAddToCart == "false") {
+      this.storeItem(item);
+      return;
+    };
 
     this._cart.addToCart({variant: this.item.variants[0], quantity: 1})
     .subscribe(
@@ -82,7 +85,7 @@ export class ProductComponent implements OnInit {
 
     let item_to_add = {
       title:item.title,
-      img:item.image.src,
+      img:item.images,
       type:item.product_type,
       id:item.id,
       cartItem:item
@@ -91,5 +94,6 @@ export class ProductComponent implements OnInit {
      selected_items.push(item_to_add);
 
      localStorage.setItem('selected_items',JSON.stringify(selected_items));
+      this.toastrService.success(`${item_to_add.type} has been selected`, 'Success!');
   }
 }

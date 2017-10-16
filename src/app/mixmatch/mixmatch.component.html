@@ -21,14 +21,14 @@
   <div class="body">
      <div class="empty-charm-container" [dragula]='"bag-charms"' [dragulaModel]='emptyCharms'>
           <div class="charm" *ngFor="let charm of emptyCharms; let i=index;">
-            <img [attr.src]="charm.img" alt="">
+            <img [attr.src]="charm.img[1].src" alt="">
           </div>
         </div>
     <div class="col-xs-10 col-xs-offset-1 drawContainer">
-      <div class="bracelet">
+      <div class="bracelet" [ngStyle]="{'background':bracelet,'background-size':'contain'}" >
         <div class="charm-container" [dragula]='"bag-charms"' [dragulaModel]='usedCharms'>
           <div class="charm" *ngFor="let charm of usedCharms; let i=index;">
-            <img [attr.src]="charm.img" alt="">
+            <img [attr.src]="charm.img[1].src" alt="">
           </div>
         </div>
       </div>
@@ -40,7 +40,7 @@
 
   <div class="store {{highlightStore && 'highlight'}}" [dragula]='"bag-charms"' [dragulaModel]='emptyCharms'>
     <div class="charm" *ngFor="let charm of emptyCharms; let i=index;">
-      <img src="{{charm}}" alt="">
+      <img src="{{charm.img[0].src}}" alt="">
     </div>
   </div>
 </div>
