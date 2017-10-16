@@ -10,7 +10,7 @@
 }
 
 .bracelet {
-  width: 100%;
+  width: 629px;
   min-height: 60vh;
  // background: url(/assets/images/mask.png);
   background-repeat: no-repeat;
@@ -33,39 +33,106 @@
   }
 }
 .charm-container {
-  position: absolute;
-  top: 57%;
-  left: 17vw;
-  width: 45vw;
-  height: 60px;
-  background: transparent;
-  text-align: center;
+  position: relative;
+    top: 20vh;
+    width: 550px;
+    height: 25vh;
+    margin:auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    .charm{width:90px}
+    .c1{
+      flex:1;
 
-  @media (min-width:1366px){
-    left:30%;
-    width:40%;
-  }
+      .charm{
+        &:last-child{top: 73px;}
+        &:last-child:not(:only-child){
+          top:-17px;
+        }
+        &:nth-child(2):not(:last-child){
+             top: -40px;
+             left: -40px;
+        }
+        &:nth-child(3){
+              top: -15vh!important;
+        }
+      }
 
-  .charm {
+    }
+
+
+    .c2{
+      flex:2;
+
+         .charm {
+           top:80px;
     display: inline-block;
     &:last-child:not(:only-child) {
       transform: rotate(180deg);
       position: relative;
-      top:6px;
+      left: 15px;
+      &:nth-child(3){
+        left: 117px;
+        margin-left: -130px;
+      }
+      
     }
     &:first-child:not(:only-child):not(:last-child) {
       //transform: rotate(10deg);
       position: relative;
-      top: 6px;
+     position: relative;
+         left: -140px;
+    margin-right: -200px;
+   
     }
     &:not(:first-child):not(:last-child) {
      // transform: rotate(-6deg);
       position: relative;
-      top: 10px;
+      left:3vw;
     }
     width: 10vw;
     text-align: center;
   }
+      
+    }
+
+    .c3{
+      flex:1;
+
+      .charm{
+        &:first-child:not(:last-child){
+          transform: rotate(180deg);
+        }
+        &:last-child{  
+          top: 73px;
+         left: -16px;  
+        transform: rotate(180deg);}
+        &:last-child:not(:only-child){
+          top: -19px;
+        }
+        &:nth-child(2):not(:last-child){
+            transform: rotate(180deg);
+                left: 20px;
+    top: -50px;
+        }
+        &:nth-child(3){
+              top: -15vh!important;
+        }
+      }
+    }
+
+    .c1,.c2,.c3{
+      height:100%;
+      display: block;
+    }
+
+  background: transparent;
+  text-align: center;
+
+
+
+
 }
 
 .store {
@@ -108,44 +175,16 @@
 
 /** make the mixmatch items fit in all screens **/
 @media only screen and (min-width:320px) and (max-width:480px) {
-  .bracelet{
-    min-height:40vh;
-  }
-
-  .charm-container{
-    width:30vh;
-    top:60%;
-    .charm {width:14vw}
-  }
 
   
 }
 
 @media only screen and (min-width:736px) and (max-width:760px) {
-  .bracelet{
-    min-height:40vh;
-  }
-
-  .charm-container{
-    width: 35vh;
-    top: 62%;
-    left: 56vh;
-    .charm {width:5vw}
-  }
 
   
 }
 
 @media only screen and (min-width:768px) and (max-width:800px) {
-  .bracelet{
-    min-height:40vh;
-  }
-
-  .charm-container{
-    width:34vh;
-    top:57%;
-    .charm {width:14vw}
-  }
 
   
 }
@@ -164,3 +203,10 @@ div.store{
     margin-left: 1em;
 }
 
+
+
+/** 16 charms css **/ 
+
+.debug{
+      border:1px solid black;
+}

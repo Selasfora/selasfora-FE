@@ -11,7 +11,9 @@ declare var window;
 export class MixmatchComponent implements OnInit {
   url = '/assets/images/mixmatch/charm';
   emptyCharms = [this.url + 1 + '.png', this.url + 2 + '.png', this.url + 3 + '.png'];
-  usedCharms = [];
+  usedCharms1 = [];
+  usedCharms2 = [];
+  usedCharms3 = [];
   bracelet = {};
   highlightStore = false;
   checkoutUrl = '';
@@ -51,7 +53,7 @@ export class MixmatchComponent implements OnInit {
     this.dragula
       .drop
       .subscribe(value => {
-        console.log('drop', this.emptyCharms, this.usedCharms);
+       // console.log('drop', this.emptyCharms, this.usedCharms);
       });
 
     this.dragula
@@ -63,13 +65,13 @@ export class MixmatchComponent implements OnInit {
     this.dragula
       .remove
       .subscribe(value => {
-        console.log('remove', this.emptyCharms, this.usedCharms);
+        //console.log('remove', this.emptyCharms, this.usedCharms);
       });
 
     this.dragula
       .dragend
       .subscribe(value => {
-        console.log('dragend', this.emptyCharms, this.usedCharms);
+       // console.log('dragend', this.emptyCharms, this.usedCharms);
         this.highlightStore = false;
       });
 

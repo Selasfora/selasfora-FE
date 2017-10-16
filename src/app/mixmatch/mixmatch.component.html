@@ -26,10 +26,26 @@
         </div>
     <div class="col-xs-10 col-xs-offset-1 drawContainer">
       <div class="bracelet" [ngStyle]="{'background':bracelet,'background-size':'contain'}" >
-        <div class="charm-container" [dragula]='"bag-charms"' [dragulaModel]='usedCharms'>
-          <div class="charm" *ngFor="let charm of usedCharms; let i=index;">
+        <div class="charm-container debug" >
+
+          <div class="c1 debug" [dragula]='"bag-charms"' [dragulaModel]='usedCharms1'>
+              <div class="charm" *ngFor="let charm of usedCharms1; let i=index;">
             <img [attr.src]="charm.img[1].src" alt="">
           </div>
+          </div>
+          <div class="c2 debug" [dragula]='"bag-charms"' [dragulaModel]='usedCharms2'>
+              <div class="charm" *ngFor="let charm of usedCharms2; let i=index;">
+            <img [attr.src]="charm.img[1].src" alt="">
+          </div>
+          </div>
+          <div class="c3 debug" [dragula]='"bag-charms"' [dragulaModel]='usedCharms3'>
+              <div class="charm" *ngFor="let charm of usedCharms3; let i=index;">
+            <img [attr.src]="charm.img[1].src" alt="">
+          </div>
+          </div>
+
+
+          
         </div>
       </div>
     </div>
