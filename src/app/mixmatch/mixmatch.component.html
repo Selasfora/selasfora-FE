@@ -19,13 +19,13 @@
     <app-header page="mixmatch" [type]="type" [filter]="type == 'charm'"></app-header>
   </div>
   <div class="body">
-     <div class="empty-charm-container" [dragula]='"bag-charms"' [dragulaModel]='emptyCharms'>
+     <div *ngIf="!errorMessage" class="empty-charm-container" [dragula]='"bag-charms"' [dragulaModel]='emptyCharms'>
           <div class="charm" *ngFor="let charm of emptyCharms; let i=index;">
             <img [attr.src]="charm.img[1].src" alt="">
           </div>
         </div>
-    <div class="col-xs-10 col-xs-offset-1 drawContainer">
-      <div class="bracelet" [ngStyle]="{'background':bracelet,'background-size':'contain'}" >
+    <div class="col-xs-10 col-xs-offset-1 drawContainer" >
+      <div *ngIf="!errorMessage" class="bracelet" [ngStyle]="{'background':bracelet,'background-size':'contain'}" >
         <div class="charm-container debug" >
 
           <div class="c1 debug" [dragula]='"bag-charms"' [dragulaModel]='usedCharms1'>
@@ -48,8 +48,12 @@
           
         </div>
       </div>
+      <div *ngIf="errorMessage" class="well well-warning">
+        {{errorMessage}}
+      </div>
     </div>
-    <div class="text-center">
+  
+    <div class="text-center" *ngIf="!errorMessage">
       <a (click)="checkout()" class="secondary-btn">Review order & Checkout</a>
     </div>
   </div>

@@ -15,6 +15,7 @@ export class MixmatchComponent implements OnInit {
   usedCharms2 = [];
   usedCharms3 = [];
   bracelet = {};
+  errorMessage = null;
   highlightStore = false;
   checkoutUrl = '';
   step = 1;
@@ -29,12 +30,20 @@ export class MixmatchComponent implements OnInit {
     // clear local storage and the cart as well
     let selected_items = JSON.parse(localStorage.getItem('selected_items') || '[]');
 
+    /*window.addEventListener('beforeunload',()=>{
+        localStorage.setItem("selected_items",'[]');
+    })*/
 
     _cart.getCheckoutUrl().subscribe(
       (data) => {
         this.checkoutUrl = data;
       }
     );
+
+    // show page 3 if there is already data
+    let data =  JSON.parse(localStorage.getItem('selected_items'));
+    if(data.length)
+    router.navigate(["/mixmatch"],{queryParams:{step:3}})
 
   }
 
@@ -82,12 +91,30 @@ export class MixmatchComponent implements OnInit {
 
         // if step 3 , load all the charms 
         if (this.step == 3) {
-          let selected_charms = JSON.parse(localStorage.getItem('selected_items')).filter(i => i.type == "charm");
+          let data =  JSON.parse(localStorage.getItem('selected_items'))
+          let selected_charms = data.filter(i => i.type == "charm");
           this.emptyCharms = selected_charms;
 
           // get the bracelet 
+          let bImg = data.find(i => i.type == "bracelet") ? data.find(i => i.type == "bracelet").img[1].src : null;
+          this.bracelet =` url(${bImg} )  no-repeat center`;
 
-          this.bracelet =` url( ${JSON.parse(localStorage.getItem('selected_items')).find(i => i.type == "bracelet").img[1].src})  no-repeat center`;
+          if(!selected_charms.length && !bImg){
+            this.errorMessage = "You have not selected any bracelet and charms. You can come here again after making a selection."
+          }
+
+          if(!selected_charms.length){
+            this.errorMessage = "You have not selected any  charms. You can come here again after making a selection."
+          }
+
+          if(!bImg){
+             this.errorMessage = "You have not selected a bracelet. You can come here again after making a selection."
+          }
+
+          if(bImg && selected_charms.length){
+            this.errorMessage = null;
+          }
+
           this.detector.detectChanges();
         }
 
