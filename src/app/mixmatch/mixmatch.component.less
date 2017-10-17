@@ -11,7 +11,7 @@
 
 .bracelet {
   width: 629px;
-  min-height: 60vh;
+  min-height: 440px;
  // background: url(/assets/images/mask.png);
   background-repeat: no-repeat;
   background-size: contain;
@@ -34,9 +34,9 @@
 }
 .charm-container {
   position: relative;
-    top: 20vh;
+    top: 120px;
     width: 550px;
-    height: 25vh;
+    height: 200px;
     margin:auto;
     display: flex;
     flex-direction: row;
@@ -46,16 +46,19 @@
       flex:1;
 
       .charm{
-        &:last-child{top: 73px;}
-        &:last-child:not(:only-child){
-          top:-17px;
+        &:last-child:only-child{top: 90px;}
+        &:last-child(:nth-child(2)){
+          top:0;
         }
         &:nth-child(2):not(:last-child){
-             top: -40px;
+             top: -30px;
              left: -40px;
         }
+        &:first-child:not(:only-child){
+              top: 20px;
+        }
         &:nth-child(3){
-              top: -15vh!important;
+          top:-90px;
         }
       }
 
@@ -66,15 +69,15 @@
       flex:2;
 
          .charm {
-           top:80px;
+           top:100px;
     display: inline-block;
     &:last-child:not(:only-child) {
       transform: rotate(180deg);
       position: relative;
       left: 15px;
       &:nth-child(3){
-        left: 117px;
-        margin-left: -130px;
+     left: 130px;
+    margin-left: -80px;
       }
       
     }
@@ -83,7 +86,7 @@
       position: relative;
      position: relative;
          left: -140px;
-    margin-right: -200px;
+    margin-right: -145px;
    
     }
     &:not(:first-child):not(:last-child) {
@@ -91,8 +94,7 @@
       position: relative;
       left:3vw;
     }
-    width: 10vw;
-    text-align: center;
+    
   }
       
     }
@@ -103,21 +105,23 @@
       .charm{
         &:first-child:not(:last-child){
           transform: rotate(180deg);
+          top:20px;
         }
         &:last-child{  
-          top: 73px;
+          top: 90px;
          left: -16px;  
         transform: rotate(180deg);}
         &:last-child:not(:only-child){
-          top: -19px;
+          top: 0px;
         }
         &:nth-child(2):not(:last-child){
             transform: rotate(180deg);
                 left: 20px;
-    top: -50px;
+
+    top: -30px;
         }
         &:nth-child(3){
-              top: -15vh!important;
+              top: -84px!important;
         }
       }
     }
@@ -137,7 +141,7 @@
 
 .store {
   width: 100px;
-  min-height: 200px;
+  min-height: 440px;
   position: absolute;
   left: 20px;
   top: 220px;
