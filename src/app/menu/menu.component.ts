@@ -66,6 +66,7 @@ export class MenuComponent implements OnInit {
     this.isLoggedIn = false;
     this.user = null;
     this.authService.logout(null).subscribe().unsubscribe();
+    localStorage.clear();
     return false;
   }
 }
