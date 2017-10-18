@@ -51,6 +51,9 @@ export class LoginComponent implements OnInit {
   }
 
   signIn(provider) {
+
+    this.formErrors.password = [];
+
     this.subscription = this._auth.login(provider)
     .subscribe(
       (data) => {
@@ -59,6 +62,10 @@ export class LoginComponent implements OnInit {
         this.auth.registerSocialUser(res);
         this.user.persistUser(res);
         this.window.location.href = '/';
+      },
+      err=>{
+        console.log("login error",err)
+        this.formErrors.password.push("Invalid username or password")
       }
     )
   }

@@ -56,7 +56,7 @@ export class CartService {
 
   addToCart(item): any {
     if (!item.variant) {
-      return Observable.throw({'status': 'error', 'message': 'no variant selected!'});
+      return Observable.throw({'status': 'error', 'message': 'no variant selected!'}).toPromise();
     }
 
     if (!item.quantity) { item.quantity = 1; }

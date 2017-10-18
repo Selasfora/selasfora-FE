@@ -41,7 +41,7 @@ export class MixmatchComponent implements OnInit {
     );
 
     // show page 3 if there is already data
-    let data =  JSON.parse(localStorage.getItem('selected_items'));
+    let data =  JSON.parse(localStorage.getItem('selected_items')) || [];
     if(data.length)
     router.navigate(["/mixmatch"],{queryParams:{step:3}})
 

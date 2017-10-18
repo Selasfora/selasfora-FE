@@ -61,7 +61,7 @@ export class ProductComponent implements OnInit {
     };
 
     this._cart.addToCart({variant: this.item.variants[0], quantity: 1})
-    .subscribe(
+    .then(
       (data: any) => {      
         this._cart.updateUrl(data.checkoutUrl);
         this._cart.updateCount({ count: data.lineItemCount, price: data.subtotal });
