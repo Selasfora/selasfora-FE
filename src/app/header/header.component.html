@@ -26,7 +26,7 @@
     </a>
 
     <app-icon title="Filter" image="/assets/images/filter.png"
-        class="hidden-xs" black="true" *ngIf="filter" (click)="openFiltersMenu()">
+        class="hidden-xs" black="true" *ngIf="showFilterIcon" (click)="openFiltersMenu()">
     </app-icon>
   </div>
 
@@ -42,7 +42,7 @@
   </div>
   <div class="visible-xs col-xs-4">
     <app-icon title="Filter" image="/assets/images/filter.png"
-        class="visible-xs" black="true" *ngIf="filter" (click)="openFiltersMenu()">
+        class="visible-xs" black="true" *ngIf="showFilterIcon" (click)="openFiltersMenu()">
     </app-icon>
   </div>
 </div>
@@ -53,7 +53,7 @@
     <a href="{{ url }}" target="_blank">
       <app-icon title="Cart" image="/assets/images/cart-black.png" class="hidden-xs"></app-icon>
     </a>
-    <app-icon title="Filter" image="/assets/images/filter.png" class="hidden-xs"></app-icon>
+    <app-icon title="Filter" image="/assets/images/filter.png" class="hidden-xs" *ngIf="showFilterIcon"></app-icon>
   </div>
 
   <div class="buttons col-xs-11  col-sm-6 col-md-6 text-center">
@@ -82,6 +82,7 @@
     <a href="{{ url }}" target="_blank">
       <app-icon title="Cart" image="/assets/images/cart-black.png" class="hidden-xs"></app-icon>
     </a>
+    <app-icon title="Filter" image="/assets/images/filter.png" class="hidden-xs" *ngIf="showFilterIcon" (click)="openFiltersMenu()"></app-icon>
    
   </div>
 
@@ -104,5 +105,5 @@
 </div>
 
 <app-menu [menuStatus]="menuStatus" (closeMenu)="closeMenu()"></app-menu>
-<app-filters-menu *ngIf="filter"></app-filters-menu>
+<app-filters-menu *ngIf="showFilterIcon"></app-filters-menu>
 

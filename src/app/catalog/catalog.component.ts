@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input,ChangeDetectorRef } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { FiltersService } from '../filters.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
@@ -11,7 +11,7 @@ import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
   styleUrls: ['./catalog.component.less']
 })
 export class CatalogComponent implements OnInit {
-
+  public showFilter = false;
   @Input() mode = 'grid';
   @Input('showCollections') showCollections  = true;
   @Input('canAddToCart') canAddToCart = true;
@@ -34,7 +34,8 @@ export class CatalogComponent implements OnInit {
   subscriptions: Array<any> = [];
 
   constructor(public service: AuthService, private route: ActivatedRoute, private router: Router,
-      public filterService: FiltersService, private slimLoadingBarService: SlimLoadingBarService) {
+      public filterService: FiltersService, private slimLoadingBarService: SlimLoadingBarService,
+      private changeDetector:ChangeDetectorRef) {
         console.log('constructor');
       const that = this;
       const interval = setInterval(function() {
@@ -50,6 +51,8 @@ export class CatalogComponent implements OnInit {
      
         var d = router.parseUrl(events.url)
         this.showCollections = d.queryParams.hasOwnProperty('collection') ? true : false;
+        this.showFilter = this.showCollections;
+
       })
   }
 
