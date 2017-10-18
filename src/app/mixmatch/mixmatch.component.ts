@@ -94,7 +94,7 @@ export class MixmatchComponent implements OnInit {
           let data =  JSON.parse(localStorage.getItem('selected_items'))
           let selected_charms = data.filter(i => i.type == "charm");
           this.emptyCharms = selected_charms;
-          this.usedCharms1 = this.usedCharms2 = this.usedCharms3 = [];
+          this.usedCharms1 = []; this.usedCharms2 =[]; this.usedCharms3 = [];
           // get the bracelet 
           let bImg = data.find(i => i.type == "bracelet") ? data.find(i => i.type == "bracelet").img[1].src : null;
           this.bracelet =` url(${bImg} )  no-repeat center`;
