@@ -50,7 +50,7 @@ export class CatalogComponent implements OnInit {
       router.events.subscribe((events:any)=>{
      
         var d = router.parseUrl(events.url)
-        this.showCollections = d.queryParams.hasOwnProperty('collection') ? true : false;
+        this.showCollections = d.queryParams.hasOwnProperty('collection') || (d.queryParams.hasOwnProperty('collection') == false && events.url.indexOf("/catalog/charm") < 0) ? true : false;
         this.showFilter = this.showCollections;
 
       })
