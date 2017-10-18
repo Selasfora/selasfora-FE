@@ -66,7 +66,8 @@ export class LoginComponent implements OnInit {
       err=>{
         console.log("login error",err)
         this.formErrors.password.push("Invalid username or password")
-      }
+      },
+      ()=>{}
     )
   }
 
@@ -114,6 +115,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    this.formErrors.password = [];
     let valid = this.validate();
     if(valid) {
       this.auth.login(this.loginForm.value)
@@ -121,7 +123,10 @@ export class LoginComponent implements OnInit {
           this.auth.setAuthHeader(data.session_token)
           this.user.persistUser(data);
           this.window.location.href = '/';
-        });
+        },
+      err=>{
+        this.formErrors.password.push("Invalid username or password")
+      });
     }
     return false;
   }
