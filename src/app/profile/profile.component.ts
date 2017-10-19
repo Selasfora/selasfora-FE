@@ -5,7 +5,7 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 import { ToastrService } from 'toastr-ng2';
-
+declare var window:any;
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
 
   addresses = [1];
   orders = [1, 2];
-
+  formSubmitted = false;
   validationMessages = {
     'fname': {
       'required': 'First name is required.',
@@ -72,7 +72,7 @@ export class ProfileComponent implements OnInit {
       fname: [this.user.first_name, Validators.required],
       lname: [this.user.last_name, Validators.required],
       email: [this.user.email, [Validators.email, Validators.required]],
-      dob: [''],
+      dob: ['',[Validators.required]],
       phone: [this.user.phone, Validators.required],
       password: [this.user.password],
       gender: [this.user.gender]
@@ -124,9 +124,15 @@ export class ProfileComponent implements OnInit {
         }
       }
     }
+
+ 
+
+    
+
     return valid;
   }
   onSubmit() {
+    this.formSubmitted = true;
     const valid = this.validate();
     const value = this.profileForm.value;
     if (valid) {
@@ -186,10 +192,15 @@ export class ProfileComponent implements OnInit {
   }
 
   logout() {
-    this.userService.removeUser();
-    this.user = null;
-    this.auth.logout(null).subscribe().unsubscribe();
+   
+   
+        window.localStorage.clear();
+         this.userService.removeUser();
+        this.user = null;
+         this.router.navigate(["/"]);
+
     return false;
+    
   }
 
   addAddress() {

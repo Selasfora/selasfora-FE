@@ -62,12 +62,14 @@ export class MenuComponent implements OnInit {
   }
 
   logout() {
-    this.userService.removeUser();
-    this.isLoggedIn = false;
-    this.user = null;
-    this.authService.logout(null).subscribe().unsubscribe();
-    localStorage.clear();
-    this.router.navigate(["/"]);
+   
+        this.isLoggedIn = false;
+        window.localStorage.clear();
+         this.userService.removeUser();
+        this.user = null;
+         this.router.navigate(["/"]);
+         this.cartCount = 0;
+
     return false;
   }
 }

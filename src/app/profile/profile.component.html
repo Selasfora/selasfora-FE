@@ -93,8 +93,8 @@
                     <input type="date" id="dob" name="dob" class="form-control"
                         minlength="8" maxlength="25"
                         formControlName="dob">
-                    <div *ngIf="formErrors.dob.length" class="error-msg">
-                      <div *ngFor="let item of formErrors.dob">{{ item }}</div>
+                    <div *ngIf="formSubmitted && profileForm.get('dob').errors.required" class="error-msg">
+                      <div>Date of birth required</div>
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -177,7 +177,7 @@
         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
           <app-address *ngFor="let address of addresses; let aid = index;" [address]="address" (onRemoved)="popAddress(aid)"></app-address>
           <div class="add-address" (click)="addAddress()">
-          Add
+          Add new address
         </div>
         </div>
       </div>

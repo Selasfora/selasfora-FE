@@ -37,11 +37,11 @@ export class CatalogComponent implements OnInit {
       public filterService: FiltersService, private slimLoadingBarService: SlimLoadingBarService,
       private changeDetector:ChangeDetectorRef) {
         console.log('constructor');
-      const that = this;
-      const interval = setInterval(function() {
-        if (that.type) {
+      this;
+      const interval = setInterval(()=>{
+        if (this.type) {
           clearInterval(interval);
-          that.fetchProducts();
+          this.fetchProducts();
         }
       }, 1000);
 
@@ -63,13 +63,13 @@ export class CatalogComponent implements OnInit {
       dev = 2;
     }
     let count = 0;
-    const that = this;
-    this.list.forEach(function(item, i) {
+    this;
+    this.list.forEach((item, i)=> {
       if (i && i % dev === 0) {
         count++;
       }
-      that.lists[count] = that.lists[count] || [];
-      that.lists[count].push(item);
+      this.lists[count] = this.lists[count] || [];
+      this.lists[count].push(item);
     });
   }
 
@@ -94,35 +94,35 @@ export class CatalogComponent implements OnInit {
           }
         }
 
-        const that = this;
+       
         this.fetchProducts();
 
-        this.subscriptions.push(that.service.fetchFilters().subscribe(
+        this.subscriptions.push(this.service.fetchFilters().subscribe(
           (res) => {
-            that.filters = res;
-            that.filterService.filters.next(that.filters);
+            this.filters = res;
+            this.filterService.filters.next(this.filters);
           }
         ));
 
         this.subscriptions.push(
-          that.filterService.query.subscribe(
+          this.filterService.query.subscribe(
             (d) => {
-              that.startLoading();
+              this.startLoading();
               if (!d || d === '?') {
-                this.subscriptions.push(that.service.fetchProducts(this.type)
+                this.subscriptions.push(this.service.fetchProducts(this.type)
                 .subscribe(
                   (res) => {
                     this.completeLoading();
-                    that.list = res;
-                    that.parseList();
+                    this.list = res;
+                    this.parseList();
                   }
                 ));
               } else {
-                const s = that.service.queryProducts(d + 'product_type=' + that.type).subscribe(
+                const s = this.service.queryProducts(d + 'product_type=' + this.type).subscribe(
                   (res) => {
-                    that.completeLoading();
-                    that.list = res;
-                    that.parseList();
+                    this.completeLoading();
+                    this.list = res;
+                    this.parseList();
                   }
                 );
                 d && this.subscriptions.push(s);
@@ -135,18 +135,18 @@ export class CatalogComponent implements OnInit {
   }
 
   fetchProducts() {
-    const that = this;
+  
     if (!this.type) {
       return ;
     }
     console.log('fetching', this.type)
     this.subscriptions.push(
-      that.service.fetchProducts(this.type)
+      this.service.fetchProducts(this.type)
       .subscribe(
         (res) => {
           this.completeLoading();
-          that.list = res;
-          that.parseList();
+          this.list = res;
+          this.parseList();
           if (this.mode !== 'grid') {
             const l = 350;
             this.slideContainerWidth = this.list.length * l + 200 + 'px';
@@ -160,17 +160,17 @@ export class CatalogComponent implements OnInit {
   }
 
   parseResponse(data) {
-    const that = this;
-    data.forEach(function(product) {
-      product.options.forEach(function(item) {
+
+    data.forEach((product)=> {
+      product.options.forEach((item)=> {
         const name = item.name.toLowerCase();
         const values = item.values;
-        if (that.filters[name]) {
-          that.filters[name] = that.arrayUnique(that.filters[name].concat(values));
+        if (this.filters[name]) {
+          this.filters[name] = this.arrayUnique(this.filters[name].concat(values));
         }
       });
     });
-    that.filterService.filters.next(that.filters);
+    this.filterService.filters.next(this.filters);
   }
 
   arrayUnique(array) {
@@ -186,7 +186,7 @@ export class CatalogComponent implements OnInit {
   }
 
   ngOnDesroy() {
-    this.subscriptions.forEach(function(item) {
+    this.subscriptions.forEach((item) => {
       item.unsubscribe();
     });
   }
