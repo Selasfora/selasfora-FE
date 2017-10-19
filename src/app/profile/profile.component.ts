@@ -14,9 +14,9 @@ import { ToastrService } from 'toastr-ng2';
 export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
   genderList = [
-    {title: 'Prefer to not specify'},
-    {title: 'Male'},
-    {title: 'Female'}
+    { title: 'Prefer to not specify' },
+    { title: 'Male' },
+    { title: 'Female' }
   ];
   user: any = {};
 
@@ -97,7 +97,7 @@ export class ProfileComponent implements OnInit {
   }
 
   setGender(value) {
-    this.profileForm.patchValue({gender: value.title});
+    this.profileForm.patchValue({ gender: value.title });
   }
 
   backClick() {
@@ -141,22 +141,43 @@ export class ProfileComponent implements OnInit {
       model.first_name = value.fname;
       model.last_name = value.lname;
       model.gender = value.gender[0].toUpperCase();
-
+      this.formErrors = {
+        'fname': [],
+        'lname': [],
+        'phone': [],
+        'email': [],
+        'dob': [],
+        'password': [],
+        'gender': []
+      };
       this.auth.saveUser(model)
         .subscribe(
-          (data) => {
-            this.userService.persistUser(data);
-            this.toastrService.success(
-              'Your Profile was saved successfully!',
-              'Success!'
-            );
-          },
-          (error) => {
-            this.toastrService.error(
-              'Something went wrong, couldn\'t save profile!',
-              'Error!'
-            );
-          }
+        (data) => {
+          this.userService.persistUser(data);
+          this.toastrService.success(
+            'Your Profile was saved successfully!',
+            'Success!'
+          );
+        },
+        (error) => {
+          this.toastrService.error(
+            `Something went wrong, couldn\'t save profile! 
+             (${JSON.parse(error._body).message})`,
+            'Error!'
+          );
+          debugger;
+          this.formErrors = {
+            'fname': [],
+            'lname': [],
+            'phone': [],
+            'email': [],
+            'dob': [],
+            'password': [],
+            'gender': []
+          };
+          this.formErrors[JSON.parse(error._body).validation.keys[0]].push(error.message)
+
+        }
         );
       return true;
     }
@@ -171,11 +192,11 @@ export class ProfileComponent implements OnInit {
     return false;
   }
 
-  addAddress(){
-    this.addresses.push(this.addresses.length+1);
+  addAddress() {
+    this.addresses.push(this.addresses.length + 1);
   }
 
-  popAddress(index){
-    this.addresses.splice(index,1);
+  popAddress(index) {
+    this.addresses.splice(index, 1);
   }
 }

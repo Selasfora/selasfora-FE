@@ -2,6 +2,7 @@ import { Component, Input, Inject } from '@angular/core';
 import { WindowService } from '../window.service';
 import { AuthService } from '../auth.service';
 import { ToastrService } from 'toastr-ng2';
+import {Router} from "@angular/router"
 
 @Component({
   selector: 'app-landing',
@@ -25,8 +26,18 @@ export class LandingComponent {
   public ctaText = '';
   public newsLetterEmail = '';
 
-  constructor(private $window: WindowService, private service: AuthService, private toastrService: ToastrService) {
+  constructor(private $window: WindowService, private service: AuthService, private toastrService: ToastrService,
+  private router:Router) {
     this.window = $window.nativeWindow;
+    setTimeout(function() {
+
+        document.querySelector('#\\30 > div > a').addEventListener("click",(e)=>{
+          e.preventDefault();
+          router.navigate(['/mixmatch'],{queryParams:{step:1}})
+          return false;
+        })
+   
+    }, (1000));
   }
 
   ngOnChanges() {
