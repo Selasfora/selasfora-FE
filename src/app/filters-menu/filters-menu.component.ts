@@ -107,7 +107,8 @@ export class FiltersMenuComponent implements OnInit {
   }
 
   clear() {
-    window.location.reload();
+    this.selectedFilters = {};
+    this.search();
   }
 
 }
