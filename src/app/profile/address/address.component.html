@@ -65,7 +65,7 @@
 
       <div class="row">
         <div class="col-xs-12 title">
-          <p>{{addressForm.get('city').value}}, {{addressForm.get('country').value}}, {{addressForm.get('zip').value}}</p>
+          <p *ngIf="addressForm.get('city').value">{{addressForm.get('city').value}}, {{addressForm.get('country').value}}, {{addressForm.get('zip').value}}</p>
           <p>Delivery to: {{address.name}}</p>
         </div>
       </div>

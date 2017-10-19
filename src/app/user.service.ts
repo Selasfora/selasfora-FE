@@ -75,7 +75,7 @@ export class UserService implements CanActivate, CanDeactivate<any> {
       url += "/"+id;
     }
     console.log('saving', address, 'method', method);
-    return this.auth.sendRequest(method, url, address, null);
+    return this.auth.sendRequest(method, url, address, this.auth.headers);
   }
   // { headers: {
   //     Authorization: this.window.sessionStorage.getItem('Authorization')
@@ -85,19 +85,19 @@ export class UserService implements CanActivate, CanDeactivate<any> {
     const method = 'delete';
 
     
-    return this.auth.sendRequest(method, url, {}, null);
+    return this.auth.sendRequest(method, url, {}, this.auth.headers);
   }
 
   getAddresses() {
     const url = this.baseURL + 'users/' +  this.user.id + '/addresses';
     const method = 'get';
-    return this.auth.sendRequest(method, url, {}, null);
+    return this.auth.sendRequest(method, url, {}, this.auth.headers);
   }
 
   getOrders() {
     const url = this.baseURL + 'users/' +  this.user.id + '/orders';
     const method = 'get';
-    return this.auth.sendRequest(method, url, {}, null);
+    return this.auth.sendRequest(method, url, {}, this.auth.headers);
   }
 
 }

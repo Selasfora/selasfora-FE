@@ -13,18 +13,30 @@ export class AuthService {
 
   public isLoggedIn = false;
 
-  private headers: Headers = new Headers();
+  public headers: Headers = new Headers();
 
   private window: any;
 
   constructor(private http: Http, private _window: WindowService) {
-    this.headers['Content-Type'] = 'application/json';
+    this.headers.append('Content-Type', 'application/json');
     this.window = _window.nativeWindow;
 
     if (this.window.user && this.window.user.session_token) {
-      this.headers['Authorization'] = this.window.user.session_token;
+      this.headers .append('Authorization', this.window.user.session_token);
     } else if (this.window.sessionStorage.getItem('Authorization')) {
-      this.headers['Authorization'] = this.window.sessionStorage.getItem('Authorization');
+      this.headers.append('Authorization',this.window.sessionStorage.getItem('Authorization'));
+    }
+  }
+
+  setHeaders(){
+    this.headers = new Headers();
+    this.headers.append('Content-Type', 'application/json');
+    this.window = this._window.nativeWindow;
+
+    if (this.window.user && this.window.user.session_token) {
+      this.headers .append('Authorization', this.window.user.session_token);
+    } else if (this.window.sessionStorage.getItem('Authorization')) {
+      this.headers.append('Authorization',this.window.sessionStorage.getItem('Authorization'));
     }
   }
 
@@ -146,6 +158,7 @@ export class AuthService {
   }
 
   sendRequest(method, url, data, options): Observable<any> {
+    this.setHeaders();
     const auth = {headers: this.headers};
     if (method !== 'get' && method !='delete') {
       return this.http[method](url, data, auth)
