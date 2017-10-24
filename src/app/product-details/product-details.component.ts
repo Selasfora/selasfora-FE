@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { WindowService } from '../window.service';
 import { CartService } from '../cart.service';
@@ -6,6 +6,7 @@ import { Config } from '../config';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { ToastrService } from 'toastr-ng2';
+import {ShippingMenuComponent} from '../shipping-menu/shipping-menu.component'
 
 @Component({
   selector: 'app-product-details',
@@ -13,6 +14,7 @@ import { ToastrService } from 'toastr-ng2';
   styleUrls: ['./product-details.component.less']
 })
 export class ProductDetailsComponent implements OnInit {
+  @ViewChild('shippingMenu') shippingMenu: ShippingMenuComponent;
   mode = 'grid';
   id: any;
   type = '';
@@ -83,15 +85,22 @@ export class ProductDetailsComponent implements OnInit {
     this.open = true;
   }
 
+  openShippingMenu(){
+    this.shippingMenu.open = true;
+  }
+
   closeMenu(event) {
     if(!event) {
       this.open = false;
     }
   }
 
-  addToCart() {
+  addToCart(item) {
+
+    
+
     this._cart.addToCart({variant: this.product.variants[0], quantity: 1})
-    .subscribe(
+    .then(
       (data:any) => {
         this._cart.updateUrl(data.checkoutUrl);
         this._cart.updateCount({ count: data.lineItemCount, price: data.subtotal });
@@ -107,4 +116,22 @@ export class ProductDetailsComponent implements OnInit {
   switchImage(img) {
     this.mainImage = img;
   }
+
+ /*storeItem(item){
+     // add stuff to local storage 
+    let selected_items:any[]  = JSON.parse(localStorage.getItem('selected_items')||'[]');
+
+
+    let item_to_add = {
+      title:item.title,
+      img:item.image.src,
+      type:item.product_type,
+      id:item.id,
+    }
+
+     selected_items.push(item_to_add);
+
+     localStorage.setItem('selected_items',JSON.stringify(selected_items));
+  }*/
+
 }

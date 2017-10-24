@@ -10,8 +10,8 @@ import 'rxjs/add/operator/switchMap';
 })
 export class ArticleComponent implements OnInit {
   id: string = '';
-  article: object = {};
-
+  article: any = {};
+  type:any;
   constructor(public service: AuthService, public route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {

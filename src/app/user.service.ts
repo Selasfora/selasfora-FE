@@ -67,37 +67,37 @@ export class UserService implements CanActivate, CanDeactivate<any> {
     }
   }
 
-  saveAddress(address) {
-    let url = this.baseURL + 'users/' +  this.user.id + '/addresses/';
+  saveAddress(address,id) {
+    let url = this.baseURL + 'users/' +  this.user.id + '/addresses';
     let method = 'post';
-    if (address.id) {
+    if (id) {
       method = 'put';
-      url += address.id;
+      url += "/"+id;
     }
     console.log('saving', address, 'method', method);
-    return this.auth.sendRequest(method, url, address, null);
+    return this.auth.sendRequest(method, url, address, this.auth.headers);
   }
   // { headers: {
   //     Authorization: this.window.sessionStorage.getItem('Authorization')
   //   }}
-  removeAddress(address) {
-    const url = this.baseURL + 'users/' +  this.user.id + '/addresses/' + address.id;
+  removeAddress(id) {
+    const url = this.baseURL + 'users/' +  this.user.id + '/addresses/' + id;
     const method = 'delete';
 
-    console.log('saving', address, 'method', method);
-    return this.auth.sendRequest(method, url, address, null);
+    
+    return this.auth.sendRequest(method, url, {}, this.auth.headers);
   }
 
   getAddresses() {
     const url = this.baseURL + 'users/' +  this.user.id + '/addresses';
     const method = 'get';
-    return this.auth.sendRequest(method, url, {}, null);
+    return this.auth.sendRequest(method, url, {}, this.auth.headers);
   }
 
   getOrders() {
     const url = this.baseURL + 'users/' +  this.user.id + '/orders';
     const method = 'get';
-    return this.auth.sendRequest(method, url, {}, null);
+    return this.auth.sendRequest(method, url, {}, this.auth.headers);
   }
 
 }

@@ -13,18 +13,30 @@ export class AuthService {
 
   public isLoggedIn = false;
 
-  private headers: any = {};
+  public headers: Headers = new Headers();
 
   private window: any;
 
   constructor(private http: Http, private _window: WindowService) {
-    this.headers['Content-Type'] = 'application/json';
+    this.headers.append('Content-Type', 'application/json');
     this.window = _window.nativeWindow;
 
     if (this.window.user && this.window.user.session_token) {
-      this.headers['Authorization'] = this.window.user.session_token;
+      this.headers .append('Authorization', this.window.user.session_token);
     } else if (this.window.sessionStorage.getItem('Authorization')) {
-      this.headers['Authorization'] = this.window.sessionStorage.getItem('Authorization');
+      this.headers.append('Authorization',this.window.sessionStorage.getItem('Authorization'));
+    }
+  }
+
+  setHeaders(){
+    this.headers = new Headers();
+    this.headers.append('Content-Type', 'application/json');
+    this.window = this._window.nativeWindow;
+
+    if (this.window.user && this.window.user.session_token) {
+      this.headers .append('Authorization', this.window.user.session_token);
+    } else if (this.window.sessionStorage.getItem('Authorization')) {
+      this.headers.append('Authorization',this.window.sessionStorage.getItem('Authorization'));
     }
   }
 
@@ -67,23 +79,22 @@ export class AuthService {
     return this.sendRequest(method, url, data, undefined);
   }
 
-  resetPassword(data) {
-    const url = this.baseURL + 'users/reset_password';
-    const method = 'post';
+  forgotPassword(email){
+        const url = this.baseURL + 'users/forgot_password?email='+email;
+        const method = 'get';
+        return this.sendRequest(method, url, { }, undefined);
+  }
 
-    return this.sendRequest(method, url, {
-      'redirect_url': 'http://selasfora.surge.sh/reset-password?step=2',
-      'email': data.email
-    }, undefined);
+  resetPassword(email) {
+      const url = this.baseURL + 'users/forgot_password?email='+email;
+        const method = 'get';
+        return this.sendRequest(method, url, { }, undefined);
   }
 
   setPassword(data) {
     const url = this.baseURL + 'users/reset_password';
-    const method = 'put';
-    this.headers.append('access-token', data.token);
-    this.headers.append('uid', data.uid);
-    this.headers.append('client', data.client_id);
-
+    const method = 'post';
+    this.headers.append('Authorization', data.token);
     return this.sendRequest(method, url, data, { headers: this.headers });
   }
 
@@ -147,8 +158,9 @@ export class AuthService {
   }
 
   sendRequest(method, url, data, options): Observable<any> {
+    this.setHeaders();
     const auth = {headers: this.headers};
-    if (method !== 'get') {
+    if (method !== 'get' && method !='delete') {
       return this.http[method](url, data, auth)
         .map(res => res.json());
     } else {

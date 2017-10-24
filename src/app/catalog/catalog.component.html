@@ -1,25 +1,22 @@
-<ng2-slim-loading-bar [color]="'#272caa'" [height]="'4px'"></ng2-slim-loading-bar>
+<ng2-slim-loading-bar [color]="'#272caa'" [height]="'4px'" *ngIf="!hideheader"></ng2-slim-loading-bar>
 
 <div>
-  <div class="header row margin0">
-    <app-header page="black" [type]="type" [filter]="type == 'charm'"></app-header>
+  <div class="header row margin0" *ngIf="!hideheader">
+    <app-header page="black" [type]="type" [filter]="type == 'charm'" [showFilterIcon]="showFilter" ></app-header>
   </div>
 
-  <div class="col-md-offset-1 col-md-10 body row">
-    <div class="page-title" *ngIf="pageTitle"> {{ pageTitle }} </div>
+  <div *ngIf="(showCollections && type =='charm') || (!showCollections && type=='bracelet') || (showCollections && type=='bracelet')" class="col-md-offset-1 col-md-10 body row ">
+    <div class="page-title" *ngIf="pageTitle && !hideheader"> {{ pageTitle }} </div>
     <!-- [class.container]="mode != 'grid'" -->
     <div style="overflow: auto;" [ngClass]="{'p-b-400': type == 'bracelet' && mode != 'grid'}">
-      <div class="hidden-xs"
-          [class.row]="mode == 'grid'"
-          [class.slide-container]="mode != 'grid'"
-          [style.width]="slideContainerWidth">
-        <div *ngFor="let item of list">
-          <app-product [item]="item" [mode]="mode"></app-product>
+      <div class="hidden-xs" [class.row]="mode == 'grid'" [class.slide-container]="mode != 'grid'" [style.width]="slideContainerWidth">
+        <div *ngFor="let item of list" class="product-container">
+          <app-product [item]="item" [mode]="mode" [canAddToCart]="canAddToCart"></app-product>
         </div>
       </div>
 
-      <div class="row visible-xs">
-        <app-product [item]="item" [mode]="mode" *ngFor="let item of list"></app-product>
+      <div class="row visible-xs hidden-md product-container" >
+        <app-product [item]="item" [mode]="mode" [canAddToCart]="canAddToCart" *ngFor="let item of list"></app-product>
       </div>
       <div *ngIf="!list.length" class="well well-warning">
         No products exists with your current filter, please try another combination
@@ -32,49 +29,46 @@
         Browse charms in {{ mode == 'grid' ? 'slide' : 'grid' }} mode
       </a>
 
-      <a href="/mixmatch?step=3" class="secondary-btn">
+      <a (click)="gotoMixMatch()" class="secondary-btn next">
         Next
       </a>
     </div>
   </div>
 
-  <div class="posts row margin0">
-    <div class="left col-xs-12 col-md-6">
+  <div class="posts row margin0" *ngIf="!collectionSelected">
+    <div class="left col-xs-12 col-md-12 odd" *ngIf="type=='charm'">
       <img src="/assets/images/left-image1.png">
       <div class="content">
         <div class="post-title">Daily Life collection</div>
         <div class="post-body">
-          We side with style over fashion,<br>
-          think timelessness is underrated
+          We side with style over fashion,<br> think timelessness is underrated
         </div>
-        <div class="button btn">Shop all charms</div>
+        <div class="button btn" [routerLink]="['/catalog/charm']" [queryParams]="{'collection':1}">Shop all charms</div>
       </div>
     </div>
-    <div class="right right-charm col-xs-12 col-md-6" *ngIf="type=='charm'">
+    <div class="right right-charm col-xs-12 col-md-6" *ngIf="type=='charm'" >
       <img src="/assets/images/right-image1.png">
       <div class="content">
         <div class="post-title black">Sprint collection</div>
         <div class="post-body black">
-          We side with style over fashion,<br>
-          think timelessness is underrated
+          We side with style over fashion,<br> think timelessness is underrated
         </div>
-        <div class="button btn">Shop all charms</div>
+        <div class="button btn"  [routerLink]="['/catalog/charm']" [queryParams]="{'collection':1}" >Shop all charms</div>
       </div>
     </div>
-    <div class="right right-bracelet col-xs-12 col-md-6" *ngIf="type=='bracelet'">
+    <div class="right right-bracelet col-xs-12 col-md-6" *ngIf="type=='charm'">
       <img src="/assets/images/right-image2.png">
       <div class="content">
         <div class="post-title">Sprint collection</div>
         <div class="post-body">
-          We side with style over fashion,<br>
-          think timelessness is underrated
+          We side with style over fashion,<br> think timelessness is underrated
         </div>
-        <div class="button btn">Shop all charms</div>
+        <div class="button btn" [routerLink]="['/catalog/bracelet']" [queryParams]="{'collection':1}" >Shop all bracelets</div>
       </div>
     </div>
   </div>
 
-  <div class="row margin0">
+  <div class="row margin0" >
     <app-footer></app-footer>
   </div>
 </div>

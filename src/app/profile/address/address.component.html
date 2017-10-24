@@ -14,7 +14,7 @@
             <div class="col-xs-6">
               <label>Address 1</label>
               <input type="text" id="address" name="address" class="form-control"
-                  formControlName="address">
+                  formControlName="address1">
             </div>
             <div class="col-xs-6">
               <label>Address 2</label>
@@ -47,7 +47,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-6 remove" (click)="remove()">
+        <div class="col-xs-6 remove" (click)="remove(addid)">
           Remove
         </div>
         <div class="col-xs-6 save" (click)="save()">
@@ -59,21 +59,21 @@
     <div class="well" *ngIf="!editMode">
       <div class="row">
         <div class="col-xs-12 title">
-          {{addressForm.address}}
+          {{addressForm.address1}}
         </div>
       </div>
 
       <div class="row">
         <div class="col-xs-12 title">
-          <p>{{addressForm.city}}, {{addressForm.country}}, {{addressForm.zip}}</p>
-          <p>Delivery to: {{name}}</p>
+          <p *ngIf="addressForm.get('city').value">{{addressForm.get('city').value}}, {{addressForm.get('country').value}}, {{addressForm.get('zip').value}}</p>
+          <p>Delivery to: {{address.name}}</p>
         </div>
       </div>
 
       <div class="row">
         <div class="col-xs-11 title">
           <label>
-            <input type="checkbox" (change)="setDefault()"> Default address
+            <input type="checkbox" formControlName="default" (change)="setDefault()"> Default address
           </label>
         </div>
         <div class="col-xs-1 title">

@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
   @Input() type;
   @Input() page;
   @Input() filter = false;
+  @Input('showFilterIcon') showFilterIcon = false;
   public url = '';
 
   constructor(public filtersService: FiltersService, public cart: CartService) {

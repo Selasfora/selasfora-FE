@@ -5,7 +5,7 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 import { ToastrService } from 'toastr-ng2';
-
+declare var window:any;
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -14,15 +14,15 @@ import { ToastrService } from 'toastr-ng2';
 export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
   genderList = [
-    {title: 'Prefer to not specify'},
-    {title: 'Male'},
-    {title: 'Female'}
+    { title: 'Prefer to not specify' },
+    { title: 'Male' },
+    { title: 'Female' }
   ];
   user: any = {};
 
-  addresses = [1, 2];
+  addresses = [1];
   orders = [1, 2];
-
+  formSubmitted = false;
   validationMessages = {
     'fname': {
       'required': 'First name is required.',
@@ -72,7 +72,7 @@ export class ProfileComponent implements OnInit {
       fname: [this.user.first_name, Validators.required],
       lname: [this.user.last_name, Validators.required],
       email: [this.user.email, [Validators.email, Validators.required]],
-      dob: [''],
+      dob: ['',[Validators.required]],
       phone: [this.user.phone, Validators.required],
       password: [this.user.password],
       gender: [this.user.gender]
@@ -97,7 +97,7 @@ export class ProfileComponent implements OnInit {
   }
 
   setGender(value) {
-    this.profileForm.patchValue({gender: value.title});
+    this.profileForm.patchValue({ gender: value.title });
   }
 
   backClick() {
@@ -124,9 +124,15 @@ export class ProfileComponent implements OnInit {
         }
       }
     }
+
+ 
+
+    
+
     return valid;
   }
   onSubmit() {
+    this.formSubmitted = true;
     const valid = this.validate();
     const value = this.profileForm.value;
     if (valid) {
@@ -141,22 +147,43 @@ export class ProfileComponent implements OnInit {
       model.first_name = value.fname;
       model.last_name = value.lname;
       model.gender = value.gender[0].toUpperCase();
-
+      this.formErrors = {
+        'fname': [],
+        'lname': [],
+        'phone': [],
+        'email': [],
+        'dob': [],
+        'password': [],
+        'gender': []
+      };
       this.auth.saveUser(model)
         .subscribe(
-          (data) => {
-            this.userService.persistUser(data);
-            this.toastrService.success(
-              'Your Profile was saved successfully!',
-              'Success!'
-            );
-          },
-          (error) => {
-            this.toastrService.error(
-              'Something went wrong, couldn\'t save profile!',
-              'Error!'
-            );
-          }
+        (data) => {
+          this.userService.persistUser(data);
+          this.toastrService.success(
+            'Your Profile was saved successfully!',
+            'Success!'
+          );
+        },
+        (error) => {
+          this.toastrService.error(
+            `Something went wrong, couldn\'t save profile! 
+             (${JSON.parse(error._body).message})`,
+            'Error!'
+          );
+          debugger;
+          this.formErrors = {
+            'fname': [],
+            'lname': [],
+            'phone': [],
+            'email': [],
+            'dob': [],
+            'password': [],
+            'gender': []
+          };
+          this.formErrors[JSON.parse(error._body).validation.keys[0]].push(error.message)
+
+        }
         );
       return true;
     }
@@ -165,10 +192,22 @@ export class ProfileComponent implements OnInit {
   }
 
   logout() {
-    this.userService.removeUser();
-    this.user = null;
-    this.auth.logout(null).subscribe().unsubscribe();
+   
+   
+        window.localStorage.clear();
+         this.userService.removeUser();
+        this.user = null;
+         this.router.navigate(["/"]);
+
     return false;
+    
   }
 
+  addAddress() {
+    this.addresses.push(this.addresses.length + 1);
+  }
+
+  popAddress(index) {
+    this.addresses.splice(index, 1);
+  }
 }

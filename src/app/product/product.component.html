@@ -35,7 +35,7 @@
 
     <a class="main-btn show-on-hover hidden-xs"
        *ngIf="item.product_type == 'bracelet'"
-       href="/mixmatch?step=2"
+       [routerLink]="['/mixmatch']" [queryParams]="{step:2}"
        (click)="selectContinue(item)">
       + Select & Continue
     </a>

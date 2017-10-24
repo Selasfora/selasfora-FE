@@ -6,6 +6,23 @@ h1 {
   }
 }
 
+.add-address{
+      width: 50%;
+    height: 60px;
+    background-color: #fff;
+    color: white;
+    font-family: Montserrat;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 5;
+    margin-top: 20px;
+    border: 0;
+    cursor: pointer;
+    margin: auto;
+    color: black;
+    border:1px solid black;
+}
+
 .col-md-6 {
   text-align: left;
 }
@@ -194,6 +211,12 @@ button {
 .header {
   width: 100%;
   background: url('/assets/images/profile.png') no-repeat;
+  background-size:cover;
+
+  min-height:54vh;
+
+
+
   .bar {
     padding: 30px 40px;
     position: absolute;
@@ -214,12 +237,18 @@ button {
     .link {
       font-weight: 600;
     }
+
+    @media screen and (max-height:414px){
+    top:-40px;
+    }
   }
 }
 
 .panel {
   border: 0;
   .panel-heading {
+    min-height:10vh;
+    padding-top:4vh;
     background: white;
     text-align: left;
     a {
@@ -243,3 +272,8 @@ button {
     padding-top: 20px;
   }
 }
+
+a{
+  color:#272caa;
+}
+

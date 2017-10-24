@@ -10,6 +10,15 @@ import { WindowService } from '../window.service'
 })
 
 export class LandingpageComponent implements OnInit {
+  public bgColors = [
+ "#272caa",
+ "#ffffff",
+  "#191919",
+  "#c6c6c8",
+  "#fffffff",
+  "#272caa"
+  ]
+
   public pages = [
     {
       imagePath: '/assets/images/02@2x.png',

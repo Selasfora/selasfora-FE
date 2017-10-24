@@ -22,7 +22,7 @@ Angular2SocialLoginModule.loadProvidersScripts(providers);
 
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-
+  googleKey:string;
   validationMessages = {
     'email': {
       'required': 'Email is required.',
@@ -51,6 +51,9 @@ export class LoginComponent implements OnInit {
   }
 
   signIn(provider) {
+
+    this.formErrors.password = [];
+
     this.subscription = this._auth.login(provider)
     .subscribe(
       (data) => {
@@ -59,7 +62,12 @@ export class LoginComponent implements OnInit {
         this.auth.registerSocialUser(res);
         this.user.persistUser(res);
         this.window.location.href = '/';
-      }
+      },
+      err=>{
+        console.log("login error",err)
+        this.formErrors.password.push("Invalid username or password")
+      },
+      ()=>{}
     )
   }
 
@@ -107,6 +115,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    this.formErrors.password = [];
     let valid = this.validate();
     if(valid) {
       this.auth.login(this.loginForm.value)
@@ -114,7 +123,10 @@ export class LoginComponent implements OnInit {
           this.auth.setAuthHeader(data.session_token)
           this.user.persistUser(data);
           this.window.location.href = '/';
-        });
+        },
+      err=>{
+        this.formErrors.password.push("Invalid username or password")
+      });
     }
     return false;
   }

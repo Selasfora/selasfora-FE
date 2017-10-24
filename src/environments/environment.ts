@@ -6,5 +6,5 @@
 export const environment = {
   production: false,
   urlPath: 'http://localhost:4200/',
-  apiPath: 'https://selasfora-api-stg.herokuapp.com/api/'
+  apiPath: 'http://selasfora-api-stg.us-east-2.elasticbeanstalk.com/api/',
 };

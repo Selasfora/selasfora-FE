@@ -9,7 +9,7 @@ import { Config } from './Config';
 
 @Injectable()
 export class CartService {
-  private cart = null;
+  public cart = null;
   private window;
   private checkoutURL: BehaviorSubject<string> = new BehaviorSubject('');
   private basketCount: BehaviorSubject<object> = new BehaviorSubject({});
@@ -56,14 +56,14 @@ export class CartService {
 
   addToCart(item): any {
     if (!item.variant) {
-      return Observable.throw({'status': 'error', 'message': 'no variant selected!'});
+      return Observable.throw({'status': 'error', 'message': 'no variant selected!'}).toPromise();
     }
 
     if (!item.quantity) { item.quantity = 1; }
     const that = this;
-    return Observable.fromPromise(
-      that.cart.createLineItemsFromVariants(item)
-    );
+
+    return  that.cart.createLineItemsFromVariants(item)
+    
   }
 
   updateUrl(url) {

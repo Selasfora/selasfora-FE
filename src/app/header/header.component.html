@@ -1,4 +1,4 @@
-<div *ngIf="page != 'catalog' && page != 'black'" class="row">
+<div *ngIf="page != 'catalog' && page != 'black' && page !='mixmatch'" class="row">
   <div class="left-part col-sm-5 col-xs-4">
     <app-icon title="Menu" image="/assets/images/menu@2x.png" (click)="openMenu()"></app-icon>
     <a href="{{ url }}" target="_blank">
@@ -12,9 +12,9 @@
   </a>
 
   <div class="right-part hidden-xs hidden-sm col-sm-5">
-    <a routerLink="/catalog/bracelet" class="main-btn">Bracelet</a>
-    <a routerLink="/catalog/bracelet" class="main-btn">Charm</a>
-    <a href="/mixmatch?step=1" class="secondary-btn">Create yours</a>
+    <a routerLink="/catalog/bracelet" class="main-btn">Bracelets</a>
+    <a routerLink="/catalog/charm" class="main-btn">Charms</a>
+    <a [routerLink]="['/mixmatch']" [queryParams]="{step:1}" class="secondary-btn">Create yours</a>
   </div>
 </div>
 
@@ -26,7 +26,7 @@
     </a>
 
     <app-icon title="Filter" image="/assets/images/filter.png"
-        class="hidden-xs" black="true" *ngIf="filter" (click)="openFiltersMenu()">
+        class="hidden-xs" black="true" *ngIf="showFilterIcon" (click)="openFiltersMenu()">
     </app-icon>
   </div>
 
@@ -38,37 +38,72 @@
   <div class="right-part hidden-xs hidden-sm col-sm-5">
     <a routerLink="/catalog/bracelet" class="header-btn">Bracelets</a>
     <a routerLink="/catalog/charm" class="header-btn">Charms</a>
-    <a href="/mixmatch?step=1" class="main-btn">Create yours</a>
+    <a [routerLink]="['/mixmatch']" [queryParams]="{step:1}" class="main-btn">Create yours</a>
   </div>
   <div class="visible-xs col-xs-4">
     <app-icon title="Filter" image="/assets/images/filter.png"
-        class="visible-xs" black="true" *ngIf="filter" (click)="openFiltersMenu()">
+        class="visible-xs" black="true" *ngIf="showFilterIcon" (click)="openFiltersMenu()">
     </app-icon>
   </div>
 </div>
 
 <div *ngIf="page == 'catalog'" class="catalog-header row">
-  <div class="left-part col-sm-4 col-xs-4">
+  <div class="left-part col-sm-4 col-xs-4 hidden-xs">
     <app-icon title="Menu" image="/assets/images/menu-black.png" (click)="openMenu()"></app-icon>
     <a href="{{ url }}" target="_blank">
       <app-icon title="Cart" image="/assets/images/cart-black.png" class="hidden-xs"></app-icon>
     </a>
-    <app-icon title="Filter" image="/assets/images/filter.png" class="hidden-xs"></app-icon>
+    <app-icon title="Filter" image="/assets/images/filter.png" class="hidden-xs" *ngIf="showFilterIcon"></app-icon>
   </div>
 
-  <div class="buttons hidden-xs hidden-sm col-sm-4 text-center">
+  <div class="buttons col-xs-11  col-sm-6 col-md-6 text-center">
     <a routerLink="/catalog/bracelet" class="transparent-btn" [class.active]="type == 'bracelet'">
       Bracelets
     </a>
     <a routerLink="/catalog/charm" class="transparent-btn" [class.active]="type == 'charm'">
       Charms
     </a>
-    <a href="/mixmatch?step=1" class="transparent-btn" [class.active]="type == 'mix'">Mix & Match</a>
+    <a [routerLink]="['/mixmatch']" [queryParams]="{step:1}" class="transparent-btn" [class.active]="type == 'mix'">Mix & Match</a>
+  </div>
+  
+
+  <div class="right-part  col-sm-2 col-md-2 col-xs-1">
+    <button routerLink="/" type="button" class="close" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>
+
+<!-- mix match header -->
+
+<div *ngIf="page == 'mixmatch'" class="catalog-header row">
+  <div class="left-part col-sm-4 col-xs-4 hidden-xs">
+    <app-icon title="Menu" image="/assets/images/menu-black.png" (click)="openMenu()"></app-icon>
+    <a href="{{ url }}" target="_blank">
+      <app-icon title="Cart" image="/assets/images/cart-black.png" class="hidden-xs"></app-icon>
+    </a>
+    <app-icon title="Filter" image="/assets/images/filter.png" class="hidden-xs" *ngIf="showFilterIcon" (click)="openFiltersMenu()"></app-icon>
+   
   </div>
 
-  <div class="right-part hidden-xs col-sm-3">
+  <div class="buttons col-xs-11  col-sm-6 col-md-6 text-center">
+    <a [routerLink]="['/mixmatch']" [queryParams]="{step:1}" class="transparent-btn" [class.active]="type == 'bracelet'">
+      Bracelets
+    </a>
+    <a [routerLink]="['/mixmatch']" [queryParams]="{step:2}" class="transparent-btn" [class.active]="type == 'charm'">
+      Charms
+    </a>
+    <a [routerLink]="['/mixmatch']" [queryParams]="{step:3}" class="transparent-btn" [class.active]="type == 'mix'">Mix & Match</a>
+  </div>
+  
+
+  <div class="right-part  col-sm-2 col-md-2 col-xs-1">
+    <button routerLink="/" type="button" class="close" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
 </div>
 
 <app-menu [menuStatus]="menuStatus" (closeMenu)="closeMenu()"></app-menu>
-<app-filters-menu *ngIf="filter"></app-filters-menu>
+<app-filters-menu *ngIf="showFilterIcon"></app-filters-menu>
+

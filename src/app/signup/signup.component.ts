@@ -53,6 +53,19 @@ export class SignupComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private auth: AuthService, private _location: Location,
     private router: Router, private user: UserService) {
+
+      // check for confirmation router
+      router.events.subscribe((event:any)=>{
+        let d = router.parseUrl(event.url);
+          if(d.queryParams.hasOwnProperty('verificationCode')){
+            this.sentConfirmation = true;
+            let email = d.queryParams['email'];
+            let code = d.queryParams['verificationCode'];
+            router.navigate(["/login"]);
+
+          }
+      })
+
   }
 
   backClick() {
@@ -96,7 +109,7 @@ export class SignupComponent implements OnInit {
             this.sentConfirmation = true;
           },
           (error) => {
-            this.errorMessage = error.json().errors.full_messages[0];
+            this.errorMessage = error.json().errors ? error.json().errors.full_messages[0] : error.json().message;
           }
         );
     }

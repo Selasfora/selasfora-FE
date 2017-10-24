@@ -8,9 +8,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class DropdownComponent implements OnInit {
   showMenu = '';
   
-  @Input() selectedItem = 'Select';
+  @Input() selectedItem:any = 'Select';
   @Input() isForm = false;
-  @Input() itemList = [
+  @Input() itemList:any[] = [
     {
       title: 'Small',
       subtitle: 'Wrist size: < 15 cm'
@@ -36,7 +36,7 @@ export class DropdownComponent implements OnInit {
     this.showMenu = this.showMenu == 'show' ? '' : 'show';
   }
 
-  selectItem(item) {
+  selectItem(item:any) {
     this.showMenu = '';
     this.selectedItem = item;
     this.itemChange.emit(item);
