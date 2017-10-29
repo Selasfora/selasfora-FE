@@ -50,6 +50,8 @@ import { SizeGuideComponent } from './size-guide/size-guide.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AddressComponent } from './profile/address/address.component';
 import { MixmatchComponent } from './mixmatch/mixmatch.component';
+import { OrderTrackingComponent } from './order-tracking/order-tracking.component';
+import { TimelineComponentComponent } from './order-tracking/timeline-component/timeline-component.component';
 
 
 @NgModule({
@@ -80,7 +82,9 @@ import { MixmatchComponent } from './mixmatch/mixmatch.component';
     ProfileComponent,
     AddressComponent,
     MixmatchComponent,
-    ShippingMenuComponent
+    ShippingMenuComponent,
+    OrderTrackingComponent,
+    TimelineComponentComponent
   ],
   imports: [
     BrowserModule,

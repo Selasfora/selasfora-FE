@@ -16,7 +16,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { ReportComponent } from './report/report.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MixmatchComponent } from './mixmatch/mixmatch.component';
-
+import {OrderTrackingComponent} from './order-tracking/order-tracking.component'
 const appRoutes: Routes = [
   {
     path: 'catalog/:type',
@@ -33,6 +33,10 @@ const appRoutes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+  },
+  {
+    path: 'profile/orders/:id',
+    component: OrderTrackingComponent,
   },
   {
     path: 'journal',

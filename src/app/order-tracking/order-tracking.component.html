@@ -1,0 +1,51 @@
+<ng2-slim-loading-bar [color]="'#272caa'" [height]="'4px'" *ngIf="!hideheader"></ng2-slim-loading-bar>
+
+<div>
+
+  <div class="header row margin0" *ngIf="!hideheader">
+    <app-header page="black" [type]="type" [filter]="type == 'charm'" showFilterIcon="false"></app-header>
+  </div>
+
+  <!-- order summary -->
+  <div class="order-summary row">
+    <div class="order-summary-container container">
+      <h1 class="summary-title" *ngIf="pageTitle">{{pageTitle}}</h1>
+
+      <!-- tracking details -->
+      <div class="row">
+        <!-- left description -->
+        <div class="col-md-3 col-xs-12">
+          <div class="row">
+            <div class="col-md-12 col-xs-12 upper">
+              <p class="status">Arrived</p>
+              <h6 class="status-date">arrival date</h6>
+            </div>
+            <div class="col-md-12 col-xs-12 lower">
+              <p class="status-description">some text goes here</p>
+            </div>
+          </div>
+        </div>
+        <!-- right graphic -->
+        <div class="col-md-9 col-xs-12">
+          <div class="row">
+            <div class="col-md-12 col-xs-12 upper">
+                <app-timeline-component></app-timeline-component>
+              <div class="col-md-12 col-xs-12 lower">
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+
+
+
+    <div class="row margin0">
+      <app-footer></app-footer>
+    </div>
+
+  </div>
