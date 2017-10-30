@@ -17,11 +17,11 @@
         <div class="col-md-3 col-xs-12">
           <div class="row">
             <div class="col-md-12 col-xs-12 upper">
-              <p class="status">Arrived</p>
-              <h6 class="status-date">arrival date</h6>
+              <p class="status">{{orderStatus}}</p>
+              <h6 class="status-date">{{arrivalDate}}</h6>
             </div>
             <div class="col-md-12 col-xs-12 lower">
-              <p class="status-description">some text goes here</p>
+              <p class="status-description">{{  statusDescription }}</p>
             </div>
           </div>
         </div>
@@ -31,7 +31,14 @@
             <div class="col-md-12 col-xs-12 upper">
                 <app-timeline-component></app-timeline-component>
               <div class="col-md-12 col-xs-12 lower">
-
+                <table class="items-summary">
+                       <tr>
+                          <th>Item</th><th>Total</th><th>Order number</th>
+                      </tr>
+                      <tr>
+                          <td>{{itemCount}}</td><td>{{orderTotal}}</td><td>{{orderNumber}}</td>
+                      </tr>
+                </table>
               </div>
             </div>
           </div>
@@ -41,11 +48,35 @@
 
       </div>
     </div>
+  </div>
 
-
-
-    <div class="row margin0">
-      <app-footer></app-footer>
+<!-- ordered items -->
+  <div class="order-items-container row">
+    <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4 order-item" *ngFor="let item of orderItems">
+      <div class="row">
+        <div class="col-md-4 col-xs-4">
+          <img src="http://via.placeholder.com/150x150"/>
+        </div>
+        <div class="col-md-8 col-xs-8">
+          <h4 class="item-title">Product</h4>
+          <div class="row">
+              <div class="col-md-9 col-xs-9">
+                  <table class="item-description">
+                    <tr>
+                      <th>Quantity</th><th>Price</th>
+                    </tr>
+                    <tr><td>x2</td><td>2000</td></tr>
+                  </table>
+              </div>
+              <div class="col-md-3 col-xs-3 reorder">
+                <a>reorder</a>
+              </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 
+  <div class="row">
+    <app-footer></app-footer>
   </div>
