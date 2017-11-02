@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule,HttpClient } from '@angular/common/http';
 import { ToastrModule } from 'toastr-ng2';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -53,6 +53,14 @@ import { MixmatchComponent } from './mixmatch/mixmatch.component';
 import { OrderTrackingComponent } from './order-tracking/order-tracking.component';
 import { TimelineComponentComponent } from './order-tracking/timeline-component/timeline-component.component';
 
+// angular translate module 
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -90,7 +98,7 @@ import { TimelineComponentComponent } from './order-tracking/timeline-component/
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule,
+    HttpClientModule,
     routing,
     Angular2SocialLoginModule,
     Ng2PageScrollModule.forRoot(),
@@ -98,7 +106,14 @@ import { TimelineComponentComponent } from './order-tracking/timeline-component/
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     SlimLoadingBarModule.forRoot(),
-    DragulaModule
+    DragulaModule,
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+  })
   ],
   providers: [
     AuthService,

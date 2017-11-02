@@ -109,7 +109,7 @@ export class CatalogComponent implements OnInit {
             (d) => {
               this.startLoading();
               if (!d || d === '?') {
-                this.subscriptions.push(this.service.fetchProducts(this.type)
+                this.subscriptions.push(this.service.fetchProducts(this.type,1)
                 .subscribe(
                   (res) => {
                     this.completeLoading();
@@ -141,7 +141,7 @@ export class CatalogComponent implements OnInit {
     }
     console.log('fetching', this.type)
     this.subscriptions.push(
-      this.service.fetchProducts(this.type)
+      this.service.fetchProducts(this.type,1)
       .subscribe(
         (res) => {
           this.completeLoading();

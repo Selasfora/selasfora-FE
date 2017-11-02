@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Http, Headers } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { WindowService } from './window.service';
 
@@ -13,11 +13,11 @@ export class AuthService {
 
   public isLoggedIn = false;
 
-  public headers: Headers = new Headers();
+  public headers: HttpHeaders = new HttpHeaders();
 
   private window: any;
 
-  constructor(private http: Http, private _window: WindowService) {
+  constructor(private http: HttpClient, private _window: WindowService) {
     this.headers.append('Content-Type', 'application/json');
     this.window = _window.nativeWindow;
 
@@ -29,7 +29,7 @@ export class AuthService {
   }
 
   setHeaders(){
-    this.headers = new Headers();
+    this.headers = new HttpHeaders();
     this.headers.append('Content-Type', 'application/json');
     this.window = this._window.nativeWindow;
 
@@ -98,7 +98,7 @@ export class AuthService {
     return this.sendRequest(method, url, data, { headers: this.headers });
   }
 
-  fetchProducts(type) {
+  fetchProducts(type,page) {
     const url = this.baseURL + 'products?product_type=' + type +'&page=1&limit=9';
     return this.sendRequest('get', url, {}, null);
   }
@@ -162,10 +162,10 @@ export class AuthService {
     const auth = {headers: this.headers};
     if (method !== 'get' && method !='delete') {
       return this.http[method](url, data, auth)
-        .map(res => res.json());
+        .map(res => res);
     } else {
       return this.http[method](url, auth)
-        .map(res => res.json());
+        .map(res => res);
     }
   }
 }

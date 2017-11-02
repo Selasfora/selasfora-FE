@@ -21,6 +21,8 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.3.6",
+    "@ngx-translate/core": "^8.0.0",
+    "@ngx-translate/http-loader": "^2.0.0",
     "@types/jwt-decode": "^2.2.1",
     "angular2-jwt": "^0.2.3",
     "angular2-social-login": "^3.0.1",
