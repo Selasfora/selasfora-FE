@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import {Http} from '@angular/http';
+import {HttpClient} from '@angular/common/http';
 import 'rxjs';
 
 @Component({
@@ -18,11 +18,11 @@ export class ShippingMenuComponent implements OnInit {
     {title:'rest of the world'}
   ]
 
-  constructor( private zone:NgZone, private http : Http) {
+  constructor( private zone:NgZone, private http : HttpClient) {
 
 
     // fetch shipping rates 
-    http.get(this.shippingInfoUrl).map(data=>data.json).subscribe(data=>{
+    http.get(this.shippingInfoUrl).map(data=>data).subscribe(data=>{
      this.countryList = data[0].countries.map(c=>{return {'title':c.name}})
 
      // get shipping rates:

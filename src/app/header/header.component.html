@@ -12,9 +12,9 @@
   </a>
 
   <div class="right-part hidden-xs hidden-sm col-sm-5">
-    <a routerLink="/catalog/bracelet" class="main-btn">Bracelets</a>
-    <a routerLink="/catalog/charm" class="main-btn">Charms</a>
-    <a [routerLink]="['/mixmatch']" [queryParams]="{step:1}" class="secondary-btn">Create yours</a>
+    <a routerLink="/catalog/bracelet" class="main-btn">{{'COMMON_BRACELTES' | translate}}</a>
+    <a routerLink="/catalog/charm" class="main-btn">{{'COMMON_CHARMS' | translate}}</a>
+    <a [routerLink]="['/mixmatch']" [queryParams]="{step:1}" class="secondary-btn">{{'COMMON_CREATE_YOURS' | translate}}</a>
   </div>
 </div>
 
@@ -36,9 +36,9 @@
   </a>
 
   <div class="right-part hidden-xs hidden-sm col-sm-5">
-    <a routerLink="/catalog/bracelet" class="header-btn">Bracelets</a>
-    <a routerLink="/catalog/charm" class="header-btn">Charms</a>
-    <a [routerLink]="['/mixmatch']" [queryParams]="{step:1}" class="main-btn">Create yours</a>
+    <a routerLink="/catalog/bracelet" class="header-btn">{{'COMMON_BRACELTES' | translate}}</a>
+    <a routerLink="/catalog/charm" class="header-btn">{{'COMMON_CHARMS' | translate}}</a>
+    <a [routerLink]="['/mixmatch']" [queryParams]="{step:1}" class="main-btn">{{'COMMON_CREATE_YOURS' | translate}}</a>
   </div>
   <div class="visible-xs col-xs-4">
     <app-icon title="Filter" image="/assets/images/filter.png"
@@ -58,12 +58,12 @@
 
   <div class="buttons col-xs-11  col-sm-6 col-md-6 text-center">
     <a routerLink="/catalog/bracelet" class="transparent-btn" [class.active]="type == 'bracelet'">
-      Bracelets
+      {{'COMMON_BRACELTES' | translate}}
     </a>
     <a routerLink="/catalog/charm" class="transparent-btn" [class.active]="type == 'charm'">
-      Charms
+      {{'COMMON_CHARMS' | translate}}
     </a>
-    <a [routerLink]="['/mixmatch']" [queryParams]="{step:1}" class="transparent-btn" [class.active]="type == 'mix'">Mix & Match</a>
+    <a [routerLink]="['/mixmatch']" [queryParams]="{step:1}" class="transparent-btn" [class.active]="type == 'mix'">{{'COMMON_MIXMATCH' | translate}}</a>
   </div>
   
 
@@ -88,12 +88,12 @@
 
   <div class="buttons col-xs-11  col-sm-6 col-md-6 text-center">
     <a [routerLink]="['/mixmatch']" [queryParams]="{step:1}" class="transparent-btn" [class.active]="type == 'bracelet'">
-      Bracelets
+      {{'COMMON_BRACELTES' | translate}}
     </a>
     <a [routerLink]="['/mixmatch']" [queryParams]="{step:2}" class="transparent-btn" [class.active]="type == 'charm'">
-      Charms
+      {{'COMMON_CHARMS' | translate}}
     </a>
-    <a [routerLink]="['/mixmatch']" [queryParams]="{step:3}" class="transparent-btn" [class.active]="type == 'mix'">Mix & Match</a>
+    <a [routerLink]="['/mixmatch']" [queryParams]="{step:3}" class="transparent-btn" [class.active]="type == 'mix'">{{'COMMON_MIXMATCH' | translate}}</a>
   </div>
   
 

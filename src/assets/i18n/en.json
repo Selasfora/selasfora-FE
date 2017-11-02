@@ -1,4 +1,23 @@
 {
+    "COMMON_BRACELTES":"Bracelets",
+    "COMMON_CHARMS": "Charms",
+    "COMMON_CREATE_YOURS":"Create Yours",
+    "COMMON_CART":"Cart",
+    "COMMON_FILTER":"Filter",
+    "COMMON_MENU":"Menu",
+    "COMMON_MIXMATCH":"Mix & Match",
+
+    "MENU_LOGIN":"Join / Login to Selasfora",
+    "MENU_LOGOUT": "Logout",
+    "MENU_GREETING":"Hi,",
+    "MENU_YOUR_PROFILE":"Your profile",
+    "MENU_BRACELETS": "Shop all bracelets",
+    "MENU_CHARMS": "Shop all charms",
+    "MENU_CREATE_YOURS": "Create your own set",
+    "MENU_JOURNAL":"Journal",
+    "MENU_ABOUT": "About us",
+    "MENU_CONTACT": "Contact us",
+    "MENU_ITEMS_IN_CART":"items in your cart",
     
     "HOME_TITLE_1":"Selasfora bracelet",
     "HOME_SUBTEXT_1":"The Limited-edition Paint-splattered Collection is created by set designer Tracy.",

@@ -5,57 +5,57 @@
   <ul>
     <li class="header" *ngIf="!isLoggedIn">
       <a (click)="login()">
-        Join / Login to Selasfora
+        {{'MENU_LOGIN' | translate}}
       </a>
     </li>
 
     <li class="header" *ngIf="isLoggedIn">
       <a routerLink="/profile">
-        Hi, {{ user.name }} !
+        {{'MENU_GREETING' | translate}} {{ user.name }} !
         <br>
-        <span class="profile-link">Your profile ></span>
+        <span class="profile-link">{{ 'MENU_YOUR_PROFILE' | translate }} ></span>
       </a>
     </li>
 
     <li class="link">
       <a routerLink="/catalog/bracelet">
-        Shop Bracelets
+        {{'MENU_BRACELETS' | translate}}
       </a>
     </li>
 
     <li class="link">
       <a routerLink="/catalog/charm">
-        Shop Charms
+        {{'MENU_CHARMS' | translate}}
       </a>
     </li>
 
     <li class="link">
       <a  routerLink='/mixmatch' [queryParams]="{step:1}"> <!-- (click)="empty()" -->
-        Create your own set
+        {{'MENU_CREATE_YOURS'| translate}}
       </a>
     </li>
 
     <li class="link">
       <a routerLink="/journal">
-        Journal
+        {{'MENU_JOURNAL' | translate}}
       </a>
     </li>
 
     <li class="link">
       <a routerLink="/about">
-        About us
+        {{'MENU_ABOUT' | translate}}
       </a>
     </li>
 
     <li class="link">
       <a routerLink="/contact">
-        Contact us
+        {{'MENU_CONTACT' | translate}}
       </a>
     </li>
 
     <li class="link" *ngIf="isLoggedIn">
       <a (click)="logout(user)">
-        Logout
+        {{'MENU_LOGOUT' | translate}}
       </a>
     </li>
   </ul>
@@ -69,7 +69,7 @@
     </div>
 
     <div class="col-xs-8">
-      <div>{{ cartCount.count }} items in your cart</div>
+      <div>{{ cartCount.count }} {{'MENU_ITEMS_IN_CART' | translate}}</div>
       <div><strong>{{ cartCount.price }}</strong></div>
     </div>
 
