@@ -6,6 +6,9 @@
     "ERROR_PASSWORD_REQUIRED": "Password is required.",
     "ERROR_PASSWORD_SHORT": "Password should at least be 6 digits",
     "ERROR_PASSWORD_LONG": "Max characters is 25",
+    "ERROR_FIRST_NAME_REQUIRED": "First name is required.",
+    "ERROR_LAST_NAME_REQUIRED": "Last name is required.",
+    "ERROR_PHONE_REQUIRED": "Phone is required.",
 
     "COMMON_BRACELTES":"Bracelets",
     "COMMON_CHARMS": "Charms",
@@ -22,6 +25,7 @@
     "COMMON_GET_ACCOUNT": "I need an account",
     "COMMON_LOGIN":"Login",
     "COMMON_SIGNIN_WITH":"Sign in with",
+    "COMMON_SIGNUP":"Signup",
     "COMMON_FORGOT_PASSWORD":"forogt?",
     "COMMON_SIGNUP_EMAIL": "Signup with email",
 

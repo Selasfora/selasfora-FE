@@ -18,23 +18,23 @@ export class SignupComponent implements OnInit {
 
   validationMessages = {
     'fname': {
-      'required': 'First name is required.',
+      'required': 'ERROR_FIRST_NAME_REQUIRED',
     },
     'lname': {
-      'required': 'Last name is required.',
+      'required': 'ERROR_LAST_NAME_REQUIRED',
     },
     'phone': {
       'required': 'Phone is required.',
     },
     'email': {
-      'required': 'Email is required.',
-      'email': 'Please enter a valid email'
+      'required': 'ERROR_EMAIL_REQUIRED',
+      'email': 'ERROR_EMAIL_INVALID'
     },
     'email2': {},
     'password': {
-      'required': 'Password is required.',
-      'minlength': 'Password should at least be 8 digits',
-      'maxlength': 'Max characters is 25'
+      'required': 'ERROR_PASSWORD_REQUIRED',
+      'minlength': 'ERROR_PASSWORD_SHORT',
+      'maxlength': 'ERROR_PASSWORD_LONG'
     },
     'password2': {}
   };

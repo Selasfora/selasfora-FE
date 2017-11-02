@@ -14,7 +14,7 @@
           <input type="text" id="fname" name="fname" class="form-control"
               formControlName="fname">
           <div *ngIf="formErrors.fname.length" class="error-msg">
-            <div *ngFor="let item of formErrors.fname">{{ item }}</div>
+            <div *ngFor="let item of formErrors.fname">{{ item | translate }}</div>
           </div>
         </div>
         <div class="col-md-6">
@@ -22,7 +22,7 @@
           <input type="text" id="lname" name="lname" class="form-control"
               formControlName="lname">
           <div *ngIf="formErrors.lname.length" class="error-msg">
-            <div *ngFor="let item of formErrors.lname">{{ item }}</div>
+            <div *ngFor="let item of formErrors.lname">{{ item |translate }}</div>
           </div>
         </div>
       </div>
@@ -33,7 +33,7 @@
           <input type="email" id="email" name="email" class="form-control"
               formControlName="email">
           <div *ngIf="formErrors.email.length" class="error-msg">
-            <div *ngFor="let item of formErrors.email">{{ item }}</div>
+            <div *ngFor="let item of formErrors.email">{{ item | translate }}</div>
           </div>
         </div>
         <div class="col-md-6">
@@ -52,7 +52,7 @@
               minlength="8" maxlength="15"
               formControlName="phone">
           <div *ngIf="formErrors.phone.length" class="error-msg">
-            <div *ngFor="let item of formErrors.phone">{{ item }}</div>
+            <div *ngFor="let item of formErrors.phone">{{ item | translate}}</div>
           </div>
         </div>
       </div>
@@ -66,7 +66,7 @@
               minlength="8" maxlength="25"
               formControlName="password">
           <div *ngIf="formErrors.password.length" class="error-msg">
-            <div *ngFor="let item of formErrors.password">{{ item }}</div>
+            <div *ngFor="let item of formErrors.password">{{ item |translate }}</div>
           </div>
         </div>
         <div class="col-md-6">
@@ -80,10 +80,10 @@
       </div>
       <div class="signup-error" *ngIf="errorMessage">{{errorMessage}}</div>
       <div>
-        <button type="submit" (click)="onSubmit()" class="hidden-xs">Sign up</button>
+        <button type="submit" (click)="onSubmit()" class="hidden-xs">{{ 'COMMON_SIGNUP' | translate}}</button>
       </div>
     </form>
-    <button type="submit" (click)="onSubmit()" class="visible-xs">Sign up</button>
+    <button type="submit" (click)="onSubmit()" class="visible-xs">{{ 'COMMON_SIGNUP' | translate}}</button>
 
     <app-footer></app-footer>
   </div>
