@@ -6,7 +6,7 @@
     </a>
   </div>
   <div>
-    <h1>Signup with email</h1>
+    <h1>{{'COMMON_SIGNUP_EMAIL' | translate}}</h1>
     <form [formGroup]="signupForm" novalidate>
       <div class="row">
         <div class="col-md-6">
@@ -97,14 +97,14 @@
   </div>
   <div class="confirmation">
     <img src="/assets/images/email-icon.png">
-    <h2>Just one more step...</h2>
+    <h2>{{'SIGNUP_NEXT_STEP' | translate }}</h2>
     <div class="confirmation-text">
-      Your information has been sent successfully. In order to complete your registration, please click the confirmation link in the email that we have sent to you.
+      {{'SIGNUP_SUCCESS' | translate}}
     </div>
     <div class="link">{{signupForm.value.email}}</div>
-    <button (click)="resend()">Resend email</button>
+    <button (click)="resend()">{{'SIGNUP_RESEND_EMAIL' | translate}}</button>
     <div>
-      <a href="" class="return-link">Return to shopping</a>
+      <a href="" class="return-link">{{'SIGNUP_RETURN' | translate}}</a>
     </div>
   </div>
   <app-footer></app-footer>
