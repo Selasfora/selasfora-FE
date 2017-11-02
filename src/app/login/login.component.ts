@@ -25,13 +25,13 @@ export class LoginComponent implements OnInit {
   googleKey:string;
   validationMessages = {
     'email': {
-      'required': 'Email is required.',
-      'email': 'Please enter a valid email'
+      'required': 'ERROR_EMAIL_REQUIRED',
+      'email': 'ERROR_EMAIL_INVALID'
     },
     'password': {
-      'required': 'Password is required.',
-      'minlength': 'Password should at least be 6 digits',
-      'maxlength': 'Max characters is 25'
+      'required': 'ERROR_PASSWORD_REQUIRED',
+      'minlength': 'ERROR_PASSWORD_SHORT',
+      'maxlength': 'ERROR_PASSWORD_LONG'
     }
   };
 
@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
       },
       err=>{
         console.log("login error",err)
-        this.formErrors.password.push("Invalid username or password")
+        this.formErrors.password.push("ERROR_INVALID_USER_PASSWORD")
       },
       ()=>{}
     )
@@ -125,7 +125,7 @@ export class LoginComponent implements OnInit {
           this.window.location.href = '/';
         },
       err=>{
-        this.formErrors.password.push("Invalid username or password")
+        this.formErrors.password.push("ERROR_INVALID_USER_PASSWORD")
       });
     }
     return false;

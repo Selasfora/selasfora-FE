@@ -11,12 +11,12 @@
       <app-dropdown *ngIf="type=='bracelet'" class="hidden-xs"></app-dropdown>
     </div>
     <div class="main-btn hidden-xs margin-top-20" (click)="addToCart()">
-      + Add to cart
+      + {{'COMMON_ADD_TO_CART' | translate}}
     </div>
 
     <div class="shipping hidden-xs">
       <div class="shipping-title">
-        <span class="style-guide" (click)="openShippingMenu()"> Shipping </span> <span *ngIf="type=='bracelet'">| <span class="style-guide" (click)="openMenu()">Size Guide</span>
+        <span class="style-guide" (click)="openShippingMenu()"> {{'PRODUCT_SHIPPING' | translate}} </span> <span *ngIf="type=='bracelet'">| <span class="style-guide" (click)="openMenu()">{{'PRODUCT_SIZE_GUIDE' | translate}}</span>
         <app-size-guide [menuStatus]="open" (closeMenu)="closeMenu($event)"></app-size-guide>
         </span>
       </div>
@@ -33,7 +33,7 @@
   <div class="col-xs-12 shipping visible-xs">
     <div class="desc" [innerHtml]="product.body_html"></div>
     <div class="shipping-title mobile-center">
-     <span class="style-guide" (click)="openShippingMenu()"> Shipping </span> <span *ngIf="type=='bracelet'">| <span class="style-guide" (click)="openMenu()">Size Guide</span>
+     <span class="style-guide" (click)="openShippingMenu()"> {{'PRODUCT_SHIPPING' | translate}}  </span> <span *ngIf="type=='bracelet'">| <span class="style-guide" (click)="openMenu()">{{'PRODUCT_SIZE_GUIDE' | translate}}</span>
         <app-size-guide [menuStatus]="open" (closeMenu)="closeMenu($event)"></app-size-guide>
       </span>
     </div>
@@ -52,7 +52,7 @@
     <app-dropdown *ngIf="type=='bracelet'" class="visible-xs"></app-dropdown>
   </div>
   <div class="main-btn visible-xs margin-top-20" (click)="addToCart()">
-    + Add to cart
+    + {{'COMMON_ADD_TO_CART' | translate}}
   </div>
 </div>
 

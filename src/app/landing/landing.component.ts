@@ -31,7 +31,9 @@ export class LandingComponent {
     this.window = $window.nativeWindow;
     setTimeout(function() {
 
-        document.querySelector('#\\30 > div > a').addEventListener("click",(e)=>{
+      let ctaBtn =   document.querySelector('#\\30 > div > a');
+      if(ctaBtn)
+      ctaBtn.addEventListener("click",(e)=>{
           e.preventDefault();
           router.navigate(['/mixmatch'],{queryParams:{step:1}})
           return false;

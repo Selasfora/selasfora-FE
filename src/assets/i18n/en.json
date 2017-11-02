@@ -1,4 +1,12 @@
 {
+
+    "ERROR_INVALID_USER_PASSWORD":"Invalid username or password",
+    "ERROR_EMAIL_REQUIRED": "Email is required.",
+    "ERROR_EMAIL_INVALID": "Please enter a valid email",
+    "ERROR_PASSWORD_REQUIRED": "Password is required.",
+    "ERROR_PASSWORD_SHORT": "Password should at least be 6 digits",
+    "ERROR_PASSWORD_LONG": "Max characters is 25",
+
     "COMMON_BRACELTES":"Bracelets",
     "COMMON_CHARMS": "Charms",
     "COMMON_CREATE_YOURS":"Create Yours",
@@ -11,6 +19,11 @@
     "COMMON_REVIEW_AND_CHECKOUT": "Review order and checkout",
     "COMMON_SELECT_AND_CONTINUE": "Select and continue",
     "COMMON_SEE_DETAILS": "See details",
+    "COMMON_GET_ACCOUNT": "I need an account",
+    "COMMON_LOGIN":"Login",
+    "COMMON_SIGNIN_WITH":"Sign in with",
+    "COMMON_FORGOT_PASSWORD":"forogt?",
+    
 
     "CATALOG_BROWSE": "Browser {{type}} in {{mode}} mode",
     "CATALOG_NO_PRODUCTS": "No products exists with your current filter, please try another combination",

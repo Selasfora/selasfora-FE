@@ -9,37 +9,37 @@
     </a>
   </div>
   <div>
-    <h1>Login</h1>
+    <h1>{{'COMMON_LOGIN' | translate}}</h1>
     <form [formGroup]="loginForm" novalidate>
       <div class="input-label">Email</div>
       <input type="email" id="email" name="email" class="form-control"
           formControlName="email">
       <div *ngIf="formErrors.email.length" class="error-msg">
-        <div *ngFor="let item of formErrors.email">{{ item }}</div>
+        <div *ngFor="let item of formErrors.email">{{ item | translate }}</div>
       </div>
 
       <div class="input-label">
         Password
-        <a routerLink="/reset-password" class="forgot">forgot?</a>
+        <a routerLink="/reset-password" class="forgot">{{'COMMON_FORGOT_PASSWORD' | translate}}</a>
       </div>
       <input type="password" id="password" name="password" class="form-control"
           minlength="6" maxlength="25"
           formControlName="password">
       <div *ngIf="formErrors.password.length" class="error-msg">
-        <div *ngFor="let item of formErrors.password">{{ item }}</div>
+        <div *ngFor="let item of formErrors.password">{{ item | translate }}</div>
       </div>
       <div class="login-error"></div>
       <div>
-        <button type="submit" (click)="onSubmit()">Login</button>
+        <button type="submit" (click)="onSubmit()">{{'COMMON_LOGIN' | translate }}</button>
       </div>
     </form>
 
     <div class="signup">
-      <a routerLink="/signup" class="signup">I need an account</a>
+      <a routerLink="/signup" class="signup">{{'COMMON_GET_ACCOUNT' | translate }}</a>
     </div>
 
     <div class="signin-options">
-      <span>Sign in with</span>
+      <span>{{'COMMON_SIGNIN_WITH' | translate}}</span>
       <div class="login-icons">
         <a class="facebook" (click)="facebook()">
           <img src="/assets/images/icons/facebook.png">
