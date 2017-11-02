@@ -3,17 +3,17 @@
 <div class="main-landing hidden-xs" [ngStyle]="{'background-color':bgcolor, 'background-image': 'url(' + page.imagePath + ')'}" id="{{idx}}">
   <div class="text-content">
     <div class="title" [hidden]="!page.content.title" [ngStyle]="{ color: page.colorShade == 'dark' ? 'white' : 'black' }">
-      {{ page.content.title }}
+      {{ page.content.title |translate }}
     </div>
     <div class="subtext" [hidden]="!page.content.subtext" [ngStyle]="{ color: page.colorShade == 'dark' ? 'white' : 'black' }">
-      {{ page.content.subtext }}
+      {{ page.content.subtext | translate }}
     </div>
     <div class="call-for-action" [hidden]="!page.content.cta" [ngStyle]="{ color: page.colorShade == 'dark' ? 'white' : 'black' }">
       <span *ngIf="page.content.cta !== 'input' && page.content.cta != 'Patent pending technology'">
-        {{ page.content.cta }}
+        {{ page.content.cta | translate }}
       </span>
       <span *ngIf="page.content.cta !== 'input' && page.content.cta == 'Patent pending technology'" style="font-size: 14px; color: #999;">
-        {{ page.content.cta }}
+        {{ page.content.cta | translate }}
       </span>
       <span *ngIf="page.content.cta == 'input'">
         <div class="row">
@@ -31,7 +31,7 @@
       </span>
     </div>
     <a href="{{page.content.href}}" class="{{page.content.class}}" *ngIf="page.content.btn">
-      {{ page.content.btn }}
+      {{ page.content.btn | translate}}
     </a>
   </div>
   <img src="{{page.imagePath}}">

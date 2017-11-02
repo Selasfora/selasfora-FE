@@ -25,10 +25,10 @@ export class LandingpageComponent implements OnInit {
       mobileImagePath: '/assets/images/02@2x-mobile.png',
       colorShade: 'dark',
       content: {
-        title: 'Selasfora bracelet',
-        subtext: 'The Limited-edition Paint-splattered Collection is created by set designer Tracy.',
-        cta: 'Watch the film',
-        btn: 'Create your own',
+        title: 'HOME_TITLE_1',//'Selasfora bracelet',
+        subtext: 'HOME_SUBTEXT_1',//'The Limited-edition Paint-splattered Collection is created by set designer Tracy.',
+        cta: 'HOME_CTA_1',//'Watch the film',
+        btn: 'HOME_CTA_BUTTON_1',//'Create your own',
         class: 'secondary-btn',
         href: ''
       },
@@ -39,9 +39,9 @@ export class LandingpageComponent implements OnInit {
       mobileImagePath: '/assets/images/03@2x-mobile.png',
       colorShade: 'light',
       content: {
-        title: 'Easy to customize',
-        subtext: 'We wanted to capture the color of a summer night\'s sky',
-        cta: 'Patent pending technology'
+        title: 'HOME_TITLE_2',//'Easy to customize',
+        subtext: 'HOME_SUBTEXT_2',// 'We wanted to capture the color of a summer night\'s sky',
+        cta: 'HOME_CTA_2',//'Patent pending technology'
       },
       position: 'top'
     },
@@ -50,8 +50,8 @@ export class LandingpageComponent implements OnInit {
       mobileImagePath: '/assets/images/04@2x-mobile.png',
       colorShade: 'dark',
       content: {
-        title: 'Easy to wear',
-        subtext: 'We believe that great style begins with great design. Every single piece is conceived in our studio, where designers sketch, drape, tuck and bead a collection to life'
+        title: 'HOME_TITLE_3',//'Easy to wear',
+        subtext: 'HOME_SUBTEXT_3',//'We believe that great style begins with great design. Every single piece is conceived in our studio, where designers sketch, drape, tuck and bead a collection to life'
       },
       position: 'top'
     },
@@ -60,9 +60,9 @@ export class LandingpageComponent implements OnInit {
       mobileImagePath: '/assets/images/05@2x-mobile.png',
       colorShade: 'light',
       content: {
-        title: 'Perfect for any occasion',
-        subtext: 'Sophisticated and perfectly chunky, this is the kind of piece that adds a touch of effortless polish to just about any outfit.',
-        btn: 'Get your bracelet',
+        title: 'HOME_TITLE_4',//'Perfect for any occasion',
+        subtext: 'HOME_SUBTEXT_4',//'Sophisticated and perfectly chunky, this is the kind of piece that adds a touch of effortless polish to just about any outfit.',
+        btn: 'HOME_CTA_BUTTON_4',//'Get your bracelet',
         class: 'secondary-btn',
         href: '/catalog/bracelet'
       },
@@ -73,9 +73,9 @@ export class LandingpageComponent implements OnInit {
       mobileImagePath: '/assets/images/06@2x-mobile.png',
       colorShade: 'light',
       content: {
-        title: 'The magic is in the mix',
-        subtext: 'We side with style over fashion, think timelessness is underrated and find that style look best when they’re lived in.',
-        btn: 'Shop Charms',
+        title: 'HOME_TITLE_5',//'The magic is in the mix',
+        subtext: 'HOME_SUBTEXT_5',// 'We side with style over fashion, think timelessness is underrated and find that style look best when they’re lived in.',
+        btn: 'HOME_CTA_BUTTON_5',//'Shop Charms',
         class: 'tetiary-btn',
         href: '/catalog/charm'
       },
@@ -86,8 +86,8 @@ export class LandingpageComponent implements OnInit {
       mobileImagePath: '/assets/images/07@2x-mobile.png',
       colorShade: 'dark',
       content: {
-        title: 'Stay in touch',
-        subtext: 'Be the first to know about our new collection and other news',
+        title: 'HOME_TITLE_6',//'Stay in touch',
+        subtext: 'HOME_SUBTEXT_6',//'Be the first to know about our new collection and other news',
         cta: 'input'
       },
       position: 'top'

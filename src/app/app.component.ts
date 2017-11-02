@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { WindowService } from './window.service';
 import { AuthService } from './auth.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,12 @@ import { AuthService } from './auth.service';
 export class AppComponent {
   window: any;
 
-  constructor(private router: Router, private _window: WindowService, auth: AuthService) {
+  constructor(private router: Router, private _window: WindowService, auth: AuthService, translate: TranslateService) {
+
+
+    // this language will be used as a fallback when a translation isn't found in the current language
+    translate.setDefaultLang('en');
+
     router.events.subscribe(
       (event) => {
         if (event instanceof NavigationEnd) {
