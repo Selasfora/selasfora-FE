@@ -19,7 +19,7 @@ export class CatalogComponent implements OnInit {
   list: Array<object> = [];
   lists: Array<any> = [];
   collectionSelected:any = false;
-  
+
   filters: object = {
     color: [],
     size: [],
@@ -32,6 +32,8 @@ export class CatalogComponent implements OnInit {
   @Input() type = '';
   pageTitle = 'Selasfora ';
   subscriptions: Array<any> = [];
+
+  //TODO make dynamic translation string for type and mode 
 
   constructor(public service: AuthService, private route: ActivatedRoute, private router: Router,
       public filterService: FiltersService, private slimLoadingBarService: SlimLoadingBarService,

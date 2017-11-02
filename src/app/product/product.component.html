@@ -14,7 +14,7 @@
   <div class="price"> {{ item.variants[0].price || '89 EUR' }}</div>
 
   <a class="tetiary-btn show-on-hover hidden-xs" [routerLink]="['/catalog/' + item.product_type + '/' + item.id]">
-    See details
+    {{'COMMON_SEE_DETAILS' | translate}}
   </a>
 </div>
 <!-- [routerLink]="['/catalog/' + item.product_type + '/' + item.id]"  -->
@@ -37,12 +37,12 @@
        *ngIf="item.product_type == 'bracelet'"
        [routerLink]="['/mixmatch']" [queryParams]="{step:2}"
        (click)="selectContinue(item)">
-      + Select & Continue
+      + {{'COMMON_SELECT_AND_CONTINUE' | translate}}
     </a>
     <a class="main-btn show-on-hover hidden-xs"
        *ngIf="item.product_type == 'charm'"
        (click)="addToCart(item)">
-      Add to Cart
+      {{'COMMON_ADD_TO_CART' | translate}}
     </a>
   </div>
 </div>

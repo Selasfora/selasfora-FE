@@ -19,22 +19,22 @@
         <app-product [item]="item" [mode]="mode" [canAddToCart]="canAddToCart" *ngFor="let item of list"></app-product>
       </div>
       <div *ngIf="!list.length" class="well well-warning">
-        No products exists with your current filter, please try another combination
+        {{'CATALOG_NO_PRODUCTS' | translate}}
       </div>
     </div>
 
 
     <div class="text-center" *ngIf="type=='charm' && list.length">
       <a href="#" (click)="switchMode($event)" class="mode-change">
-        Browse charms in {{ mode == 'grid' ? 'slide' : 'grid' }} mode
+        {{'CATALOG_BROWSE'}} 
       </a>
 
       <a (click)="gotoMixMatch()" class="secondary-btn next">
-        Next
+        {{'CATALOG_NEXT' | translate}}
       </a>
     </div>
   </div>
-
+  <!-- todo : add translations for colelctions -->
   <div class="posts row margin0" *ngIf="!collectionSelected">
     <div class="left col-xs-12 col-md-12 odd" *ngIf="type=='charm'">
       <img src="/assets/images/left-image1.png">

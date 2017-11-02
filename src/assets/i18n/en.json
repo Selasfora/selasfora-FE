@@ -6,6 +6,21 @@
     "COMMON_FILTER":"Filter",
     "COMMON_MENU":"Menu",
     "COMMON_MIXMATCH":"Mix & Match",
+    "COMMON_SELECT":"Select",
+    "COMMON_ADD_TO_CART":"Add to cart",
+    "COMMON_REVIEW_AND_CHECKOUT": "Review order and checkout",
+    "COMMON_SELECT_AND_CONTINUE": "Select and continue",
+    "COMMON_SEE_DETAILS": "See details",
+
+    "CATALOG_BROWSE": "Browser {{type}} in {{mode}} mode",
+    "CATALOG_NO_PRODUCTS": "No products exists with your current filter, please try another combination",
+    "CATALOG_NEXT": "Next",
+
+
+
+    "PRODUCT_SHIPPING":"Shipping",
+    "PRODUCT_SIZE_GUIDE":"Size guide",
+
 
     "MENU_LOGIN":"Join / Login to Selasfora",
     "MENU_LOGOUT": "Logout",
@@ -40,7 +55,7 @@
     "SIZE_SUBTEXT_1": "A bracelet should sit snugly on the wrist and not slide up and down",
     "SIZE_SUBTEXT_2": "To measure your bracelet size, hold out your hand with your thumb outstretched and aligned with your other fingers. Using a measuring tape or even a strip of paper, measure your hand circumference.",
     "SIZE_SUBTEXT_3": "Recommended to wear 15 - 20 charms regardless of bracelet length.",
-    
+
 
     
     "HOME_TITLE_1":"Selasfora bracelet",
