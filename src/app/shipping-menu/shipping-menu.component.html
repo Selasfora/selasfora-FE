@@ -3,12 +3,12 @@
     <a (click)="close()">x</a>
   </div>
   <img src="assets/images/email-icon.png"/>
-  <div class="menu-title">Shipping Information</div>
-  <div class="menu-sub-title">FREE standard deliver on all orders above 75</div>
+  <div class="menu-title">{{'SHIPPING_TITLE' | translate}}</div>
+  <div class="menu-sub-title">{{'SHIPPING_SUB_TITLE' | translate}}</div>
 
    <div class="country-selector">
                     <label for="gender">
-                      country
+                      {{'SHIPPING_COUNTRY' | translate}}
                     </label>
                     <app-dropdown [itemList]="countryList" [isForm]=true (itemChange)="setCountry($event)">
                     </app-dropdown>
@@ -16,13 +16,13 @@
   </div>
 
   <div class="delivery">
-    <h5 class="delivery-header">Standard Delivery</h5>
-    <div class="delivery-text">Upto 2 working days</div>
+    <h5 class="delivery-header">{{'SHIPPING_STANDARD' | translate}}</h5>
+    <div class="delivery-text">{{'SHIPPING_STANDARD_TEXT' | translate }}</div>
   </div>
 
   <div class="delivery">
-    <h5 class="delivery-header">Express Delivery</h5>
-    <div class="delivery-text">Upto 2 working days</div>
+    <h5 class="delivery-header">{{'SHIPPING_EXPRESS' | translate}}</h5>
+    <div class="delivery-text">{{'SHIPPING_EXPRESS' | translate}}</div>
   </div>
 
 </div>

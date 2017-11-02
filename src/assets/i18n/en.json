@@ -28,6 +28,14 @@
     "FILTER_APPLY": "Apply",
     "FILTER_PRICE": "Price",
 
+    "SHIPPING_TITLE": "Shipping Information",
+    "SHIPPING_SUB_TITLE": "FREE standard deliver on all orders above 75",
+    "SHIPPING_COUNTRY": "country",
+    "SHIPPING_STANDARD": "Standard Delivery",
+    "SHIPPING_STANDARD_TEXT": "Upto 2 working days",
+    "SHIPPING_EXPRESS": "Express Delivery",
+    "SHIPPING_EXPRESS_TEXT": "Upto 2 working days",
+
     
     "HOME_TITLE_1":"Selasfora bracelet",
     "HOME_SUBTEXT_1":"The Limited-edition Paint-splattered Collection is created by set designer Tracy.",
