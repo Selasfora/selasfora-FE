@@ -18,6 +18,16 @@
     "MENU_ABOUT": "About us",
     "MENU_CONTACT": "Contact us",
     "MENU_ITEMS_IN_CART":"items in your cart",
+
+    "FILTER_BY":"Filter by",
+    "FILTER_COLOR": "Color",
+    "FILTER_MATERIAL": "Material",
+    "FILTER_MOOD": "Mood",
+    "FILTER_SORT_BY": "Sort by",
+    "FILTER_CLEAR_ALL": "Clear all",
+    "FILTER_APPLY": "Apply",
+    "FILTER_PRICE": "Price",
+
     
     "HOME_TITLE_1":"Selasfora bracelet",
     "HOME_SUBTEXT_1":"The Limited-edition Paint-splattered Collection is created by set designer Tracy.",

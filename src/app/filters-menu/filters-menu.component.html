@@ -2,12 +2,12 @@
   <div class="close">
     <a (click)="close()">x</a>
   </div>
-  <div class="menu-title">Filter by</div>
+  <div class="menu-title">{{'FILTER_BY' | translate }}</div>
   <div id="accordion" role="tablist" aria-multiselectable="true">
     <div class="section color">
       <div class="title" role="tab" id="color">
         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseColor" aria-expanded="true" aria-controls="collapseColor" (click)="accrodion('color')">
-          <span class="col-xs-10">Colour</span>
+          <span class="col-xs-10">{{'FILTER_COLOR' | translate}}</span>
           <i class="glyphicon glyphicon-menu-up" [hidden]="!filters.material || (filters.color && !filters.color.folded)"></i>
           <i class="glyphicon glyphicon-menu-down" [hidden]="!filters.material || (filters.color && filters.color.folded)"></i>
         </a>
@@ -28,7 +28,7 @@
     <div class="section material">
       <div class="title" role="tab" id="Material">
         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseMaterial" aria-expanded="true" aria-controls="collapseMaterial" (click)="accrodion('material')">
-          <span class="col-xs-10">Material</span>
+          <span class="col-xs-10">{{'FILTER_MATERIAL' | translate}}</span>
           <i class="glyphicon glyphicon-menu-up" [hidden]="!filters.material || (filters.material && !filters.material.folded)"></i>
           <i class="glyphicon glyphicon-menu-down" [hidden]="!filters.material || (filters.material && filters.material.folded)"></i>
         </a>
@@ -43,7 +43,7 @@
     <div class="section price">
       <div class="title" role="tab" id="Price">
         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsePrice" aria-expanded="true" aria-controls="collapsePrice" (click)="accrodion('price')">
-          <span class="col-xs-10">Price</span>
+          <span class="col-xs-10">{{'FILTER_PRICE' | translate}}</span>
           <i class="glyphicon glyphicon-menu-up" [hidden]="!filters.price || (filters.price && !filters.price.folded)"></i>
           <i class="glyphicon glyphicon-menu-down" [hidden]="!filters.price || (filters.price && filters.price.folded)"></i>
         </a>
@@ -58,7 +58,7 @@
     <div class="section mood">
       <div class="title" role="tab" id="Mood">
         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseMood" aria-expanded="true" aria-controls="collapseMood" (click)="accrodion('mood')">
-          <span class="col-xs-10">Mood</span>
+          <span class="col-xs-10">{{'FILTER_MOOD' | translate }}</span>
           <i class="glyphicon glyphicon-menu-up" [hidden]="!filters.mood || (filters.mood && !filters.mood.folded)"></i>
           <i class="glyphicon glyphicon-menu-down" [hidden]="!filters.mood || (filters.mood && filters.mood.folded)"></i>
         </a>
@@ -73,7 +73,7 @@
     <div class="section sort">
       <div class="title" role="tab" id="Sort">
         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSort" aria-expanded="true" aria-controls="collapseSort" (click)="accrodion('sort')">
-          <span class="col-xs-10">Sort by</span>
+          <span class="col-xs-10">{{'FILTER_SORT_BY' | translate}}</span>
           <i class="glyphicon glyphicon-menu-up" [hidden]="!filters.sort_by || (filters.sort_by && !filters.sort_by.folded)"></i>
           <i class="glyphicon glyphicon-menu-down" [hidden]="!filters.sort_by || (filters.sort_by && filters.sort_by.folded)"></i>
         </a>
@@ -87,7 +87,7 @@
     </div>
   </div>
   <div class="row bottom">
-    <div class="col-xs-6 tetiary-btn" (click)="clear()">Clear All</div>
-    <div class="col-xs-6 main-btn" (click)="search()">Apply Filters</div>
+    <div class="col-xs-6 tetiary-btn" (click)="clear()">{{'FILTER_CLEAR_ALL' | translate}}</div>
+    <div class="col-xs-6 main-btn" (click)="search()">{{'FILTER_APPLY' | translate}}</div>
   </div>
 </div>
