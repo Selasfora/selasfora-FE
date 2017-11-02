@@ -16,7 +16,9 @@
     "CATALOG_NO_PRODUCTS": "No products exists with your current filter, please try another combination",
     "CATALOG_NEXT": "Next",
 
-
+    "MIXMATCH_ERROR_1":"You have not selected any bracelet and charms. You can come here again after making a selection.",
+    "MIXMATCH_ERROR_2":"You have not selected any  charms. You can come here again after making a selection.",
+    "MIXMATCH_ERROR_3":"You have not selected a bracelet. You can come here again after making a selection.",
 
     "PRODUCT_SHIPPING":"Shipping",
     "PRODUCT_SIZE_GUIDE":"Size guide",

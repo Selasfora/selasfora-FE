@@ -49,12 +49,12 @@
         </div>
       </div>
       <div *ngIf="errorMessage" class="well well-warning">
-        {{errorMessage}}
+        {{errorMessage | translate}}
       </div>
     </div>
   
     <div class="text-center" *ngIf="!errorMessage">
-      <a (click)="checkout()" class="secondary-btn">Review order & Checkout</a>
+      <a (click)="checkout()" class="secondary-btn">{{'COMMON_REVIEW_AND_CHECKOUT' | translate}}</a>
     </div>
   </div>
 

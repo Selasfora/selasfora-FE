@@ -100,15 +100,15 @@ export class MixmatchComponent implements OnInit {
           this.bracelet =` url(${bImg} )  no-repeat center`;
 
           if(!selected_charms.length && !bImg){
-            this.errorMessage = "You have not selected any bracelet and charms. You can come here again after making a selection."
+            this.errorMessage = 'MIXMATCH_ERROR_1';// "You have not selected any bracelet and charms. You can come here again after making a selection."
           }
 
           if(!selected_charms.length){
-            this.errorMessage = "You have not selected any  charms. You can come here again after making a selection."
+            this.errorMessage = 'MIXMATCH_ERROR_2';//"You have not selected any  charms. You can come here again after making a selection."
           }
 
           if(!bImg){
-             this.errorMessage = "You have not selected a bracelet. You can come here again after making a selection."
+             this.errorMessage = 'MIXMATCH_ERROR_3';// "You have not selected a bracelet. You can come here again after making a selection."
           }
 
           if(bImg && selected_charms.length){
