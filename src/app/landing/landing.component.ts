@@ -2,7 +2,8 @@ import { Component, Input, Inject } from '@angular/core';
 import { WindowService } from '../window.service';
 import { AuthService } from '../auth.service';
 import { ToastrService } from 'toastr-ng2';
-import {Router} from "@angular/router"
+import {Router} from "@angular/router";
+import {TranslateService} from "@ngx-translate/core"
 
 @Component({
   selector: 'app-landing',
@@ -26,7 +27,7 @@ export class LandingComponent {
   public ctaText = '';
   public newsLetterEmail = '';
 
-  constructor(private $window: WindowService, private service: AuthService, private toastrService: ToastrService,
+  constructor(private $window: WindowService, private service: AuthService, private toastrService: ToastrService, private translate: TranslateService,
   private router:Router) {
     this.window = $window.nativeWindow;
     setTimeout(function() {
@@ -54,12 +55,26 @@ export class LandingComponent {
 
   newsLetter() {
     if(this.newsLetterEmail.indexOf('@') < 0 || this.newsLetterEmail.indexOf('.') < 0) {
-      this.toastrService.error('Please enter a valid email address', 'Error!');
+
+      this.translate.get("ERROR_EMAIL_INVALID").subscribe((res:string)=>{
+        
+                    this.toastrService.success(
+                      res,
+                      'Error!'
+                    );
+                  })
+     
       return false;
     }
     this.service.newsLetter(this.newsLetterEmail).subscribe(
       (data) => {
-        this.toastrService.success('Thank you!', 'You are now subscribed to our newsletter!');
+        this.translate.get("SUCCESS_NEWSLETTER_SUBSCRIBED").subscribe((res:string)=>{
+          
+                      this.toastrService.success(
+                        res,
+                        'Success!'
+                      );
+                    })
       }
     );
   }

@@ -1,5 +1,12 @@
 {
-
+    "SUCCESS_PROFILE_SAVE":"Your Profile was saved successfully!",
+    "SUCCESS_CART_ADD":"Your product was added successfully!",
+    "SUCCESS_CONTACT_US":"We Receieved your concern and we will come back to you asap!",
+    "SUCCESS_NEWSLETTER_SUBSCRIBED":"You are now subscribed to our newsletter!",
+    "SUCCESS_ITEM_SELECTED": "item has been selected",
+    
+    "ERROR_CART_ADD":"Your product was not added!",
+    "ERROR_PROFILE_SAVE":"Something went wrong, Something went wrong, couldn't save profile!  ",
     "ERROR_INVALID_USER_PASSWORD":"Invalid username or password",
     "ERROR_EMAIL_REQUIRED": "Email is required.",
     "ERROR_EMAIL_INVALID": "Please enter a valid email",

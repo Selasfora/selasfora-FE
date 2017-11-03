@@ -7,6 +7,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { ToastrService } from 'toastr-ng2';
 import {ShippingMenuComponent} from '../shipping-menu/shipping-menu.component'
+import {TranslateService} from "@ngx-translate/core"
 
 @Component({
   selector: 'app-product-details',
@@ -49,7 +50,7 @@ export class ProductDetailsComponent implements OnInit {
     }
   ];
 
-  constructor(public service: AuthService, public route: ActivatedRoute, private router: Router,
+  constructor(public service: AuthService, public route: ActivatedRoute, private router: Router, private translate: TranslateService,
       private windowService: WindowService, public _cart: CartService, private toastrService: ToastrService) {
     this.window = windowService.nativeWindow;
   }
@@ -104,10 +105,22 @@ export class ProductDetailsComponent implements OnInit {
       (data:any) => {
         this._cart.updateUrl(data.checkoutUrl);
         this._cart.updateCount({ count: data.lineItemCount, price: data.subtotal });
-        this.toastrService.success('Your product was added successfully!', 'Success!');
+        this.translate.get("SUCCESS_CART_ADD").subscribe((res:string)=>{
+          
+                      this.toastrService.success(
+                        res,
+                        'Success!'
+                      );
+                    })
       },
       (error) => {
-        this.toastrService.error('Your product was not added!', 'Something went wrong!');
+        this.translate.get("ERROR_CART_ADD").subscribe((res:string)=>{
+          
+                      this.toastrService.success(
+                        res,
+                        'Error!'
+                      );
+                    })
       }
     );
 

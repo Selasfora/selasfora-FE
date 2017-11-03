@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 import { ToastrService } from 'toastr-ng2';
+import {TranslateService} from "@ngx-translate/core"
 declare var window:any;
 @Component({
   selector: 'app-profile',
@@ -25,22 +26,22 @@ export class ProfileComponent implements OnInit {
   formSubmitted = false;
   validationMessages = {
     'fname': {
-      'required': 'First name is required.',
+      'required': 'ERROR_FIRST_NAME_REQUIRED',
     },
     'lname': {
-      'required': 'Last name is required.',
+      'required': 'ERROR_LAST_NAME_REQUIRED',
     },
     'phone': {
-      'required': 'Phone is required.',
+      'required': 'ERROR_PHONE_REQUIRED',
     },
     'email': {
-      'required': 'Email is required.',
-      'email': 'Please enter a valid email'
+      'required': 'ERROR_EMAIL_REQUIRED',
+      'email': 'ERROR_EMAIL_INVALID'
     },
     'password': {
-      'required': 'Password is required.',
-      'minlength': 'Password should at least be 8 digits',
-      'maxlength': 'Max characters is 25'
+      'required': 'ERROR_PASSWORD_REQUIRED',
+      'minlength': 'ERROR_PASSWORD_SHORT',
+      'maxlength': 'ERROR_PASSWORD_LONG'
     },
     dob: '',
     gender: ''
@@ -60,7 +61,7 @@ export class ProfileComponent implements OnInit {
   arrows = ['up', 'down', 'down'];
 
   constructor(private fb: FormBuilder, private auth: AuthService, private _location: Location,
-    private router: Router, private userService: UserService, private toastrService: ToastrService) { }
+    private router: Router, private userService: UserService, private toastrService: ToastrService, private translate:TranslateService) { }
 
   ngOnInit() {
     if (!this.userService.isLoggedIn()) {
@@ -160,18 +161,26 @@ export class ProfileComponent implements OnInit {
         .subscribe(
         (data) => {
           this.userService.persistUser(data);
-          this.toastrService.success(
-            'Your Profile was saved successfully!',
-            'Success!'
-          );
+          this.translate.get("SUCCESS_PROFILE_SAVE").subscribe((res:string)=>{
+
+            this.toastrService.success(
+              res,
+              'Success!'
+            );
+          })
+         
         },
         (error) => {
-          this.toastrService.error(
-            `Something went wrong, couldn\'t save profile! 
-             (${JSON.parse(error._body).message})`,
-            'Error!'
-          );
-          debugger;
+
+          this.translate.get("ERROR_PROFILE_SAVE_SUCCESS").subscribe((res:string)=>{
+            
+                        this.toastrService.success(
+                          res,
+                          'Error!'
+                        );
+                      })
+        
+    
           this.formErrors = {
             'fname': [],
             'lname': [],

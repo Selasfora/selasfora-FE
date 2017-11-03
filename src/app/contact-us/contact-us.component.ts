@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 import { ToastrService } from 'toastr-ng2';
+import {TranslateService} from "@ngx-translate/core"
 
 @Component({
   selector: 'app-contact-us',
@@ -51,7 +52,7 @@ export class ContactUsComponent implements OnInit {
   errorMessage: string = '';
   contactForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private auth: AuthService, private _location: Location,
+  constructor(private fb: FormBuilder, private auth: AuthService, private _location: Location, private translate: TranslateService,
     private router: Router, private user: UserService, private toastrService: ToastrService) {
 
   }
@@ -87,10 +88,13 @@ export class ContactUsComponent implements OnInit {
       this.auth.contactSubmit(model)
         .subscribe(
           (data) => {
-            this.toastrService.success(
-              'We Receieved your concern and we will come back to you asap!',
-              'Success!'
-          );
+            this.translate.get("SUCCESS_CONTACT_US").subscribe((res:string)=>{
+              
+                          this.toastrService.success(
+                            res,
+                            'Success!'
+                          );
+                        })
         }
       );
     }

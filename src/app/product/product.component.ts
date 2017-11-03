@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { CartService } from '../cart.service';
 import { ToastrService } from 'toastr-ng2';
+import {TranslateService} from "@ngx-translate/core"
 
 @Component({
   selector: 'app-product',
@@ -24,7 +25,7 @@ export class ProductComponent implements OnInit {
   @HostBinding('class.col-xs-6') charm_mobile = false;
   @HostBinding('class.col-md-4') charm = false;
 
-  constructor(public _cart: CartService, private toastrService: ToastrService) {
+  constructor(public _cart: CartService, private toastrService: ToastrService, private translate:TranslateService) {
   }
 
   ngOnInit() {
@@ -65,10 +66,22 @@ export class ProductComponent implements OnInit {
       (data: any) => {      
         this._cart.updateUrl(data.checkoutUrl);
         this._cart.updateCount({ count: data.lineItemCount, price: data.subtotal });
-        this.toastrService.success('Your product was added successfully!', 'Success!');
+        this.translate.get("SUCCESS_CART_ADD").subscribe((res:string)=>{
+          
+                      this.toastrService.success(
+                        res,
+                        'Success!'
+                      );
+                    })
       },
       (error) => {
-        this.toastrService.error('Your product was not added!', 'Something went wrong!');
+        this.translate.get("ERROR_CART_ADD").subscribe((res:string)=>{
+          
+                      this.toastrService.success(
+                        res,
+                        'Error!'
+                      );
+                    })
       }
     );
   }
@@ -94,6 +107,12 @@ export class ProductComponent implements OnInit {
      selected_items.push(item_to_add);
 
      localStorage.setItem('selected_items',JSON.stringify(selected_items));
-      this.toastrService.success(`${item_to_add.type} has been selected`, 'Success!');
+     this.translate.get("SUCCESS_ITEM_SELECTED").subscribe((res:string)=>{
+      
+                  this.toastrService.success(
+                    res,
+                    'Success!'
+                  );
+                })
   }
 }
