@@ -5,31 +5,31 @@
         <div class="col-xs-12">
           <div class="row country">
             <div class="col-xs-6">
-              <label>Country</label>
+              <label>{{'FORM_INPUT_COUNTRY' | translate}}</label>
               <app-dropdown [itemList]="countries" [isForm]=true (itemChange)="setCountry($event)">
               </app-dropdown>
             </div>
           </div>
           <div class="row">
             <div class="col-xs-6">
-              <label>Address 1</label>
+              <label>{{'FORM_INPUT_ADDRESS_1' | translate }}</label>
               <input type="text" id="address" name="address" class="form-control"
                   formControlName="address1">
             </div>
             <div class="col-xs-6">
-              <label>Address 2</label>
+              <label>{{'FORM_INPUT_ADDRESS_2' | translate}}</label>
               <input type="text" id="address2" name="address2" class="form-control"
                   formControlName="address2">
             </div>
           </div>
           <div class="row">
             <div class="col-xs-6">
-              <label>City</label>
+              <label>{{'FORM_INPUT_CITY' | translate}}</label>
               <input type="text" id="city" name="city" class="form-control"
                   formControlName="city">
             </div>
             <div class="col-xs-6">
-              <label>Postcode</label>
+              <label>{{'FORM_INPUT_POSTCODE' | translate }}</label>
               <input type="text" id="zip" name="zip" class="form-control"
                   formControlName="zip">
             </div>
@@ -39,7 +39,7 @@
               <div class="checkbox">
                 <label>
                   <input type="checkbox" id="default" name="default"
-                  formControlName="default"> Default
+                  formControlName="default"> {{"FORM_CHECKBOX_DEFAULT" | translate}}
                 </label>
               </div>
             </div>
@@ -48,10 +48,10 @@
       </div>
       <div class="row">
         <div class="col-xs-6 remove" (click)="remove(addid)">
-          Remove
+          {{'COMMON_REMOVE' | translate}}
         </div>
         <div class="col-xs-6 save" (click)="save()">
-          Save
+          {{'COMMON_SAVE' | translate}}
         </div>
       </div>
     </div>
@@ -66,18 +66,18 @@
       <div class="row">
         <div class="col-xs-12 title">
           <p *ngIf="addressForm.get('city').value">{{addressForm.get('city').value}}, {{addressForm.get('country').value}}, {{addressForm.get('zip').value}}</p>
-          <p>Delivery to: {{address.name}}</p>
+          <p>{{'ADDRESS_DELIVERY_TO' | translate}} {{address.name}}</p>
         </div>
       </div>
 
       <div class="row">
         <div class="col-xs-11 title">
           <label>
-            <input type="checkbox" formControlName="default" (change)="setDefault()"> Default address
+            <input type="checkbox" formControlName="default" (change)="setDefault()"> {{'ADDRESS_DEFAULT_ADDRESS' | translate}}
           </label>
         </div>
         <div class="col-xs-1 title">
-          <div class="edit" (click)="edit()">Edit</div>
+          <div class="edit" (click)="edit()">{{'COMMON_EDIT' | translate}}</div>
         </div>
       </div>
     </div>

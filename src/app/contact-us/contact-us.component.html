@@ -3,11 +3,11 @@
     <app-header page="black"></app-header>
   </div>
   <div class="container">
-    <h1>Contact Us</h1>
+    <h1>{{'CONTACT_HEADING' | translate}}</h1>
     <div class="row">
       <div class="col-md-8 col-md-offset-2 row">
         <div class="col-md-6 data">
-          We're here to help and aim to respond to your query within the next working day. (Please note our opening hours are Monday - Friday from 10am - 6.30pm.)
+          {{'CONTACT_MESSAGE' | translate}}
         </div>
         <div class="col-md-6 contact">
           <div>support@selasfora.com</div>
@@ -24,38 +24,38 @@
       <form [formGroup]="contactForm" class="col-md-8 col-md-offset-2" novalidate>
         <div class="row">
           <div class="col-md-6">
-            <label for="name">Name</label>
+            <label for="name">{{'FORM_INPUT_NAME' | translate}}</label>
             <input type="text" id="name" name="name" class="form-control"
                 formControlName="name">
             <div *ngIf="formErrors.name.length" class="error-msg">
-              <div *ngFor="let item of formErrors.name">{{ item }}</div>
+              <div *ngFor="let item of formErrors.name">{{ item | translate }}</div>
             </div>
           </div>
           <div class="col-md-6">
-            <label for="email">Email</label>
+            <label for="email">{{'FORM_INPUT_EMAIL' | translate}}</label>
             <input type="email" id="email" name="email" class="form-control"
                 formControlName="email">
             <div *ngIf="formErrors.email.length" class="error-msg">
-              <div *ngFor="let item of formErrors.email">{{ item }}</div>
+              <div *ngFor="let item of formErrors.email">{{ item | translate }}</div>
             </div>
           </div>
         </div>
 
         <div class="row">
           <div class="col-md-6" style="z-index: 200;">
-            <label>Issue</label>
+            <label>{{'FORM_INPUT_ISSUE' | translate}}</label>
 
             <app-dropdown [itemList]="IssueList" [isForm]=true (itemChange)="setIssueType($event)">
             </app-dropdown>
           </div>
 
           <div class="col-md-6">
-            <label for="subject">Subject</label>
+            <label for="subject">{{'FORM_INPUT_SUBJECT' | translate}}</label>
             <input type="text" id="subject" name="subject" class="form-control"
                 formControlName="subject">
 
             <div *ngIf="formErrors.subject.length" class="error-msg">
-              <div *ngFor="let item of formErrors.subject">{{ item }}</div>
+              <div *ngFor="let item of formErrors.subject">{{ item | translate}}</div>
             </div>
           </div>
         </div>
@@ -63,24 +63,24 @@
         <div class="row">
           <div class="col-md-12 message-area">
             <label for="message">
-              Message
+              {{'FORM_INPUT_MESSAGE' | translate}}
             </label>
             <textarea maxlength="300" id="message" name="message" class="form-control"
                 formControlName="message"></textarea>
           </div>
         </div>
 
-        <div class="signup-error" *ngIf="errorMessage">{{ errorMessage }}</div>
+        <div class="signup-error" *ngIf="errorMessage">{{ errorMessage | translate}}</div>
 
         <div class="button-line">
           <div type="submit" (click)="onSubmit()" class="tetiary-btn hidden-xs">
-            Send
+            {{'COMMON_SEND' | translate}}
           </div>
         </div>
       </form>
     </div>
     <div type="submit" (click)="onSubmit()" class="tetiary-btn visible-xs">
-      Send
+      {{'COMMON_SEND' | translate}}
     </div>
 
   </div>

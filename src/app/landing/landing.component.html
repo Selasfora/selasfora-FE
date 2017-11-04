@@ -19,7 +19,7 @@
         <div class="row">
           <div class="col-sm-12">
             <div class="input-group">
-              <input type="email" class="form-control" placeholder="Email Address" [(ngModel)]="newsLetterEmail">
+              <input type="email" class="form-control" placeholder="{{'FORM_INPUT_EMAIL' | translate}}" [(ngModel)]="newsLetterEmail">
               <span class="input-group-btn">
                 <button class="btn btn-default" type="button" (click)="newsLetter()">
                   <i class="fa fa-long-arrow-right"></i>
@@ -46,20 +46,20 @@
 <div class="main-landing visible-xs" [ngStyle]="{ 'background-image': 'url(' + page.mobileImagePath + ')'}" id="{{idx}}">
   <div class="text-content" [ngStyle]="position">
     <div class="title" [hidden]="!page.content.title" [ngStyle]="{ color: page.colorShade == 'dark' ? 'white' : 'black' }">
-      {{ page.content.title }}
+      {{ page.content.title | translate }}
     </div>
     <div class="subtext" [hidden]="!page.content.subtext" [ngStyle]="{ color: page.colorShade == 'dark' ? 'white' : 'black' }">
-      {{ page.content.subtext }}
+      {{ page.content.subtext | translate }}
     </div>
     <div class="call-for-action" [hidden]="!page.content.cta" [ngStyle]="{ color: page.colorShade == 'dark' ? 'white' : 'black' }">
       <span *ngIf="page.content.cta !== 'input'">
-        {{ page.content.cta }}
+        {{ page.content.cta |translate }}
       </span>
       <span *ngIf="page.content.cta == 'input'">
         <div class="row">
           <div class="col-sm-12">
             <div class="input-group">
-              <input type="email" class="form-control" placeholder="Email Address" [(ngModel)]="newsLetterEmail">
+              <input type="email" class="form-control" placeholder="{{'FORM_INPUT_EMAIL' | translate}}" [(ngModel)]="newsLetterEmail">
               <span class="input-group-btn">
                 <button class="btn btn-default" type="button" (click)="newsLetter()">
                   <i class="fa fa-long-arrow-right"></i>
@@ -71,7 +71,7 @@
       </span>
     </div>
     <a href="{{page.content.href}}" class="{{page.content.class}} hidden-xs" class="secondary-btn " *ngIf="page.content.btn">
-      {{ page.content.btn }}
+      {{ page.content.btn | translate }}
     </a>
     <div class="instagram" *ngIf="idx == 5">
       <a href="https://www.instagram.com/selasfora/" target="_blank">

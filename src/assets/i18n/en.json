@@ -14,10 +14,36 @@
     "ERROR_PASSWORD_SHORT": "Password should at least be 6 digits",
     "ERROR_PASSWORD_LONG": "Max characters is 25",
     "ERROR_PASSWORDS_DONT_MATCH":"Passwords don't match",
+    "ERROR_NAME_REQUIRED":"Name is required",
     "ERROR_FIRST_NAME_REQUIRED": "First name is required.",
     "ERROR_LAST_NAME_REQUIRED": "Last name is required.",
     "ERROR_PHONE_REQUIRED": "Phone is required.",
     "ERROR_ALL_FIELDS_REQUIRED": "All fields are required",
+    "ERROR_DOB_REQUIRED":"Date of birth required",
+    "ERROR_SUBJECT_REQUIRED":"Please enter a subject",
+    "ERROR_MESSAGE_REQUIRED":"Please enter a message",
+
+    "FORM_INPUT_EMAIL":"Email Address",
+    "FORM_INPUT_EMAIL_2":"Enter your email address",
+    "FORM_INPUT_PASSWORD":"Password",
+    "FORM_INPUT_NEW_PASSWORD": "Enter your new password",
+    "FORM_INPUT_REPEAT_PASSWORD": "Repeat your new password",
+    
+    "FORM_INUT_NAME":"Name",
+    "FORM_INPUT_ISSUE":"Issue",
+    "FORM_INPUT_SUBJECT":"Subject",
+    "FORM_INPUT_MESSAGE":"Message",
+    "FORM_INPUT_FIRST_NAME":"First name",
+    "FORM_INPUT_LAST_NAME":"Last name",
+    "FORM_INPUT_PHONE": "Phone",
+    "FORM_INPUT_DOB":"Date of birth",
+    "FORM_INPUT_COUNTRY":"Country",
+    "FORM_INPUT_ADDRESS_1":"Address 1",
+    "FORM_INPUT_ADDRESS_2": "Address 2",
+    "FORM_INPUT_CITY":"City",
+    "FORM_INPUT_POSTCODE":"Postcode",
+    "FORM_INPUT_GENDER":"Gender",
+    "FORM_CHECKBOX_DEFAULT":"Default",
 
     "COMMON_BRACELTES":"Bracelets",
     "COMMON_CHARMS": "Charms",
@@ -37,6 +63,10 @@
     "COMMON_SIGNUP":"Signup",
     "COMMON_FORGOT_PASSWORD":"forogt?",
     "COMMON_SIGNUP_EMAIL": "Signup with email",
+    "COMMON_SAVE":"Save",
+    "COMMON_REMOVE":"Remove",
+    "COMMON_EDIT":"Edit",
+    "COMMON_SEND": "Send",
 
     "SIGNUP_NEXT_STEP":"Just one more step...",
     "SIGNUP_SUCCESS":"Your information has been sent successfully. In order to complete your registration, please click the confirmation link in the email that we have sent to you.",
@@ -122,7 +152,17 @@
 
     
     "HOME_TITLE_6": "Stay in touch",
-    "HOME_SUBTEXT_6": "Be the first to know about our new collection and other news"
+    "HOME_SUBTEXT_6": "Be the first to know about our new collection and other news",
 
+    "PROFILE_MY_DETAILS":"My Details",
+    "PROFILE_ORDER_HISTORY":"My order history",
+    "PROFILE_ADDRESS":"Shipping Address",
+    "PROFILE_ADD_NEW_ADDRESS":"Add new address",
+
+    "ADDRESS_DELIVERY_TO":"Delivery to: ",
+    "ADDRESS_DEFAULT_ADDRESS":"Default address",
+
+    "CONTACT_HEADING":"Contact us",
+    "CONTACT_MESSAGE":"We're here to help and aim to respond to your query within the next working day. (Please note our opening hours are Monday - Friday from 10am - 6.30pm.)"
     
 }

@@ -16,20 +16,20 @@ export class ContactUsComponent implements OnInit {
 
   validationMessages = {
     'name': {
-      'required': 'name is required.',
+      'required': 'ERROR_NAME_REQUIRED',
     },
     // 'issue': {
     //   'required': 'Please select an issue',
     // },
     'email': {
-      'required': 'Email is required.',
-      'email': 'Please enter a valid email'
+      'required': 'ERROR_EMAIL_REQUIRED',
+      'email': 'ERROR_EMAIL_INVALID'
     },
     'subject': {
-      'required': 'Please enter a subject'
+      'required': 'ERROR_SUBJECT_REQUIRED'
     },
     'message': {
-      'required': 'Please enter a message.'
+      'required': 'ERROR_MESSAGE_REQUIRED'
     }
   };
 
