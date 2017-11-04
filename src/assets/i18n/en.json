@@ -13,9 +13,11 @@
     "ERROR_PASSWORD_REQUIRED": "Password is required.",
     "ERROR_PASSWORD_SHORT": "Password should at least be 6 digits",
     "ERROR_PASSWORD_LONG": "Max characters is 25",
+    "ERROR_PASSWORDS_DONT_MATCH":"Passwords don't match",
     "ERROR_FIRST_NAME_REQUIRED": "First name is required.",
     "ERROR_LAST_NAME_REQUIRED": "Last name is required.",
     "ERROR_PHONE_REQUIRED": "Phone is required.",
+    "ERROR_ALL_FIELDS_REQUIRED": "All fields are required",
 
     "COMMON_BRACELTES":"Bracelets",
     "COMMON_CHARMS": "Charms",
@@ -41,6 +43,10 @@
     "SIGNUP_RETURN":"Return to shopping",
     "SIGNUP_RESEND_EMAIL":"Resend email",
     
+    "FOROGT_PASSWORD_TITLE":"Reset Your Password",
+    "FORGOT_PASSWORD_SUBTEXT":"It’s okay. We all forgot sometimes",
+    "FOROGT_PASSWORD_RESET":"Reset my password",
+    "FOROGOT_PASSWORD_I_REMEBER":"I remember now",
 
     "CATALOG_BROWSE": "Browser {{type}} in {{mode}} mode",
     "CATALOG_NO_PRODUCTS": "No products exists with your current filter, please try another combination",

@@ -16,8 +16,8 @@ export class PasswordresetComponent implements OnInit {
 
   validationMessages = {
     'email': {
-      'required': 'Email is required.',
-      'email': 'Please enter a valid email'
+      'required': 'ERROR_EMAIL_REQUIRED',
+      'email': 'ERROR_EMAIL_INVALID'
     }
   };
 
@@ -92,12 +92,12 @@ export class PasswordresetComponent implements OnInit {
       let p2 = form.get('newPass2').value;
       if(!p1 || !p2) {
         this.resultClass = 'error';
-        this.resultText = 'All fields are required';
+        this.resultText = 'ERROR_ALL_FIELDS_REQUIRED';
         return false;
       }
       if(p1 != p2) {
         this.resultClass = 'error';
-        this.resultText = 'Passwords don\'t match';
+        this.resultText = 'ERROR_PASSWORDS_DONT_MATCH';
         return false;
       }
       this.auth.setPassword({
@@ -110,6 +110,7 @@ export class PasswordresetComponent implements OnInit {
           },
           (error) => {
             this.resultClass = 'error';
+            // TODO : google translate 
             this.resultText = error.statusText;
           }
         );
