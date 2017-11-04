@@ -18,6 +18,13 @@ export class AppComponent {
     // this language will be used as a fallback when a translation isn't found in the current language
     translate.setDefaultLang('en');
 
+    // detect the user's language and then set the translation:
+
+    let userLang = navigator.language.split("-")[0];
+
+    translate.use(userLang)
+
+
     router.events.subscribe(
       (event) => {
         if (event instanceof NavigationEnd) {
