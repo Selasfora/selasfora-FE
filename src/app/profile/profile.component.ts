@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
   user: any = {};
 
   addresses = [1];
-  orders = [1, 2];
+  orders:any = [1, 2];
   formSubmitted = false;
   validationMessages = {
     'fname': {
@@ -87,10 +87,34 @@ export class ProfileComponent implements OnInit {
 
     this.userService.getOrders().subscribe(
       data => {
+
+        /**
+         * get images related to the orders 
+         */
+        
         this.orders = data.orders;
+        let orders = this.orders;
+
+        orders.map((order,oIndex,arr)=>{
+          let line_items = order.line_items;
+          line_items.map((line_item,iIndex,arr)=>{
+            this.auth.fetchProduct(line_item.product_id).subscribe(product=>{
+              this.orders[oIndex].line_items[iIndex].img = product.image.src;
+              if(iIndex == 0){
+                this.orders[oIndex].img = product.image.src;
+              }
+            })
+          })
+        })
+
       }
     );
 
+  }
+
+  viewOrder(order){
+    this.userService.setOrderHistoryItem(order);
+    this.router.navigate(["/profile/orders/details"]);
   }
 
   flipArrow(n) {

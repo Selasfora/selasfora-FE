@@ -9,6 +9,15 @@ export class UserService implements CanActivate, CanDeactivate<any> {
   private window: any;
   private user: any;
   private baseURL = environment.apiPath;
+  private orderHistoryItem:any = null;
+
+  setOrderHistoryItem(item:any){
+    this.orderHistoryItem = item;
+  }
+
+  getOrderHistoryItem(){
+    return this.orderHistoryItem;
+  }
 
   constructor(private $window: WindowService, private router: Router, private auth: AuthService) {
     this.window = $window.nativeWindow;
@@ -98,6 +107,12 @@ export class UserService implements CanActivate, CanDeactivate<any> {
     const url = this.baseURL + 'users/' +  this.user.id + '/orders';
     const method = 'get';
     return this.auth.sendRequest(method, url, {}, this.auth.headers);
+  }
+
+  cancelOrder(orderId){
+    const url = `${this.baseURL}users/${this.user.id}/orders/${orderId}/cancel`;
+    const method = "post";
+    return this.auth.sendRequest(method,url,{},this.auth.headers);
   }
 
 }

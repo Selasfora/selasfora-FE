@@ -1,6 +1,6 @@
 <ng2-slim-loading-bar [color]="'#272caa'" [height]="'4px'" *ngIf="!hideheader"></ng2-slim-loading-bar>
 
-<div>
+<div class="whiteBG">
 
   <div class="header row margin0" *ngIf="!hideheader">
     <app-header page="black" [type]="type" [filter]="type == 'charm'" showFilterIcon="false"></app-header>
@@ -37,8 +37,15 @@
                       </tr>
                       <tr>
                           <td>{{itemCount}}</td><td>{{orderTotal}}</td><td>{{orderNumber}}</td>
-                      </tr>
+                          <!-- for desktop views -->
+                          <td class="return-order desktop"><button (click)="returnOrder()">Return order</button></td>
+                        </tr>
                 </table>
+                <div class="row return-order mobile">
+                  <div class="col-md-12 container">
+                    <button (click)="returnOrder()">Return order</button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -77,6 +84,13 @@
     </div>
   </div>
 
+    <div class="row actions-container">
+      <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4 actions">
+        <button class="back-button" routerLink="/profile" routeParams="{orders}">
+          Back to order history
+        </button>
+      </div>
+    </div>
   <div class="row">
     <app-footer></app-footer>
   </div>

@@ -102,9 +102,15 @@ export class AuthService {
     return this.sendRequest('get', url, {}, null);
   }
 
-  fetchProduct(id) {
+  fetchProduct(id):Observable<any> {
     const url = this.baseURL + 'products/' + id;
     return this.sendRequest('get', url, {}, null);
+  }
+
+  fetchProductImages(ids:any[]){
+    return ids.map((id)=>{
+      return this.fetchProduct(id).toPromise();
+    })
   }
 
   fetchFilters() {

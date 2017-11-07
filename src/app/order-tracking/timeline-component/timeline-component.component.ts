@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class TimelineComponentComponent implements OnInit {
   completes:any;
   toggleButton:any;
+  trackingLabels = ["STATUS_ORDER_PLACED","STATUS_ORDER_SHIPPED","STATUS_ORDER_CONFIRMED"];
 
   constructor() { 
     this.completes = document.querySelectorAll(".complete");

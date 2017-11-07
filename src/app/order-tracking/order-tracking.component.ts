@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import {UserService} from '../user.service';
+import {AuthService} from "../auth.service";
 @Component({
   selector: 'app-order-tracking',
   templateUrl: './order-tracking.component.html',
@@ -14,7 +15,17 @@ export class OrderTrackingComponent implements OnInit {
   orderTotal:number = 5000;
   orderNumber:number = 1255456;
   orderItems:any[] = [1,2,3,4]
-  constructor() { }
+  order:any = null;
+  orderType="confirmed" // confirmed | cancled | returned 
+  constructor(private userService:UserService, private service:AuthService) {
+
+      // fetch the otder
+      this.order = userService.getOrderHistoryItem();
+
+      
+
+      
+   }
 
   ngOnInit() {
   }
