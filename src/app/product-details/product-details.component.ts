@@ -7,7 +7,8 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { ToastrService } from 'toastr-ng2';
 import {ShippingMenuComponent} from '../shipping-menu/shipping-menu.component'
-import {TranslateService} from "@ngx-translate/core"
+import {TranslateService} from "@ngx-translate/core";
+import {DynamicTranslationService} from "../dynamic-translation.service"
 
 @Component({
   selector: 'app-product-details',
@@ -51,7 +52,7 @@ export class ProductDetailsComponent implements OnInit {
   ];
 
   constructor(public service: AuthService, public route: ActivatedRoute, private router: Router, private translate: TranslateService,
-      private windowService: WindowService, public _cart: CartService, private toastrService: ToastrService) {
+      private windowService: WindowService, public _cart: CartService, private toastrService: ToastrService, private dynamicTranslations: DynamicTranslationService) {
     this.window = windowService.nativeWindow;
   }
 
@@ -71,7 +72,18 @@ export class ProductDetailsComponent implements OnInit {
         .subscribe(
           (data) => {
             console.log('product', data)
-            that.product = data;
+
+            // convert the html to text before translating
+            let parser = new DOMParser();
+            data.body_html= parser.parseFromString( data.body_html , 'text/html').querySelector('body').innerText;
+
+            // translate the product details
+            this.dynamicTranslations.getTranslation([data.title,data.body_html]).subscribe(res=>{
+              data.title = res[0][0]
+              data.body_html = res[0][1];
+              that.product = data;
+            })
+            
           }
         );
       }

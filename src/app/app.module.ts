@@ -53,6 +53,8 @@ import { MixmatchComponent } from './mixmatch/mixmatch.component';
 import { OrderTrackingComponent } from './order-tracking/order-tracking.component';
 import { TimelineComponentComponent } from './order-tracking/timeline-component/timeline-component.component';
 
+/** dynamic translation service */
+import {DynamicTranslationService} from './dynamic-translation.service';
 // angular translate module 
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
@@ -120,7 +122,8 @@ export function createTranslateLoader(http: HttpClient) {
     WindowService,
     UserService,
     FiltersService,
-    CartService
+    CartService,
+    DynamicTranslationService
   ],
   exports: [BrowserModule, SlimLoadingBarModule],
   bootstrap: [AppComponent]
