@@ -17,6 +17,10 @@ export class DynamicTranslationService {
 
 
   getTranslation(text:any[]){
+    // check for text validity
+
+    text = text.map(t=> t || " ");
+
     let reqbody ={
         "text": 
           text

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from '../auth.service'
 import { Router } from '@angular/router';
+import {DynamicTranslationService} from '../dynamic-translation.service'
 
 @Component({
   selector: 'app-journal',
@@ -15,7 +16,7 @@ export class JournalComponent implements OnInit {
 
   pageTitle = "Journal";
 
-  constructor(private router: Router, public service: AuthService) { }
+  constructor(private router: Router, public service: AuthService, private dynamicTranslation: DynamicTranslationService) { }
 
   ngOnInit() {
     let that = this;
@@ -26,7 +27,24 @@ export class JournalComponent implements OnInit {
         data.forEach(function(item, index) {
           let n = Math.floor(index / 3);
           that.lists[n] = that.lists[n] || [];
-          that.lists[n].push(item);
+
+          /** ensure translations */
+          let parser = new DOMParser();
+          let translateText =[
+            item.title,
+            item.author,
+            item.tags,
+            parser.parseFromString(item.summary_html,"text/html").querySelector('body').innerText,
+          ]
+
+          that.dynamicTranslation.getTranslation(translateText).subscribe(res=>{
+            item.title = res[0][0];
+            item.author = res[0][1];
+            item.tags = res[0][2];
+            item.summary_html = res[0][3];
+            that.lists[n].push(item);
+          })
+          
         });
       }
     );

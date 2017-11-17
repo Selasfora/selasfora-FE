@@ -4,6 +4,7 @@ import { FiltersService } from '../filters.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
+import {DynamicTranslationService} from '../dynamic-translation.service'
 
 @Component({
   selector: 'app-catalog',
@@ -37,6 +38,7 @@ export class CatalogComponent implements OnInit {
 
   constructor(public service: AuthService, private route: ActivatedRoute, private router: Router,
       public filterService: FiltersService, private slimLoadingBarService: SlimLoadingBarService,
+      private dynamicTranslations: DynamicTranslationService,
       private changeDetector:ChangeDetectorRef) {
         console.log('constructor');
       this;
@@ -66,12 +68,26 @@ export class CatalogComponent implements OnInit {
     }
     let count = 0;
     this;
-    this.list.forEach((item, i)=> {
+    this.list.forEach((item:any, i)=> {
+      
       if (i && i % dev === 0) {
         count++;
       }
       this.lists[count] = this.lists[count] || [];
-      this.lists[count].push(item);
+      
+      /**ensure translations */
+      let parser = new DOMParser();
+      let translations = [
+        item.title,
+        parser.parseFromString(item.body_html,"text/html").querySelector('body').innerText
+
+      ]
+      this.dynamicTranslations.getTranslation(translations).subscribe(res=>{
+        item.title = res[0][0] || "";
+        item.body_html = res[0][1] || "";
+        this.lists[count].push(item);
+      })
+      
     });
   }
 
