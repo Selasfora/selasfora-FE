@@ -1,4 +1,4 @@
-import { Component, OnInit, Input,ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input,ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { FiltersService } from '../filters.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
@@ -17,8 +17,12 @@ export class CatalogComponent implements OnInit {
   @Input('showCollections') showCollections  = true;
   @Input('canAddToCart') canAddToCart = true;
   @Input('hideMainHeader') hideheader = false;
+  @ViewChild('slideContainer') slideContainer:ElementRef;
   list: Array<object> = [];
   lists: Array<any> = [];
+  private filterParams:string;
+  private page:number;
+  private requestRunning:boolean;
   collectionSelected:any = false;
 
   filters: object = {
@@ -41,39 +45,35 @@ export class CatalogComponent implements OnInit {
       private dynamicTranslations: DynamicTranslationService,
       private changeDetector:ChangeDetectorRef) {
         console.log('constructor');
-      this;
-      const interval = setInterval(()=>{
-        if (this.type) {
-          clearInterval(interval);
-          this.fetchProducts();
-        }
-      }, 1000);
+        this.page = 1;
+        this.filterParams = null;
+        this.requestRunning = false;
 
-    
+        if(this.type){
+          this.fetchProducts(this.type,this.page,this.filterParams);
+        }
 
       router.events.subscribe((events:any)=>{
      
         var d = router.parseUrl(events.url)
         this.showCollections = d.queryParams.hasOwnProperty('collection') || (d.queryParams.hasOwnProperty('collection') == false && events.url.indexOf("/catalog/charm") < 0) ? true : false;
         this.showFilter = this.showCollections;
+        this.list = [];
+        this.page =1;
+      
 
       })
   }
 
-  parseList() {
-    this.lists = [];
-    let dev = 3;
-    if (this.type === 'bracelet') {
-      dev = 2;
-    }
-    let count = 0;
-    this;
-    this.list.forEach((item:any, i)=> {
+  parseList(res:any[]) {
+
+ 
+    let count = this.list.length;
+
+    res.forEach((item:any, i)=> {
       
-      if (i && i % dev === 0) {
-        count++;
-      }
-      this.lists[count] = this.lists[count] || [];
+   
+   
       
       /**ensure translations */
       let parser = new DOMParser();
@@ -85,7 +85,7 @@ export class CatalogComponent implements OnInit {
       this.dynamicTranslations.getTranslation(translations).subscribe(res=>{
         item.title = res[0][0] || "";
         item.body_html = res[0][1] || "";
-        this.lists[count].push(item);
+        this.list.push(item);
       })
       
     });
@@ -95,6 +95,9 @@ export class CatalogComponent implements OnInit {
     this.startLoading();
     this.subscriptions.push(this.route.paramMap
       .subscribe((data) => {
+
+        // set the page title according to the kind of product
+
         const t = data.get('type');
         if (t) {
           this.type = t;
@@ -112,8 +115,8 @@ export class CatalogComponent implements OnInit {
           }
         }
 
-       
-        this.fetchProducts();
+        this.page = 1;
+        this.fetchProducts(this.type,this.page,this.filterParams);
 
         this.subscriptions.push(this.service.fetchFilters().subscribe(
           (res) => {
@@ -122,29 +125,13 @@ export class CatalogComponent implements OnInit {
           }
         ));
 
+        // if filters change .. reset the page to 1 and fetch products 
         this.subscriptions.push(
           this.filterService.query.subscribe(
             (d) => {
-              this.startLoading();
-              if (!d || d === '?') {
-                this.subscriptions.push(this.service.fetchProducts(this.type,1)
-                .subscribe(
-                  (res) => {
-                    this.completeLoading();
-                    this.list = res;
-                    this.parseList();
-                  }
-                ));
-              } else {
-                const s = this.service.queryProducts(d + 'product_type=' + this.type).subscribe(
-                  (res) => {
-                    this.completeLoading();
-                    this.list = res;
-                    this.parseList();
-                  }
-                );
-                d && this.subscriptions.push(s);
-              }
+              this.filterParams = d || null;
+              this.page = 1;
+              this.fetchProducts(this.type,this.page,this.filterParams)
             }
           )
         );
@@ -152,29 +139,38 @@ export class CatalogComponent implements OnInit {
     ));
   }
 
-  fetchProducts() {
-  
-    if (!this.type) {
+  fetchProducts(type,page,d) {
+  // make sure this only runs when not viewing collections 
+
+    this.requestRunning = true;
+
+    if (!this.type && this.showCollections)  {
       return ;
     }
-    console.log('fetching', this.type)
-    this.subscriptions.push(
-      this.service.fetchProducts(this.type,1)
+    this.startLoading();
+    if (!d || d === '?' || d==="?&") {
+      this.subscriptions.push(this.service.fetchProducts(this.type,this.page)
       .subscribe(
         (res) => {
           this.completeLoading();
-          this.list = res;
-          this.parseList();
-          if (this.mode !== 'grid') {
-            const l = 350;
-            this.slideContainerWidth = this.list.length * l + 200 + 'px';
-            window.scrollTo(0,0)
-          } else {
-            this.slideContainerWidth = 'auto';
-          }
+         
+          this.parseList(res);
+          this.resetContainer(false);
+          this.requestRunning = false;
         }
-      )
-    );
+      ));
+    } else {
+      const s = this.service.queryProducts(d + 'product_type=' + this.type + '&page='+this.page+'&limit=9').subscribe(
+        (res) => {
+          this.completeLoading();
+          
+          this.parseList(res);
+          this.resetContainer(false)
+          this.requestRunning = false;
+        }
+      );
+      d && this.subscriptions.push(s);
+    }
   }
 
   parseResponse(data) {
@@ -233,13 +229,57 @@ export class CatalogComponent implements OnInit {
     } else {
       this.slideContainerWidth = 'auto';
     }
-
+  
     e.preventDefault();
+    this.setUpScrolling();
     return false;
   }
 
   gotoMixMatch(){
     this.router.navigate(["/mixmatch"],{queryParams:{step:3}})
+  }
+
+  resetContainer(resetScroll){
+    if (this.mode !== 'grid') {
+      const l = 350;
+      this.slideContainerWidth = this.list.length * l + 200 + 'px';
+      if(resetScroll)
+      window.scrollTo(0,0)
+    } else {
+      this.slideContainerWidth = 'auto';
+    }
+    this.setUpScrolling();
+  }
+
+  setUpScrolling(){
+    switch(this.mode == 'grid'){
+      case true:{
+        // track the window's vertical scrolling 
+        this.slideContainer.nativeElement.onscroll = null;
+        window.onscroll = (e)=>{
+          if(!this.requestRunning)
+          if (document.scrollingElement.scrollHeight - 100 <= 
+            document.scrollingElement.scrollTop +        
+            window.innerHeight) {
+            this.page +=1;
+            this.fetchProducts(this.type,this.page,this.filterParams)
+        }
+        }
+        
+        break;
+      }
+      case false:{
+        window.onscroll = null;
+        this.slideContainer.nativeElement.onscroll = (e)=>{
+          if(!this.requestRunning)
+          if(this.slideContainer.nativeElement.scrollLeft + this.slideContainer.nativeElement.offsetWidth >= this.slideContainer.nativeElement.scrollWidth -100 ) {
+            this.page+=1;
+            this.fetchProducts(this.type,this.page,this.filterParams)
+        }
+        }
+        break;
+      }
+    }
   }
 
 }

@@ -8,8 +8,8 @@
   <div *ngIf="(showCollections && type =='charm') || (!showCollections && type=='bracelet') || (showCollections && type=='bracelet')" class="col-md-offset-1 col-md-10 body row ">
     <div class="page-title" *ngIf="pageTitle && !hideheader"> {{ pageTitle }} </div>
     <!-- [class.container]="mode != 'grid'" -->
-    <div style="overflow: auto;" [ngClass]="{'p-b-400': type == 'bracelet' && mode != 'grid'}">
-      <div class="hidden-xs" [class.row]="mode == 'grid'" [class.slide-container]="mode != 'grid'" [style.width]="slideContainerWidth">
+    <div style="overflow: auto;" [ngClass]="{'p-b-400': type == 'bracelet' && mode != 'grid'}" #slideContainer>
+      <div class="hidden-xs" [class.row]="mode == 'grid'" [class.slide-container]="mode != 'grid'" [style.width]="slideContainerWidth" >
         <div *ngFor="let item of list" class="product-container">
           <app-product [item]="item" [mode]="mode" [canAddToCart]="canAddToCart"></app-product>
         </div>
