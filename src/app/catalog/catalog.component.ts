@@ -65,6 +65,7 @@ export class CatalogComponent implements OnInit {
         this.getCollections();
 
         else {
+          this.collections = [];
           this.collectionID = d.queryParams.collection;
           this.page = 1;
           if(this.type)
