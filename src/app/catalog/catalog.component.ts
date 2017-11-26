@@ -1,7 +1,7 @@
 import { Component, OnInit, Input,ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { FiltersService } from '../filters.service';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap , NavigationEnd} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 import {DynamicTranslationService} from '../dynamic-translation.service'
@@ -25,7 +25,7 @@ export class CatalogComponent implements OnInit {
   private requestRunning:boolean;
   collectionSelected:any = false;
   collections:any[];
-
+  collectionID:any;
   filters: any = {
     color: [],
     size: [],
@@ -54,6 +54,7 @@ export class CatalogComponent implements OnInit {
        
       router.events.subscribe((events:any)=>{
      
+        if(events instanceof NavigationEnd){
         var d = router.parseUrl(events.url)
         this.showCollections = d.queryParams.hasOwnProperty('collection') || (d.queryParams.hasOwnProperty('collection') == false && events.url.indexOf("/catalog/charm") < 0) ? true : false;
         this.showFilter = this.showCollections;
@@ -62,6 +63,15 @@ export class CatalogComponent implements OnInit {
         
         if(!this.showCollections)
         this.getCollections();
+
+        else {
+          this.collectionID = d.queryParams.collection;
+          this.page = 1;
+          if(this.type)
+          this.fetchProducts(this.type,this.page,'',true);
+        }
+
+      }
 
       })
   }
@@ -128,7 +138,7 @@ export class CatalogComponent implements OnInit {
                 
                 this.page = 1;
                
-                this.fetchProducts(this.type,this.page,this.filterParams)
+                this.fetchProducts(this.type,this.page,this.filterParams,true)
               }
             )
           );
@@ -146,7 +156,7 @@ export class CatalogComponent implements OnInit {
     ));
   }
 
-  fetchProducts(type,page,d) {
+  fetchProducts(type,page,d,isNew) {
   // make sure this only runs when not viewing collections 
 
     this.requestRunning = true;
@@ -155,7 +165,7 @@ export class CatalogComponent implements OnInit {
       return ;
     }
     this.startLoading();
-    if (!d || d === '?' || d==="?&") {
+    if ((!d || d === '?' || d==="?&" ) && !this.collectionID) {
       this.subscriptions.push(this.service.fetchProducts(this.type,this.page)
       .subscribe(
         (res) => {
@@ -167,8 +177,17 @@ export class CatalogComponent implements OnInit {
         }
       ));
     } else {
-    
-      const s = this.service.queryProducts(d + 'product_type=' + this.type + '&page='+this.page+'&limit=9').subscribe(
+      d = d || '?';
+      // make sure to clean the url
+      d=d.replace('?&','?');
+
+
+      if(isNew){
+        this.list = [];
+        this.page = 1;
+      }
+
+      const s = this.service.queryProducts(d + 'product_type=' + this.type + '&page='+this.page+'&limit=9'+'&collection_handle='+this.collectionID).subscribe(
         (res) => {
           this.completeLoading();
           
@@ -265,7 +284,9 @@ export class CatalogComponent implements OnInit {
     this.setUpScrolling();
   }
 
+
   setUpScrolling(){
+    if(!this.slideContainer) return;
     switch(this.mode == 'grid'){
       case true:{
         // track the window's vertical scrolling 
@@ -276,7 +297,7 @@ export class CatalogComponent implements OnInit {
             document.scrollingElement.scrollTop +        
             window.innerHeight) {
             this.page +=1;
-            this.fetchProducts(this.type,this.page,this.filterParams)
+            this.fetchProducts(this.type,this.page,this.filterParams,false)
         }
         }
         
@@ -288,7 +309,7 @@ export class CatalogComponent implements OnInit {
           if(!this.requestRunning)
           if(this.slideContainer.nativeElement.scrollLeft + this.slideContainer.nativeElement.offsetWidth >= this.slideContainer.nativeElement.scrollWidth -100 ) {
             this.page+=1;
-            this.fetchProducts(this.type,this.page,this.filterParams)
+            this.fetchProducts(this.type,this.page,this.filterParams,false)
         }
         }
         break;

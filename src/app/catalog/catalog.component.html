@@ -43,7 +43,7 @@
         <div class="post-body" [innerHTML]="collection.body_html">
       
         </div>
-        <div class="button btn" [routerLink]="['/catalog/charm']" [queryParams]="{'collection':collection.id}">Shop all {{type}}s</div>
+        <div class="button btn" [routerLink]="['/catalog/charm']" [queryParams]="{'collection':collection.handle}">Shop all {{type}}s</div>
       </div>
     </div>
 
