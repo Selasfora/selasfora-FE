@@ -133,6 +133,12 @@ export class AuthService {
     return this.sendRequest('get', url, {}, null);
   }
 
+  queryCollections() {
+    const url = this.baseURL + 'collections?';
+    return this.sendRequest('get', url, {}, null);
+  }
+  
+
   newsLetter(email) {
     const url = this.baseURL + 'newsletters';
     return this.sendRequest('post', url, {'email': email}, null);

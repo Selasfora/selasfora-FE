@@ -29,15 +29,15 @@ export class JournalComponent implements OnInit {
           that.lists[n] = that.lists[n] || [];
 
           /** ensure translations */
-          let parser = new DOMParser();
+         
           let translateText =[
             item.title,
             item.author,
             item.tags,
-            parser.parseFromString(item.summary_html,"text/html").querySelector('body').innerText,
+            item.summary_html,
           ]
 
-          that.dynamicTranslation.getTranslation(translateText).subscribe(res=>{
+          that.dynamicTranslation.getTranslation(translateText,"html").subscribe(res=>{
             item.title = res[0][0];
             item.author = res[0][1];
             item.tags = res[0][2];

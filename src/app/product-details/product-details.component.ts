@@ -74,11 +74,10 @@ export class ProductDetailsComponent implements OnInit {
             console.log('product', data)
 
             // convert the html to text before translating
-            let parser = new DOMParser();
-            data.body_html= parser.parseFromString( data.body_html , 'text/html').querySelector('body').innerText;
+          
 
             // translate the product details
-            this.dynamicTranslations.getTranslation([data.title,data.body_html]).subscribe(res=>{
+            this.dynamicTranslations.getTranslation([data.title,data.body_html],"html").subscribe(res=>{
               data.title = res[0][0]
               data.body_html = res[0][1];
               that.product = data;

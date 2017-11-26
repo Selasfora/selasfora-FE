@@ -24,8 +24,9 @@ export class CatalogComponent implements OnInit {
   private page:number;
   private requestRunning:boolean;
   collectionSelected:any = false;
+  collections:any[];
 
-  filters: object = {
+  filters: any = {
     color: [],
     size: [],
     material: [],
@@ -48,11 +49,9 @@ export class CatalogComponent implements OnInit {
         this.page = 1;
         this.filterParams = null;
         this.requestRunning = false;
+        this.collections = [];
 
-        if(this.type){
-          this.fetchProducts(this.type,this.page,this.filterParams);
-        }
-
+       
       router.events.subscribe((events:any)=>{
      
         var d = router.parseUrl(events.url)
@@ -60,7 +59,9 @@ export class CatalogComponent implements OnInit {
         this.showFilter = this.showCollections;
         this.list = [];
         this.page =1;
-      
+        
+        if(!this.showCollections)
+        this.getCollections();
 
       })
   }
@@ -76,13 +77,13 @@ export class CatalogComponent implements OnInit {
    
       
       /**ensure translations */
-      let parser = new DOMParser();
+     
       let translations = [
         item.title,
-        parser.parseFromString(item.body_html,"text/html").querySelector('body').innerText
+        item.body_html
 
       ]
-      this.dynamicTranslations.getTranslation(translations).subscribe(res=>{
+      this.dynamicTranslations.getTranslation(translations,"html").subscribe(res=>{
         item.title = res[0][0] || "";
         item.body_html = res[0][1] || "";
         this.list.push(item);
@@ -116,7 +117,21 @@ export class CatalogComponent implements OnInit {
         }
 
         this.page = 1;
-        this.fetchProducts(this.type,this.page,this.filterParams);
+        
+        //this.fetchProducts(this.type,this.page,this.filterParams);
+
+           // if filters change .. reset the page to 1 and fetch products 
+           this.subscriptions.push(
+            this.filterService.query.subscribe(
+              (d) => {
+                this.filterParams = d  || "?";
+                
+                this.page = 1;
+               
+                this.fetchProducts(this.type,this.page,this.filterParams)
+              }
+            )
+          );
 
         this.subscriptions.push(this.service.fetchFilters().subscribe(
           (res) => {
@@ -125,16 +140,8 @@ export class CatalogComponent implements OnInit {
           }
         ));
 
-        // if filters change .. reset the page to 1 and fetch products 
-        this.subscriptions.push(
-          this.filterService.query.subscribe(
-            (d) => {
-              this.filterParams = d || null;
-              this.page = 1;
-              this.fetchProducts(this.type,this.page,this.filterParams)
-            }
-          )
-        );
+        this.filterService.filters.next(this.filters);
+
       }
     ));
   }
@@ -144,7 +151,7 @@ export class CatalogComponent implements OnInit {
 
     this.requestRunning = true;
 
-    if (!this.type && this.showCollections)  {
+    if (!this.type && !this.showCollections)  {
       return ;
     }
     this.startLoading();
@@ -160,6 +167,7 @@ export class CatalogComponent implements OnInit {
         }
       ));
     } else {
+    
       const s = this.service.queryProducts(d + 'product_type=' + this.type + '&page='+this.page+'&limit=9').subscribe(
         (res) => {
           this.completeLoading();
@@ -171,6 +179,12 @@ export class CatalogComponent implements OnInit {
       );
       d && this.subscriptions.push(s);
     }
+  }
+
+  getCollections(){
+    this.service.queryCollections().subscribe((collections:any)=>{
+      this.collections = collections.filter(c=> c.handle != 'charm' && c.handle!="bracelet");
+    })
   }
 
   parseResponse(data) {
@@ -281,5 +295,7 @@ export class CatalogComponent implements OnInit {
       }
     }
   }
+
+  
 
 }

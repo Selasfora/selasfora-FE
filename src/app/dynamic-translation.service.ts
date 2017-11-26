@@ -16,7 +16,7 @@ export class DynamicTranslationService {
   }
 
 
-  getTranslation(text:any[]){
+  getTranslation(text:any[],format:string){
     // check for text validity
 
     text = text.map(t=> t || " ");
@@ -25,7 +25,9 @@ export class DynamicTranslationService {
         "text": 
           text
         ,
-        "target": "hi" // TODO: add this after debugging this.currentLang
+        "target": "hi", // TODO: add this after debugging this.currentLang
+        "format":format || "text"
+
       }
     
    return  this.http.post(this.api,reqbody).map(res=>res)
