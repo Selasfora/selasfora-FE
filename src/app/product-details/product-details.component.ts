@@ -8,7 +8,8 @@ import 'rxjs/add/operator/switchMap';
 import { ToastrService } from 'toastr-ng2';
 import {ShippingMenuComponent} from '../shipping-menu/shipping-menu.component'
 import {TranslateService} from "@ngx-translate/core";
-import {DynamicTranslationService} from "../dynamic-translation.service"
+import {DynamicTranslationService} from "../dynamic-translation.service";
+declare var clevertap:any;
 
 @Component({
   selector: 'app-product-details',
@@ -73,8 +74,11 @@ export class ProductDetailsComponent implements OnInit {
           (data) => {
             console.log('product', data)
 
-            // convert the html to text before translating
-          
+            // send clever tap notification:
+            clevertap.event.push("Product Viewed",{
+              "Product name":data.title
+            });
+            
 
             // translate the product details
             this.dynamicTranslations.getTranslation([data.title,data.body_html],"html").subscribe(res=>{

@@ -4,6 +4,7 @@ import { AuthService } from '../auth.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
+declare var clevertap:any;
 
 @Component({
   selector: 'app-signup',
@@ -61,8 +62,15 @@ export class SignupComponent implements OnInit {
             this.sentConfirmation = true;
             let email = d.queryParams['email'];
             let code = d.queryParams['verificationCode'];
-            router.navigate(["/login"]);
 
+            // tell clever tap that email was verified 
+            clevertap.event.push("User signup",{
+              "Email confirmed":"confrimed"
+            });
+
+
+            router.navigate(["/login"]);
+            
           }
       })
 
@@ -107,9 +115,23 @@ export class SignupComponent implements OnInit {
         .subscribe(
           (data) => {
             this.sentConfirmation = true;
+
+            // send user signed up
+            clevertap.event.push("User signup",{
+              "Email confirmed":"pending",
+              "email": value.email,
+              "user name": value.fname +" "+ value.lname,
+              "user phone": value.phone
+            });
           },
           (error) => {
             this.errorMessage = error.json().errors ? error.json().errors.full_messages[0] : error.json().message;
+
+            // tell clever tap there was a signup error
+               // send user signed up
+               clevertap.event.push("User signup failed",{
+                "Error message":this.errorMessage
+              });
           }
         );
     }
@@ -137,7 +159,13 @@ export class SignupComponent implements OnInit {
 
   resend() {
     this.auth.resendEmail().subscribe(
-      (data) => this.router.navigate(['/'])
+      (data) => {
+        clevertap.event.push("User signup",{
+          "Email confirmed":"resend confirmation email"
+        });
+
+        this.router.navigate(['/']);
+      }
     );
   }
 

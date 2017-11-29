@@ -6,6 +6,7 @@ import { UserService } from '../user.service';
 import { Location } from '@angular/common';
 import { Angular2SocialLoginModule, AuthService as socialServie } from "angular2-social-login";
 import { Router } from '@angular/router';
+declare var clevertap: any;
 
 let providers = {
   "google": {
@@ -22,7 +23,7 @@ Angular2SocialLoginModule.loadProvidersScripts(providers);
 
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  googleKey:string;
+  googleKey: string;
   validationMessages = {
     'email': {
       'required': 'ERROR_EMAIL_REQUIRED',
@@ -55,25 +56,34 @@ export class LoginComponent implements OnInit {
     this.formErrors.password = [];
 
     this.subscription = this._auth.login(provider)
-    .subscribe(
+      .subscribe(
       (data) => {
-        let res:any = data;
+        let res: any = data;
         res.provider = 'google'
         this.auth.registerSocialUser(res);
         this.user.persistUser(res);
         this.window.location.href = '/';
+
+        clevertap.event.push("facebook login");
+        
+                      clevertap.profile.push({
+                        "Google": res
+                      });
+
+
+
       },
-      err=>{
-        console.log("login error",err)
+      err => {
+        console.log("login error", err)
         this.formErrors.password.push("ERROR_INVALID_USER_PASSWORD")
       },
-      ()=>{}
-    )
+      () => { }
+      )
   }
 
   logout() {
     let that = this;
-    this.window.FB.getLoginStatus(function(response) {
+    this.window.FB.getLoginStatus(function (response) {
       if (response.status === 'connected') {
         that.window.FB.logout();
       }
@@ -83,13 +93,15 @@ export class LoginComponent implements OnInit {
       (data) => {
         //return a boolean value.
         this.user.removeUser();
+        clevertap.event.push("logout");
+        this.router.navigate(['/']);
       }
     )
     this.auth.removeAuthHeader();
   }
 
   private addFB() {
-    (function(d, s, id) {
+    (function (d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;
       js = d.createElement(s); js.id = id;
@@ -104,7 +116,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(this.user.isLoggedIn()) {
+    if (this.user.isLoggedIn()) {
       this.router.navigate(['/']);
     }
 
@@ -117,16 +129,31 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.formErrors.password = [];
     let valid = this.validate();
-    if(valid) {
+    if (valid) {
       this.auth.login(this.loginForm.value)
         .subscribe((data) => {
           this.auth.setAuthHeader(data.session_token)
           this.user.persistUser(data);
+
+
+          // push the profile to clever tap
+          let profileData = Object.assign({}, data);
+          delete profileData.session_token;
+
+          clevertap.profile.push({
+            "Site": profileData
+          });
+
+
+
+          clevertap.event.push("login");
+
+
           this.window.location.href = '/';
         },
-      err=>{
-        this.formErrors.password.push("ERROR_INVALID_USER_PASSWORD")
-      });
+        err => {
+          this.formErrors.password.push("ERROR_INVALID_USER_PASSWORD")
+        });
     }
     return false;
   }
@@ -153,7 +180,7 @@ export class LoginComponent implements OnInit {
     let appKey = '253526608467931';
     let appSecret = 'c3a591cceb4382ccb4689df09837857a';
 
-    this.window.fbAsyncInit = function() {
+    this.window.fbAsyncInit = function () {
       this.window.FB.init({
         appId: appKey,
         status: true,
@@ -166,7 +193,7 @@ export class LoginComponent implements OnInit {
 
   facebook() {
     let that = this;
-    this.window.FB.getLoginStatus(function(response) {
+    this.window.FB.getLoginStatus(function (response) {
       if (response.status === 'connected') {
         var uid = response.authResponse.userID;
         var accessToken = response.authResponse.accessToken;
@@ -177,21 +204,28 @@ export class LoginComponent implements OnInit {
               that.user.persistUser(response);
               //that.router.navigate(['/']);
               that.window.location.href = '/';
+
+              // clever tap login and profile push
+              clevertap.event.push("facebook login");
+
+              clevertap.profile.push({
+                "Facebook": response
+              });
             }
           }
         );
       } else {
         // the user isn't logged in to Facebook.
-        this.window.FB.login(function(response) {
+        this.window.FB.login(function (response) {
           let res = response;
           console.log('res', res);
-          if(response && !response.error) {
+          if (response && !response.error) {
             that.window.FB.api(
               response.authResponse.userID,
               function (response) {
                 if (response && !response.error) {
                   response.provider = 'facebook';
-                  if(!response.email) {
+                  if (!response.email) {
                     response.email = response.id + '@facebook.com'
                   }
                   response.uid = response.id;
@@ -202,13 +236,21 @@ export class LoginComponent implements OnInit {
                       that.user.persistUser(response);
                       //that.router.navigate(['/']);
                       that.window.location.href = '/';
+
+                      clevertap.event.push("facebook login");
+
+                      clevertap.profile.push({
+                        "Facebook": response
+                      });
+
+
                     }
                   );
                 }
-              }, {fields: 'name, first_name, last_name, email'}
+              }, { fields: 'name, first_name, last_name, email' }
             );
           }
-        }, {scope: 'public_profile,email'});
+        }, { scope: 'public_profile,email' });
       }
     });
   }
@@ -228,7 +270,7 @@ export class LoginComponent implements OnInit {
         console.log(response)
         window.open('https://api.twitter.com/oauth/authenticate?oauth_token=' + response.oauth_token);
       }
-    );
+      );
 
   }
 

@@ -5,6 +5,7 @@ import { Router, ActivatedRoute, ParamMap , NavigationEnd} from '@angular/router
 import 'rxjs/add/operator/switchMap';
 import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 import {DynamicTranslationService} from '../dynamic-translation.service'
+declare var clevertap:any;
 
 @Component({
   selector: 'app-catalog',
@@ -71,6 +72,11 @@ export class CatalogComponent implements OnInit {
           if(this.type)
           this.fetchProducts(this.type,this.page,'',true);
         }
+
+        clevertap.event.push("Products page viewed",{
+          "product type":this.type
+        });
+
 
       }
 
