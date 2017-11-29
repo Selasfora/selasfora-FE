@@ -188,7 +188,9 @@ export class CatalogComponent implements OnInit {
         this.page = 1;
       }
 
-      const s = this.service.queryProducts(d + 'product_type=' + this.type + '&page='+this.page+'&limit=9'+'&collection_handle='+this.collectionID).subscribe(
+      const s = this.service.queryProducts(d + 'product_type=' + this.type + '&page='+this.page+'&limit=9'+
+      (this.type == 'charm'? '&collection_handle='+this.collectionID : "")
+    ).subscribe(
         (res) => {
           this.completeLoading();
           
