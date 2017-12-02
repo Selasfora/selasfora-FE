@@ -71,7 +71,7 @@ export class MenuComponent implements OnInit {
          this.router.navigate(["/"]);
          this.cartCount = 0;
          clevertap.logout();
-         
+         location.reload();
 
     return false;
   }

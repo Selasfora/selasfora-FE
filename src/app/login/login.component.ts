@@ -95,6 +95,7 @@ export class LoginComponent implements OnInit {
         this.user.removeUser();
         clevertap.event.push("logout");
         this.router.navigate(['/']);
+        location.reload();
       }
     )
     this.auth.removeAuthHeader();
