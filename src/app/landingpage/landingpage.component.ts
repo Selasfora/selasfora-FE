@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { PageScrollInstance, PageScrollService, EasingLogic } from 'ng2-page-scroll';
 import { DOCUMENT } from '@angular/platform-browser';
 import { WindowService } from '../window.service'
-
+import * as  scrollIntoViewIfNeeded from 'scroll-into-view-if-needed';
 @Component({
   selector: 'app-landingpage',
   templateUrl: './landingpage.component.html',
@@ -10,6 +10,10 @@ import { WindowService } from '../window.service'
 })
 
 export class LandingpageComponent implements OnInit {
+
+  private scrollPages:any[] = []
+  private pager:number=1;
+  private maxPages:number = 0;
   public bgColors = [
  "#272caa",
  "#ffffff",
@@ -104,6 +108,12 @@ export class LandingpageComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngAfterViewInit(){
+    this.scrollPages = Array.prototype.filter.call( document.querySelectorAll('app-landing > div.main-landing:first-child'), (item)=>{
+      return  item.style.display!='none'}
+      )
+    this.maxPages = this.scrollPages.length;
+  }
 
   /*public myEasing: EasingLogic = {
     ease: (t: number, b: number, c: number, d: number): number => {
@@ -116,10 +126,20 @@ export class LandingpageComponent implements OnInit {
   };*/
 
   scrollPage() {
-    this.scrollBy(this.window.innerHeight, 500);
+
+   
+
+    let target = this.scrollPages[this.pager];
+    scrollIntoViewIfNeeded.default(target,{
+      centerIfNeeded:true,
+      duration:500,
+      easing:'easeIn'
+    })
+
+    this.pager = this.pager <= this.maxPages-1?  this.pager+1 : 0;
   }
 
-  scrollBy(distance, duration) {
+  scrollBy(distance,page, duration) {
 
     var initialY = document.body.scrollTop;
     var y = initialY + distance;
