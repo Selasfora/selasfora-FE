@@ -7,7 +7,7 @@
     
     "ERROR_CART_ADD":"Your product was not added!",
     "ERROR_PROFILE_SAVE":"Something went wrong, Something went wrong, couldn't save profile!  ",
-    "ERROR_INVALID_USER_PASSWORD":"Invalid username or password",
+    "ERROR_INVALID_USER_PASSWORD":"Your email or password is incorrect!",
     "ERROR_EMAIL_REQUIRED": "Email is required.",
     "ERROR_EMAIL_INVALID": "Please enter a valid email",
     "ERROR_PASSWORD_REQUIRED": "Password is required.",
@@ -22,6 +22,10 @@
     "ERROR_DOB_REQUIRED":"Date of birth required",
     "ERROR_SUBJECT_REQUIRED":"Please enter a subject",
     "ERROR_MESSAGE_REQUIRED":"Please enter a message",
+    "ERROR_REPEAT_EMAIL_REQUIRED":"This field is requried",
+    "ERROR_REPEAT_PASSWORD_REQUIRED":"This field is requried",
+    "ERROR_EMAIL_NOT_MATCHING":"Emails don't match",
+    "ERROR_PASSWORD_NOT_MATCHING":"Passwords don't match",
 
     "FORM_INPUT_EMAIL":"Email Address",
     "FORM_INPUT_EMAIL_2":"Enter your email address",

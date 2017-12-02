@@ -25,19 +25,25 @@ export class SignupComponent implements OnInit {
       'required': 'ERROR_LAST_NAME_REQUIRED',
     },
     'phone': {
-      'required': 'Phone is required.',
+      'required': 'ERROR_PHONE_REQUIRED',
     },
     'email': {
       'required': 'ERROR_EMAIL_REQUIRED',
       'email': 'ERROR_EMAIL_INVALID'
     },
-    'email2': {},
+    'email2': {
+      'required': 'ERROR_REPEAT_EMAIL_REQUIRED',
+      
+    },
     'password': {
       'required': 'ERROR_PASSWORD_REQUIRED',
       'minlength': 'ERROR_PASSWORD_SHORT',
       'maxlength': 'ERROR_PASSWORD_LONG'
     },
-    'password2': {}
+    'password2': {
+      'required': 'ERROR_REPEAT_PASSWORD_REQUIRED',
+      
+    }
   };
 
   formErrors = {
@@ -153,7 +159,19 @@ export class SignupComponent implements OnInit {
         this.formErrors[field].push(messages[key]);
         valid = false;
       }
+
     }
+
+    if(this.signupForm.get('email2').value != this.signupForm.get('email').value){
+      this.formErrors['email2'].push('ERROR_EMAIL_NOT_MATCHING');
+      valid = false
+    }
+
+    if(this.signupForm.get('password2').value != this.signupForm.get('password').value){
+      this.formErrors['password2'].push('ERROR_PASSWORD_NOT_MATCHING');
+      valid = false
+    }
+
     return valid;
   }
 
