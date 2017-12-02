@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'toastr-ng2';
 import { AuthService } from '../../auth.service';
 import { UserService } from '../../user.service';
+declare var clevertap:any;
 
 @Component({
   selector: 'app-address',
@@ -318,9 +319,12 @@ export class AddressComponent implements OnInit {
       data => {
         this.editMode = false;
         console.log('success')
+        // inform clever tap
+        clevertap.event.push("user shipping address updated",this.addressForm.value)
       },
       err => {
         console.log('error')
+        clevertap.event.push("user shipping address update failed",this.addressForm.value)
       }
     );
   }
@@ -333,9 +337,11 @@ export class AddressComponent implements OnInit {
     this.user.removeAddress(this.addid).subscribe(
       data => {
         this.removeEvent.emit();
+        clevertap.event.push("user shipping address removed")
         console.log('success')
       },
       err => {
+        clevertap.event.push("user shipping address remove failed")
         console.log('error')
       }
     );

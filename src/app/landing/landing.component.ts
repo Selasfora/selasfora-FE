@@ -4,6 +4,7 @@ import { AuthService } from '../auth.service';
 import { ToastrService } from 'toastr-ng2';
 import {Router} from "@angular/router";
 import {TranslateService} from "@ngx-translate/core"
+declare var clevertap:any;
 
 @Component({
   selector: 'app-landing',
@@ -63,6 +64,8 @@ export class LandingComponent {
                       'Error!'
                     );
                   })
+
+                  
      
       return false;
     }
@@ -75,6 +78,9 @@ export class LandingComponent {
                         'Success!'
                       );
                     })
+
+                    clevertap.event.push("news letter subscribed",this.newsLetterEmail);
+                    
       }
     );
   }

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 import { AuthService } from '../auth.service';
 import { CartService } from '../cart.service';
+declare var clevertap:any;
 
 @Component({
   selector: 'app-menu',
@@ -69,6 +70,8 @@ export class MenuComponent implements OnInit {
         this.user = null;
          this.router.navigate(["/"]);
          this.cartCount = 0;
+         clevertap.logout();
+         
 
     return false;
   }

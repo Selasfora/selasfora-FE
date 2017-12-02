@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { CartService } from '../cart.service';
 import { ToastrService } from 'toastr-ng2';
-import {TranslateService} from "@ngx-translate/core"
+import {TranslateService} from "@ngx-translate/core";
+declare var clevertap:any;
 
 @Component({
   selector: 'app-product',
@@ -72,6 +73,12 @@ export class ProductComponent implements OnInit {
                         res,
                         'Success!'
                       );
+                    });
+
+                    // notify clever tap:
+                    clevertap.event.push("product added to cart",{
+                      "product type":this.item.product_type,
+                      "product name":this.item.title
                     })
       },
       (error) => {
@@ -81,6 +88,12 @@ export class ProductComponent implements OnInit {
                         res,
                         'Error!'
                       );
+                    })
+
+                    // notify clever tap:
+                    clevertap.event.push("product add to cart not successful",{
+                      "product type":this.item.product_type,
+                      "product name":this.item.title
                     })
       }
     );

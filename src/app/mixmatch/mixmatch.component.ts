@@ -3,6 +3,7 @@ import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { CartService } from '../cart.service';
 declare var window;
+declare var clevertap:any;
 @Component({
   selector: 'app-mixmatch',
   templateUrl: './mixmatch.component.html',
@@ -133,6 +134,8 @@ export class MixmatchComponent implements OnInit {
      return this._cart.addToCart({variant: item.cartItem.variants[0], quantity: 1});
     })
     ).then((done:any)=>{
+      clevertap.event.push("checkout from mixmatch")
+      
        window.location.href = done[0].checkoutUrl;
     })
 

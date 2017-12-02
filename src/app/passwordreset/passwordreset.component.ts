@@ -4,6 +4,7 @@ import { AuthService } from '../auth.service';
 import { WindowService } from '../window.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+declare var clevertap:any;
 
 @Component({
   selector: 'app-passwordreset',
@@ -79,10 +80,23 @@ export class PasswordresetComponent implements OnInit {
             (data) => {
               this.resultClass = 'success';
               this.resultText = data.message;
+
+              // inform clever tap
+              clevertap.event.push("password reset email",{
+                "user email": this.email
+              })
+
             },
             (error) => {
               this.resultClass = 'error';
               this.resultText = error.statusText;
+
+
+              // inform clever tap
+              clevertap.event.push("password reset email failed",{
+                "user email": this.email
+              })
+
             }
           );
       }
@@ -106,12 +120,21 @@ export class PasswordresetComponent implements OnInit {
         reset_password_token: this.reset_password_token,
       }).subscribe(
           (data) => {
+
+            // inform clever tap
+            clevertap.event.push("password reset success",{
+              "user email":this.email
+            })
             this.router.navigate(['/login']);
           },
           (error) => {
             this.resultClass = 'error';
             // TODO : google translate 
             this.resultText = error.statusText;
+             // inform clever tap
+             clevertap.event.push("password reset failed",{
+              "user email":this.email
+            })
           }
         );
     }

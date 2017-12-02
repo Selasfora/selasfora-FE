@@ -7,6 +7,7 @@ import { UserService } from '../user.service';
 import { ToastrService } from 'toastr-ng2';
 import {TranslateService} from "@ngx-translate/core"
 declare var window:any;
+declare var clevertap:any;
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -114,6 +115,10 @@ export class ProfileComponent implements OnInit {
 
   viewOrder(order){
     this.userService.setOrderHistoryItem(order);
+     // inform clever tap
+     clevertap.event.push("order history item viewd",{
+      "order id":order.id
+    })
     this.router.navigate(["/profile/orders/details"]);
   }
 
@@ -192,6 +197,9 @@ export class ProfileComponent implements OnInit {
               'Success!'
             );
           })
+
+           // inform clever tap
+           clevertap.event.push("user profile updated",model)
          
         },
         (error) => {
@@ -203,6 +211,8 @@ export class ProfileComponent implements OnInit {
                           'Error!'
                         );
                       })
+
+                      clevertap.event.push("user profile updated failed",model)
         
     
           this.formErrors = {
@@ -230,6 +240,8 @@ export class ProfileComponent implements OnInit {
         window.localStorage.clear();
          this.userService.removeUser();
         this.user = null;
+        // tell clever tap that the user session has ended.
+        clevertap.logout();
          this.router.navigate(["/"]);
 
     return false;
