@@ -47,7 +47,7 @@ export class CatalogComponent implements OnInit {
       private dynamicTranslations: DynamicTranslationService,
       private changeDetector:ChangeDetectorRef) {
         console.log('constructor');
-        this.page = 1;
+        this.page = 0;
         this.filterParams = null;
         this.requestRunning = false;
         this.collections = [];
@@ -60,7 +60,7 @@ export class CatalogComponent implements OnInit {
         this.showCollections = d.queryParams.hasOwnProperty('collection') || (d.queryParams.hasOwnProperty('collection') == false && events.url.indexOf("/catalog/charm") < 0) ? true : false;
         this.showFilter = this.showCollections;
         this.list = [];
-        this.page =1;
+        this.page =0;
         
         if(!this.showCollections)
         this.getCollections();
@@ -68,7 +68,7 @@ export class CatalogComponent implements OnInit {
         else {
           this.collections = [];
           this.collectionID = d.queryParams.collection;
-          this.page = 1;
+          this.page = 0;
           if(this.type)
           this.fetchProducts(this.type,this.page,'',true);
         }
@@ -133,7 +133,7 @@ export class CatalogComponent implements OnInit {
           }
         }
 
-        this.page = 1;
+        this.page = 0;
         
         //this.fetchProducts(this.type,this.page,this.filterParams);
 
@@ -143,7 +143,7 @@ export class CatalogComponent implements OnInit {
               (d) => {
                 this.filterParams = d  || "?";
                 
-                this.page = 1;
+                this.page = 0;
                
                 this.fetchProducts(this.type,this.page,this.filterParams,true)
               }
@@ -191,7 +191,7 @@ export class CatalogComponent implements OnInit {
 
       if(isNew){
         this.list = [];
-        this.page = 1;
+        this.page = 0;
       }
 
       const s = this.service.queryProducts(d + 'product_type=' + this.type + '&page='+this.page+'&limit=9'+

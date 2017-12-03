@@ -1,7 +1,7 @@
 <div [routerLink]="['/catalog/' + item.product_type + '/' + item.id]" *ngIf="_mode === 'grid'">
   <div class="image">
-    <img *ngIf="item.images.length > 1" src="{{ item.images[1].src }}">
-    <img *ngIf="item.images.length < 2 && item.images" src="{{ item.image.src }}">
+    <img *ngIf="item.images.length > 1" src="{{ item.images[0].src }}">
+    <img *ngIf="item.images.length < 2 && item.images" src="{{ item.images[0].src }}">
   </div>
 
   <div class="title">
@@ -21,7 +21,7 @@
 <div *ngIf="_mode !== 'grid'">
   <div class="image slide-image">
     <img *ngIf="item.images.length > 1" src="{{ item.images[0].src }}">
-    <img *ngIf="item.images.length < 2 && item.images" src="{{ item.image.src }}">
+    <img *ngIf="item.images.length < 2 && item.images" src="{{ item.images[0].src }}">
   </div>
   <div class="content">
     <div class="title">
