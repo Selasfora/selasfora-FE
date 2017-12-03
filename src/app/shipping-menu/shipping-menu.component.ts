@@ -71,6 +71,10 @@ export class ShippingMenuComponent implements OnInit {
    
   }
 
+  setCountry(e){
+
+  }
+
 
   openMenu() {
     this.menuStatus = false;

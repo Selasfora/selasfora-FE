@@ -13,14 +13,14 @@ declare var clevertap:any;
   styleUrls: ['./catalog.component.less']
 })
 export class CatalogComponent implements OnInit {
-  public showFilter = false;
+  public showFilter:boolean = false;
   @Input() mode = 'grid';
-  @Input('showCollections') showCollections  = true;
-  @Input('canAddToCart') canAddToCart = true;
-  @Input('hideMainHeader') hideheader = false;
+  @Input('showCollections') showCollections:boolean  = true;
+  @Input('canAddToCart') canAddToCart:boolean = true;
+  @Input('hideMainHeader') hideheader:boolean = false;
   @ViewChild('slideContainer') slideContainer:ElementRef;
-  list: Array<object> = [];
-  lists: Array<any> = [];
+  list:any[] = [];
+  lists: any[] = [];
   private filterParams:string;
   private page:number;
   private requestRunning:boolean;
@@ -36,9 +36,9 @@ export class CatalogComponent implements OnInit {
   };
   slideContainerWidth = 'auto';
 
-  @Input() type = '';
-  pageTitle = 'Selasfora ';
-  subscriptions: Array<any> = [];
+  @Input() type:any = '';
+  pageTitle:any = 'Selasfora ';
+  subscriptions: any[] = [];
 
   //TODO make dynamic translation string for type and mode 
 
@@ -71,6 +71,13 @@ export class CatalogComponent implements OnInit {
           this.page = 0;
           if(this.type)
           this.fetchProducts(this.type,this.page,'',true);
+        }
+
+        // set the correct type:
+
+        if(this.type == 'bracelet' || !this.type){
+          this.mode = 'grid';
+          this.switchMode();
         }
 
         clevertap.event.push("Products page viewed",{
@@ -261,7 +268,8 @@ export class CatalogComponent implements OnInit {
     this.slimLoadingBarService.complete();
   }
 
-  switchMode(e) {
+  switchMode(e=null) {
+    window.setTimeout(()=>{
     this.mode = this.mode === 'slide' ? 'grid' : 'slide';
 
     if (this.mode !== 'grid') {
@@ -272,9 +280,11 @@ export class CatalogComponent implements OnInit {
       this.slideContainerWidth = 'auto';
     }
   
+    if(e)
     e.preventDefault();
     this.setUpScrolling();
     return false;
+  },300)
   }
 
   gotoMixMatch(){

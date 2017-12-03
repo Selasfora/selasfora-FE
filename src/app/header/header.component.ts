@@ -11,10 +11,10 @@ import { CartService } from '../cart.service';
 export class HeaderComponent implements OnInit {
 
   menuStatus = true;
-  @Input() type;
-  @Input() page;
-  @Input() filter = false;
-  @Input('showFilterIcon') showFilterIcon = false;
+  @Input() type:any;
+  @Input() page:any;
+  @Input() filter:any = false;
+  @Input('showFilterIcon') showFilterIcon:any = false;
   public url = '';
 
   constructor(public filtersService: FiltersService, public cart: CartService) {

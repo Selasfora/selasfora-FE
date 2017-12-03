@@ -16,6 +16,7 @@ export class OrderTrackingComponent implements OnInit {
   orderNumber:number = 1255456;
   orderItems:any[] = [1,2,3,4]
   order:any = null;
+  hideheader:any;
   orderType="confirmed" // confirmed | cancled | returned 
   constructor(private userService:UserService, private service:AuthService) {
 
@@ -28,6 +29,10 @@ export class OrderTrackingComponent implements OnInit {
    }
 
   ngOnInit() {
+  }
+
+  returnOrder(){
+
   }
 
 }
