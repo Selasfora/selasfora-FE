@@ -6,6 +6,7 @@ import 'rxjs/add/operator/switchMap';
 import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 import {DynamicTranslationService} from '../dynamic-translation.service'
 declare var clevertap:any;
+declare var dragscroll:any;
 
 @Component({
   selector: 'app-catalog',
@@ -53,9 +54,9 @@ export class CatalogComponent implements OnInit {
         this.collections = [];
 
        
-      router.events.subscribe((events:any)=>{
-     
-        if(events instanceof NavigationEnd){
+      router.events.filter(e =>{ return e instanceof NavigationEnd}).subscribe((events:any)=>{
+        
+        
         var d = router.parseUrl(events.url)
         this.showCollections = d.queryParams.hasOwnProperty('collection') || (d.queryParams.hasOwnProperty('collection') == false && events.url.indexOf("/catalog/charm") < 0) ? true : false;
         this.showFilter = this.showCollections;
@@ -75,27 +76,25 @@ export class CatalogComponent implements OnInit {
 
         // set the correct type:
 
-        if(this.type == 'bracelet' || !this.type){
-          this.mode = 'grid';
-          this.switchMode();
-        }
+       
 
         clevertap.event.push("Products page viewed",{
           "product type":this.type
         });
 
 
-      }
+      
 
       })
   }
 
   parseList(res:any[]) {
 
- 
-    let count = this.list.length;
+    
 
-    res.forEach((item:any, i)=> {
+    if(!res.length) return;
+    Promise.all(
+    res.map((item:any)=> {
       
    
    
@@ -107,13 +106,31 @@ export class CatalogComponent implements OnInit {
         item.body_html
 
       ]
-      this.dynamicTranslations.getTranslation(translations,"html").subscribe(res=>{
-        item.title = res[0][0] || "";
-        item.body_html = res[0][1] || "";
-        this.list.push(item);
-      })
+     return this.dynamicTranslations.getTranslation(translations,"html").toPromise()  
       
-    });
+    }))
+    .then(translatedItems=>{
+      translatedItems.map((itm:any,idx)=>{
+
+        let obj = {};
+
+        res[idx].title = itm[0][0] || "";
+        res[idx].body_html = itm[0][1] || "";
+        this.list.push(res[idx]);
+      })
+
+      if(this.type == 'bracelet'){
+        this.mode = 'grid';
+        this.switchMode();
+      }
+      else{
+        this.mode = 'slide';
+        this.switchMode();
+      }
+
+    })
+
+   
   }
 
   ngOnInit() {
@@ -126,7 +143,7 @@ export class CatalogComponent implements OnInit {
         const t = data.get('type');
         if (t) {
           this.type = t;
-          if (this.type.toLowerCase() !== 'charm' && this.type.toLowerCase() !== 'bracelet') {
+          if (this.type.toLowerCase() != 'charm' && this.type.toLowerCase() != 'bracelet') {
             this.router.navigate(['/404']);
             return;
           }
@@ -201,8 +218,8 @@ export class CatalogComponent implements OnInit {
         this.page = 0;
       }
 
-      const s = this.service.queryProducts(d + 'product_type=' + this.type + '&page='+this.page+'&limit=9'+
-      (this.type == 'charm'? '&collection_handle='+this.collectionID : "")
+      const s = this.service.queryProducts(d + 'product_type=' + this.type +
+      (this.type == 'charm'? '&page='+this.page+'&limit=9'+'&collection_handle='+this.collectionID : "")
     ).subscribe(
         (res) => {
           this.completeLoading();
@@ -272,7 +289,7 @@ export class CatalogComponent implements OnInit {
     window.setTimeout(()=>{
     this.mode = this.mode === 'slide' ? 'grid' : 'slide';
 
-    if (this.mode !== 'grid') {
+    if (this.mode != 'grid' || this.type=='bracelet') {
       const l = 350;
       this.slideContainerWidth = this.list.length * l + 200 + 'px';
       window.scrollTo(0,0);
@@ -292,7 +309,7 @@ export class CatalogComponent implements OnInit {
   }
 
   resetContainer(resetScroll){
-    if (this.mode !== 'grid') {
+    if (this.mode != 'grid') {
       const l = 350;
       this.slideContainerWidth = this.list.length * l + 200 + 'px';
       if(resetScroll)
@@ -316,6 +333,7 @@ export class CatalogComponent implements OnInit {
             document.scrollingElement.scrollTop +        
             window.innerHeight) {
             this.page +=1;
+            if(this.type=="charm")
             this.fetchProducts(this.type,this.page,this.filterParams,false)
         }
         }
@@ -328,12 +346,21 @@ export class CatalogComponent implements OnInit {
           if(!this.requestRunning)
           if(this.slideContainer.nativeElement.scrollLeft + this.slideContainer.nativeElement.offsetWidth >= this.slideContainer.nativeElement.scrollWidth -100 ) {
             this.page+=1;
+            if(this.type == 'charm')
             this.fetchProducts(this.type,this.page,this.filterParams,false)
         }
         }
+        
         break;
       }
     }
+
+    window.setTimeout(
+      ()=>{
+        dragscroll.reset();
+      },500
+    )
+
   }
 
   

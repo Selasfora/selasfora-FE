@@ -66,41 +66,44 @@
 
 <div class="suggestion"></div>
 
-<div class="row posts">
-  <div class="left col-xs-12 col-sm-6">
-    <img src="/assets/images/left-image1.png">
-    <div class="content">
-      <div class="post-title">Daily Life collection</div>
-      <div class="post-body">
-        We side with style over fashion,<br>
-        think timelessness is underrated
+  <!-- todo : add translations for colelctions -->
+  <div class="posts row margin0" *ngIf="!collectionSelected && collections" >
+      <div [ngClass]=" (i== 0 && i%3 == 0 )?   'left col-xs-12 col-md-12 odd' : 'right right-charm col-xs-12 col-md-6'" *ngFor="let collection of collections; let i = index"  >
+        <img src="/assets/images/left-image1.png">
+        <div class="content">
+          <div class="post-title">{{collection.title}}</div>
+          <div class="post-body" [innerHTML]="collection.body_html">
+        
+          </div>
+          <div class="button btn" [routerLink]="['/catalog/charm']" [queryParams]="{'collection':collection.handle}">Shop all {{type}}s</div>
+        </div>
       </div>
-      <div class="button btn">Shop all charms</div>
-    </div>
-  </div>
-  <div class="right right-charm col-xs-12 col-sm-6" *ngIf="type=='charm'">
-    <img src="/assets/images/right-image1.png">
-    <div class="content">
-      <div class="post-title black">Sprint collection</div>
-      <div class="post-body black">
-        We side with style over fashion,<br>
-        think timelessness is underrated
+  
+      <!--
+      <div class="right right-charm col-xs-12 col-md-6" *ngIf="type=='charm'" >
+        <img src="/assets/images/right-image1.png">
+        <div class="content">
+          <div class="post-title black">Sprint collection</div>
+          <div class="post-body black">
+            We side with style over fashion,<br> think timelessness is underrated
+          </div>
+          <div class="button btn"  [routerLink]="['/catalog/charm']" [queryParams]="{'collection':1}" >Shop all charms</div>
+        </div>
       </div>
-      <div class="button btn" [routerLink]="['/catalog/charm']">Shop all charms</div>
-    </div>
-  </div>
-  <div class="right right-bracelet col-xs-12 col-sm-6" *ngIf="type=='bracelet'">
-    <img src="/assets/images/right-image2.png">
-    <div class="content">
-      <div class="post-title">Sprint collection</div>
-      <div class="post-body">
-        We side with style over fashion,<br>
-        think timelessness is underrated
+  
+      <div class="right right-bracelet col-xs-12 col-md-6" *ngIf="type=='charm'">
+        <img src="/assets/images/right-image2.png">
+        <div class="content">
+          <div class="post-title">Sprint collection</div>
+          <div class="post-body">
+            We side with style over fashion,<br> think timelessness is underrated
+          </div>
+          <div class="button btn" [routerLink]="['/catalog/bracelet']" [queryParams]="{'collection':1}" >Shop all bracelets</div>
+        </div>
       </div>
-      <div class="button btn" [routerLink]="['/catalog/charm']">Shop all charms</div>
+  
+    -->
     </div>
-  </div>
-</div>
 
 <app-footer></app-footer>
 

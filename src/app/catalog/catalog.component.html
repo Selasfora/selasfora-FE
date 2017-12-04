@@ -8,7 +8,7 @@
   <div *ngIf="(showCollections && type =='charm') || (!showCollections && type=='bracelet') || (showCollections && type=='bracelet')" class="col-md-offset-1 col-md-10 body row ">
     <div class="page-title" *ngIf="pageTitle && !hideheader"> {{ pageTitle }} </div>
     <!-- [class.container]="mode != 'grid'" -->
-    <div style="overflow: auto;" [ngClass]="{'p-b-400': type == 'bracelet' && mode != 'grid'}" #slideContainer>
+    <div  [ngClass]="{'p-b-400': type == 'bracelet' && mode != 'grid', 'dragscroll': mode == 'slide'}" #slideContainer>
       <div class="hidden-xs" [class.row]="mode == 'grid'" [class.slide-container]="mode != 'grid'" [style.width]="slideContainerWidth" >
         <div *ngFor="let item of list" class="product-container">
           <app-product [item]="item" [mode]="mode" [canAddToCart]="canAddToCart"></app-product>
@@ -25,8 +25,8 @@
 
 
     <div class="text-center" *ngIf="type=='charm' && list.length">
-      <a href="#" (click)="switchMode($event)" class="mode-change">
-        {{'CATALOG_BROWSE'}} 
+      <a  (click)="switchMode($event)" class="mode-change">
+        {{'CATALOG_BROWSE' | translate}} 
       </a>
 
       <a (click)="gotoMixMatch()" class="secondary-btn next">

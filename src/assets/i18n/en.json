@@ -82,7 +82,7 @@
     "FOROGT_PASSWORD_RESET":"Reset my password",
     "FOROGOT_PASSWORD_I_REMEBER":"I remember now",
 
-    "CATALOG_BROWSE": "Browser {{type}} in {{mode}} mode",
+    "CATALOG_BROWSE": "Switch view mode",
     "CATALOG_NO_PRODUCTS": "No products exists with your current filter, please try another combination",
     "CATALOG_NEXT": "Next",
 

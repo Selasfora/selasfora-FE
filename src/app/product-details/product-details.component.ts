@@ -11,6 +11,7 @@ import {TranslateService} from "@ngx-translate/core";
 import {DynamicTranslationService} from "../dynamic-translation.service";
 declare var clevertap:any;
 
+
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -26,8 +27,7 @@ export class ProductDetailsComponent implements OnInit {
   shopClient: any;
   mainImage = '';
   open = false;
-
-
+  collections:any[];
   public pages = [
     {
       imagePath: '/assets/images/03@2x.png',
@@ -55,6 +55,7 @@ export class ProductDetailsComponent implements OnInit {
   constructor(public service: AuthService, public route: ActivatedRoute, private router: Router, private translate: TranslateService,
       private windowService: WindowService, public _cart: CartService, private toastrService: ToastrService, private dynamicTranslations: DynamicTranslationService) {
     this.window = windowService.nativeWindow;
+    this.getCollections();
   }
 
   ngOnInit() {
@@ -143,6 +144,12 @@ export class ProductDetailsComponent implements OnInit {
 
   switchImage(img) {
     this.mainImage = img;
+  }
+
+  getCollections(){
+    this.service.queryCollections().subscribe((collections:any)=>{
+      this.collections = collections.filter(c=> c.handle != 'charm' && c.handle!="bracelet");
+    })
   }
 
  /*storeItem(item){
