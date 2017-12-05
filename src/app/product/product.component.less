@@ -4,7 +4,7 @@
   padding: 20px;
   transition: all 700ms linear;
   @media only screen and (min-width : 768px) {
-    height: 750px;
+    height: auto;
   }
   &:hover {
     .show-on-hover {
@@ -59,12 +59,18 @@
   // &.slide-image img {
   //   width: 100px;
   // }
+  height: 40vh;
+  img{
+    height:inherit;
+  }
   &:not(.slide-image) {
     img {
       max-width: 100%;
+     
     }
     img.slide-image {
       width: 126px;
+   
     }
   }
 }

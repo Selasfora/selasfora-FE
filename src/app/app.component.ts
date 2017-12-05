@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { WindowService } from './window.service';
 import { AuthService } from './auth.service';
-import {TranslateService,TranslationChangeEvent} from '@ngx-translate/core';
-import {DynamicTranslationService} from './dynamic-translation.service';
-declare var anime :any;
+import { TranslateService, TranslationChangeEvent } from '@ngx-translate/core';
+import { DynamicTranslationService } from './dynamic-translation.service';
+declare var anime: any;
 
 @Component({
   selector: 'app-root',
@@ -51,60 +51,83 @@ export class AppComponent {
   }
 
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     // hide the splash screen
-    window.onload = ()=>{
 
-      var timeLine = anime.timeline();
 
-      if(window.innerWidth <=420){
-        
-       timeLine.add({
-        targets: '.splash',
-        translateX: '-3px',
-        translateY:'-44vh',
-        easing: 'easeOutExpo',
-        width:50,
-        height:50,
-      })
-      .add({
-        targets: '.vertical-align',
-        opacity: 0,
-        easing: 'easeOutExpo'
-      })
-      .add({
-        targets: '.vertical-align',
-        zIndex: -1,
-        easing: 'easeOutExpo'
-      });
-      }
-      else{
+   var clock = setInterval(()=>{
+     
 
-         
-
-       timeLine.add({
-        targets: '.splash',
-        translateX: '-3px',
-        translateY:'-39vh',
-        easing: 'easeOutExpo',
-        width:81,
-        height:81,
-      })
-      .add({
-        targets: '.vertical-align',
-        opacity: 0,
-        easing: 'easeOutExpo'
-      })
-      .add({
-        targets: '.vertical-align',
-        zIndex: -1,
-        easing: 'easeOutExpo'
-      });
-
-    }
+      let splash:any = document.querySelector('.splash');
+      if(!splash) return
+      
+      var img = new Image();
+    
+      img.src = '/assets/images/logo.png';
   
-    }
-  }
+
+      
+
+      splash.onload= ()=>{
+
+       clearInterval(clock);
+
+          var timeLine = anime.timeline();
+
+          if (window.innerWidth <= 420) {
+
+            timeLine.add({
+              targets: '.splash',
+              translateX: '-3px',
+              translateY: '-44vh',
+              easing: 'easeOutExpo',
+              width: 50,
+              height: 50,
+            })
+              .add({
+                targets: '.vertical-align',
+                opacity: 0,
+                easing: 'easeOutExpo'
+              })
+              .add({
+                targets: '.vertical-align',
+                zIndex: -1,
+                easing: 'easeOutExpo'
+              });
+          }
+          else {
+
+
+
+            timeLine.add({
+              targets: '.splash',
+              translateX: '-3px',
+              translateY: '-39vh',
+              easing: 'easeOutExpo',
+              width: 81,
+              height: 81,
+            })
+              .add({
+                targets: '.vertical-align',
+                opacity: 0,
+                easing: 'easeOutExpo'
+              })
+              .add({
+                targets: '.vertical-align',
+                zIndex: -1,
+                easing: 'easeOutExpo'
+              });
+
+          }
+
+  
+        };
+
+        splash.src = img.src;
+  
+        },500)
+
+      }
 
 }
 

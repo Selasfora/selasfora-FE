@@ -39,6 +39,7 @@ export class CatalogComponent implements OnInit {
 
   @Input() type:any = '';
   pageTitle:any = 'Selasfora ';
+  @Input() isMixMatch:any = false;
   subscriptions: any[] = [];
 
   //TODO make dynamic translation string for type and mode 
@@ -52,6 +53,7 @@ export class CatalogComponent implements OnInit {
         this.filterParams = null;
         this.requestRunning = false;
         this.collections = [];
+        
 
        
       router.events.filter(e =>{ return e instanceof NavigationEnd}).subscribe((events:any)=>{
@@ -289,7 +291,11 @@ export class CatalogComponent implements OnInit {
     window.setTimeout(()=>{
     this.mode = this.mode === 'slide' ? 'grid' : 'slide';
 
-    if (this.mode != 'grid' || this.type=='bracelet') {
+      if(this.isMixMatch || this.type =="bracelet") {
+        this.mode = 'slide';
+      }
+
+    if (this.mode != 'grid') {
       const l = 350;
       this.slideContainerWidth = this.list.length * l + 200 + 'px';
       window.scrollTo(0,0);
