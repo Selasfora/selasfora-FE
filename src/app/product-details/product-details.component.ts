@@ -21,7 +21,7 @@ export class ProductDetailsComponent implements OnInit {
   @ViewChild('shippingMenu') shippingMenu: ShippingMenuComponent;
   mode = 'grid';
   id: any;
-  type = '';
+  type:any = '';
   product: any = {variants: [{price: ''}]};
   window: any = null;
   shopClient: any;

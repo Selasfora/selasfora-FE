@@ -1,12 +1,13 @@
 import { Component, OnInit, Input,ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { FiltersService } from '../filters.service';
-import { Router, ActivatedRoute, ParamMap , NavigationEnd} from '@angular/router';
+import { Router, ActivatedRoute, ParamMap , NavigationEnd, Event} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 import {DynamicTranslationService} from '../dynamic-translation.service'
 declare var clevertap:any;
 declare var dragscroll:any;
+declare var window:any;
 
 @Component({
   selector: 'app-catalog',
@@ -16,15 +17,16 @@ declare var dragscroll:any;
 export class CatalogComponent implements OnInit {
   public showFilter:boolean = false;
   @Input() mode = 'grid';
-  @Input('showCollections') showCollections:boolean  = true;
+  @Input('showCollections') showCollections:any  = true;
   @Input('canAddToCart') canAddToCart:boolean = true;
-  @Input('hideMainHeader') hideheader:boolean = false;
+  @Input('hideMainHeader') hideheader:any = false;
   @ViewChild('slideContainer') slideContainer:ElementRef;
   list:any[] = [];
   lists: any[] = [];
   private filterParams:string;
   private page:number;
-  private requestRunning:boolean;
+  public requestRunning:boolean;
+  public showCatalog:boolean = false;
   collectionSelected:any = false;
   collections:any[];
   collectionID:any;
@@ -37,9 +39,9 @@ export class CatalogComponent implements OnInit {
   };
   slideContainerWidth = 'auto';
 
-  @Input() type:any = '';
-  pageTitle:any = 'Selasfora ';
-  @Input() isMixMatch:any = false;
+  @Input('type') type:any = '';
+  pageTitle:any = 'Selasfora';
+  @Input('isMixMatch') isMixMatch:any = false;
   subscriptions: any[] = [];
 
   //TODO make dynamic translation string for type and mode 
@@ -53,17 +55,22 @@ export class CatalogComponent implements OnInit {
         this.filterParams = null;
         this.requestRunning = false;
         this.collections = [];
-        
-
+        this.showCatalog = false;
+        window.NavigationCompletedEvent = NavigationEnd;
        
-      router.events.filter(e =>{ return e instanceof NavigationEnd}).subscribe((events:any)=>{
+      router.events.subscribe((events:any)=>{
         
+        debugger;
+        if(!(events instanceof window.NavigationCompletedEvent)) return ;
         
-        var d = router.parseUrl(events.url)
+        var d = router.parseUrl(events.url )
         this.showCollections = d.queryParams.hasOwnProperty('collection') || (d.queryParams.hasOwnProperty('collection') == false && events.url.indexOf("/catalog/charm") < 0) ? true : false;
         this.showFilter = this.showCollections;
         this.list = [];
         this.page =0;
+
+
+        this.showCatalog = (this.showCollections && this.type =='charm') || (!this.showCollections && this.type=='bracelet') || (this.showCollections && this.type=='bracelet')
         
         if(!this.showCollections)
         this.getCollections();
@@ -161,6 +168,8 @@ export class CatalogComponent implements OnInit {
             this.pageTitle = 'Selasfora Bracelets';
           }
         }
+
+      
 
         this.page = 0;
         
