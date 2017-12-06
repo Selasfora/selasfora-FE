@@ -129,6 +129,8 @@ export class CatalogComponent implements OnInit {
         this.mode = 'slide';
         this.switchMode();
       }
+
+      this.requestRunning = false;
  
 
     })
@@ -207,7 +209,7 @@ export class CatalogComponent implements OnInit {
          
           this.parseList(res);
           this.resetContainer(false);
-          this.requestRunning = false;
+          // set request running false after translations are done 
         }
       ));
     } else {
@@ -229,7 +231,7 @@ export class CatalogComponent implements OnInit {
           
           this.parseList(res);
           this.resetContainer(false)
-          this.requestRunning = false;
+         
         }
       );
       d && this.subscriptions.push(s);

@@ -86,6 +86,7 @@
     "CATALOG_BROWSE_SLIDE": "Switch view to slider",
     "CATALOG_NO_PRODUCTS": "No products exists with your current filter, please try another combination",
     "CATALOG_NEXT": "Next",
+    "CATALOG_FETCHING_PRODUCTS":"Fetching Products...",
 
     "MIXMATCH_ERROR_1":"You have not selected any bracelet and charms. You can come here again after making a selection.",
     "MIXMATCH_ERROR_2":"You have not selected any  charms. You can come here again after making a selection.",
