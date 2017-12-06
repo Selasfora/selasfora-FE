@@ -35,7 +35,7 @@
 
     <a class="main-btn show-on-hover hidden-xs"
        *ngIf="item.product_type == 'bracelet'"
-       [routerLink]="['/mixmatch']" [queryParams]="{step:2}"
+       [routerLink]="isMixMatch? ['/mixmatch'] : ['/catalog/charm']" [queryParams]=" isMixMatch ? {step:2}: null"
        (click)="selectContinue(item)">
       + {{'COMMON_SELECT_AND_CONTINUE' | translate}}
     </a>

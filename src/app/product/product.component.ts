@@ -15,6 +15,7 @@ export class ProductComponent implements OnInit {
 
   @Input() item;
    @Input('canAddToCart') canAddToCart:any = true;
+   @Input('isMixMatch') isMixMatch:boolean;
   @Input() set mode(value) {
     console.log('changing to ', value)
     this._mode = value;

@@ -11,12 +11,12 @@
     <div  [ngClass]="{'p-b-400': type == 'bracelet' && mode != 'grid', 'dragscroll': mode == 'slide'}" #slideContainer>
       <div class="hidden-xs" [class.row]="mode == 'grid'" [class.slide-container]="mode != 'grid'" [style.width]="slideContainerWidth" >
         <div *ngFor="let item of list" class="product-container">
-          <app-product [item]="item" [mode]="mode" [canAddToCart]="canAddToCart"></app-product>
+          <app-product [item]="item" [mode]="mode" [canAddToCart]="canAddToCart" [isMixMatch]="isMixMatch" ></app-product>
         </div>
       </div>
 
       <div class="row visible-xs hidden-md product-container" >
-        <app-product [item]="item" [mode]="mode" [canAddToCart]="canAddToCart" *ngFor="let item of list"></app-product>
+        <app-product [item]="item" [mode]="mode" [canAddToCart]="canAddToCart" *ngFor="let item of list" [isMixMatch]="isMixMatch" ></app-product>
       </div>
       <div *ngIf="!list.length" class="well well-warning">
         {{'CATALOG_NO_PRODUCTS' | translate}}
