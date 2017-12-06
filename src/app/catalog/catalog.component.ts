@@ -70,7 +70,7 @@ export class CatalogComponent implements OnInit {
         this.page =0;
 
 
-        this.showCatalog = (this.showCollections && this.type =='charm') || (!this.showCollections && this.type=='bracelet') || (this.showCollections && this.type=='bracelet')
+        this.showCatalog = (this.showCollections && this.type =='charm') || (!this.showCollections && this.type=='bracelet') ;
         
         if(!this.showCollections)
         this.getCollections();
@@ -132,7 +132,8 @@ export class CatalogComponent implements OnInit {
         this.mode = 'grid';
         this.switchMode();
       }
-      else{
+      else  if(this.list.length == 0) {
+       
         this.mode = 'slide';
         this.switchMode();
       }
