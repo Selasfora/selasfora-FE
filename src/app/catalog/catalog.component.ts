@@ -129,6 +129,7 @@ export class CatalogComponent implements OnInit {
         this.mode = 'slide';
         this.switchMode();
       }
+ 
 
     })
 
@@ -291,7 +292,7 @@ export class CatalogComponent implements OnInit {
     window.setTimeout(()=>{
     this.mode = this.mode === 'slide' ? 'grid' : 'slide';
 
-      if(this.isMixMatch || this.type =="bracelet") {
+      if((this.isMixMatch && this.type =="bracelet") ||this.type=="bracelet") {
         this.mode = 'slide';
       }
 

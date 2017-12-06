@@ -25,8 +25,12 @@
 
 
     <div class="text-center" *ngIf="type=='charm' && list.length">
-      <a  (click)="switchMode($event)" class="mode-change">
-        {{'CATALOG_BROWSE' | translate}} 
+      <a  (click)="switchMode($event)" class="mode-change" *ngIf="mode == 'slide'">
+        {{'CATALOG_BROWSE_GRID' | translate}} 
+      </a>
+
+      <a  (click)="switchMode($event)" class="mode-change" *ngIf="mode == 'grid'">
+        {{'CATALOG_BROWSE_SLIDE' | translate}} 
       </a>
 
       <a (click)="gotoMixMatch()" class="secondary-btn next" *ngIf="isMixMatch">

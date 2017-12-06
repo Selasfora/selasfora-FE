@@ -82,7 +82,8 @@
     "FOROGT_PASSWORD_RESET":"Reset my password",
     "FOROGOT_PASSWORD_I_REMEBER":"I remember now",
 
-    "CATALOG_BROWSE": "Switch view mode",
+    "CATALOG_BROWSE_GRID": "Switch view to grid",
+    "CATALOG_BROWSE_SLIDE": "Switch view to slider",
     "CATALOG_NO_PRODUCTS": "No products exists with your current filter, please try another combination",
     "CATALOG_NEXT": "Next",
 
