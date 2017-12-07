@@ -37,7 +37,7 @@ export class JournalComponent implements OnInit {
             item.summary_html,
           ]
 
-          that.dynamicTranslation.getTranslation(translateText,"html").subscribe(res=>{
+          that.dynamicTranslation.getTranslation(translateText,"html").then(res=>{
             item.title = res[0][0];
             item.author = res[0][1];
             item.tags = res[0][2];

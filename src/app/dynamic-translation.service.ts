@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import 'rxjs/add/operator/map';
 
+
+
 @Injectable()
 export class DynamicTranslationService {
   private currentLang:string;
@@ -12,7 +14,7 @@ export class DynamicTranslationService {
   }
 
   setLang(lang){
-    this.currentLang = lang;
+    this.currentLang = lang || 'en';
   }
 
 
@@ -25,12 +27,25 @@ export class DynamicTranslationService {
         "text": 
           text
         ,
-        "target": "hi", // TODO: add this after debugging this.currentLang
+        "target": this.currentLang, // TODO: add this after debugging this.currentLang
         "format":format || "text"
 
       }
     
-   return  this.http.post(this.api,reqbody).map(res=>res)
+   if(this.currentLang == 'en'){
+    return new Promise((resolve,reject)=>{
+      resolve([
+        text
+      ])
+    })
+
+   
+    
+
+    
+   }
+   else
+   return  this.http.post(this.api,reqbody).map(res=>res).toPromise();
   }
 
 }

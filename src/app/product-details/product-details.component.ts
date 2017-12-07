@@ -82,7 +82,7 @@ export class ProductDetailsComponent implements OnInit {
             
 
             // translate the product details
-            this.dynamicTranslations.getTranslation([data.title,data.body_html],"html").subscribe(res=>{
+            this.dynamicTranslations.getTranslation([data.title,data.body_html],"html").then(res=>{
               data.title = res[0][0]
               data.body_html = res[0][1];
               that.product = data;

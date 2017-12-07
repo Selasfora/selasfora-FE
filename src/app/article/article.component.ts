@@ -35,7 +35,7 @@ export class ArticleComponent implements OnInit {
             data.body_html,
           ]
 
-          that.dynamicTranslation.getTranslation(translateText,"html").subscribe(res=>{
+          that.dynamicTranslation.getTranslation(translateText,"html").then(res=>{
             data.title = res[0][0];
             data.author = res[0][1];
             data.tags = res[0][2];

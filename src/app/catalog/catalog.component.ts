@@ -60,7 +60,7 @@ export class CatalogComponent implements OnInit {
        
       router.events.subscribe((events:any)=>{
         
-        debugger;
+
         if(!(events instanceof window.NavigationCompletedEvent)) return ;
         
         var d = router.parseUrl(events.url )
@@ -115,7 +115,8 @@ export class CatalogComponent implements OnInit {
         item.body_html
 
       ]
-     return this.dynamicTranslations.getTranslation(translations,"html").toPromise()  
+     let t =  this.dynamicTranslations.getTranslation(translations,"html")
+     return t;
       
     }))
     .then(translatedItems=>{
