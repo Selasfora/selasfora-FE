@@ -41,7 +41,7 @@ export class CatalogComponent implements OnInit {
 
   @Input('type') type:any = '';
   pageTitle:any = 'Selasfora';
-  @Input('isMixMatch') isMixMatch:any = false;
+  @Input('isMixMatch') isMixMatch:any;
   subscriptions: any[] = [];
 
   //TODO make dynamic translation string for type and mode 
