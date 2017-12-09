@@ -58,6 +58,7 @@ import {DynamicTranslationService} from './dynamic-translation.service';
 // angular translate module 
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { CartComponent } from './cart/cart.component';
 
 
 
@@ -96,7 +97,8 @@ export function createTranslateLoader(http: HttpClient) {
     MixmatchComponent,
     ShippingMenuComponent,
     OrderTrackingComponent,
-    TimelineComponentComponent
+    TimelineComponentComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

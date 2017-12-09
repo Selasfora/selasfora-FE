@@ -16,7 +16,8 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { ReportComponent } from './report/report.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MixmatchComponent } from './mixmatch/mixmatch.component';
-import {OrderTrackingComponent} from './order-tracking/order-tracking.component'
+import {OrderTrackingComponent} from './order-tracking/order-tracking.component';
+import {CartComponent} from './cart/cart.component';
 const appRoutes: Routes = [
   {
     path: 'catalog/:type',
@@ -80,9 +81,14 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'cart',
+    component: CartComponent
+  },
+  {
     path: '**',
     component: PageNotFoundComponent
   }
+ 
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
