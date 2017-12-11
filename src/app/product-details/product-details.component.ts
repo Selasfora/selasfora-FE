@@ -121,6 +121,7 @@ export class ProductDetailsComponent implements OnInit {
       (data:any) => {
         this._cart.updateUrl(data.checkoutUrl);
         this._cart.updateCount({ count: data.lineItemCount, price: data.subtotal });
+        this._cart.updateBasketItems({items:data.lineItems});
         this.translate.get("SUCCESS_CART_ADD").subscribe((res:string)=>{
           
                       this.toastrService.success(

@@ -1,7 +1,7 @@
 <div *ngIf="page != 'catalog' && page != 'black' && page !='mixmatch'" class="row">
   <div class="left-part col-sm-5 col-xs-4">
     <app-icon title="Menu" image="/assets/images/menu@2x.png" (click)="openMenu()"></app-icon>
-    <a href="{{ url }}" target="_blank">
+    <a [routerLink]="['/cart']" >
       <app-icon title="Cart" image="/assets/images/cart.png" class="hidden-xs"></app-icon>
     </a>
   </div>
@@ -21,7 +21,7 @@
 <div *ngIf="page == 'black'" class="row">
   <div class="left-part col-sm-5 col-xs-4">
     <app-icon title="Menu" image="/assets/images/menu-black.png" (click)="openMenu()" black="true"></app-icon>
-    <a href="{{ url }}" target="_blank">
+    <a [routerLink]="['/cart']" >
       <app-icon title="Cart" image="/assets/images/cart-black.png" class="hidden-xs" black="true"></app-icon>
     </a>
 
@@ -50,7 +50,7 @@
 <div *ngIf="page == 'catalog'" class="catalog-header row">
   <div class="left-part col-sm-4 col-xs-4 hidden-xs">
     <app-icon title="Menu" image="/assets/images/menu-black.png" (click)="openMenu()"></app-icon>
-    <a href="{{ url }}" target="_blank">
+    <a [routerLink]="['/cart']" >
       <app-icon title="Cart" image="/assets/images/cart-black.png" class="hidden-xs"></app-icon>
     </a>
     <app-icon title="Filter" image="/assets/images/filter.png" class="hidden-xs" *ngIf="showFilterIcon"></app-icon>
@@ -79,7 +79,7 @@
 <div *ngIf="page == 'mixmatch'" class="catalog-header row">
   <div class="left-part col-sm-4 col-xs-4 hidden-xs">
     <app-icon title="Menu" image="/assets/images/menu-black.png" (click)="openMenu()"></app-icon>
-    <a href="{{ url }}" target="_blank">
+    <a [routerLink]="['/cart']" >
       <app-icon title="Cart" image="/assets/images/cart-black.png" class="hidden-xs"></app-icon>
     </a>
     <app-icon title="Filter" image="/assets/images/filter.png" class="hidden-xs" *ngIf="showFilterIcon" (click)="openFiltersMenu()"></app-icon>

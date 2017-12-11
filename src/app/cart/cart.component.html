@@ -14,27 +14,27 @@
       </div>
 
 
-      <div class="cart-contents">
+      <div class="cart-contents" *ngIf="orderItems.length >=1">
        <!-- ordered items -->
-  <div class="order-items-container row">
+  <div class="order-items-container row" >
     <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4 order-item" *ngFor="let item of orderItems">
       <div class="row">
         <div class="col-md-4 col-xs-4">
-          <img src="http://via.placeholder.com/150x150"/>
+          <img [src]="image? image.src:null"/>
         </div>
         <div class="col-md-8 col-xs-8">
-          <h4 class="item-title">Product</h4>
+          <h4 class="item-title">{{item.title}}</h4>
           <div class="row">
               <div class="col-md-9 col-xs-9">
                   <table class="item-description">
                     <tr>
                       <th>Quantity</th><th>Price</th>
                     </tr>
-                    <tr><td>x2</td><td>2000</td></tr>
+                    <tr><td>x{{item.quantity}}</td><td>{{item.price}}</td></tr>
                   </table>
               </div>
               <div class="col-md-3 col-xs-3 reorder">
-                <a>reorder</a>
+                <a (click)="removeItem(item)">remove</a>
               </div>
           </div>
         </div>
@@ -42,7 +42,8 @@
     </div>
   </div>
 
-        <button [routerLink]="['/']" class="cart-action">Contine shopping</button>
+        <button [routerLink]="['/']" class="cart-action" >Contine shopping</button>
+        <button (click)="checkout()" class="cart-action" >Check out</button>
       </div>
 
     </div>

@@ -13,7 +13,7 @@ export class CartService {
   private window;
   private checkoutURL: BehaviorSubject<string> = new BehaviorSubject('');
   private basketCount: BehaviorSubject<object> = new BehaviorSubject({});
-  private basketItems: BehaviorSubject<object> = new BehaviorSubject([]);
+  private basketItems: BehaviorSubject<object> = new BehaviorSubject({});
 
   constructor(private _window: WindowService) {
     this.window = _window.nativeWindow;
@@ -81,4 +81,26 @@ export class CartService {
   updateCount(data) {
     this.basketCount.next(data);
   }
+
+  updateBasketItems(data) {
+    this.basketItems.next(data);
+  }
+
+  updateItemcount(item,count){
+    const that = this;
+   return that.cart.updateLineItem(item,count)
+  }
+
+  removeItem(item){
+    const that = this;
+  that.cart.removeLineItem(item).then(data=>{
+    that.cart = data;
+    that.checkoutURL.next(data.checkoutUrl);
+    that.basketCount.next({ count: that.cart.lineItemCount, price: that.cart.subtotal });
+    that.basketItems.next({ items: that.cart.lineItems });
+    return that.cart;
+  })
+
+}
+
 }
