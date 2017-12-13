@@ -91,6 +91,7 @@ export class CatalogComponent implements OnInit {
       this.showCollections = false;
       this.collections = null;
       this.showCatalog = true;
+      this.isMixMatch = true;
     }
 
     
