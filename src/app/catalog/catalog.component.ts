@@ -63,39 +63,55 @@ export class CatalogComponent implements OnInit {
 
         if(!(events instanceof window.NavigationCompletedEvent)) return ;
         
-        var d = router.parseUrl(events.url )
-        this.showCollections =(d.queryParams.hasOwnProperty('collection') == false && events.url.indexOf("/catalog/charm") >= 0) ? true : false;
-        this.showFilter = !this.showCollections;
-        this.list = [];
-        this.page =0;
-
-        this.type = this.type || ( events.url.indexOf("/catalog/charm") >=0 ? 'charm':'' ) || (events.url.indexOf("/catalog/bracelet") >= 0 ? 'bracelet':'' )
-
-        this.showCatalog = (!this.showCollections && this.type =='charm') || (!this.showCollections && this.type=='bracelet') ;
-        
-        if(this.showCollections)
-        this.getCollections();
-
-        else {
-          this.collections = [];
-          this.collectionID = d.queryParams.collection;
-          this.page = 0;
-          if(this.type)
-          this.fetchProducts(this.type,this.page,'',true);
-        }
-
-        // set the correct type:
-
        
-
-        clevertap.event.push("Products page viewed",{
-          "product type":this.type
-        });
-
+        this.setup();
 
       
 
       })
+
+      this.setup()
+;  }
+
+  setup(){
+    var d = this.router.parseUrl(this.router.url )
+    this.showCollections =(d.queryParams.hasOwnProperty('collection') == false && this.router.url.indexOf("/catalog/charm") >= 0) ? true : false;
+    this.showFilter = !this.showCollections;
+    this.list = [];
+    this.page =0;
+
+    this.type = this.type || ( this.router.url.indexOf("/catalog/charm") >=0 ? 'charm':'' ) || (this.router.url.indexOf("/catalog/bracelet") >= 0 ? 'bracelet':'' )
+
+    this.showCatalog = (!this.showCollections && this.type =='charm') || (!this.showCollections && this.type=='bracelet') ;
+
+    // if mixMatch // set eveyrthing fixed:
+
+    if(this.router.url.indexOf("/mixmatch") >=0){
+      this.type = this.type || this.router.url.indexOf("/mixmatch?step=1") >=0 ? 'bracelet': '' || this.router.url.indexOf("/mixmatch?step=2") >=0 ? 'charm': '';
+      this.showCollections = false;
+      this.collections = null;
+      this.showCatalog = true;
+    }
+
+    
+    if(this.showCollections)
+    this.getCollections();
+
+    else {
+      this.collections = [];
+      this.collectionID = d.queryParams.collection;
+      this.page = 0;
+      if(this.type)
+      this.fetchProducts(this.type,this.page,'',true);
+    }
+
+    // set the correct type:
+
+   
+
+    clevertap.event.push("Products page viewed",{
+      "product type":this.type
+    });
   }
 
   parseList(res:any[]) {
