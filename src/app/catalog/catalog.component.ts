@@ -64,15 +64,16 @@ export class CatalogComponent implements OnInit {
         if(!(events instanceof window.NavigationCompletedEvent)) return ;
         
         var d = router.parseUrl(events.url )
-        this.showCollections = d.queryParams.hasOwnProperty('collection') || (d.queryParams.hasOwnProperty('collection') == false && events.url.indexOf("/catalog/charm") < 0) ? true : false;
-        this.showFilter = this.showCollections;
+        this.showCollections =(d.queryParams.hasOwnProperty('collection') == false && events.url.indexOf("/catalog/charm") >= 0) ? true : false;
+        this.showFilter = !this.showCollections;
         this.list = [];
         this.page =0;
 
+        this.type = this.type || ( events.url.indexOf("/catalog/charm") >=0 ? 'charm':'' ) || (events.url.indexOf("/catalog/bracelet") >= 0 ? 'bracelet':'' )
 
-        this.showCatalog = (this.showCollections && this.type =='charm') || (!this.showCollections && this.type=='bracelet') ;
+        this.showCatalog = (!this.showCollections && this.type =='charm') || (!this.showCollections && this.type=='bracelet') ;
         
-        if(!this.showCollections)
+        if(this.showCollections)
         this.getCollections();
 
         else {
