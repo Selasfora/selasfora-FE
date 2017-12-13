@@ -38,7 +38,7 @@
         {{'CATALOG_BROWSE_SLIDE' | translate}} 
       </a>
 
-      <a (click)="gotoMixMatch()" class="secondary-btn next" [ngStyle]="{'display':isMixMatch != true ? 'none':''}">
+      <a (click)="gotoMixMatch()" class="secondary-btn next" [ngStyle]="{'display':isMixMatch && type=='charm' ? '':'none'}">
         {{'CATALOG_NEXT' | translate}}
       </a>
     </div>
