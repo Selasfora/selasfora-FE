@@ -51,7 +51,7 @@ export class CatalogComponent implements OnInit {
       private dynamicTranslations: DynamicTranslationService,
       private changeDetector:ChangeDetectorRef) {
         console.log('constructor');
-        this.page = 0;
+        this.page = 1;;
         this.filterParams = null;
         this.requestRunning = false;
         this.collections = [];
@@ -101,7 +101,7 @@ export class CatalogComponent implements OnInit {
     else {
       this.collections = [];
       this.collectionID = d.queryParams.collection;
-      this.page = 0;
+      this.page = 1;;
       if(this.type)
       this.fetchProducts(this.type,this.page,'',true);
     }
@@ -119,7 +119,9 @@ export class CatalogComponent implements OnInit {
 
     
 
-    if(!res.length) return;
+    if(!res.length){
+      this.requestRunning = false;
+      return;}
     Promise.all(
     res.map((item:any)=> {
       
@@ -191,7 +193,7 @@ export class CatalogComponent implements OnInit {
 
       
 
-        this.page = 0;
+        this.page = 1;;
         
         //this.fetchProducts(this.type,this.page,this.filterParams);
 
@@ -201,7 +203,7 @@ export class CatalogComponent implements OnInit {
               (d) => {
                 this.filterParams = d  || "?";
                 
-                this.page = 0;
+                this.page = 1;;
                
                 this.fetchProducts(this.type,this.page,this.filterParams,true)
               }
@@ -223,7 +225,10 @@ export class CatalogComponent implements OnInit {
 
   fetchProducts(type,page,d,isNew) {
   // make sure this only runs when not viewing collections 
-
+    if(this.requestRunning == true ) {
+      this.requestRunning = false;
+      return
+    };
     this.requestRunning = true;
 
     if (!this.type && !this.showCollections)  {
@@ -249,7 +254,7 @@ export class CatalogComponent implements OnInit {
 
       if(isNew){
         this.list = [];
-        this.page = 0;
+        this.page = 1;;
       }
 
       const s = this.service.queryProducts(d + 'product_type=' + this.type +
@@ -371,7 +376,7 @@ export class CatalogComponent implements OnInit {
             document.scrollingElement.scrollTop +        
             window.innerHeight) {
             this.page +=1;
-            if(this.type=="charm")
+
             this.fetchProducts(this.type,this.page,this.filterParams,false)
         }
         }
@@ -380,11 +385,11 @@ export class CatalogComponent implements OnInit {
       }
       case false:{
         window.onscroll = null;
-        this.slideContainer.nativeElement.onscroll = (e)=>{
+        this.slideContainer.nativeElement.onmousedown = (e)=>{
           if(!this.requestRunning)
           if(this.slideContainer.nativeElement.scrollLeft + this.slideContainer.nativeElement.offsetWidth >= this.slideContainer.nativeElement.scrollWidth -100 ) {
             this.page+=1;
-            if(this.type == 'charm')
+  
             this.fetchProducts(this.type,this.page,this.filterParams,false)
         }
         }

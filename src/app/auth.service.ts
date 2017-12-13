@@ -98,7 +98,7 @@ export class AuthService {
   }
 
   fetchProducts(type,page) {
-    const url = this.baseURL + 'products?product_type=' + type ;
+    const url = this.baseURL + 'products?product_type=' + type+"&page="+page+"&limit=9" ;
     return this.sendRequest('get', url, {}, null);
   }
 
