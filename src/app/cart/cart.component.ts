@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CartService} from '../cart.service';
 import {UserService} from '../user.service';
 import {AuthService} from '../auth.service';
+import {DynamicTranslationService} from "../dynamic-translation.service";
 declare var window:any;
 
 @Component({
@@ -13,7 +14,7 @@ export class CartComponent implements OnInit {
   orderItems:any[] = [1,2,3,4];
   checkoutUrl = '';
   
-  constructor(private cartService:CartService, private userService:UserService, private auth:AuthService) {
+  constructor(private cartService:CartService, private userService:UserService, private auth:AuthService, private dynamicTranslations: DynamicTranslationService) {
 
 
     this.cartService.getCart().subscribe(
@@ -46,7 +47,7 @@ export class CartComponent implements OnInit {
       }
 
         addProductProps(){
-          this.orderItems.map(oi=>{
+          this.orderItems.map((oi,index)=>{
             let prop = window.localStorage.getItem(oi.variant_id) ? JSON.parse( window.localStorage.getItem(oi.variant_id)) : null;
 
             if(prop){
@@ -54,9 +55,21 @@ export class CartComponent implements OnInit {
               oi.p_image = prop.img
             }
 
+            oi.v_title = oi.variant_title
+
+            this.dynamicTranslations.getTranslation([oi.p_title,oi.variant_title],"html").then(res=>{
+              this.orderItems[index].p_title = res[0][0]
+              this.orderItems[index].v_title= res[0][1];
+            })
+
             return oi
 
           })
+
+
+          // translate props 
+
+
         }
      
 
