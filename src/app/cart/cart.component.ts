@@ -13,7 +13,7 @@ declare var window:any;
 export class CartComponent implements OnInit {
   orderItems:any[] = [1,2,3,4];
   checkoutUrl = '';
-  
+  hideheader = false;
   constructor(private cartService:CartService, private userService:UserService, private auth:AuthService, private dynamicTranslations: DynamicTranslationService) {
 
 
