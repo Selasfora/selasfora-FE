@@ -8,7 +8,7 @@
     <div class="price mobile-center">{{ product.variants[0].price }}</div>
     <div class="desc hidden-xs" [innerHtml]="product.body_html"></div>
     <div>
-      <app-dropdown *ngIf="type=='bracelet'" class="hidden-xs"></app-dropdown>
+      <app-dropdown *ngIf="type=='bracelet'"  (itemChange)="selectVariant($event)"  [itemList]="sizeList" class="hidden-xs" #selector></app-dropdown>
     </div>
     <div class="main-btn hidden-xs margin-top-20" (click)="addToCart(product)">
       + {{'COMMON_ADD_TO_CART' | translate}}
@@ -49,7 +49,7 @@
     </div>
   </div>
   <div>
-    <app-dropdown *ngIf="type=='bracelet'" class="visible-xs"></app-dropdown>
+    <app-dropdown *ngIf="type=='bracelet'" (itemChange)="selectVariant($event)"  [itemList]="sizeList" class="visible-xs" #selector></app-dropdown>
   </div>
   <div class="main-btn visible-xs margin-top-20" (click)="addToCart(product)">
     + {{'COMMON_ADD_TO_CART' | translate}}

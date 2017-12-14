@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit,ViewChild, ChangeDetectorRef } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { WindowService } from '../window.service';
 import { CartService } from '../cart.service';
@@ -9,6 +9,7 @@ import { ToastrService } from 'toastr-ng2';
 import {ShippingMenuComponent} from '../shipping-menu/shipping-menu.component'
 import {TranslateService} from "@ngx-translate/core";
 import {DynamicTranslationService} from "../dynamic-translation.service";
+import { DropdownComponent} from '../dropdown/dropdown.component'
 declare var clevertap:any;
 
 
@@ -19,6 +20,7 @@ declare var clevertap:any;
 })
 export class ProductDetailsComponent implements OnInit {
   @ViewChild('shippingMenu') shippingMenu: ShippingMenuComponent;
+  @ViewChild('selector') selector: DropdownComponent
   mode = 'grid';
   id: any;
   type:any = '';
@@ -28,6 +30,8 @@ export class ProductDetailsComponent implements OnInit {
   mainImage = '';
   open = false;
   collections:any[];
+  sizeList : any[] =[];
+  private selectedVariant = null;
   public pages = [
     {
       imagePath: '/assets/images/03@2x.png',
@@ -52,7 +56,7 @@ export class ProductDetailsComponent implements OnInit {
     }
   ];
 
-  constructor(public service: AuthService, public route: ActivatedRoute, private router: Router, private translate: TranslateService,
+  constructor(public service: AuthService, public route: ActivatedRoute, private router: Router, private translate: TranslateService, private ref : ChangeDetectorRef,
       private windowService: WindowService, public _cart: CartService, private toastrService: ToastrService, private dynamicTranslations: DynamicTranslationService) {
     this.window = windowService.nativeWindow;
     this.getCollections();
@@ -79,6 +83,22 @@ export class ProductDetailsComponent implements OnInit {
             clevertap.event.push("Product Viewed",{
               "Product name":data.title
             });
+
+            // if this is a bracelte .. populate the app drop down with variants 
+
+            if(this.type == 'bracelet'){
+             let sizes = data.variants.map((v,i)=>{
+               return {
+               title : v.option1.split(" ")[0],
+               subtitle :  v.option1.split(" ").slice(1, v.option1.split(" ").length).join(" "),
+               varientIndex : i
+               }
+             })
+
+             this.sizeList = sizes;
+             this.ref.detectChanges();
+
+            }
             
 
             // translate the product details
@@ -92,6 +112,10 @@ export class ProductDetailsComponent implements OnInit {
         );
       }
     );
+  }
+
+  selectVariant(variant){
+  this.selectedVariant = this.product.variants[variant.varientIndex];
   }
 
   ngAfterViewInit() {
@@ -116,7 +140,7 @@ export class ProductDetailsComponent implements OnInit {
 
     
 
-    this._cart.addToCart({variant: this.product.variants[0], quantity: 1},this.product)
+    this._cart.addToCart({variant: this.selectedVariant || this.product.variants[0], quantity: 1},this.product)
     .then(
       (data:any) => {
         this._cart.updateUrl(data.checkoutUrl);

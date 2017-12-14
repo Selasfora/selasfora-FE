@@ -10,7 +10,7 @@ export class DropdownComponent implements OnInit {
   
   @Input() selectedItem:any = 'Select';
   @Input() isForm = false;
-  @Input() itemList:any[] = [
+  @Input('itemList') itemList:any[] = [
     {
       title: 'Small',
       subtitle: 'Wrist size: < 15 cm'
