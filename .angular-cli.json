@@ -1,7 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "selasfora-fe"
+    "name": "selasfora-fe",
+    "ejected": true
   },
   "apps": [
     {
@@ -23,7 +24,8 @@
         "../node_modules/toastr-ng2/toastr.css",
         "../node_modules/dragula/dist/dragula.css"
       ],
-      "scripts": [],
+      "scripts": [
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
@@ -54,6 +56,7 @@
   },
   "defaults": {
     "styleExt": "less",
-    "component": {}
+    "component": {
+    }
   }
 }
