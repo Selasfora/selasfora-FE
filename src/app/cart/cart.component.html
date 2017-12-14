@@ -1,7 +1,7 @@
 <ng2-slim-loading-bar [color]="'#272caa'" [height]="'4px'" *ngIf="!hideheader"></ng2-slim-loading-bar>
 <div>
-<div class="header row margin0" *ngIf="!hideheader">
-  <app-header page="black" [type]="type" filter="false" [showFilterIcon]="'false'" ></app-header>
+<div class="header row" *ngIf="!hideheader">
+  <app-header page="black" [type]="type" [filter]="showFilter" [showFilterIcon]="showFilter" ></app-header>
 </div>
 
   <div class="v-align">
@@ -20,10 +20,10 @@
     <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4 order-item" *ngFor="let item of orderItems">
       <div class="row">
         <div class="col-md-4 col-xs-4">
-          <img [src]="image? image.src:null"/>
+          <img [src]="item.p_image? item.p_image:null"/>
         </div>
         <div class="col-md-8 col-xs-8">
-          <h4 class="item-title">{{item.title}}</h4>
+          <h4 class="item-title">{{item.p_title}} <span>({{item.variant_title}})</span></h4>
           <div class="row">
               <div class="col-md-9 col-xs-9">
                   <table class="item-description">
@@ -40,6 +40,8 @@
         </div>
       </div>
     </div>
+
+
   </div>
 
         <button [routerLink]="['/']" class="cart-action" >Contine shopping</button>

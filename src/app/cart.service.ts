@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/observable/throw';
 import { Config } from './Config';
+declare var window:any;
 
 
 @Injectable()
@@ -54,7 +55,7 @@ export class CartService {
     }, 1000);
   }
 
-  addToCart(item): any {
+  addToCart(item,product): any {
     if (!item.variant) {
       return Observable.throw({'status': 'error', 'message': 'no variant selected!'}).toPromise();
     }
@@ -62,7 +63,21 @@ export class CartService {
     if (!item.quantity) { item.quantity = 1; }
     const that = this;
 
+      // store some product meta into local storage
+
+      let img = null;
+
+      if(product.image) img = product.image.src;
+      else if(product.src) img = product.src;
+      else if(product.img.length)  img = product.img[0].src
+
+      window.localStorage.setItem(item.variant.id,JSON.stringify({
+            title:product.title,
+            img : img
+            }))
     return  that.cart.createLineItemsFromVariants(item)
+
+  
     
   }
 
@@ -93,6 +108,7 @@ export class CartService {
 
   removeItem(item){
     const that = this;
+    window.localStorage.removeItem(item.variant_id)
   that.cart.removeLineItem(item).then(data=>{
     that.cart = data;
     that.checkoutURL.next(data.checkoutUrl);

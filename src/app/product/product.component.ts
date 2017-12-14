@@ -63,7 +63,7 @@ export class ProductComponent implements OnInit {
       return;
     };
 
-    this._cart.addToCart({variant: this.item.variants[0], quantity: 1})
+    this._cart.addToCart({variant: this.item.variants[0], quantity: 1},this.item)
     .then(
       (data: any) => {      
         this._cart.updateUrl(data.checkoutUrl);

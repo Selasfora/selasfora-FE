@@ -132,12 +132,21 @@ export class MixmatchComponent implements OnInit {
   
     Promise.all(
     selected_items.map(item=>{
-     return this._cart.addToCart({variant: item.cartItem.variants[0], quantity: 1});
+     return this._cart.addToCart({variant: item.cartItem.variants[0], quantity: 1},item);
     })
     ).then((done:any)=>{
+
+      let data = done[done.length-1];
+      this._cart.updateCount({ count: data.lineItemCount, price: data.subtotal });
+      this._cart.updateBasketItems({items:data.lineItems});
+      data.updateModel();
+
       clevertap.event.push("checkout from mixmatch")
       
-       window.location.href = done[0].checkoutUrl;
+      window.setTimeout(()=> {
+        this.router.navigate(['/cart'])
+      }, 500);
+      
     })
 
    

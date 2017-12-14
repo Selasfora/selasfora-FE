@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CartService} from '../cart.service';
 import {UserService} from '../user.service';
 import {AuthService} from '../auth.service';
+declare var window:any;
 
 @Component({
   selector: 'app-cart',
@@ -12,10 +13,10 @@ export class CartComponent implements OnInit {
   orderItems:any[] = [1,2,3,4];
   checkoutUrl = '';
   
-  constructor(private cartService:CartService, private userService:UserService, private auth:AuthService) { }
+  constructor(private cartService:CartService, private userService:UserService, private auth:AuthService) {
 
-  ngOnInit() {
-   this.cartService.getCart().subscribe(
+
+    this.cartService.getCart().subscribe(
       (cart:any) => {
 
         /**
@@ -23,7 +24,7 @@ export class CartComponent implements OnInit {
          */
         
         this.orderItems = cart.items || [];
-        let orders = this.orderItems;
+        this.addProductProps()
         
         
   
@@ -34,11 +35,29 @@ export class CartComponent implements OnInit {
           this.checkoutUrl = url;
         })
 
-        this.orderItems = (this.cartService.getCart().getValue() as any).items || [];
-        this.checkoutUrl = (this.cartService.getCheckoutUrl().getValue() as any);
+       
 
+   }
+  ngOnInit(){}
+  ngAfterViewInit() {
+    this.orderItems = (this.cartService.getCart().getValue() as any).items || [];
+    this.checkoutUrl = (this.cartService.getCheckoutUrl().getValue() as any);
+    this.addProductProps();
       }
 
+        addProductProps(){
+          this.orderItems.map(oi=>{
+            let prop = window.localStorage.getItem(oi.variant_id) ? JSON.parse( window.localStorage.getItem(oi.variant_id)) : null;
+
+            if(prop){
+              oi.p_title = prop.title;
+              oi.p_image = prop.img
+            }
+
+            return oi
+
+          })
+        }
      
 
       checkout(){
