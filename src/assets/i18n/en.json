@@ -72,6 +72,14 @@
     "COMMON_EDIT":"Edit",
     "COMMON_SEND": "Send",
 
+    "CART_QTY": "quantity",
+    "CART_REMOVE":"remove",
+    "CART_PRICE":"price",
+    "CART_TITLE":"Your cart",
+    "CART_EMPTY_MESSAGE":"Your cart is empty",
+    "CART_CHECKOUT":"checkout",
+    "CART_CONTINUE_SHOPPING":"continue shopping",
+
     "SIGNUP_NEXT_STEP":"Just one more step...",
     "SIGNUP_SUCCESS":"Your information has been sent successfully. In order to complete your registration, please click the confirmation link in the email that we have sent to you.",
     "SIGNUP_RETURN":"Return to shopping",

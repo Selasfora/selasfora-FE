@@ -7,10 +7,10 @@
   <div class="v-align">
     <div class="c-align">
 
-      <h1 class="cart-title">your cart</h1>
+      <h1 class="cart-title">{{'CART_TITLE' | translate}}</h1>
       <div class="empty-cart" *ngIf="orderItems.length == 0 ">
-        <p class="message">your cart is empty</p>
-        <button [routerLink]="['/']" class="cart-action">Contine shopping</button>
+        <p class="message">{{'CART_EMPTY_MESSAGE' | translate }}</p>
+        <button [routerLink]="['/']" class="cart-action">{{'CART_CONTINUE_SHOPPING' | translate}}</button>
       </div>
 
 
@@ -28,13 +28,13 @@
               <div class="col-md-9 col-xs-9">
                   <table class="item-description">
                     <tr>
-                      <th>Quantity</th><th>Price</th>
+                      <th>{{'CART_QTY' | translate}}</th><th>{{'CART_PRICE' | translate}}</th>
                     </tr>
                     <tr><td>x{{item.quantity}}</td><td>{{item.price}}</td></tr>
                   </table>
               </div>
               <div class="col-md-3 col-xs-3 reorder">
-                <a (click)="removeItem(item)">remove</a>
+                <a (click)="removeItem(item)">{{'CART_REMOVE' | translate}}</a>
               </div>
           </div>
         </div>
@@ -44,8 +44,8 @@
 
   </div>
 
-        <button [routerLink]="['/']" class="cart-action" >Contine shopping</button>
-        <button (click)="checkout()" class="cart-action" >Check out</button>
+        <button [routerLink]="['/']" class="cart-action" >{{'CART_CONTINUE_SHOPPING' | translate}}</button>
+        <button (click)="checkout()" class="cart-action" >{{'CART_CHECKOUT' | translate}}</button>
       </div>
 
     </div>
