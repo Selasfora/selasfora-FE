@@ -109,7 +109,8 @@ export class LandingpageComponent implements OnInit {
   }
 
   ngAfterViewInit(){
-    this.scrollPages = Array.prototype.filter.call( document.querySelectorAll('app-landing > div.main-landing:first-child'), (item)=>{
+    let selector = window.innerWidth <= 768 ? 'app-landing > div.main-landing.visible-xs' : 'app-landing > div.main-landing.hidden-xs';
+    this.scrollPages = Array.prototype.filter.call( document.querySelectorAll(selector), (item)=>{
       return  item.style.display!='none'}
       )
     this.maxPages = this.scrollPages.length;
