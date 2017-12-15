@@ -56,7 +56,7 @@ const appRoutes: Routes = [
     component: SignupComponent,
   },
   {
-    path: 'reset-password',
+    path: 'password-reset',
     component: PasswordresetComponent,
   },
   {
