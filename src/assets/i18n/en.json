@@ -87,7 +87,7 @@
     
     "FOROGT_PASSWORD_TITLE":"Reset Your Password",
     "FORGOT_PASSWORD_SUBTEXT":"It’s okay. We all forgot sometimes",
-    "FOROGT_PASSWORD_RESET":"Reset my password",
+    "FORGOT_PASSWORD_RESET":"Reset my password",
     "FOROGOT_PASSWORD_I_REMEBER":"I remember now",
 
     "CATALOG_BROWSE_GRID": "Switch view to grid",
