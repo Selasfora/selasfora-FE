@@ -68,7 +68,7 @@ export class AppComponent {
 
       
 
-      splash.onload= ()=>{
+      window.onload= ()=>{
 
        clearInterval(clock);
 
