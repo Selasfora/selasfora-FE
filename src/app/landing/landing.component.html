@@ -30,7 +30,7 @@
         </div>
       </span>
     </div>
-    <a href="{{page.content.href}}" class="{{page.content.class}}" *ngIf="page.content.btn">
+    <a [routerLink]="[page.content.href]" class="{{page.content.class}}" *ngIf="page.content.btn">
       {{ page.content.btn | translate}}
     </a>
   </div>
@@ -70,7 +70,7 @@
         </div>
       </span>
     </div>
-    <a href="{{page.content.href}}" class="{{page.content.class}} hidden-xs" class="secondary-btn " *ngIf="page.content.btn">
+    <a [routerLink]="[page.content.href]" class="{{page.content.class}} hidden-xs" class="secondary-btn " *ngIf="page.content.btn">
       {{ page.content.btn | translate }}
     </a>
     <div class="instagram" *ngIf="idx == 5">
