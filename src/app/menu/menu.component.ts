@@ -4,7 +4,7 @@ import { UserService } from '../user.service';
 import { AuthService } from '../auth.service';
 import { CartService } from '../cart.service';
 declare var clevertap:any;
-
+declare var google:any;
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -44,7 +44,38 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    // get hte user's current location and show it 
+    
+    this.getLocation();
   }
+
+
+   getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((location)=>{
+
+        let  geocoder = new google.maps.Geocoder;
+        geocoder.geocode({'location': {lat:location.coords.latitude, lng: location.coords.longitude}}, (results, status)=> {
+          if (status === 'OK') {
+            if (results[0]) {
+     
+                let add = results[0].formatted_address.split(',');
+                let country = add[add.length-1];
+              
+            } else {
+              window.alert('No results found');
+            }
+          } else {
+            window.alert('Geocoder failed due to: ' + status);
+          }
+        });
+
+        });
+    } else {
+        console.log("geolocation not supported")
+    }
+}
 
   empty() {
     //just a place holder
