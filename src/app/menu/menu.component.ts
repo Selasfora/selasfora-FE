@@ -20,8 +20,8 @@ export class MenuComponent implements OnInit {
   user: any;
   checkoutUrl: string = '';
   cartCount: any;
-  currentCountry;
-  flag;
+  currentCountry = "usa";
+  flag="us";
 
   constructor(private userService: UserService, private authService: AuthService
     , private router: Router, private _cart: CartService) {
