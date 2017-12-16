@@ -20,6 +20,8 @@ export class MenuComponent implements OnInit {
   user: any;
   checkoutUrl: string = '';
   cartCount: any;
+  currentCountry;
+  flag;
 
   constructor(private userService: UserService, private authService: AuthService
     , private router: Router, private _cart: CartService) {
@@ -61,7 +63,8 @@ export class MenuComponent implements OnInit {
             if (results[0]) {
      
                 let add = results[0].formatted_address.split(',');
-                let country = add[add.length-1];
+                this.currentCountry= add[add.length-1];
+                this.flag= "flag-icon flag-icon-"+this.currentCountry.trim().split("").slice(0,2).join("").toLowerCase();
               
             } else {
               window.alert('No results found');
