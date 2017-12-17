@@ -41,7 +41,8 @@
   <div class="container body visible-xs">
     <div class="row" style="margin-bottom: 40px;">
       <h1 class="page-title col-xs-8"> {{ pageTitle }} </h1>
-      <a [routerLink]="['/journal']" class="col-xs-4" style="margin-top: 30px;">All entries</a>
+      <a [routerLink]="['/journal']" class="col-xs-4 hidden-xs" style="margin-top: 30px;">All entries</a>
+      <a [routerLink]="['/journal']" class="all-entries tertiary-btn visible-xs" style="margin-top: 30px;">All entries</a>
     </div>
     <div class="row" style="overflow: auto;">
       <div style="width: 300%;">

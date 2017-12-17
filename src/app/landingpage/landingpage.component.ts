@@ -31,6 +31,7 @@ export class LandingpageComponent implements OnInit {
       content: {
         title: 'HOME_TITLE_1',//'Selasfora bracelet',
         subtext: 'HOME_SUBTEXT_1',//'The Limited-edition Paint-splattered Collection is created by set designer Tracy.',
+        cta_icon: "fa fa-play",
         cta: 'HOME_CTA_1',//'Watch the film',
         btn: 'HOME_CTA_BUTTON_1',//'Create your own',
         class: 'secondary-btn',

@@ -10,6 +10,7 @@
     </div>
     <div class="call-for-action" [hidden]="!page.content.cta" [ngStyle]="{ color: page.colorShade == 'dark' ? 'white' : 'black' }">
       <span *ngIf="page.content.cta !== 'input' && page.content.cta != 'Patent pending technology'">
+          <i class="{{page.content.cta_icon}}" aria-hidden="true" *ngIf="page.content.cta_icon"></i>
         {{ page.content.cta | translate }}
       </span>
       <span *ngIf="page.content.cta !== 'input' && page.content.cta == 'Patent pending technology'" style="font-size: 14px; color: #999;">
@@ -52,6 +53,7 @@
       {{ page.content.subtext | translate }}
     </div>
     <div class="call-for-action" [hidden]="!page.content.cta" [ngStyle]="{ color: page.colorShade == 'dark' ? 'white' : 'black' }">
+      <i class="{{page.content.cta_icon}}" aria-hidden="true" *ngIf="page.content.cta_icon"></i>
       <span *ngIf="page.content.cta !== 'input'">
         {{ page.content.cta |translate }}
       </span>
@@ -70,7 +72,7 @@
         </div>
       </span>
     </div>
-    <a [routerLink]="[page.content.href]" class="{{page.content.class}} hidden-xs" class="secondary-btn " *ngIf="page.content.btn">
+    <a [routerLink]="[page.content.href]" class="{{page.content.class}}" class="secondary-btn " *ngIf="page.content.btn">
       {{ page.content.btn | translate }}
     </a>
     <div class="instagram" *ngIf="idx == 5">
