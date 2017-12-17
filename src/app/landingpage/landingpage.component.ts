@@ -133,7 +133,7 @@ export class LandingpageComponent implements OnInit {
 
     let target = this.scrollPages[this.pager];
     scrollIntoViewIfNeeded.default(target,{
-      centerIfNeeded:true,
+      centerIfNeeded:false,
       duration:500,
       easing:'easeIn'
     })
