@@ -6,13 +6,14 @@
   text-align: center;
 }
 .header { display:block; z-index:10;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   box-sizing: border-box;
   z-index: 1;
   text-align: center;
   width: 100%;
+  background: #272caa;
   @media only screen and (min-width : 768px) {
     padding: 50px 62px;
     &>div {
@@ -24,4 +25,9 @@
 
 .fa.fa-play {
   margin-right:10px;
+}
+
+:host, app-landing{
+  display: block;
+  padding-top:20px;
 }

@@ -27,6 +27,12 @@
                 </button>
               </span>
             </div>
+            <div class="instagram" *ngIf="idx == 5">
+                <a href="https://www.instagram.com/selasfora/" target="_blank">
+                  <img src="/assets/images/insta.png">
+                </a>
+                <span>Also on <i class="fa fa-facebook-square" aria-hidden="true"></i>  and  <i class="fa fa-twitter" aria-hidden="true"></i></span>
+              </div>
           </div>
         </div>
       </span>
@@ -36,11 +42,7 @@
     </a>
   </div>
   <img src="{{page.imagePath}}">
-  <div class="instagram" *ngIf="idx == 5">
-    <a href="https://www.instagram.com/selasfora/" target="_blank">
-      <img src="/assets/images/insta.png">
-    </a>
-  </div>
+ 
 </div>
 
 
@@ -68,6 +70,12 @@
                 </button>
               </span>
             </div>
+            <div class="instagram" *ngIf="idx == 5">
+                <a href="https://www.instagram.com/selasfora/" target="_blank">
+                  <img src="/assets/images/insta.png">
+                </a>
+                <span>Also on <i class="fa fa-facebook-square" aria-hidden="true"></i>  and  <i class="fa fa-twitter" aria-hidden="true"></i></span>
+              </div>
           </div>
         </div>
       </span>
@@ -75,11 +83,7 @@
     <a [routerLink]="[page.content.href]" class="{{page.content.class}}" class="secondary-btn " *ngIf="page.content.btn">
       {{ page.content.btn | translate }}
     </a>
-    <div class="instagram" *ngIf="idx == 5">
-      <a href="https://www.instagram.com/selasfora/" target="_blank">
-        <img src="/assets/images/insta.png">
-      </a>
-    </div>
+   
   </div>
   <img src="{{page.mobileImagePath}}">
 </div>

@@ -59,6 +59,11 @@
   letter-spacing: normal;
   text-align: center;
   color: #ffffff;
+  top:-20px;
+  @media screen and (max-width:768px) {
+    top:0;
+    
+  }
 }
 
 .catalog-header {
@@ -159,4 +164,12 @@ button.close {
   
   }
   
+}
+
+app-icon[title="Filter"]{
+  @media screen and (max-width:768px) {
+    position: absolute;
+    right: 5vw;
+    top: 16px;
+  }
 }
