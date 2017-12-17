@@ -21,7 +21,7 @@ export class MenuComponent implements OnInit {
   checkoutUrl: string = '';
   cartCount: any;
   currentCountry = "usa";
-  flag="us";
+  flag="flag-icon flag-icon-us";
 
   constructor(private userService: UserService, private authService: AuthService
     , private router: Router, private _cart: CartService) {
@@ -54,6 +54,7 @@ export class MenuComponent implements OnInit {
 
 
    getLocation() {
+     debugger;
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((location)=>{
 
@@ -72,7 +73,11 @@ export class MenuComponent implements OnInit {
           } else {
             window.alert('Geocoder failed due to: ' + status);
           }
-        });
+        },(err=>{console.log(err)})
+        ,{
+          enableHighAccuracy: true
+               ,timeout : 5000
+     });
 
         });
     } else {
