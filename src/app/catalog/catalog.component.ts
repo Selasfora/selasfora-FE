@@ -40,7 +40,7 @@ export class CatalogComponent implements OnInit {
   slideContainerWidth = 'auto';
 
   @Input('type') type:any = '';
-  pageTitle:any = 'Selasfora';
+  pageTitle:any = null;
   @Input('isMixMatch') isMixMatch:any;
   subscriptions: any[] = [];
 
