@@ -89,7 +89,7 @@ export class PasswordresetComponent implements OnInit {
             },
             (error) => {
               this.resultClass = 'error';
-              this.resultText = error.statusText;
+              this.resultText = error.error.message;
 
 
               // inform clever tap
@@ -130,7 +130,7 @@ export class PasswordresetComponent implements OnInit {
           (error) => {
             this.resultClass = 'error';
             // TODO : google translate 
-            this.resultText = error.statusText;
+            this.resultText = error.error.message;
              // inform clever tap
              clevertap.event.push("password reset failed",{
               "user email":this.email
