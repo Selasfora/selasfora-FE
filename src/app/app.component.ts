@@ -152,6 +152,10 @@ export class AppComponent {
        color:transparent;
        }
 
+       .vertical-align{
+         z-index:-1;
+       }
+
        @media screen and (max-width:768px){
          .splash{
           transform: translateX(-3px) translateY(-39vh)!important;
