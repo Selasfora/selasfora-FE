@@ -42,6 +42,8 @@
 }
 
 .drop {
+  z-index: 3;
+
   @media only screen and (min-width : 768px) {
     background: white;
     position: absolute;
@@ -52,15 +54,18 @@
   @media only screen and (max-width : 767px) {
     background: white;
     position: absolute;
-    left: 90px;
+    left: 0;
     bottom: 65px;
     width: 195px;
     box-shadow: 0px -5px 15px #c7c7c7;
     display: none;
+    right: 0;
+    margin: auto;
+    display: none;
   }
   &.show {
     display: block;
-    max-width: 360px;
+    max-width: 182px;
     width:inherit;
   }
   .drop-item {
@@ -73,6 +78,8 @@
     }
   }
 }
+
+
 
 .main-btn-form {
   background: #ebebeb;
@@ -105,7 +112,29 @@
 
 .drop-form {
   .drop;
+ max-width: 360px;
   width: 100%;
   max-height: 220px;
   overflow: auto;
+  @media  screen and (max-width: 767px){
+
+
+
+      width: 100%;
+    
+  
+}
+
+
+@media  screen and (min-width: 768px){
+
+
+    width: 91%;
+
+}
+
+}
+
+.drop-form.show{
+  max-width: 91%;
 }
