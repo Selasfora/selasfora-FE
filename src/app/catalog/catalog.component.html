@@ -49,7 +49,7 @@
       <img src="/assets/images/left-image1.png">
       <div class="content">
         <div class="post-title">{{collection.title}}</div>
-        <div class="post-body" [innerHTML]="collection.body_html">
+        <div class="post-body" [innerHTML]="collection.body_html | trustHtml">
       
         </div>
         <div class="button btn" [routerLink]="['/catalog/charm']" [queryParams]="{'collection':collection.handle}">Shop all {{type}}s</div>

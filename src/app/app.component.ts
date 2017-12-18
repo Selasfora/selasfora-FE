@@ -68,21 +68,20 @@ export class AppComponent {
 
       
 
-      window.onload= ()=>{
+      img.onload= ()=>{
 
        clearInterval(clock);
 
-          var timeLine = anime.timeline();
+          let timeLine = anime.timeline();
 
           if (window.innerWidth <= 420) {
 
             timeLine.add({
               targets: '.splash',
               translateX: '-3px',
-              translateY: '-44vh',
+              translateY: '-39vh',
               easing: 'easeOutExpo',
-              width: 50,
-              height: 50,
+              scale: 1
             })
               .add({
                 targets: '.vertical-align',
@@ -92,6 +91,11 @@ export class AppComponent {
               .add({
                 targets: '.vertical-align',
                 zIndex: -1,
+                easing: 'easeOutExpo'
+              })
+              .add({
+                targets: 'app-header div > *:not(.splash)',
+                opacity: 1,
                 easing: 'easeOutExpo'
               });
           }
@@ -102,10 +106,9 @@ export class AppComponent {
             timeLine.add({
               targets: '.splash',
               translateX: '-3px',
-              translateY: '-39vh',
+              translateY: '-42vh',
               easing: 'easeOutExpo',
-              width: 81,
-              height: 81,
+              scale:1
             })
               .add({
                 targets: '.vertical-align',
@@ -113,14 +116,14 @@ export class AppComponent {
                 easing: 'easeOutExpo'
               })
               .add({
-                targets: '.vertical-align',
-                zIndex: -1,
+                targets: 'app-header div > *:not(.splash)',
+                opacity: 1,
                 easing: 'easeOutExpo'
               });
 
           }
 
-  
+          timeLine.complete = this.splashCallback;
         };
 
         splash.src = img.src;
@@ -128,6 +131,41 @@ export class AppComponent {
         },500)
 
       }
+
+      
+
+      splashCallback = ()=>{
+        let afterAnimationStyles = `
+          
+      app-header div > *:not(.splash){
+        opacity: 1;
+       
+       }
+       .splash{
+       position: absolute!important;
+       transform: translateX(-3px) translateY(-42vh)!important;
+        transform: scale(1);
+        z-index: 1000;
+       margin:auto;
+       left:0;
+       right:0;
+       color:transparent;
+       }
+
+       @media screen and (max-width:768px){
+         .splash{
+          transform: translateX(-3px) translateY(-39vh)!important;
+         }
+       }
+ 
+        `;
+
+        let styleEle = document.createElement('style');
+        styleEle.innerText = afterAnimationStyles;
+        document.head.appendChild(styleEle)
+      };
+
+    
 
 }
 

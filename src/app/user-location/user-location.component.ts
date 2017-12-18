@@ -16,7 +16,7 @@ export class UserLocationComponent implements OnInit {
   }
 
   getLocation() {
-    debugger;
+    
    if (navigator.geolocation) {
        navigator.geolocation.getCurrentPosition((location)=>{
 

@@ -8,7 +8,7 @@
     {{ item.title }}
   </div>
 
-  <div class="desc show-on-hover hidden-xs" [innerHTML]="item.body_html">
+  <div class="desc show-on-hover hidden-xs" [innerHTML]="item.body_html | trustHtml">
   </div>
 
   <div class="price"> {{ item.variants[0].price || '89 EUR' }}</div>
@@ -43,7 +43,7 @@
       {{ item.title }}
     </div>
 
-    <div class="desc show-on-hover hidden-xs" [innerHTML]="item.body_html">
+    <div class="desc show-on-hover hidden-xs" [innerHTML]="item.body_html | trustHtml">
     </div>
 
     <div class="price"> {{ item.variants[0].price || '89 EUR' }}</div>

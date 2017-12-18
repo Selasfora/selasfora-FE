@@ -12,7 +12,7 @@
     {{ item.title }}
   </div>
 
-  <div class="desc show-on-hover" [innerHTML]="item.summary_html">
+  <div class="desc show-on-hover" [innerHTML]="item.summary_html | trustHtml">
   </div>
 
   <a class="desc show-on-hover hidden-xs" [routerLink]="['/article/' + item.id]">

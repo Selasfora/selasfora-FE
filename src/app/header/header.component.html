@@ -6,8 +6,8 @@
     </a>
   </div>
 
-  <a [routerLink]="['/']" class="center-part Selasfora col-sm-2 col-xs-4">
-    <img src="/assets/images/logo.png">
+  <a [routerLink]="['/']" class="center-part Selasfora col-sm-2 col-xs-4 splash">
+    <img  src="/assets/images/logo.png">
     <div>Selasfora</div>
   </a>
 
@@ -30,7 +30,7 @@
     </app-icon>
   </div>
 
-  <a [routerLink]="['/']" class="center-part Selasfora col-sm-2 col-xs-4">
+  <a [routerLink]="['/']" class="center-part Selasfora col-sm-2 col-xs-4 splash">
     <img src="/assets/images/logo-black.png">
     <div class="black">Selasfora</div>
   </a>
@@ -40,7 +40,7 @@
     <a routerLink="/catalog/charm" class="header-btn">{{'COMMON_CHARMS' | translate}}</a>
     <a [routerLink]="['/mixmatch']" [queryParams]="{step:1}" class="main-btn">{{'COMMON_CREATE_YOURS' | translate}}</a>
   </div>
-  <div class="visible-xs col-xs-4">
+  <div class="visible-xs col-xs-4 right-part">
     <app-icon title="Filter" image="/assets/images/filter.png"
         class="visible-xs" black="true" *ngIf="showFilterIcon" (click)="openFiltersMenu()">
     </app-icon>

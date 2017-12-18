@@ -6,7 +6,7 @@
   <div class="col-sm-3 col-sm-offset-1 col-xs-12">
     <div class="title mobile-center">{{ product.title }}</div>
     <div class="price mobile-center">{{ product.variants[0].price }}</div>
-    <div class="desc hidden-xs" [innerHtml]="product.body_html"></div>
+    <div class="desc hidden-xs" [innerHtml]="product.body_html | trustHtml"></div>
     <div>
       <app-dropdown *ngIf="type=='bracelet'"  (itemChange)="selectVariant($event)"  [itemList]="sizeList" class="hidden-xs" #selector></app-dropdown>
     </div>
@@ -31,7 +31,7 @@
     <img *ngIf="!mainImage && product && product.images && product.images.length <= 1" src={{product.images[0].src}}>
   </div>
   <div class="col-xs-12 shipping visible-xs">
-    <div class="desc" [innerHtml]="product.body_html"></div>
+    <div class="desc" [innerHtml]="product.body_html | trustHtml"></div>
     <div class="shipping-title mobile-center">
      <span class="style-guide" (click)="openShippingMenu()"> {{'PRODUCT_SHIPPING' | translate}}  </span> <span *ngIf="type=='bracelet'">| <span class="style-guide" (click)="openMenu()">{{'PRODUCT_SIZE_GUIDE' | translate}}</span>
         <app-size-guide [menuStatus]="open" (closeMenu)="closeMenu($event)"></app-size-guide>
@@ -73,7 +73,7 @@
         <img src="/assets/images/left-image1.png">
         <div class="content">
           <div class="post-title">{{collection.title}}</div>
-          <div class="post-body" [innerHTML]="collection.body_html">
+          <div class="post-body" [innerHTML]="collection.body_html | trustHtml">
         
           </div>
           <div class="button btn" [routerLink]="['/catalog/charm']" [queryParams]="{'collection':collection.handle}">Shop all {{type}}s</div>
