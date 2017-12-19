@@ -51,7 +51,7 @@
       <div id="collapsePrice" class="collapse drop-area" role="tabpanel" aria-labelledby="Price">
         <div *ngFor="let filter of filters.price" (change)="filterClick('price', filter)">
           <input id="price_{{ filter.id }}" type="checkbox" class="css-checkbox" name="price-{{ filter.id }}">
-          <label for="price_{{ filter.id }}" class="css-label">{{ filter.range }}</label>
+          <label for="price_{{ filter.id }}" class="css-label">{{ filter.name }}</label>
         </div>
       </div>
     </div>
