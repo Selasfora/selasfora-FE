@@ -66,7 +66,7 @@ export class AppComponent {
       img.src = '/assets/images/logo@2x.png';
 
 
-
+  
 
       img.onload = () => {
 
