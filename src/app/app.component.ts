@@ -174,7 +174,7 @@ export class AppComponent {
        position: absolute!important;
        transform: translateX(-3px) translateY(-33vh)!important;
         transform: scale(1);
-        z-index: 1000;
+        z-index: 1;
        margin:auto;
        left:0;
        right:0;

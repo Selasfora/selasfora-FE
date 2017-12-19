@@ -12,6 +12,12 @@
   line-height: 1;
   text-align: left;
   color: #000000;
+  @media  screen and (max-width : 768px) {
+    font-size: 27px;
+    text-align: center;
+    margin-top:50px;
+    margin-bottom:50px;
+  }
 }
 
 .content {
@@ -29,11 +35,14 @@
 .body {
   text-align: center;
   padding: 0px 95px;
+  @media  screen and (max-width : 768px) {
+    padding:20px 20px  60px 20px;
+  }
   .row:not(.pageTitle) {
     @media only screen and (min-width : 768px) {
       padding-bottom: 150px;
     }
-    @media  screen and (max-width : 767px) {
+    @media  screen and (max-width : 768px) {
       padding:20px 20px  60px 20px;
     }
   }
