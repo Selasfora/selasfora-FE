@@ -5,7 +5,7 @@
 <div class="row body">
   <div class="col-sm-3 col-sm-offset-1 col-xs-12">
     <div class="title mobile-center">{{ product.title }}</div>
-    <div class="price mobile-center">{{ product.variants[0].price }}</div>
+    <div class="price mobile-center">{{ product.variants[0].price }} USD</div>
     <div class="desc hidden-xs" [innerHtml]="product.body_html | trustHtml"></div>
     <div>
       <app-dropdown *ngIf="type=='bracelet'"  (itemChange)="selectVariant($event)"  [itemList]="sizeList" class="hidden-xs" #selector></app-dropdown>
