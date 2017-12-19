@@ -63,7 +63,7 @@ export class AppComponent {
 
       var img = new Image();
 
-      img.src = '/assets/images/logo@2x.png';
+      img.src = (location.href != "http://" + location.host + "/")? '/assets/images/logo@2x.png' : "/assets/images/logo.png";
 
 
   

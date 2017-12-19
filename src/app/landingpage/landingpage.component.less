@@ -14,12 +14,16 @@
   text-align: center;
   width: 100%;
   background: #272caa;
-  @media only screen and (min-width : 768px) {
-    padding: 50px 62px;
-    &>div {
-      padding-top: 37px;
-    }
+  padding: 50px 62px;
+
+  &>div {
+    padding-top: 37px;
   }
+
+  @media  screen and (max-width : 768px) {
+    height: 80px;
+    padding:0;
+    }
 }
 
 
@@ -30,4 +34,8 @@
 :host, app-landing{
   display: block;
   padding-top:20px;
+  @media  screen and (max-width : 768px) {
+   
+    padding-top:40px;
+    }
 }
