@@ -73,7 +73,7 @@ export class AppComponent {
         clearInterval(clock);
 
         let timeLine = anime.timeline();
-        debugger;
+      
         if (window.innerWidth <= 420) {
 
           (() => {
@@ -83,7 +83,7 @@ export class AppComponent {
           else timeLine.add({
               targets: '.splash',
               translateX: '-3px',
-              translateY: '-33vh',
+              translateY: '-29vh',
               easing: 'easeOutExpo',
               scale: 1
             })
@@ -187,7 +187,7 @@ export class AppComponent {
 
        @media screen and (max-width:768px){
          .splash{
-          transform: translateX(-3px) translateY(-39vh)!important;
+          transform: translateX(-3px) translateY(-29vh)!important;
          }
        }
  
