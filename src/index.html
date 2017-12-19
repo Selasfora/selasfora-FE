@@ -5,54 +5,30 @@
   <base href="/">
   <meta charset="utf-8">
   <title>SelasforaFe</title>
-  <style id="splash-styles">
-    .vertical-align{
-      transition:all 1s;
-      display: flex;
-      height: 100vh;
-      justify-content: center;
-      flex-direction: column;
-      background: #272caa;
-      position:fixed;
-      z-index: 1;
-    }
+    <script>
 
+        var styles = [];
+        var styleEle = document.createElement('style');
+      debugger;
+      styles.push(".vertical-align{transition:all 1s;display: flex; height: 100vh;justify-content: center;flex-direction: column;background: #272caa; position:fixed;z-index: 1000;}");
+      styles.push(".center-align{display: flex;width: 100vw;justify-content: center; flex-direction: row;}");
+      if(location.href == "http://"+location.host+"/"){
+      styles.push(".vertical-align{z-index:1}");
+      styles.push(" app-header{ display: block; }");
+      styles.push(" app-header div > *:not(.splash){opacity: 0; }");
+      styles.push(".splash{position: absolute!important; top: 30vh!important;transform: scale(4); z-index: 1000; margin:auto; left:0;right:0; color:transparent;}");
+      styles.push(".main-splash{ display:none }");
+      }
+
+        if(location.href != "http://"+location.host+"/"){
+          styles.push(".vertical-align{ background:#f5f5f5}");
+        }
     
-    .center-align{
-        display: flex;
-        width: 100vw;
-        justify-content: center;
-        flex-direction: row;
-      }
-
-
-      .hide{
-        opacity:0;
-      }
-      app-header{
-        display: block;
-      }
-      app-header div > *:not(.splash){
-       opacity: 0;
-      
-      }
-      .splash{
-      position: absolute!important;
-      top: 40vh!important;
-       transform: scale(4);
-       z-index: 1000;
-      margin:auto;
-      left:0;
-      right:0;
-      color:transparent;
-      }
-
-      
-
-
-   
-  </style>
-  
+    
+        styleEle.innerText = styles.join(" ");
+        document.head.appendChild(styleEle);
+    
+      </script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <!-- Latest compiled and minified CSS -->
@@ -91,9 +67,12 @@
   <!-- splash screen -->
   <div class="vertical-align">
     <div class="center-align">
-     
+      <img class="main-splash" src ="/assets/images/logo@2x.png">
     </div>
   </div>
+
+  <!-- script to ensure that the main splash is hidden for mix and match screens -->
+
 
   <app-root>Loading...</app-root>
 </body>

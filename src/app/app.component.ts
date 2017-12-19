@@ -55,87 +55,116 @@ export class AppComponent {
     // hide the splash screen
 
 
-   var clock = setInterval(()=>{
-     
+    var clock = setInterval(() => {
 
-      let splash:any = document.querySelector('.splash');
-      if(!splash) return
-      
+
+      let splash: any = document.querySelector('.main-splash');
+      if (!splash) return
+
       var img = new Image();
-    
-      img.src = '/assets/images/logo.png';
-  
 
-      
+      img.src = '/assets/images/logo@2x.png';
 
-      img.onload= ()=>{
 
-       clearInterval(clock);
 
-          let timeLine = anime.timeline();
 
-          if (window.innerWidth <= 420) {
+      img.onload = () => {
 
-            timeLine.add({
+        clearInterval(clock);
+
+        let timeLine = anime.timeline();
+        debugger;
+        if (window.innerWidth <= 420) {
+
+          (() => {
+
+            if (location.href != "http://" + location.host + "/") return timeLine;
+
+          else timeLine.add({
               targets: '.splash',
               translateX: '-3px',
-              translateY: '-39vh',
+              translateY: '-33vh',
               easing: 'easeOutExpo',
               scale: 1
             })
-              .add({
-                targets: '.vertical-align',
-                opacity: 0,
-                easing: 'easeOutExpo'
-              })
-              .add({
-                targets: '.vertical-align',
-                zIndex: -1,
-                easing: 'easeOutExpo'
-              })
-              .add({
-                targets: 'app-header div > *:not(.splash)',
-                opacity: 1,
-                easing: 'easeOutExpo'
-              });
-          }
-          else {
+
+            return timeLine
+
+          })()
+            .add({
+              targets: '.vertical-align',
+              opacity: 0,
+              easing: 'easeOutExpo'
+            })
+            .add({
+              targets: '.vertical-align',
+              zIndex: -1,
+              easing: 'easeOutExpo'
+            })
+            .add({
+              targets: 'app-header div > *:not(.splash)',
+              opacity: 1,
+              easing: 'easeOutExpo'
+            });
+        }
+        else {
 
 
 
-            timeLine.add({
+
+          (() => {
+
+            if (location.href != "http://" + location.host + "/") return timeLine;
+
+            else timeLine.add({
               targets: '.splash',
               translateX: '-3px',
-              translateY: '-42vh',
+              translateY: '-33vh',
               easing: 'easeOutExpo',
-              scale:1
+              scale: 1
             })
-              .add({
-                targets: '.vertical-align',
-                opacity: 0,
-                easing: 'easeOutExpo'
-              })
-              .add({
-                targets: 'app-header div > *:not(.splash)',
-                opacity: 1,
-                easing: 'easeOutExpo'
-              });
 
-          }
+            return timeLine
 
-          timeLine.complete = this.splashCallback;
-        };
+          })()
+            .add({
+              targets: '.vertical-align',
+              opacity: 0,
+              easing: 'easeOutExpo'
+            })
+            .add({
+              targets: 'app-header div > *:not(.splash)',
+              opacity: 1,
+              easing: 'easeOutExpo'
+            });
 
-        splash.src = img.src;
+        }
+
+        timeLine.complete = this.splashCallback;
+      };
+
+      splash.src = img.src;
+
+    }, 500)
+
+  }
+
+
+
+  splashCallback = () => {
+
+    let afterAnimationStyles = "";
+    if (location.href != "http://" + location.host + "/") {
+    afterAnimationStyles = `
+    .vertical-align{
+      z-index:-1;
+    }
+    `;
+
   
-        },500)
-
-      }
-
-      
-
-      splashCallback = ()=>{
-        let afterAnimationStyles = `
+  }
+  else{
+    afterAnimationStyles = `
           
       app-header div > *:not(.splash){
         opacity: 1;
@@ -143,7 +172,7 @@ export class AppComponent {
        }
        .splash{
        position: absolute!important;
-       transform: translateX(-3px) translateY(-42vh)!important;
+       transform: translateX(-3px) translateY(-33vh)!important;
         transform: scale(1);
         z-index: 1000;
        margin:auto;
@@ -164,12 +193,14 @@ export class AppComponent {
  
         `;
 
-        let styleEle = document.createElement('style');
-        styleEle.innerText = afterAnimationStyles;
-        document.head.appendChild(styleEle)
-      };
+      }
 
-    
+    let styleEle = document.createElement('style');
+    styleEle.innerText = afterAnimationStyles;
+    document.head.appendChild(styleEle)
+  };
+
+
 
 }
 

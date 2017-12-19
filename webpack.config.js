@@ -133,6 +133,10 @@ const plugins = basePlugins
 
 
 module.exports = {
+  devServer: {
+    historyApiFallback: true,
+
+  },
   "devtool": "source-map",
   "resolve": {
     "extensions": [
