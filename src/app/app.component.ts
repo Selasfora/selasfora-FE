@@ -58,12 +58,12 @@ export class AppComponent {
     var clock = setInterval(() => {
 
 
-      let splash: any = document.querySelector('.main-splash');
+      let splash: any = document.querySelector('.splash img');
       if (!splash) return
 
       var img = new Image();
 
-      img.src = (location.href != "https://" + location.host + "/")? '/assets/images/logo@2x.png' : "/assets/images/logo.png";
+      img.src = (location.href != "http://" + location.host + "/")? '/assets/images/logo@2x.png' : "/assets/images/logo.png";
 
 
   
@@ -74,18 +74,22 @@ export class AppComponent {
 
         let timeLine = anime.timeline();
       
+        setTimeout(()=>{
+          
+       
+
         if (window.innerWidth <= 420) {
 
           (() => {
 
-            if (location.href != "https://" + location.host + "/") return timeLine;
+            if (location.href != "http://" + location.host + "/") return timeLine;
 
           else timeLine.add({
               targets: '.splash',
               translateX: '-3px',
               translateY: '-29vh',
               easing: 'easeOutExpo',
-              scale: 1
+              scale: 1,
             })
 
             return timeLine
@@ -114,14 +118,15 @@ export class AppComponent {
 
           (() => {
 
-            if (location.href != "https://" + location.host + "/") return timeLine;
+            if (location.href != "http://" + location.host + "/") return timeLine;
 
             else timeLine.add({
               targets: '.splash',
               translateX: '-3px',
               translateY: '-33vh',
               easing: 'easeOutExpo',
-              scale: 1
+              scale: 1,
+           
             })
 
             return timeLine
@@ -140,12 +145,15 @@ export class AppComponent {
 
         }
 
+
+      }, 1000);
+
         timeLine.complete = this.splashCallback;
       };
 
       splash.src = img.src;
 
-    }, 1000)
+    }, 500)
 
   }
 
@@ -154,7 +162,7 @@ export class AppComponent {
   splashCallback = () => {
 
     let afterAnimationStyles = "";
-    if (location.href != "https://" + location.host + "/") {
+    if (location.href != "http://" + location.host + "/") {
     afterAnimationStyles = `
     .vertical-align{
       z-index:-1;

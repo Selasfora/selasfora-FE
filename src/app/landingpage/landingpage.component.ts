@@ -35,7 +35,7 @@ export class LandingpageComponent implements OnInit {
         cta: 'HOME_CTA_1',//'Watch the film',
         btn: 'HOME_CTA_BUTTON_1',//'Create your own',
         class: 'secondary-btn',
-        href: ''
+        href: '/mixmatch'
       },
       position: 'bottom'
     },

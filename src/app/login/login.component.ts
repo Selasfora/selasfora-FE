@@ -11,6 +11,10 @@ declare var clevertap: any;
 let providers = {
   "google": {
     "clientId": "561313107749-flfhdb086rglddft350c1c8e3aolju6c.apps.googleusercontent.com"
+  },
+  "facebook":{
+    "clientId":"145840142803938",
+    "apiVersion":"v2.4"
   }
 };
 Angular2SocialLoginModule.loadProvidersScripts(providers);
