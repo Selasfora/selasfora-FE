@@ -70,6 +70,7 @@ export class ProfileComponent implements OnInit {
       return;
     }
     this.user = this.userService.getUser();
+    this.user.gender = this.genderList.find(g=> g.title.toUpperCase().indexOf(this.user.gender) >=0 ).title;
     this.profileForm = this.fb.group({
       fname: [this.user.first_name, Validators.required],
       lname: [this.user.last_name, Validators.required],

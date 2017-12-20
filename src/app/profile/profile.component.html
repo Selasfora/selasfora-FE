@@ -101,10 +101,10 @@
                     <label for="gender">
                       {{'FORM_INPUT_GENDER' | translate}}
                     </label>
-                    <app-dropdown [itemList]="genderList" [isForm]=true (itemChange)="setGender($event)">
+                    <app-dropdown [itemList]="genderList" [isForm]=true (itemChange)="setGender($event)" [selectedItem]="user.gender">
                     </app-dropdown>
-                    <div *ngIf="formErrors.dob.length" class="error-msg">
-                      <div *ngFor="let item of formErrors.dob">{{ item |translate }}</div>
+                    <div *ngIf="formErrors.gender.length" class="error-msg">
+                      <div *ngFor="let item of formErrors.gender">{{ item |translate }}</div>
                     </div>
                   </div>
                 </div>
