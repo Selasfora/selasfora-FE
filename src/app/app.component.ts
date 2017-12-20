@@ -63,7 +63,7 @@ export class AppComponent {
 
       var img = new Image();
 
-      img.src = (location.href != "http://" + location.host + "/")? '/assets/images/logo@2x.png' : "/assets/images/logo.png";
+      img.src = (location.href != "https://" + location.host + "/")? '/assets/images/logo@2x.png' : "/assets/images/logo.png";
 
 
   
@@ -78,7 +78,7 @@ export class AppComponent {
 
           (() => {
 
-            if (location.href != "http://" + location.host + "/") return timeLine;
+            if (location.href != "https://" + location.host + "/") return timeLine;
 
           else timeLine.add({
               targets: '.splash',
@@ -114,7 +114,7 @@ export class AppComponent {
 
           (() => {
 
-            if (location.href != "http://" + location.host + "/") return timeLine;
+            if (location.href != "https://" + location.host + "/") return timeLine;
 
             else timeLine.add({
               targets: '.splash',
@@ -145,7 +145,7 @@ export class AppComponent {
 
       splash.src = img.src;
 
-    }, 500)
+    }, 1000)
 
   }
 
@@ -154,7 +154,7 @@ export class AppComponent {
   splashCallback = () => {
 
     let afterAnimationStyles = "";
-    if (location.href != "http://" + location.host + "/") {
+    if (location.href != "https://" + location.host + "/") {
     afterAnimationStyles = `
     .vertical-align{
       z-index:-1;

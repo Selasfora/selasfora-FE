@@ -13,7 +13,7 @@
       styles.push(".vertical-align{transition:all 1s;display: flex; height: 100vh;justify-content: center;flex-direction: column;background: #272caa; position:fixed;z-index: 1000;}");
       styles.push(".center-align{display: flex;width: 100vw;justify-content: center; flex-direction: row;}");
       styles.push(".main-splash{ height:50vw}");
-      if(location.href == "http://"+location.host+"/"){
+      if(location.href == "https://"+location.host+"/"){
       styles.push(".vertical-align{z-index:1}");
       styles.push(" app-header{ display: block; }");
       styles.push(" app-header div > *:not(.splash){opacity: 0; }");
@@ -21,7 +21,7 @@
       styles.push(".main-splash{ display:none }");
       }
 
-        if(location.href != "http://"+location.host+"/"){
+        if(location.href != "https://"+location.host+"/"){
           styles.push(".vertical-align{ background:#f5f5f5}");
         }
     

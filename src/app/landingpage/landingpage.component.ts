@@ -135,7 +135,10 @@ export class LandingpageComponent implements OnInit {
     scrollIntoViewIfNeeded.default(target,{
       centerIfNeeded:false,
       duration:500,
-      easing:'easeIn'
+      easing:'easeIn',
+      offset:{
+        top: window.innerWidth <= 768 ? -5 : 0
+      }
     })
 
     this.pager = this.pager <= this.maxPages-1?  this.pager+1 : 0;
