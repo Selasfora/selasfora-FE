@@ -53,9 +53,9 @@
       </div>
     </div>
   
-    <div class="text-center" *ngIf="!errorMessage">
-      <a (click)="checkout()" class="secondary-btn">{{'COMMON_REVIEW_AND_CHECKOUT' | translate}}</a>
-    </div>
+ 
+
+    <a (click)="checkout()" *ngIf="!errorMessage" class="secondary-btn checkout">{{'COMMON_REVIEW_AND_CHECKOUT' | translate}}</a>
   </div>
 
   <div class="store {{highlightStore && 'highlight'}}" [dragula]='"bag-charms"' [dragulaModel]='emptyCharms'>
