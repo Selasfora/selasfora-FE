@@ -1,6 +1,6 @@
 
 
-<div class="main-landing hidden-xs" [ngStyle]="{'background-color':bgcolor, 'background-image': 'url(' + page.imagePath + ')'}" id="{{idx}}">
+<div class="main-landing hidden-xs hidden-sm" [ngStyle]="{'background-color':bgcolor, 'background-image': 'url(' + page.imagePath + ')'}" id="{{idx}}">
   <div class="text-content">
     <div class="title" [hidden]="!page.content.title" [ngStyle]="{ color: page.colorShade == 'dark' ? 'white' : 'black' }">
       {{ page.content.title |translate }}
@@ -46,7 +46,7 @@
 </div>
 
 
-<div class="main-landing visible-xs" [ngStyle]="{ 'background-image': 'url(' + page.mobileImagePath + ')'}" id="{{idx}}">
+<div class="main-landing  visible-sm" [ngStyle]="{ 'background-image': 'url(' + page.mobileImagePath + ')'}" id="{{idx}}">
   <div class="text-content" [ngStyle]="position">
     <div class="title" [hidden]="!page.content.title" [ngStyle]="{ color: page.colorShade == 'dark' ? 'white' : 'black' }">
       {{ page.content.title | translate }}
