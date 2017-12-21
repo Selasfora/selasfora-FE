@@ -46,7 +46,7 @@
 </div>
 
 
-<div class="main-landing  visible-sm" [ngStyle]="{ 'background-image': 'url(' + page.mobileImagePath + ')'}" id="{{idx}}">
+<div class="main-landing  visible-ipad-below" [ngStyle]="{ 'background-image': 'url(' + page.mobileImagePath + ')'}" id="{{idx}}">
   <div class="text-content" [ngStyle]="position">
     <div class="title" [hidden]="!page.content.title" [ngStyle]="{ color: page.colorShade == 'dark' ? 'white' : 'black' }">
       {{ page.content.title | translate }}
