@@ -118,6 +118,13 @@
 
 
 .posts {
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  @media screen and (max-width:768px){
+    min-height: 100vh;
+    padding-top: 20vh;
+  }
   img {
     visibility: hidden;
     width: 100%;
@@ -125,25 +132,23 @@
   }
   .left, .right {
     text-align: center;
+    min-height: 100vh;
     background-repeat: no-repeat;
-    background-position-x: -54px;
+    background-size: cover!important;
   }
   .content {
-    margin-top: -200px;
     margin-bottom: 37px;
+    position: absolute;
+    bottom: 0;
   }
-  .left {
-    background: url('/assets/images/left-image1.png') no-repeat top center;
-    background-size: cover;
+
+  .left:not(.odd), .right:not(.odd){
+    .content{
+    left:0;
+    right:0;
+    }
   }
-  .right-charm {
-    background: url('/assets/images/right-image1.png') no-repeat top center;
-    background-size: cover;
-  }
-  .right-bracelet {
-    background: url('/assets/images/right-image2.png') no-repeat top center;
-    background-size: cover;
-  }
+ 
   .post-title {
     font-size: 50px;
     font-weight: normal;
@@ -164,6 +169,16 @@
     background-color: #181818;
     @media only screen and (max-width : 767px) {
       padding-top: 15px;
+    }
+  }
+}
+
+
+@media screen and (min-width:1330px){
+  .odd{
+    height:100vh;
+    .content{
+    left:10;
     }
   }
 }

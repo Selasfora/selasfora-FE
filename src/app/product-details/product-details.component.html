@@ -68,17 +68,17 @@
 <div class="suggestion"></div>
 
   <!-- todo : add translations for colelctions -->
-  <div class="posts row margin0" *ngIf="collections" >
-      <div [ngClass]=" (i== 0 && i%3 == 0 )?   'left col-xs-12 col-md-12 odd' : 'right right-charm col-xs-12 col-md-6'" *ngFor="let collection of collections; let i = index"  >
-        <img src="/assets/images/left-image1.png">
-        <div class="content">
-          <div class="post-title">{{collection.title}}</div>
-          <div class="post-body" [innerHTML]="collection.body_html | trustHtml">
-        
-          </div>
-          <div class="button btn" [routerLink]="['/catalog/charm']" [queryParams]="{'collection':collection.handle}">Shop all {{type}}s</div>
+  <div class="posts row margin0"   >
+    <div [ngStyle]="{'background':'url('+collection.image.src+')'} " [ngClass]=" (i== 0 && i%3 == 0 )?   'left col-xs-12 col-md-12 odd' : 'right right-charm col-xs-12 col-md-6'" *ngFor="let collection of collections; let i = index"  >
+    
+      <div class="content">
+        <div class="post-title">{{collection.title}}</div>
+        <div class="post-body" [innerHTML]="collection.body_html | trustHtml">
+      
         </div>
+        <div class="button btn" [routerLink]="['/catalog/charm']" [queryParams]="{'collection':collection.handle}">Shop all charms</div>
       </div>
+    </div>
   
       <!--
       <div class="right right-charm col-xs-12 col-md-6" *ngIf="type=='charm'" >

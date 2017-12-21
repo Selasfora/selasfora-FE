@@ -151,7 +151,7 @@ export class AppComponent {
         timeLine.complete = this.splashCallback;
       };
 
-      splash.src = img.src;
+    
 
     }, 500)
 
