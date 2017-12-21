@@ -81,7 +81,9 @@ export class LoginComponent implements OnInit {
         console.log("login error", err)
         this.formErrors.password.push("ERROR_INVALID_USER_PASSWORD")
       },
-      () => { }
+      () => { 
+        console.log()
+      }
       )
   }
 
@@ -182,8 +184,8 @@ export class LoginComponent implements OnInit {
   }
 
   fbSetup() {
-    let appKey = '253526608467931';
-    let appSecret = 'c3a591cceb4382ccb4689df09837857a';
+    let appKey = '1764432773591047';
+    let appSecret = '5b0f32267315e8a183db34ef223373eb';
 
     this.window.fbAsyncInit = function () {
       this.window.FB.init({
@@ -201,27 +203,7 @@ export class LoginComponent implements OnInit {
     let accessToken = null;
     this.window.FB.getLoginStatus(function (response) {
       accessToken = response.authResponse.accessToken;
-      if (response.status === 'connected') {
-        var uid = response.authResponse.userID;
-        let accessToken = response.authResponse.accessToken;
-        that.window.FB.api(
-          uid,
-          function (response) {
-            if (response && !response.error) {
-              that.user.persistUser(response);
-              //that.router.navigate(['/']);
-              that.window.location.href = '/';
-
-              // clever tap login and profile push
-              clevertap.event.push("facebook login");
-
-              clevertap.profile.push({
-                "Facebook": response
-              });
-            }
-          }
-        );
-      } else {
+   
         // the user isn't logged in to Facebook.
         this.window.FB.login(function (response) {
           let res = response;
@@ -237,18 +219,23 @@ export class LoginComponent implements OnInit {
                   }
                   response.uid = response.id;
                   delete response.id;
-                  console.log('response', response)
-                  response.accessToken = accessToken;
-                  that.auth.registerSocialUser(response).subscribe(
+                  let payload = {
+                    access_token: accessToken,
+                    refresh_token: accessToken,
+                    provider : 'facebook'
+                    
+                  }
+                  
+                  that.auth.registerSocialUser(payload).subscribe(
                     (data) => {
-                      that.user.persistUser(response);
+                      that.user.persistUser(data);
                       //that.router.navigate(['/']);
                       that.window.location.href = '/';
 
                       clevertap.event.push("facebook login");
 
                       clevertap.profile.push({
-                        "Facebook": response
+                        "Facebook": data
                       });
 
 
@@ -259,7 +246,7 @@ export class LoginComponent implements OnInit {
             );
           }
         }, { scope: 'public_profile,email' });
-      }
+      
     });
   }
 

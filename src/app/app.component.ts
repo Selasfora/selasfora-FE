@@ -58,8 +58,11 @@ export class AppComponent {
     var clock = setInterval(() => {
 
 
-      let splash: any = document.querySelector('.splash img');
-      if (!splash) return
+    
+      if ((location.href == "http://" + location.host + "/")){
+        let splash: any = document.querySelector('.splash img');
+        if(!splash) return;
+      } 
 
       var img = new Image();
 
