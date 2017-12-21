@@ -1,5 +1,5 @@
 <ng2-slim-loading-bar [color]="'#272caa'" [height]="'4px'" *ngIf="!hideheader"></ng2-slim-loading-bar>
-<div>
+<div class="cart-container">
 <div class="header row" *ngIf="!hideheader">
   <app-header page="black" [type]="type" [filter]="showFilter" [showFilterIcon]="showFilter" ></app-header>
 </div>
@@ -53,3 +53,4 @@
   </div>
 
 </div>  
+<app-footer></app-footer>

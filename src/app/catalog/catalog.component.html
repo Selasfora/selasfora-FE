@@ -19,11 +19,11 @@
       <div class="row visible-xs hidden-md product-container" >
         <app-product [item]="item" [mode]="mode" [canAddToCart]="canAddToCart" *ngFor="let item of list" [isMixMatch]="isMixMatch" ></app-product>
       </div>
-      <div *ngIf="!list.length && !requestRunning" class="well well-warning">
+      <div *ngIf="!list.length && !requestRunning && !isMixMatch" class="well well-warning">
         {{'CATALOG_NO_PRODUCTS' | translate}}
       </div>
 
-      <div *ngIf="requestRunning && !list.length" class="well well-warning">
+      <div *ngIf="(requestRunning && !list.length)" class="well well-warning">
         {{'CATALOG_FETCHING_PRODUCTS' | translate}}
       </div>
     </div>

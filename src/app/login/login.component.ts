@@ -13,7 +13,7 @@ let providers = {
     "clientId": "561313107749-flfhdb086rglddft350c1c8e3aolju6c.apps.googleusercontent.com"
   },
   "facebook":{
-    "clientId":"145840142803938",
+    "clientId":"1764432773591047",//"145840142803938",
     "apiVersion":"v2.4"
   }
 };
@@ -198,10 +198,12 @@ export class LoginComponent implements OnInit {
 
   facebook() {
     let that = this;
+    let accessToken = null;
     this.window.FB.getLoginStatus(function (response) {
+      accessToken = response.authResponse.accessToken;
       if (response.status === 'connected') {
         var uid = response.authResponse.userID;
-        var accessToken = response.authResponse.accessToken;
+        let accessToken = response.authResponse.accessToken;
         that.window.FB.api(
           uid,
           function (response) {
@@ -236,6 +238,7 @@ export class LoginComponent implements OnInit {
                   response.uid = response.id;
                   delete response.id;
                   console.log('response', response)
+                  response.accessToken = accessToken;
                   that.auth.registerSocialUser(response).subscribe(
                     (data) => {
                       that.user.persistUser(response);
