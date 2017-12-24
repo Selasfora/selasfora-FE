@@ -1,0 +1,182 @@
+{
+    "SUCCESS_PROFILE_SAVE":"Your Profile was saved successfully!",
+    "SUCCESS_CART_ADD":"Your product was added successfully!",
+    "SUCCESS_CONTACT_US":"We Receieved your concern and we will come back to you asap!",
+    "SUCCESS_NEWSLETTER_SUBSCRIBED":"You are now subscribed to our newsletter!",
+    "SUCCESS_ITEM_SELECTED": "item has been selected",
+    
+    "ERROR_CART_ADD":"Your product was not added!",
+    "ERROR_PROFILE_SAVE":"Something went wrong, Something went wrong, couldn't save profile!  ",
+    "ERROR_INVALID_USER_PASSWORD":"Your email or password is incorrect!",
+    "ERROR_EMAIL_REQUIRED": "Email is required.",
+    "ERROR_EMAIL_INVALID": "Please enter a valid email",
+    "ERROR_PASSWORD_REQUIRED": "Password is required.",
+    "ERROR_PASSWORD_SHORT": "Password should at least be 6 digits",
+    "ERROR_PASSWORD_LONG": "Max characters is 25",
+    "ERROR_PASSWORDS_DONT_MATCH":"Passwords don't match",
+    "ERROR_NAME_REQUIRED":"Name is required",
+    "ERROR_FIRST_NAME_REQUIRED": "First name is required.",
+    "ERROR_LAST_NAME_REQUIRED": "Last name is required.",
+    "ERROR_PHONE_REQUIRED": "Phone is required.",
+    "ERROR_ALL_FIELDS_REQUIRED": "All fields are required",
+    "ERROR_DOB_REQUIRED":"Date of birth required",
+    "ERROR_SUBJECT_REQUIRED":"Please enter a subject",
+    "ERROR_MESSAGE_REQUIRED":"Please enter a message",
+    "ERROR_REPEAT_EMAIL_REQUIRED":"This field is requried",
+    "ERROR_REPEAT_PASSWORD_REQUIRED":"This field is requried",
+    "ERROR_EMAIL_NOT_MATCHING":"Emails don't match",
+    "ERROR_PASSWORD_NOT_MATCHING":"Passwords don't match",
+
+    "FORM_INPUT_EMAIL":"Email Address",
+    "FORM_INPUT_EMAIL_2":"Enter your email address",
+    "FORM_INPUT_PASSWORD":"Password",
+    "FORM_INPUT_NEW_PASSWORD": "Enter your new password",
+    "FORM_INPUT_REPEAT_PASSWORD": "Repeat your new password",
+    
+    "FORM_INPUT_NAME":"Name",
+    "FORM_INPUT_ISSUE":"Issue",
+    "FORM_INPUT_SUBJECT":"Subject",
+    "FORM_INPUT_MESSAGE":"Message",
+    "FORM_INPUT_FIRST_NAME":"First name",
+    "FORM_INPUT_LAST_NAME":"Last name",
+    "FORM_INPUT_PHONE": "Phone",
+    "FORM_INPUT_DOB":"Date of birth",
+    "FORM_INPUT_COUNTRY":"Country",
+    "FORM_INPUT_ADDRESS_1":"Address 1",
+    "FORM_INPUT_ADDRESS_2": "Address 2",
+    "FORM_INPUT_CITY":"City",
+    "FORM_INPUT_POSTCODE":"Postcode",
+    "FORM_INPUT_GENDER":"Gender",
+    "FORM_CHECKBOX_DEFAULT":"Default",
+
+    "COMMON_BRACELTES":"Bracelets",
+    "COMMON_CHARMS": "Charms",
+    "COMMON_CREATE_YOURS":"Create Yours",
+    "COMMON_CART":"Cart",
+    "COMMON_FILTER":"Filter",
+    "COMMON_MENU":"Menu",
+    "COMMON_MIXMATCH":"Mix & Match",
+    "COMMON_SELECT":"Select",
+    "COMMON_ADD_TO_CART":"Add to cart",
+    "COMMON_REVIEW_AND_CHECKOUT": "Review order and checkout",
+    "COMMON_SELECT_AND_CONTINUE": "Select and continue",
+    "COMMON_SEE_DETAILS": "See details",
+    "COMMON_GET_ACCOUNT": "I need an account",
+    "COMMON_LOGIN":"Login",
+    "COMMON_SIGNIN_WITH":"Sign in with",
+    "COMMON_SIGNUP":"Signup",
+    "COMMON_FORGOT_PASSWORD":"forogt?",
+    "COMMON_SIGNUP_EMAIL": "Signup with email",
+    "COMMON_SAVE":"Save",
+    "COMMON_REMOVE":"Remove",
+    "COMMON_EDIT":"Edit",
+    "COMMON_SEND": "Send",
+
+    "CART_QTY": "quantity",
+    "CART_REMOVE":"remove",
+    "CART_PRICE":"price",
+    "CART_TITLE":"Your cart",
+    "CART_EMPTY_MESSAGE":"Your cart is empty",
+    "CART_CHECKOUT":"checkout",
+    "CART_CONTINUE_SHOPPING":"continue shopping",
+
+    "SIGNUP_NEXT_STEP":"Just one more step...",
+    "SIGNUP_SUCCESS":"Your information has been sent successfully. In order to complete your registration, please click the confirmation link in the email that we have sent to you.",
+    "SIGNUP_RETURN":"Return to shopping",
+    "SIGNUP_RESEND_EMAIL":"Resend email",
+    
+    "FOROGT_PASSWORD_TITLE":"Reset Your Password",
+    "FORGOT_PASSWORD_SUBTEXT":"It’s okay. We all forgot sometimes",
+    "FORGOT_PASSWORD_RESET":"Reset my password",
+    "FOROGOT_PASSWORD_I_REMEMBER":"I remember now",
+
+    "CATALOG_BROWSE_GRID": "Switch view to grid",
+    "CATALOG_BROWSE_SLIDE": "Switch view to slider",
+    "CATALOG_NO_PRODUCTS": "No products exists with your current filter, please try another combination",
+    "CATALOG_NEXT": "Next",
+    "CATALOG_FETCHING_PRODUCTS":"Fetching Products...",
+
+    "MIXMATCH_ERROR_1":"You have not selected any bracelet and charms. You can come here again after making a selection.",
+    "MIXMATCH_ERROR_2":"You have not selected any  charms. You can come here again after making a selection.",
+    "MIXMATCH_ERROR_3":"You have not selected a bracelet. You can come here again after making a selection.",
+
+    "PRODUCT_SHIPPING":"Shipping",
+    "PRODUCT_SIZE_GUIDE":"Size guide",
+
+
+    "MENU_LOGIN":"Join / Login to Selasfora",
+    "MENU_LOGOUT": "Logout",
+    "MENU_GREETING":"Hi,",
+    "MENU_YOUR_PROFILE":"Your profile",
+    "MENU_BRACELETS": "Shop all bracelets",
+    "MENU_CHARMS": "Shop all charms",
+    "MENU_CREATE_YOURS": "Create your own set",
+    "MENU_JOURNAL":"Journal",
+    "MENU_ABOUT": "About us",
+    "MENU_CONTACT": "Contact us",
+    "MENU_ITEMS_IN_CART":"items in your cart",
+
+    "FILTER_BY":"Filter by",
+    "FILTER_COLOR": "Color",
+    "FILTER_MATERIAL": "Material",
+    "FILTER_MOOD": "Mood",
+    "FILTER_SORT_BY": "Sort by",
+    "FILTER_CLEAR_ALL": "Clear all",
+    "FILTER_APPLY": "Apply",
+    "FILTER_PRICE": "Price",
+
+    "SHIPPING_TITLE": "Shipping Information",
+    "SHIPPING_SUB_TITLE": "FREE standard deliver on all orders above 75",
+    "SHIPPING_COUNTRY": "country",
+    "SHIPPING_STANDARD": "Standard Delivery",
+    "SHIPPING_STANDARD_TEXT": "Upto 2 working days",
+    "SHIPPING_EXPRESS": "Express Delivery",
+    "SHIPPING_EXPRESS_TEXT": "Upto 2 working days",
+
+    "SIZE_TITLE":"Size guide",
+    "SIZE_SUBTEXT_1": "A bracelet should sit snugly on the wrist and not slide up and down",
+    "SIZE_SUBTEXT_2": "To measure your bracelet size, hold out your hand with your thumb outstretched and aligned with your other fingers. Using a measuring tape or even a strip of paper, measure your hand circumference.",
+    "SIZE_SUBTEXT_3": "Recommended to wear 15 - 20 charms regardless of bracelet length.",
+
+
+    
+    "HOME_TITLE_1":"Selasfora bracelet",
+    "HOME_SUBTEXT_1":"The Limited-edition Paint-splattered Collection is created by set designer Tracy.",
+    "HOME_CTA_1" : "Watch the film",
+    "HOME_CTA_BUTTON_1":"Create your own",
+
+    
+    "HOME_TITLE_2":"Easy to customize",
+    "HOME_SUBTEXT_2": "We wanted to capture the color of a summer night's sky",
+    "HOME_CTA_2":"Patent pending technology",
+
+   
+    "HOME_TITLE_3": "Easy to wear",
+    "HOME_SUBTEXT_3": "We believe that great style begins with great design. Every single piece is conceived in our studio, where designers sketch, drape, tuck and bead a collection to life",
+
+    
+    "HOME_TITLE_4": "Perfect for any occasion",
+    "HOME_SUBTEXT_4": "Sophisticated and perfectly chunky, this is the kind of piece that adds a touch of effortless polish to just about any outfit.",
+    "HOME_CTA_BUTTON_4":"Get your bracelet",
+
+    
+    "HOME_TITLE_5":"The magic is in the mix",
+    "HOME_SUBTEXT_5":"We side with style over fashion, think timelessness is underrated and find that style look best when they’re lived in.",
+    "HOME_CTA_BUTTON_5":"Shop Charms",
+
+    
+    "HOME_TITLE_6": "Stay in touch",
+    "HOME_SUBTEXT_6": "Be the first to know about our new collection and other news",
+
+    "PROFILE_MY_DETAILS":"My Details",
+    "PROFILE_ORDER_HISTORY":"My order history",
+    "PROFILE_ADDRESS":"Shipping Address",
+    "PROFILE_ADD_NEW_ADDRESS":"Add new address",
+
+    "ADDRESS_DELIVERY_TO":"Delivery to: ",
+    "ADDRESS_DEFAULT_ADDRESS":"Default address",
+
+    "CONTACT_HEADING":"Contact us",
+    "CONTACT_MESSAGE":"We're here to help and aim to respond to your query within the next working day. (Please note our opening hours are Monday - Friday from 10am - 6.30pm.)"
+    
+}
