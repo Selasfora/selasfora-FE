@@ -21,7 +21,9 @@ export class ProfileComponent implements OnInit {
     { title: 'Female' }
   ];
   user: any = {};
-
+  datePickerOptions:{
+    min:""
+  }
   addresses = [1];
   orders:any = [1, 2];
   formSubmitted = false;
@@ -71,12 +73,12 @@ export class ProfileComponent implements OnInit {
     }
     this.user = this.userService.getUser();
     let gender = this.genderList.find(g=> g.title.toUpperCase().indexOf(this.user.gender) >=0 );
-    this.user.gender = gender? gender.title : "";
+    this.user.gender = gender? gender.title : "Prefer not to specify";
     this.profileForm = this.fb.group({
       fname: [this.user.first_name, Validators.required],
       lname: [this.user.last_name, Validators.required],
       email: [this.user.email, [Validators.email, Validators.required]],
-      dob: ['',[Validators.required]],
+      dob: [this.user.dob.split('T')[0],[Validators.required]],
       phone: [this.user.phone, Validators.required],
       password: [this.user.password],
       gender: [this.user.gender]
@@ -157,10 +159,12 @@ export class ProfileComponent implements OnInit {
       }
     }
 
- 
-
-    
-
+    // check if the date is invalid 
+    let dob = form.get("dob").value;
+    valid = new Date( Date.parse(dob) ).getFullYear() <= (new Date()).getFullYear() ? true : false;
+    if(!valid){
+      this.formErrors.dob.push("Invalid date of birth");
+    }
     return valid;
   }
   onSubmit() {
@@ -178,7 +182,7 @@ export class ProfileComponent implements OnInit {
       model.phone = value.phone;
       model.first_name = value.fname;
       model.last_name = value.lname;
-      model.gender = value.gender[0].toUpperCase();
+      model.gender = value.gender[0].toUpperCase() == "P" ? "U" : value.gender[0].toUpperCase();
       this.formErrors = {
         'fname': [],
         'lname': [],
@@ -206,7 +210,7 @@ export class ProfileComponent implements OnInit {
         },
         (error) => {
 
-          this.translate.get("ERROR_PROFILE_SAVE_SUCCESS").subscribe((res:string)=>{
+          this.translate.get("ERROR_PROFILE_SAVE").subscribe((res:string)=>{
             
                         this.toastrService.success(
                           res,

@@ -91,10 +91,13 @@
                       {{'FORM_INPUT_DOB' | translate}}
                     </label><span> (DD/MM/YYYY)</span>
                     <input type="date" id="dob" name="dob" class="form-control"
-                        minlength="8" maxlength="25"
+                          min='1899-01-01' max='2000-13-13'
                         formControlName="dob"> 
                     <div *ngIf="formSubmitted && profileForm.get('dob').errors" class="error-msg">
                       <div *ngIf="formSubmitted && profileForm.get('dob').errors.required">{{'ERROR_DOB_REQUIRED' | translate}}</div>
+                    </div>
+                    <div *ngIf="formSubmitted && formErrors.dob.length" class="error-msg">
+                      <div>{{formErrors.dob[0]}}</div>
                     </div>
                   </div>
                   <div class="col-md-6">
