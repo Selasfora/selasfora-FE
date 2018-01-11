@@ -131,12 +131,17 @@ export class SignupComponent implements OnInit {
             });
           },
           (error) => {
-            this.errorMessage = error.json().errors ? error.json().errors.full_messages[0] : error.json().message;
 
+            let errMessage = error.error.message;
+            this.errorMessage = "";
+            if(errMessage == "Email has already been taken")
+              this.formErrors.email.push(errMessage);
+              else
+            this.errorMessage = errMessage;
             // tell clever tap there was a signup error
                // send user signed up
                clevertap.event.push("User signup failed",{
-                "Error message":this.errorMessage
+                "Error message":errMessage
               });
           }
         );
