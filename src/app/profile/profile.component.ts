@@ -248,8 +248,8 @@ export class ProfileComponent implements OnInit {
         this.user = null;
         // tell clever tap that the user session has ended.
         clevertap.logout();
-         this.router.navigate(["/"]);
-         location.reload();
+        // this.router.navigate(["/"]);
+         location.href = location.origin;
 
     return false;
     

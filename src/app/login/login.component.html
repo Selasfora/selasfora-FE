@@ -23,7 +23,7 @@
         <a routerLink="/password-reset" class="forgot">{{'COMMON_FORGOT_PASSWORD' | translate}}</a>
       </div>
       <input type="password" id="password" name="password" class="form-control"
-          minlength="6" maxlength="25"
+          minlength="8" maxlength="25"
           formControlName="password">
       <div *ngIf="formErrors.password.length" class="error-msg">
         <div *ngFor="let item of formErrors.password">{{ item | translate }}</div>
