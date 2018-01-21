@@ -332,9 +332,6 @@ export class CatalogComponent implements OnInit {
         this.mode = 'slide';
       }
 
-      if(window.innerWidth < 675){
-        this.mode = 'grid';
-      }
 
     if (this.mode != 'grid') {
       const l = 350;
@@ -404,7 +401,14 @@ export class CatalogComponent implements OnInit {
 
     window.setTimeout(
       ()=>{
+
+        
+      if(window.innerWidth > 675){
         dragscroll.reset();
+      }
+
+
+       
       },500
     )
 

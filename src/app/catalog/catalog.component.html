@@ -1,24 +1,24 @@
 <ng2-slim-loading-bar [color]="'#272caa'" [height]="'4px'" *ngIf="!hideheader"></ng2-slim-loading-bar>
 
 <div>
- 
+
   <div class="header row margin0" *ngIf="!hideheader">
-    <app-header page="black" [type]="type" [filter]="type == 'charm'" [showFilterIcon]="showFilter" ></app-header>
+    <app-header page="black" [type]="type" [filter]="type == 'charm'" [showFilterIcon]="showFilter"></app-header>
   </div>
 
   <div *ngIf="showCatalog" class="col-md-offset-1 col-md-10 body row ">
-    <div class="page-title" *ngIf="pageTitle !=''"> {{ pageTitle }} </div> 
+    <div class="page-title" *ngIf="pageTitle !=''"> {{ pageTitle }} </div>
     <!-- [class.container]="mode != 'grid'" -->
-    <div  [ngClass]="{'p-b-400': type == 'bracelet' && mode != 'grid', 'dragscroll': mode == 'slide'}" #slideContainer>
-      <div class="hidden-xs" [class.row]="mode == 'grid'" [class.slide-container]="mode != 'grid'" [style.width]="slideContainerWidth" >
+    <div [ngClass]="{'p-b-400': type == 'bracelet' && mode != 'grid', 'dragscroll': mode == 'slide'}" #slideContainer>
+      <div  [class.row]="mode == 'grid'" [class.slide-container]="mode != 'grid'" [style.width]="slideContainerWidth">
         <div *ngFor="let item of list" class="product-container">
-          <app-product [item]="item" [mode]="mode" [canAddToCart]="canAddToCart" [isMixMatch]="isMixMatch" ></app-product>
+          <app-product [item]="item" [mode]="mode" [canAddToCart]="canAddToCart" [isMixMatch]="isMixMatch"></app-product>
         </div>
       </div>
 
-      <div class="row visible-xs hidden-md product-container" >
-        <app-product [item]="item" [mode]="mode" [canAddToCart]="canAddToCart" *ngFor="let item of list" [isMixMatch]="isMixMatch" ></app-product>
-      </div>
+     <!-- <div class="row visible-xs hidden-md product-container">
+        <app-product [item]="item" [mode]="mode" [canAddToCart]="canAddToCart" *ngFor="let item of list" [isMixMatch]="isMixMatch"></app-product>
+      </div> -->
       <div *ngIf="!list.length && !requestRunning && !isMixMatch" class="well well-warning">
         {{'CATALOG_NO_PRODUCTS' | translate}}
       </div>
@@ -29,13 +29,13 @@
     </div>
 
 
-    <div class="text-center" [ngStyle]="{'display':type=='charm' && list.length ? '':'none'}" >
-      <a  (click)="switchMode($event)" class="mode-change" [ngStyle]="{'display':mode == 'grid' ? 'none':''}">
-        {{'CATALOG_BROWSE_GRID' | translate}} 
+    <div class="text-center" [ngStyle]="{'display':type=='charm' && list.length ? '':'none'}">
+      <a (click)="switchMode($event)" class="mode-change" [ngStyle]="{'display':mode == 'grid' ? 'none':''}">
+        {{'CATALOG_BROWSE_GRID' | translate}}
       </a>
 
-      <a  (click)="switchMode($event)" class="mode-change" [ngStyle]="{'display':mode == 'slide' ? 'none':''}">
-        {{'CATALOG_BROWSE_SLIDE' | translate}} 
+      <a (click)="switchMode($event)" class="mode-change" [ngStyle]="{'display':mode == 'slide' ? 'none':''}">
+        {{'CATALOG_BROWSE_SLIDE' | translate}}
       </a>
 
       <a (click)="gotoMixMatch()" class="secondary-btn next" [ngStyle]="{'display':isMixMatch && type=='charm' ? '':'none'}">
@@ -44,13 +44,14 @@
     </div>
   </div>
   <!-- todo : add translations for colelctions -->
-  <div class="posts row margin0"  *ngIf="!showCatalog"  >
-    <div [ngStyle]="{'background':'url('+collection.image.src+')'} " [ngClass]=" (i== 0 && i%3 == 0 )?   'left col-xs-12 col-md-12 odd' : 'right right-charm col-xs-12 col-md-6'" *ngFor="let collection of collections; let i = index"  >
-    
+  <div class="posts row margin0" *ngIf="!showCatalog">
+    <div [ngStyle]="{'background':'url('+collection.image.src+')'} " [ngClass]=" (i== 0 && i%3 == 0 )?   'left col-xs-12 col-md-12 odd' : 'right right-charm col-xs-12 col-md-6'"
+      *ngFor="let collection of collections; let i = index">
+
       <div class="content">
         <div class="post-title">{{collection.title}}</div>
         <div class="post-body" [innerHTML]="collection.body_html | trustHtml">
-      
+
         </div>
         <div class="button btn" [routerLink]="['/catalog/charm']" [queryParams]="{'collection':collection.handle}">Shop all {{type}}s</div>
       </div>
@@ -82,7 +83,7 @@
   -->
   </div>
 
-  <div class="row margin0" >
+  <div class="row margin0">
     <app-footer></app-footer>
   </div>
 </div>
