@@ -78,7 +78,7 @@ export class ProfileComponent implements OnInit {
       fname: [this.user.first_name, Validators.required],
       lname: [this.user.last_name, Validators.required],
       email: [this.user.email, [Validators.email, Validators.required]],
-      dob: [this.user.dob.split('T')[0],[Validators.required]],
+      dob: [this.user.dob ? this.user.dob.split('T')[0] : null,[Validators.required]],
       phone: [this.user.phone, Validators.required],
       password: [this.user.password],
       gender: [this.user.gender]

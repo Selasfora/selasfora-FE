@@ -10,7 +10,7 @@ declare var clevertap: any;
 
 let providers = {
   "google": {
-    "clientId": "561313107749-flfhdb086rglddft350c1c8e3aolju6c.apps.googleusercontent.com"
+    "clientId": "814388612429-08gadhpq9fjke5a8te1n4ib2d8r1jfia.apps.googleusercontent.com"
   },
   "facebook":{
     "clientId":"1764432773591047",//"145840142803938",
@@ -61,19 +61,27 @@ export class LoginComponent implements OnInit {
 
     this.subscription = this._auth.login(provider)
       .subscribe(
-      (data) => {
-        let res: any = data;
-        res.provider = 'google'
-        this.auth.registerSocialUser(res);
-        this.user.persistUser(res);
-        this.window.location.href = '/';
+      (data:any) => {
+ 
 
-        clevertap.event.push("facebook login");
-        
-                      clevertap.profile.push({
-                        "Google": res
-                      });
-
+        let payload = {
+          access_token: data.token,
+          refresh_token: data.token,
+          provider : 'google'
+          
+        }
+        this.auth.registerSocialUser(payload).subscribe((data)=>{
+          this.user.persistUser(data);
+          this.window.location.href = '/';
+  
+          clevertap.event.push("google login");
+          
+                        clevertap.profile.push({
+                          "Google": data
+                        });
+  
+  
+        })
 
 
       },
@@ -201,11 +209,11 @@ export class LoginComponent implements OnInit {
   facebook() {
     let that = this;
     let accessToken = null;
-    this.window.FB.getLoginStatus(function (response) {
-      accessToken = response.authResponse.accessToken;
+
    
         // the user isn't logged in to Facebook.
         this.window.FB.login(function (response) {
+          accessToken = response.authResponse.accessToken;
           let res = response;
           console.log('res', res);
           if (response && !response.error) {
@@ -247,7 +255,7 @@ export class LoginComponent implements OnInit {
           }
         }, { scope: 'public_profile,email' });
       
-    });
+   
   }
 
   twitter() {

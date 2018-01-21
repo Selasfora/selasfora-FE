@@ -57,7 +57,7 @@
     "COMMON_MENU":"Menu",
     "COMMON_MIXMATCH":"Mix & Match",
     "COMMON_SELECT":"Select",
-    "COMMON_ADD_TO_CART":"Add to cart",
+    "COMMON_ADD_TO_CART":"Select",
     "COMMON_REVIEW_AND_CHECKOUT": "Review order and checkout",
     "COMMON_SELECT_AND_CONTINUE": "Select and continue",
     "COMMON_SEE_DETAILS": "See details",
@@ -86,14 +86,14 @@
     "SIGNUP_RESEND_EMAIL":"Resend email",
     
     "FOROGT_PASSWORD_TITLE":"Reset Your Password",
-    "FORGOT_PASSWORD_SUBTEXT":"It’s okay. We all forgot sometimes",
+    "FORGOT_PASSWORD_SUBTEXT":"It’s okay. We all forget sometimes",
     "FORGOT_PASSWORD_RESET":"Reset my password",
     "FOROGOT_PASSWORD_I_REMEMBER":"I remember now",
 
     "CATALOG_BROWSE_GRID": "Switch view to grid",
     "CATALOG_BROWSE_SLIDE": "Switch view to slider",
     "CATALOG_NO_PRODUCTS": "No products exists with your current filter, please try another combination",
-    "CATALOG_NEXT": "Next",
+    "CATALOG_NEXT": "View selection",
     "CATALOG_FETCHING_PRODUCTS":"Fetching Products...",
 
     "MIXMATCH_ERROR_1":"You have not selected any bracelet and charms. You can come here again after making a selection.",

@@ -155,7 +155,7 @@ export class CatalogComponent implements OnInit {
       }
       else  if(this.type == "charm" && this.list.length <= 9 ) {
        
-        this.mode = 'slide';
+        this.mode = 'grid';
         this.switchMode();
       }
 
