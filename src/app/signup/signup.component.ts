@@ -149,6 +149,13 @@ export class SignupComponent implements OnInit {
     return false;
   }
 
+  onlyNumbers(val){
+    let n = this.signupForm.get('phone').value;
+    n = n.replace(/[a-z A-Z]*/g,"");
+    this.signupForm.get('phone').setValue(n ? parseInt(n) : null);
+
+  }
+
   validate() {
 
     let valid = true;

@@ -117,6 +117,13 @@ export class ProfileComponent implements OnInit {
 
   }
 
+  onlyNumbers(val){
+    let n = this.profileForm.get('phone').value;
+    n = n.replace(/[a-z A-Z]*/g,"");
+    this.profileForm.get('phone').setValue(n ? parseInt(n) : null);
+
+  }
+
   viewOrder(order){
     this.userService.setOrderHistoryItem(order);
      // inform clever tap

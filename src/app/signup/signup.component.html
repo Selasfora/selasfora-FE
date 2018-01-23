@@ -51,7 +51,7 @@
           <label for="phone">
             Phone Number
           </label>
-          <input type="number" id="phone" name="phone" class="form-control"
+          <input type="text" (input)="onlyNumbers($event)" id="phone" name="phone" class="form-control"
               minlength="8" maxlength="15"
               formControlName="phone">
           <div *ngIf="formErrors.phone.length" class="error-msg">
