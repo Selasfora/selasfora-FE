@@ -219,7 +219,7 @@ export class ProfileComponent implements OnInit {
 
           this.translate.get("ERROR_PROFILE_SAVE").subscribe((res:string)=>{
             
-                        this.toastrService.success(
+                        this.toastrService.error(
                           res,
                           'Error!'
                         );
@@ -237,7 +237,7 @@ export class ProfileComponent implements OnInit {
             'password': [],
             'gender': []
           };
-          this.formErrors[JSON.parse(error._body).validation.keys[0]].push(error.message)
+          this.formErrors[JSON.parse(error._body).validation.keys[0]].push(error.error.message)
 
         }
         );

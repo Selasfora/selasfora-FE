@@ -33,9 +33,6 @@ export class LandingpageComponent implements OnInit {
         subtext: 'HOME_SUBTEXT_1',//'The Limited-edition Paint-splattered Collection is created by set designer Tracy.',
         cta_icon: "fa fa-play",
         cta: 'HOME_CTA_1',//'Watch the film',
-        btn: 'HOME_CTA_BUTTON_1',//'Create your own',
-        class: 'secondary-btn',
-        href: '/mixmatch'
       },
       position: 'bottom'
     },
@@ -114,6 +111,8 @@ export class LandingpageComponent implements OnInit {
     this.scrollPages = Array.prototype.filter.call( document.querySelectorAll(selector), (item)=>{
       return  item.style.display!='none'}
       )
+
+     this.scrollPages.push(document.querySelector('.landing')); 
     this.maxPages = this.scrollPages.length;
   }
 

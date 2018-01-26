@@ -157,7 +157,7 @@ export class ProductDetailsComponent implements OnInit {
       (error) => {
         this.translate.get("ERROR_CART_ADD").subscribe((res:string)=>{
           
-                      this.toastrService.success(
+                      this.toastrService.error(
                         res,
                         'Error!'
                       );

@@ -59,7 +59,7 @@ export class LandingComponent {
 
       this.translate.get("ERROR_EMAIL_INVALID").subscribe((res:string)=>{
         
-                    this.toastrService.success(
+                    this.toastrService.error(
                       res,
                       'Error!'
                     );

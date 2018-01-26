@@ -47,6 +47,17 @@ export class AuthService {
     delete this.headers['Authorization'];
   }
 
+  verifyEmail(email,code){
+    const headers: Headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    const url = this.baseURL + 'users/verifyEmail?email='+email+"&verification_code="+code;
+    const method = 'get';
+
+    return this.sendRequest(method, url, null, { headers: headers });
+  }
+
+
   login(data) {
     const headers: Headers = new Headers();
     headers.append('Content-Type', 'application/json');

@@ -36,7 +36,6 @@ export class ContactUsComponent implements OnInit {
   formErrors = {
     'name': [],
     'email': [],
-    'subject': [],
     'message': []
   };
 
@@ -65,7 +64,6 @@ export class ContactUsComponent implements OnInit {
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.email, Validators.required]],
-      subject: ['', [Validators.required]],
       issue: ['', Validators.required],
       message: ['', [Validators.required]]
     });
@@ -82,7 +80,6 @@ export class ContactUsComponent implements OnInit {
       let value = this.contactForm.value;
       model.from = value.email;
       model.name = value.name;
-      model.subject = value.subject;
       model.issue = value.issue;
       model.message = value.message;
       this.auth.contactSubmit(model)

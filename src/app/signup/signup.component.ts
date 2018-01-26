@@ -66,16 +66,25 @@ export class SignupComponent implements OnInit {
         let d = router.parseUrl(event.url);
           if(d.queryParams.hasOwnProperty('verificationCode')){
             this.sentConfirmation = true;
-            let email = d.queryParams['email'];
+            let email = encodeURIComponent( d.queryParams['email']);
             let code = d.queryParams['verificationCode'];
 
+            this.auth.verifyEmail(email,code).subscribe(res=>{
+              this.user.persistUser(res);
+              clevertap.event.push("User signup",{
+                "Email confirmed":"confrimed"
+              });
+
+              router.navigate(["/"])
+
+            },err=>{
+              router.navigate(["/login"]);
+            })
             // tell clever tap that email was verified 
-            clevertap.event.push("User signup",{
-              "Email confirmed":"confrimed"
-            });
+          
 
 
-            router.navigate(["/login"]);
+           
             
           }
       })

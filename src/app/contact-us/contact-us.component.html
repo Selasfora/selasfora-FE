@@ -36,7 +36,7 @@
             <input type="email" id="email" name="email" class="form-control"
                 formControlName="email">
             <div *ngIf="formErrors.email.length" class="error-msg">
-              <div *ngFor="let item of formErrors.email">{{ item | translate }}</div>
+              <div>{{ formErrors.email[0] | translate }}</div>
             </div>
           </div>
         </div>
@@ -49,7 +49,7 @@
             </app-dropdown>
           </div>
 
-          <div class="col-md-6">
+       <!--   <div class="col-md-6">
             <label for="subject">{{'FORM_INPUT_SUBJECT' | translate}}</label>
             <input type="text" id="subject" name="subject" class="form-control"
                 formControlName="subject">
@@ -57,7 +57,7 @@
             <div *ngIf="formErrors.subject.length" class="error-msg">
               <div *ngFor="let item of formErrors.subject">{{ item | translate}}</div>
             </div>
-          </div>
+          </div> -->
         </div>
 
         <div class="row">
