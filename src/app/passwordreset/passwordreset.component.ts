@@ -74,7 +74,7 @@ export class PasswordresetComponent implements OnInit {
     if(this.step != 2) {
       let valid = this.validate();
       if(valid) {
-        this.email = this.loginForm.get('email').value;
+        this.email = encodeURIComponent(  this.loginForm.get('email').value);
         this.auth.resetPassword(this.loginForm.get('email').value)
           .subscribe(
             (data) => {

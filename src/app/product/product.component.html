@@ -20,7 +20,7 @@
 
   <a class="main-btn show-on-hover hidden-xs"
   *ngIf="item.product_type == 'charm' && isMixMatch"
-  (click)="addToCart(item)">
+  (click)="addToCart(item)" >
  {{'COMMON_ADD_TO_CART' | translate}}
 </a>
 
@@ -63,7 +63,7 @@
 
     <a class="main-btn show-on-hover hidden-xs"
        *ngIf="item.product_type == 'charm' && isMixMatch  "
-       (click)="addToCart(item)">
+       (click)="addToCart(item)" >
       {{'COMMON_ADD_TO_CART' | translate}}
     </a>
   </div>

@@ -164,7 +164,7 @@ export class LoginComponent implements OnInit {
           clevertap.event.push("login");
 
 
-          this.window.location.href = '/';
+         this.router.navigate(['/']);
         },
         err => {
           this.formErrors.password.push("ERROR_INVALID_USER_PASSWORD")
