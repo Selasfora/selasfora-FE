@@ -4,6 +4,8 @@ import { AuthService } from '../auth.service';
 import { WindowService } from '../window.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'toastr-ng2';
+import {TranslateService} from "@ngx-translate/core"
 declare var clevertap:any;
 
 @Component({
@@ -38,7 +40,9 @@ export class PasswordresetComponent implements OnInit {
   email = '';
   constructor(private fb: FormBuilder, private auth: AuthService,
     private _location: Location, private router: Router,
-    private route: ActivatedRoute, _window: WindowService) {
+    private route: ActivatedRoute, _window: WindowService,
+  private translateService: TranslateService,
+private toastService: ToastrService) {
     this.window = _window.nativeWindow;
     router.events.subscribe((event) => {
       window.scrollTo(0, 0);
@@ -75,7 +79,7 @@ export class PasswordresetComponent implements OnInit {
       let valid = this.validate();
       if(valid) {
         this.email = encodeURIComponent(  this.loginForm.get('email').value);
-        this.auth.resetPassword(this.loginForm.get('email').value)
+        this.auth.resetPassword(this.email)
           .subscribe(
             (data) => {
               this.resultClass = 'success';
@@ -125,6 +129,15 @@ export class PasswordresetComponent implements OnInit {
             clevertap.event.push("password reset success",{
               "user email":this.email
             })
+
+            this.translateService.get("SUCCESS_PASSWORD_RESET").subscribe((res:string)=>{
+              
+                          this.toastService.success(
+                            res,
+                            'Success!'
+                          );
+                        })
+
             this.router.navigate(['/login']);
           },
           (error) => {

@@ -107,7 +107,7 @@ export class LandingpageComponent implements OnInit {
   }
 
   ngAfterViewInit(){
-    let selector = window.innerWidth <= 768 ? 'app-landing > div.main-landing.visible-xs' : 'app-landing > div.main-landing.hidden-xs';
+    let selector = window.innerWidth <= 768 ? 'app-landing > div.main-landing.visible-ipad-below' : 'app-landing > div.main-landing.hidden-xs';
     this.scrollPages = Array.prototype.filter.call( document.querySelectorAll(selector), (item)=>{
       return  item.style.display!='none'}
       )

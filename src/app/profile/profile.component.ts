@@ -24,7 +24,7 @@ export class ProfileComponent implements OnInit {
   datePickerOptions:{
     min:""
   }
-  addresses = [1];
+  addresses = [];
   orders:any = [1, 2];
   formSubmitted = false;
   validationMessages = {
@@ -119,7 +119,7 @@ export class ProfileComponent implements OnInit {
 
   onlyNumbers(val){
     let n = this.profileForm.get('phone').value;
-    n = n.replace(/[a-z A-Z]*/g,"");
+    n = n.replace(/[^0-9]/g,"");
     this.profileForm.get('phone').setValue(n ? parseInt(n) : null);
 
   }
