@@ -168,7 +168,7 @@ export class ProfileComponent implements OnInit {
 
     // check if the date is invalid 
     let dob = form.get("dob").value;
-    valid = new Date( Date.parse(dob) ).getFullYear() <= (new Date()).getFullYear() ? true : false;
+    valid = new Date( Date.parse(dob) ).getFullYear() <= (new Date()).getFullYear() - 15 ? true : false;
     if(!valid){
       this.formErrors.dob.push("Invalid date of birth");
     }
@@ -185,7 +185,7 @@ export class ProfileComponent implements OnInit {
       if (value.password) {
         model.password = value.password;
       }
-      model.dob = value.dob;
+      model.dob = Date.parse(value.dob);
       model.phone = value.phone;
       model.first_name = value.fname;
       model.last_name = value.lname;

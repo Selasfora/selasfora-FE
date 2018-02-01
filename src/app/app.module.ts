@@ -63,7 +63,7 @@ import { UserLocationComponent } from './user-location/user-location.component';
 import { TrustHtmlPipe } from './trust-html.pipe';
 
 
-
+import { DateTimePickerModule} from 'ngx-datetime-picker';
 // AoT requires an exported function for factories
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -105,6 +105,7 @@ export function createTranslateLoader(http: HttpClient) {
     TrustHtmlPipe
   ],
   imports: [
+    DateTimePickerModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
