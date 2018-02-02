@@ -12,7 +12,7 @@
     <div [ngClass]="{'p-b-400': type == 'bracelet' && mode != 'grid', 'dragscroll': mode == 'slide'}" #slideContainer>
       <div  [class.row]="mode == 'grid'" [class.slide-container]="mode != 'grid'" [style.width]="slideContainerWidth">
         <div *ngFor="let item of list" class="product-container">
-          <app-product [item]="item" [mode]="mode" [canAddToCart]="canAddToCart" [isMixMatch]="isMixMatch"></app-product>
+          <app-product class="col-xs-6 col-md-3" [item]="item" [mode]="mode" [canAddToCart]="canAddToCart" [isMixMatch]="isMixMatch"></app-product>
         </div>
       </div>
 
@@ -57,30 +57,7 @@
       </div>
     </div>
 
-    <!--
-    <div class="right right-charm col-xs-12 col-md-6" *ngIf="type=='charm'" >
-      <img src="/assets/images/right-image1.png">
-      <div class="content">
-        <div class="post-title black">Sprint collection</div>
-        <div class="post-body black">
-          We side with style over fashion,<br> think timelessness is underrated
-        </div>
-        <div class="button btn"  [routerLink]="['/catalog/charm']" [queryParams]="{'collection':1}" >Shop all charms</div>
-      </div>
-    </div>
 
-    <div class="right right-bracelet col-xs-12 col-md-6" *ngIf="type=='charm'">
-      <img src="/assets/images/right-image2.png">
-      <div class="content">
-        <div class="post-title">Sprint collection</div>
-        <div class="post-body">
-          We side with style over fashion,<br> think timelessness is underrated
-        </div>
-        <div class="button btn" [routerLink]="['/catalog/bracelet']" [queryParams]="{'collection':1}" >Shop all bracelets</div>
-      </div>
-    </div>
-
-  -->
   </div>
 
   <div class="row margin0">

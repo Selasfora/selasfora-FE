@@ -150,12 +150,12 @@ export class CatalogComponent implements OnInit {
       })
 
       if(this.type == 'bracelet'){
-        this.mode = 'grid';
+        this.mode = 'slide';
         this.switchMode();
       }
       else  if(this.type == "charm" && this.list.length <= 9 ) {
        
-        this.mode = 'grid';
+        this.mode = 'slide';
         this.switchMode();
       }
 
@@ -326,11 +326,7 @@ export class CatalogComponent implements OnInit {
 
   switchMode(e=null) {
     window.setTimeout(()=>{
-    this.mode = this.mode === 'slide' ? 'grid' : 'slide';
-
-      if((this.isMixMatch && this.type =="bracelet") ||this.type=="bracelet") {
-        this.mode = 'slide';
-      }
+    this.mode = 'grid';
 
 
     if (this.mode != 'grid') {

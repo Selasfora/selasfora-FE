@@ -24,7 +24,9 @@ export class ProfileComponent implements OnInit {
   datePickerOptions:{
     min:""
   }
+  dob = null;
   addresses = [];
+  canAdd = true;
   orders:any = [1, 2];
   formSubmitted = false;
   validationMessages = {
@@ -83,6 +85,8 @@ export class ProfileComponent implements OnInit {
       password: [this.user.password],
       gender: [this.user.gender]
     });
+
+    this.dob = this.user.dob? Date.parse(this.user.dob.split) : null
 
     this.userService.getAddresses().subscribe(
       data => {

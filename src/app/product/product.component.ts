@@ -19,38 +19,19 @@ export class ProductComponent implements OnInit {
   @Input() set mode(value) {
     console.log('changing to ', value)
     this._mode = value;
-    this.evaluateCells();
+   
   }
 
-  @HostBinding('class.col-xs-12') bracelet_mobile = false;
-  @HostBinding('class.col-md-6') bracelet = false;
-  @HostBinding('class.col-xs-6') charm_mobile = false;
-  @HostBinding('class.col-md-4') charm = false;
+
 
   constructor(public _cart: CartService, private toastrService: ToastrService, private translate:TranslateService) {
   }
 
   ngOnInit() {
-    this.evaluateCells();
+
   }
 
-  evaluateCells() {
-    if (this._mode !== 'grid') {
-      this.charm = false;
-      this.charm_mobile = false;
-      this.bracelet = false;
-      this.bracelet_mobile = false;
-      return;
-    }
 
-    if (this.item.product_type === 'charm') {
-      this.charm = true;
-      this.charm_mobile = true;
-    } else if (this.item.product_type === 'bracelet') {
-      this.bracelet = true;
-      this.bracelet_mobile = true;
-    }
-  }
 
   addToCart(item) {
     

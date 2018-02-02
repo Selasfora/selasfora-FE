@@ -84,7 +84,7 @@
                       {{'FORM_INPUT_DOB' | translate}}
                     </label>
                     <span> (DD/MM/YYYY)</span>
-                    <ngx-date-picker  id="dob" name="dob" class="form-control" min='1899-01-01' max='2000-13-13' formControlName="dob">
+                    <ngx-date-picker  id="dob" name="dob" [(ngModel)]="dob" class="form-control" min='1899-01-01' max='2000-13-13' formControlName="dob">
                     </ngx-date-picker>
                     <div *ngIf="formSubmitted && profileForm.get('dob').errors" class="error-msg">
                       <div *ngIf="formSubmitted && profileForm.get('dob').errors.required">{{'ERROR_DOB_REQUIRED' | translate}}</div>
@@ -165,8 +165,8 @@
           </a>
         </div>
         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-          <app-address *ngFor="let address of addresses; let aid = index;" [address]="address" (onRemoved)="popAddress(aid)"></app-address>
-          <div class="add-address" (click)="addAddress()">
+          <app-address *ngFor="let address of addresses; let aid = index;" [address]="address" (onRemoved)="popAddress(aid)" (onOpened)="canAdd = false" (onClosed)="canAdd = true"></app-address>
+          <div class="add-address" (click)="addAddress()" *ngIf="canAdd">
             {{'PROFILE_ADD_NEW_ADDRESS' | translate}}
           </div>
         </div>

@@ -3,13 +3,7 @@
     <div class="well" *ngIf="editMode">
       <div class="row">
         <div class="col-xs-12">
-          <div class="row country">
-            <div class="col-xs-12 col-md-6">
-              <label>{{'FORM_INPUT_COUNTRY' | translate}}</label>
-              <app-dropdown [itemList]="countries" [isForm]=true (itemChange)="setCountry($event)">
-              </app-dropdown>
-            </div>
-          </div>
+        
           <div class="row">
             <div class="col-xs-12 col-md-6">
               <label>{{'FORM_INPUT_ADDRESS_1' | translate }}</label>
@@ -32,6 +26,13 @@
               <label>{{'FORM_INPUT_POSTCODE' | translate }}</label>
               <input type="text" id="zip" name="zip" class="form-control"
                   formControlName="zip">
+            </div>
+          </div>
+          <div class="row country">
+            <div class="col-xs-12 col-md-6">
+              <label>{{'FORM_INPUT_COUNTRY' | translate}}</label>
+              <app-dropdown [itemList]="countries" [isForm]=true (itemChange)="setCountry($event)">
+              </app-dropdown>
             </div>
           </div>
           <div class="row">

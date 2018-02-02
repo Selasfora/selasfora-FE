@@ -13,6 +13,8 @@ declare var clevertap:any;
 //selasfora-api-stg.herokuapp.com/documentation#/
 export class AddressComponent implements OnInit {
   @Output('onRemoved') removeEvent = new EventEmitter<any>();
+  @Output('onOpened') opened = new EventEmitter<any>();
+  @Output('onClosed') closed = new EventEmitter<any>();
   countries = [ 
     {title: 'Afghanistan'}, 
     {title: 'Åland Islands'}, 
@@ -309,7 +311,10 @@ export class AddressComponent implements OnInit {
       default: [this.address.default || false]
     });
 
-    if(!this.addid) this.editMode = true;
+    if(!this.addid) {
+      this.opened.emit();
+      this.editMode = true;
+    }
 
   }
 
@@ -322,6 +327,7 @@ export class AddressComponent implements OnInit {
       data => {
         this.editMode = false;
         console.log('success')
+        this.closed.emit();
         // inform clever tap
         clevertap.event.push("user shipping address updated",this.addressForm.value)
       },
@@ -335,6 +341,7 @@ export class AddressComponent implements OnInit {
   remove() {
     if(!this.addid){
       this.removeEvent.emit();
+      this.closed.emit();
       return;
     }
     this.user.removeAddress(this.addid).subscribe(
