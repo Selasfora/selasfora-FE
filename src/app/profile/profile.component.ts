@@ -40,8 +40,10 @@ export class ProfileComponent implements OnInit {
     barTitleFormat: 'MMMM YYYY',
     dayNamesFormat: 'dd',
     firstCalendarDay: 0, // 0 - Sunday, 1 - Monday
-    maxDate: new Date(Date.now()),  // Maximal selectable date
-    barTitleIfEmpty: 'Select Date of Birth'
+    minDate: new Date("01/01/1970"),
+    maxDate: new Date("31/12/2002"),  // Maximal selectable date
+    barTitleIfEmpty: 'Select Date of Birth',
+    
   };
 
 
@@ -100,13 +102,13 @@ export class ProfileComponent implements OnInit {
       fname: [this.user.first_name, [Validators.required, Validators.pattern(/[a-zA-z]/g)]],
       lname: [this.user.last_name,[ Validators.required,Validators.pattern(/[a-zA-z]/g)]],
       email: [this.user.email, [Validators.email, Validators.required]],
-      dob: [this.user.dob ? this.user.dob.split('T')[0] : null,[Validators.required]],
+      dob: [this.user.dob ? Date.parse(this.user.dob) : null,[Validators.required]],
       phone: [this.user.phone, Validators.required],
       password: [this.user.password],
       gender: [this.user.gender]
     });
 
-    this.dob = this.user.dob? Date.parse(this.user.dob.split) : null
+    this.dob = this.user.dob? Date.parse(this.user.dob) :  Date.parse("01/01/1970")
 
     this.userService.getAddresses().subscribe(
       data => {
@@ -192,9 +194,9 @@ export class ProfileComponent implements OnInit {
 
     // check if the date is invalid 
     let dob = form.get("dob").value;
-    valid = new Date( Date.parse(dob) ).getFullYear() <= (new Date()).getFullYear() - 15 ? true : false;
+    valid = new Date( dob ).getFullYear() <= (new Date()).getFullYear() - 15 ? true : false;
     if(!valid){
-      this.formErrors.dob.push("Invalid date of birth");
+      this.formErrors.dob.push("Maximum year should be 2002");
     }
     return valid;
   }
