@@ -3,7 +3,7 @@
     "SUCCESS_CART_ADD":"Your product was added successfully!",
     "SUCCESS_CONTACT_US":"We Receieved your concern and we will come back to you asap!",
     "SUCCESS_NEWSLETTER_SUBSCRIBED":"You are now subscribed to our newsletter!",
-    "SUCCESS_ITEM_SELECTED": "item has been selected",
+    "SUCCESS_ITEM_SELECTED": "Item has been selected",
     "SUCCESS_PASSWORD_RESET": "Your password was reset successfully",
     "SUCCESS_EMAIL_CONFIRMED": "Your email is now confirmed",
     
@@ -69,7 +69,7 @@
     "COMMON_SEE_DETAILS": "See details",
     "COMMON_GET_ACCOUNT": "I need an account",
     "COMMON_LOGIN":"Login",
-    "COMMON_SIGNIN_WITH":"Sign in with",
+    "COMMON_SIGNIN_WITH":"Login in with",
     "COMMON_SIGNUP":"Signup",
     "COMMON_FORGOT_PASSWORD":"forgot?",
     "COMMON_SIGNUP_EMAIL": "Signup with email",
@@ -78,13 +78,13 @@
     "COMMON_EDIT":"Edit",
     "COMMON_SEND": "Send",
 
-    "CART_QTY": "quantity",
-    "CART_REMOVE":"remove",
-    "CART_PRICE":"price",
+    "CART_QTY": "Quantity",
+    "CART_REMOVE":"Remove",
+    "CART_PRICE":"Price",
     "CART_TITLE":"Your cart",
     "CART_EMPTY_MESSAGE":"Your cart is empty",
-    "CART_CHECKOUT":"checkout",
-    "CART_CONTINUE_SHOPPING":"continue shopping",
+    "CART_CHECKOUT":"Checkout",
+    "CART_CONTINUE_SHOPPING":"Continue shopping",
 
     "SIGNUP_NEXT_STEP":"Just one more step...",
     "SIGNUP_SUCCESS":"Your information has been sent successfully. In order to complete your registration, please click the confirmation link in the email that we have sent to you.",
@@ -94,6 +94,7 @@
     "FOROGT_PASSWORD_TITLE":"Reset Your Password",
     "FORGOT_PASSWORD_SUBTEXT":"It’s okay. We all forget sometimes",
     "FORGOT_PASSWORD_RESET":"Reset my password",
+    "FORGOT_PASSWORD_RESEND": "Resend",
     "FOROGOT_PASSWORD_I_REMEMBER":"I remember now",
 
     "CATALOG_BROWSE_GRID": "Switch view to grid",
@@ -120,7 +121,7 @@
     "MENU_JOURNAL":"Journal",
     "MENU_ABOUT": "About us",
     "MENU_CONTACT": "Contact us",
-    "MENU_ITEMS_IN_CART":"items in your cart",
+    "MENU_ITEMS_IN_CART":"Items in your cart",
 
     "FILTER_BY":"Filter by",
     "FILTER_COLOR": "Color",
@@ -133,7 +134,7 @@
 
     "SHIPPING_TITLE": "Shipping Information",
     "SHIPPING_SUB_TITLE": "FREE standard deliver on all orders above 75",
-    "SHIPPING_COUNTRY": "country",
+    "SHIPPING_COUNTRY": "Country",
     "SHIPPING_STANDARD": "Standard Delivery",
     "SHIPPING_STANDARD_TEXT": "Upto 2 working days",
     "SHIPPING_EXPRESS": "Express Delivery",

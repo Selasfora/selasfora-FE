@@ -38,6 +38,7 @@ export class PasswordresetComponent implements OnInit {
   client:any;
   window: any;
   email = '';
+  sent=false;
   constructor(private fb: FormBuilder, private auth: AuthService,
     private _location: Location, private router: Router,
     private route: ActivatedRoute, _window: WindowService,
@@ -84,7 +85,7 @@ private toastService: ToastrService) {
             (data) => {
               this.resultClass = 'success';
               this.resultText = data.message;
-
+              this.sent = true;
               // inform clever tap
               clevertap.event.push("password reset email",{
                 "user email": this.email
