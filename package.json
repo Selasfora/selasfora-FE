@@ -32,6 +32,7 @@
     "animateplus": "^2.0.0",
     "core-js": "^2.4.1",
     "jwt-decode": "^2.2.0",
+    "ng2-datepicker": "^2.2.4",
     "ng2-dragula": "^1.5.0",
     "ng2-page-scroll": "^4.0.0-beta.9",
     "ng2-slim-loading-bar": "^4.0.0",

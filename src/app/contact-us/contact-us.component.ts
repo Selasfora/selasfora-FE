@@ -17,6 +17,8 @@ export class ContactUsComponent implements OnInit {
   validationMessages = {
     'name': {
       'required': 'ERROR_NAME_REQUIRED',
+      'pattern': 'ERROR_ONLY_CHARACTERS',
+      'maxlength': 'ERROR_NAME_MAXLENGTH'
     },
     // 'issue': {
     //   'required': 'Please select an issue',
@@ -62,7 +64,7 @@ export class ContactUsComponent implements OnInit {
   ngOnInit() {
 
     this.contactForm = this.fb.group({
-      name: ['', Validators.required],
+      name: ['', [Validators.required,Validators.pattern(/[a-zA-z]/g)]],
       email: ['', [Validators.email, Validators.required]],
       issue: ['', Validators.required],
       message: ['', [Validators.required]]

@@ -34,9 +34,7 @@
         {{'CATALOG_BROWSE_GRID' | translate}}
       </a>
 
-      <a (click)="switchMode($event)" class="mode-change" [ngStyle]="{'display':mode == 'slide' ? 'none':''}">
-        {{'CATALOG_BROWSE_SLIDE' | translate}}
-      </a>
+
 
       <a (click)="gotoMixMatch()" class="secondary-btn next" [ngStyle]="{'display':isMixMatch && type=='charm' ? '':'none'}">
         {{'CATALOG_NEXT' | translate}}

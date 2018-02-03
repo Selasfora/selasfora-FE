@@ -5,6 +5,7 @@
     "SUCCESS_NEWSLETTER_SUBSCRIBED":"You are now subscribed to our newsletter!",
     "SUCCESS_ITEM_SELECTED": "item has been selected",
     "SUCCESS_PASSWORD_RESET": "Your password was reset successfully",
+    "SUCCESS_EMAIL_CONFIRMED": "Your email is now confirmed",
     
     "ERROR_CART_ADD":"Your product was not added!",
     "ERROR_PROFILE_SAVE":"Something went wrong, Something went wrong, couldn't save profile!  ",
@@ -27,6 +28,10 @@
     "ERROR_REPEAT_PASSWORD_REQUIRED":"This field is requried",
     "ERROR_EMAIL_NOT_MATCHING":"Emails don't match",
     "ERROR_PASSWORD_NOT_MATCHING":"Passwords don't match",
+    "ERROR_ONLY_CHARACTERS": "No numbers and special characters",
+    "ERROR_NAME_MAXLENGTH": "Name cannot exceed 25 characters",
+    "ERROR_FNAME_MAXLENGTH": "First name cannot exceed 10 characters",
+    "ERROR_LNAME_MAXLENGTH": "Last Name cannot exceed 10 characters",
 
     "FORM_INPUT_EMAIL":"Email Address",
     "FORM_INPUT_EMAIL_2":"Enter your email address",

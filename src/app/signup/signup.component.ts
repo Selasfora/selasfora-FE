@@ -4,6 +4,8 @@ import { AuthService } from '../auth.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
+import {TranslateService} from '@ngx-translate/core'
+import {ToastrService} from 'toastr-ng2'
 declare var clevertap:any;
 
 @Component({
@@ -20,12 +22,13 @@ export class SignupComponent implements OnInit {
   validationMessages = {
     'fname': {
       'required': 'ERROR_FIRST_NAME_REQUIRED',
+      'pattern': 'ERROR_ONLY_CHARACTERS',
+      'maxlength': 'ERROR_FNAME_MAXLENGTH'
     },
     'lname': {
       'required': 'ERROR_LAST_NAME_REQUIRED',
-    },
-    'phone': {
-      'required': 'ERROR_PHONE_REQUIRED',
+      'pattern': 'ERROR_ONLY_CHARACTERS',
+      'maxlength': 'ERROR_LNAME_MAXLENGTH'
     },
     'email': {
       'required': 'ERROR_EMAIL_REQUIRED',
@@ -49,7 +52,6 @@ export class SignupComponent implements OnInit {
   formErrors = {
     'fname': [],
     'lname': [],
-    'phone': [],
     'email': [],
     'email2': [],
     'password': [],
@@ -59,7 +61,7 @@ export class SignupComponent implements OnInit {
   errorMessage: string = '';
 
   constructor(private fb: FormBuilder, private auth: AuthService, private _location: Location,
-    private router: Router, private user: UserService) {
+    private router: Router, private user: UserService, private translate:TranslateService, private toastrService:ToastrService) {
 
       // check for confirmation router
       router.events.subscribe((event:any)=>{
@@ -74,6 +76,14 @@ export class SignupComponent implements OnInit {
               clevertap.event.push("User signup",{
                 "Email confirmed":"confrimed"
               });
+
+              this.translate.get("SUCCESS_EMAIL_CONFIRMED").subscribe((res:string)=>{
+                
+                            this.toastrService.success(
+                              res,
+                              'Success!'
+                            );
+                          })
 
               router.navigate(["/"])
 
@@ -109,7 +119,6 @@ export class SignupComponent implements OnInit {
       lname: ['', Validators.required],
       email: ['', [Validators.email, Validators.required]],
       email2: ['', [Validators.email, Validators.required]],
-      phone: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength, Validators.maxLength]],
       password2: ['', [Validators.required, Validators.minLength, Validators.maxLength]]
     });
@@ -123,7 +132,6 @@ export class SignupComponent implements OnInit {
       model.email = value.email;
       model.password = value.password;
       model.password_confirmation = value.password2;
-      model.phone = value.phone;
       model.first_name = value.fname;
       model.last_name = value.lname;
       this.auth.signup(model)
@@ -135,8 +143,7 @@ export class SignupComponent implements OnInit {
             clevertap.event.push("User signup",{
               "Email confirmed":"pending",
               "email": value.email,
-              "user name": value.fname +" "+ value.lname,
-              "user phone": value.phone
+              "user name": value.fname +" "+ value.lname
             });
           },
           (error) => {
@@ -158,12 +165,7 @@ export class SignupComponent implements OnInit {
     return false;
   }
 
-  onlyNumbers(val){
-    let n = this.signupForm.get('phone').value;
-    n = n.replace(/[^0-9]/g,"");
-    this.signupForm.get('phone').setValue(n ? parseInt(n) : null);
 
-  }
 
   validate() {
 

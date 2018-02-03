@@ -5,7 +5,9 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 import { ToastrService } from 'toastr-ng2';
-import {TranslateService} from "@ngx-translate/core"
+import {TranslateService} from "@ngx-translate/core";
+import { DatepickerOptions } from 'ng2-datepicker';
+import * as frLocale from 'date-fns/locale/fr';
 declare var window:any;
 declare var clevertap:any;
 @Component({
@@ -29,12 +31,30 @@ export class ProfileComponent implements OnInit {
   canAdd = true;
   orders:any = [1, 2];
   formSubmitted = false;
+
+
+  options: DatepickerOptions = {
+    minYear: 1970,
+    maxYear: 2003,
+    displayFormat: 'DD/MM/YYYY',
+    barTitleFormat: 'MMMM YYYY',
+    dayNamesFormat: 'dd',
+    firstCalendarDay: 0, // 0 - Sunday, 1 - Monday
+    maxDate: new Date(Date.now()),  // Maximal selectable date
+    barTitleIfEmpty: 'Select Date of Birth'
+  };
+
+
   validationMessages = {
     'fname': {
       'required': 'ERROR_FIRST_NAME_REQUIRED',
+      'pattern': 'ERROR_ONLY_CHARACTERS',
+      'maxlength': 'ERROR_FNAME_MAXLENGTH'
     },
     'lname': {
       'required': 'ERROR_LAST_NAME_REQUIRED',
+      'pattern': 'ERROR_ONLY_CHARACTERS',
+      'maxlength': 'ERROR_LNAME_MAXLENGTH'
     },
     'phone': {
       'required': 'ERROR_PHONE_REQUIRED',
@@ -77,8 +97,8 @@ export class ProfileComponent implements OnInit {
     let gender = this.genderList.find(g=> g.title.toUpperCase().indexOf(this.user.gender) >=0 );
     this.user.gender = gender? gender.title : "Prefer not to specify";
     this.profileForm = this.fb.group({
-      fname: [this.user.first_name, Validators.required],
-      lname: [this.user.last_name, Validators.required],
+      fname: [this.user.first_name, [Validators.required, Validators.pattern(/[a-zA-z]/g)]],
+      lname: [this.user.last_name,[ Validators.required,Validators.pattern(/[a-zA-z]/g)]],
       email: [this.user.email, [Validators.email, Validators.required]],
       dob: [this.user.dob ? this.user.dob.split('T')[0] : null,[Validators.required]],
       phone: [this.user.phone, Validators.required],

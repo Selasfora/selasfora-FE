@@ -46,19 +46,6 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-md-6">
-          <label for="phone">
-            Phone Number
-          </label>
-          <input type="text" (input)="onlyNumbers($event)" id="phone" name="phone" class="form-control"
-              minlength="8" maxlength="15"
-              formControlName="phone">
-          <div *ngIf="formErrors.phone.length" class="error-msg">
-            <div *ngFor="let item of formErrors.phone">{{ item | translate}}</div>
-          </div>
-        </div>
-      </div>
 
       <div class="row">
         <div class="col-md-6">
