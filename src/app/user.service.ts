@@ -21,13 +21,14 @@ export class UserService implements CanActivate, CanDeactivate<any> {
 
   constructor(private $window: WindowService, private router: Router, private auth: AuthService) {
     this.window = $window.nativeWindow;
-    if (!this.user && this.window.localStorage.getItem('user')) {
-      this.user = JSON.parse(this.window.localStorage.getItem('user'));
- 
+    if (!this.window.user && this.window.localStorage.getItem('user')) {
+      this.window.user = JSON.parse(this.window.localStorage.getItem('user'));
+      this.user = this.window.user;
     }
   }
 
   persistUser(user: any) {
+    this.window.user = user;
     this.user = user;
     if (this.window.localStorage && typeof this.window.localStorage === 'object') {
       this.window.localStorage.setItem('user', JSON.stringify(user));
@@ -36,14 +37,14 @@ export class UserService implements CanActivate, CanDeactivate<any> {
 
   removeUser() {
     console.log('loggin out in service')
-    this.user = undefined;
+    this.window.user = undefined;
     if (this.window.localStorage && typeof this.window.localStorage === 'object') {
       this.window.localStorage.removeItem('user');
     }
   }
 
   refreshUserInfo() {
-    this.auth.fetchUser(this.user.id).subscribe(
+    this.auth.fetchUser(this.window.user.id).subscribe(
       (data) => {
         this.persistUser(data);
       }
@@ -51,12 +52,13 @@ export class UserService implements CanActivate, CanDeactivate<any> {
   }
 
   getUser() {
-    return this.user;
+    return this.window.user;
   }
 
   isLoggedIn() {
-    return !!this.user;
+    return !!this.window.user;
   }
+
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (this.isLoggedIn()) {
