@@ -7,7 +7,6 @@
   </div>
 
   <div *ngIf="showCatalog" class="col-md-offset-1 col-md-10 body row ">
-    <div class="page-title" *ngIf="pageTitle !=''"> {{ pageTitle }} </div>
     <!-- [class.container]="mode != 'grid'" -->
     <div [ngClass]="{'p-b-400': type == 'bracelet' && mode != 'grid', 'dragscroll': mode == 'slide'}" #slideContainer>
       <div  [class.row]="mode == 'grid'" [class.slide-container]="mode != 'grid'" [style.width]="slideContainerWidth">
