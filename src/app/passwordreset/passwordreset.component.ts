@@ -84,7 +84,7 @@ private toastService: ToastrService) {
           .subscribe(
             (data) => {
               this.resultClass = 'success';
-              this.resultText = data.message;
+              this.resultText = "We have emailed you a link to reset your password";
               this.sent = true;
               // inform clever tap
               clevertap.event.push("password reset email",{
@@ -108,15 +108,9 @@ private toastService: ToastrService) {
     } else {
       const form = this.loginForm;
       let p1 = form.get('newPass').value;
-      let p2 = form.get('newPass2').value;
-      if(!p1 || !p2) {
+      if(!p1) {
         this.resultClass = 'error';
-        this.resultText = 'ERROR_ALL_FIELDS_REQUIRED';
-        return false;
-      }
-      if(p1 != p2) {
-        this.resultClass = 'error';
-        this.resultText = 'ERROR_PASSWORDS_DONT_MATCH';
+        this.resultText = 'ERROR_PASSWORD_REQUIRED';
         return false;
       }
       this.auth.setPassword({

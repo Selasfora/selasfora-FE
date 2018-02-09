@@ -18,9 +18,8 @@ declare var clevertap:any;
 export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
   genderList = [
-    { title: 'Prefer to not specify' },
-    { title: 'Male' },
-    { title: 'Female' }
+    { title: 'MALE' },
+    { title: 'FEMALE' }
   ];
   user: any = {};
   datePickerOptions:{

@@ -94,6 +94,7 @@
     "FOROGT_PASSWORD_TITLE":"Reset Your password",
     "FORGOT_PASSWORD_SUBTEXT":"It’s okay. We all forget sometimes",
     "FORGOT_PASSWORD_RESET":"Reset my password",
+    "FORGOT_PASSWORD_SAVE":"Reset my password",
     "FORGOT_PASSWORD_RESEND": "Resend",
     "FOROGOT_PASSWORD_I_REMEMBER":"I remember now",
 
