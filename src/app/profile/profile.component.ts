@@ -77,7 +77,6 @@ export class ProfileComponent implements OnInit {
   formErrors = {
     'fname': [],
     'lname': [],
-    'phone': [],
     'email': [],
     'dob': [],
     'password': [],
@@ -103,7 +102,6 @@ export class ProfileComponent implements OnInit {
       lname: [this.user.last_name,[ Validators.required,Validators.pattern(/[a-zA-z]/g)]],
       email: [this.user.email, [Validators.email, Validators.required]],
       dob: [this.user.dob ? Date.parse(this.user.dob) : null,[Validators.required]],
-      phone: [this.user.phone, Validators.required],
       password: [this.user.password],
       gender: [this.user.gender]
     });
@@ -143,12 +141,7 @@ export class ProfileComponent implements OnInit {
 
   }
 
-  onlyNumbers(val){
-    let n = this.profileForm.get('phone').value;
-    n = n.replace(/[^0-9]/g,"");
-    this.profileForm.get('phone').setValue(n ? parseInt(n) : null);
 
-  }
 
   viewOrder(order){
     this.userService.setOrderHistoryItem(order);
@@ -219,7 +212,6 @@ export class ProfileComponent implements OnInit {
       this.formErrors = {
         'fname': [],
         'lname': [],
-        'phone': [],
         'email': [],
         'dob': [],
         'password': [],
@@ -257,7 +249,6 @@ export class ProfileComponent implements OnInit {
           this.formErrors = {
             'fname': [],
             'lname': [],
-            'phone': [],
             'email': [],
             'dob': [],
             'password': [],

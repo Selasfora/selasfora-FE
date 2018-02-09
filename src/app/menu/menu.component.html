@@ -11,7 +11,7 @@
 
     <li class="header" *ngIf="isLoggedIn">
       <a routerLink="/profile">
-        {{'MENU_GREETING' | translate}} {{ user.name }} !
+        {{'MENU_GREETING' | translate}} {{ user.name.split()[0] }} !
         <br>
         <span class="profile-link">{{ 'MENU_YOUR_PROFILE' | translate }} ></span>
       </a>
