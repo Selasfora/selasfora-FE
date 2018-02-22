@@ -74,8 +74,7 @@
                       {{'FORM_INPUT_DOB' | translate}}
                     </label>
                     <span> (DD/MM/YYYY)</span>
-                    <ng-datepicker [options]="options" id="dob" name="dob" [(ngModel)]="dob" class="form-control" min='1899-01-01' max='2000-13-13' formControlName="dob">
-                    </ng-datepicker>
+                    <input type="text" id="dob" name="dob" [textMask]="{pipe: autoCorrectedDatePipe, showMask:false, mask:mask, keepCharPositions:true}" [(ngModel)]="dob" class="form-control dob"  formControlName="dob"/>
                     <div *ngIf="formSubmitted && profileForm.get('dob').errors" class="error-msg">
                       <div *ngIf="formSubmitted && profileForm.get('dob').errors.required">{{'ERROR_DOB_REQUIRED' | translate}}</div>
                     </div>

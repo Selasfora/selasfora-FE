@@ -5,11 +5,10 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 import { ToastrService } from 'toastr-ng2';
-import {TranslateService} from "@ngx-translate/core";
-import { DatepickerOptions } from 'ng2-datepicker';
-import * as frLocale from 'date-fns/locale/fr';
-declare var window:any;
-declare var clevertap:any;
+import { TranslateService } from "@ngx-translate/core";
+import createAutoCorrectedDatePipe from 'text-mask-addons/dist/createAutoCorrectedDatePipe'
+declare var window: any;
+declare var clevertap: any;
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -22,30 +21,16 @@ export class ProfileComponent implements OnInit {
     { title: 'FEMALE' }
   ];
   user: any = {};
-  datePickerOptions:{
-    min:""
+  datePickerOptions: {
+    min: ""
   }
   dob = null;
   addresses = [];
   canAdd = true;
-  orders:any = [1, 2];
+  orders: any = [1, 2];
   formSubmitted = false;
-
-
-  options: DatepickerOptions = {
-    minYear: 1970,
-    maxYear: 2003,
-    displayFormat: 'DD/MM/YYYY',
-    barTitleFormat: 'MMMM YYYY',
-    dayNamesFormat: 'dd',
-    firstCalendarDay: 0, // 0 - Sunday, 1 - Monday
-    minDate: new Date("01/01/1970"),
-    maxDate: new Date("31/12/2002"),  // Maximal selectable date
-    barTitleIfEmpty: 'Select Date of Birth',
-    
-  };
-
-
+  autoCorrectedDatePipe = createAutoCorrectedDatePipe('dd/mm/yyyy');
+  mask = [/[0-9]/, /[0-9]/, '/', /[0-9]/, /[0-9]/, '/', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/]
   validationMessages = {
     'fname': {
       'required': 'ERROR_FIRST_NAME_REQUIRED',
@@ -86,7 +71,7 @@ export class ProfileComponent implements OnInit {
   arrows = ['up', 'down', 'down'];
 
   constructor(private fb: FormBuilder, private auth: AuthService, private _location: Location,
-    private router: Router, private userService: UserService, private toastrService: ToastrService, private translate:TranslateService) { }
+    private router: Router, private userService: UserService, private toastrService: ToastrService, private translate: TranslateService) { }
 
   ngOnInit() {
     if (!this.userService.isLoggedIn()) {
@@ -94,18 +79,21 @@ export class ProfileComponent implements OnInit {
       return;
     }
     this.user = this.userService.getUser();
-    let gender = this.genderList.find(g=> g.title.toUpperCase().indexOf(this.user.gender) >=0 );
-    this.user.gender = gender? gender.title : "Prefer not to specify";
+    let gender = this.genderList.find(g => g.title.toUpperCase().indexOf(this.user.gender) >= 0);
+    this.user.gender = gender ? gender.title : "Prefer not to specify";
+
+    let d = this.user.dob ? new Date(Date.parse(this.user.dob)) : null
+    let userDateOfBirth = d ? `${d.getDate().toString().length == 1 ? "0" + d.getDate() : d.getDate()}/${d.getMonth().toString().length == 1 ? "0" + (d.getMonth() + 1) : d.getMonth() + 1}/${d.getFullYear()}` : ""
     this.profileForm = this.fb.group({
       fname: [this.user.first_name, [Validators.required, Validators.pattern(/[a-zA-z]/g)]],
-      lname: [this.user.last_name,[ Validators.required,Validators.pattern(/[a-zA-z]/g)]],
+      lname: [this.user.last_name, [Validators.required, Validators.pattern(/[a-zA-z]/g)]],
       email: [this.user.email, [Validators.email, Validators.required]],
-      dob: [this.user.dob ? Date.parse(this.user.dob) : null,[Validators.required]],
+      dob: [this.user.dob ? userDateOfBirth : null, [Validators.required]],
       password: [this.user.password],
       gender: [this.user.gender]
     });
 
-    this.dob = this.user.dob? Date.parse(this.user.dob) :  Date.parse("01/01/1970")
+    this.dob = userDateOfBirth;
 
     this.userService.getAddresses().subscribe(
       data => {
@@ -119,16 +107,16 @@ export class ProfileComponent implements OnInit {
         /**
          * get images related to the orders 
          */
-        
+
         this.orders = data.orders;
         let orders = this.orders;
 
-        orders.map((order,oIndex,arr)=>{
+        orders.map((order, oIndex, arr) => {
           let line_items = order.line_items;
-          line_items.map((line_item,iIndex,arr)=>{
-            this.auth.fetchProduct(line_item.product_id).subscribe(product=>{
+          line_items.map((line_item, iIndex, arr) => {
+            this.auth.fetchProduct(line_item.product_id).subscribe(product => {
               this.orders[oIndex].line_items[iIndex].img = product.image.src;
-              if(iIndex == 0){
+              if (iIndex == 0) {
                 this.orders[oIndex].img = product.image.src;
               }
             })
@@ -142,11 +130,11 @@ export class ProfileComponent implements OnInit {
 
 
 
-  viewOrder(order){
+  viewOrder(order) {
     this.userService.setOrderHistoryItem(order);
-     // inform clever tap
-     clevertap.event.push("order history item viewd",{
-      "order id":order.id
+    // inform clever tap
+    clevertap.event.push("order history item viewd", {
+      "order id": order.id
     })
     this.router.navigate(["/profile/orders/details"]);
   }
@@ -186,8 +174,8 @@ export class ProfileComponent implements OnInit {
 
     // check if the date is invalid 
     let dob = form.get("dob").value;
-    valid = new Date( dob ).getFullYear() <= (new Date()).getFullYear() - 15 ? true : false;
-    if(!valid){
+    valid = dob.split("/")[2] <= (new Date()).getFullYear() - 15 ? true : false;
+    if (!valid) {
       this.formErrors.dob.push("Maximum year should be 2002");
     }
     return valid;
@@ -203,7 +191,9 @@ export class ProfileComponent implements OnInit {
       if (value.password) {
         model.password = value.password;
       }
-      model.dob = Date.parse(value.dob);
+      let d = value.dob.split("/");
+      let userDOB = `${d[1]}/${d[0]}/${d[2]}`;
+      model.dob = Date.parse(userDOB);
       model.phone = value.phone;
       model.first_name = value.fname;
       model.last_name = value.lname;
@@ -220,7 +210,7 @@ export class ProfileComponent implements OnInit {
         .subscribe(
         (data) => {
           this.userService.persistUser(data);
-          this.translate.get("SUCCESS_PROFILE_SAVE").subscribe((res:string)=>{
+          this.translate.get("SUCCESS_PROFILE_SAVE").subscribe((res: string) => {
 
             this.toastrService.success(
               res,
@@ -228,23 +218,23 @@ export class ProfileComponent implements OnInit {
             );
           })
 
-           // inform clever tap
-           clevertap.event.push("user profile updated",model)
-         
+          // inform clever tap
+          clevertap.event.push("user profile updated", model)
+
         },
         (error) => {
 
-          this.translate.get("ERROR_PROFILE_SAVE").subscribe((res:string)=>{
-            
-                        this.toastrService.error(
-                          res,
-                          'Error!'
-                        );
-                      })
+          this.translate.get("ERROR_PROFILE_SAVE").subscribe((res: string) => {
 
-                      clevertap.event.push("user profile updated failed",model)
-        
-    
+            this.toastrService.error(
+              res,
+              'Error!'
+            );
+          })
+
+          clevertap.event.push("user profile updated failed", model)
+
+
           this.formErrors = {
             'fname': [],
             'lname': [],
@@ -264,18 +254,18 @@ export class ProfileComponent implements OnInit {
   }
 
   logout() {
-   
-   
-        window.localStorage.clear();
-         this.userService.removeUser();
-        this.user = null;
-        // tell clever tap that the user session has ended.
-        clevertap.logout();
-        // this.router.navigate(["/"]);
-         location.href = location.origin;
+
+
+    window.localStorage.clear();
+    this.userService.removeUser();
+    this.user = null;
+    // tell clever tap that the user session has ended.
+    clevertap.logout();
+    // this.router.navigate(["/"]);
+    location.href = location.origin;
 
     return false;
-    
+
   }
 
   addAddress() {
