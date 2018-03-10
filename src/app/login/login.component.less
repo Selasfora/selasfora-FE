@@ -3,7 +3,7 @@ h1 {
   margin-bottom: 50px;
 }
 
-input[type="email"], input[type="password"] {
+  .form-control {
   max-width: 423px;
   height: 48px;
   background-color: #ebebeb !important;
@@ -26,6 +26,7 @@ input[type="email"], input[type="password"] {
   width: 50%;
   margin: auto;
   .back-btn {
+    width:26px;
     position: absolute;
     top: 50px;
     @media only screen and (max-width : 767px) {
@@ -47,7 +48,7 @@ form {
   }
 }
 
-.input-label {
+label {
   max-width: 423px;
   width: 100%;
   text-align: left;
@@ -84,18 +85,12 @@ button {
 }
 
 .signin-options {
-  &:before {
-    border-top: solid 1px #ccc;
-    content: ' ';
-    width: 100%;
-    max-width: 423px;
-    height: 10px;
-    display: block;
-    z-index: -1;
-    margin: auto;
-    position: relative;
-    top: 20px;
+  @media  screen and (min-width: 778px){
+    .visible-xs{
+      display: none!important
+    }
   }
+
   span {
     background-color: white;
     padding: 0 20px;
@@ -117,14 +112,7 @@ button {
   line-height: 1.86;
   text-align: right;
   color: #272caa;
-
-  display: inline-block;
-  @media only screen and (max-width : 767px) {
-    float: right
-  }
-  @media only screen and (min-width : 768px) {
-    width: 80%;
-  }
+  float:right;
 }
 
 .error-msg {
@@ -148,4 +136,90 @@ button {
   color: #272caa;
   display: inline-block;
   text-decoration: none;
+}
+
+
+.facebook.hidden-xs,.google.hidden-xs{
+  font-size:20px;
+  font-weight: bold;
+  padding: 0 50px;
+}
+
+.facebook.hidden-xs{
+  color:#4285f4
+}
+
+.google.hidden-xs{
+  color:#ea4335
+}
+
+.padding{
+  padding: 0 40px 40px
+}
+
+.grey-border{
+  border-left: 3px solid #eee
+}
+
+
+.confirmation {
+  img {
+    margin-bottom: 30px;
+    margin-top: 50px;
+  }
+
+  h2 {
+    font-weight: normal;
+    font-size: 40px;
+  }
+
+  .confirmation-text {
+    width: 48%;
+    margin: auto;
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 30px;
+  }
+
+  .link {
+    font-family: Montserrat;
+    font-size: 14px;
+    line-height: 1.86;
+    text-align: center;
+    color: #272caa;
+  }
+
+  .return-link {
+    .link;
+    display: inline-block;
+    padding-bottom: 30px;
+  }
+
+  button{
+    margin: 30px 0 150px
+  }
+}
+
+
+@media  screen and (max-width : 769px) {
+ .grey-border{
+   border-left:none;
+   margin-top:20px
+ }
+
+ .signin-options{
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   .login-icons{
+     width:200px;
+     display: flex;
+     flex-direction: row;
+     justify-content: space-around;
+   } 
+    .facebook.visible-xs, .google.visible-xs{
+     width:50px;
+    display: inline-block!important;
+   }
+ }
 }

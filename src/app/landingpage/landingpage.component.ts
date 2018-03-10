@@ -12,7 +12,7 @@ import * as  scrollIntoViewIfNeeded from 'scroll-into-view-if-needed';
 export class LandingpageComponent implements OnInit {
 
   private scrollPages:any[] = []
-  private pager:number=1;
+  public pager:number=1;
   private maxPages:number = 0;
   public bgColors = [
  "#272caa",

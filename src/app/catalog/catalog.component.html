@@ -50,14 +50,10 @@
         <div class="post-body" [innerHTML]="collection.body_html | trustHtml">
 
         </div>
-        <div class="button btn" [routerLink]="['/catalog/charm']" [queryParams]="{'collection':collection.handle}">Shop all {{type}}s</div>
+        <div class="button btn" [routerLink]="['/catalog/charm']" [queryParams]="{'collection':collection.handle}">SHOP ALL CHARMS</div>
       </div>
     </div>
 
 
-  </div>
-
-  <div class="row margin0">
-    <app-footer></app-footer>
   </div>
 </div>

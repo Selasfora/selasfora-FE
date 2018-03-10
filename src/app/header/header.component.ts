@@ -14,6 +14,8 @@ export class HeaderComponent implements OnInit {
   @Input() type:any;
   @Input() page:any;
   @Input() filter:any = false;
+  @Input() showBack:any = false;
+  cartCount:any;
   @Input('showFilterIcon') showFilterIcon:any = false;
   public url = '';
 
@@ -21,6 +23,12 @@ export class HeaderComponent implements OnInit {
     cart.getCheckoutUrl().subscribe(
       (data) => {
         this.url = data;
+      }
+    );
+
+    cart.getCartCount().subscribe(
+      (data) => {
+        this.cartCount = data;
       }
     );
   }
@@ -38,5 +46,9 @@ export class HeaderComponent implements OnInit {
 
   openFiltersMenu() {
     this.filtersService.open.next(true);
+  }
+
+  goBack(){
+    window.history.back()
   }
 }

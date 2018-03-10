@@ -2,13 +2,12 @@
   <div class="left-part col-sm-5 col-xs-4">
     <app-icon title="Menu" image="/assets/images/menu@2x.png" (click)="openMenu()"></app-icon>
     <a [routerLink]="['/cart']" >
-      <app-icon title="Cart" image="/assets/images/cart.png" class="hidden-xs"></app-icon>
+      <app-icon title="Cart" image="/assets/images/cart.png" class="hidden-xs"></app-icon><span class="cart-count hidden-xs" data-toggle="popover" data-content="item was added to cart" style="color:white;">( {{cartCount.count}} )</span>
     </a>
   </div>
 
   <a [routerLink]="['/']" class="center-part Selasfora col-sm-2 col-xs-4 splash">
     <img  src="/assets/images/logo.png">
-    <div>Selasfora</div>
   </a>
 
   <div class="right-part hidden-xs hidden-sm col-sm-5">
@@ -20,9 +19,10 @@
 
 <div *ngIf="page == 'black'" class="row">
   <div class="left-part col-sm-5 col-xs-4">
+      <img  class="back-btn" src="/assets/images/icons/back.png" *ngIf="showBack" (click)="goBack()">
     <app-icon title="Menu" image="/assets/images/menu-black.png" (click)="openMenu()" black="true"></app-icon>
     <a [routerLink]="['/cart']" >
-      <app-icon title="Cart" image="/assets/images/cart-black.png" class="hidden-xs" black="true"></app-icon>
+      <app-icon title="Cart" image="/assets/images/cart-black.png" class="hidden-xs" black="true"></app-icon><span class="cart-count hidden-xs" data-toggle="popover" data-content="item was added to cart">( {{cartCount.count}} )</span>
     </a>
 
     <app-icon title="Filter" image="/assets/images/filter.png"
@@ -32,7 +32,6 @@
 
   <a [routerLink]="['/']" class="center-part Selasfora col-sm-2 col-xs-4 splash">
     <img src="/assets/images/logo-black.png">
-    <div class="black">Selasfora</div>
   </a>
 
   <div class="right-part hidden-xs hidden-sm col-sm-5">
@@ -51,7 +50,7 @@
   <div class="left-part col-sm-4 col-xs-4 hidden-xs">
     <app-icon title="Menu" image="/assets/images/menu-black.png" (click)="openMenu()"></app-icon>
     <a [routerLink]="['/cart']" >
-      <app-icon title="Cart" image="/assets/images/cart-black.png" class="hidden-xs"></app-icon>
+      <app-icon title="Cart" image="/assets/images/cart-black.png" class="hidden-xs"></app-icon><span class="cart-count hidden-xs" data-toggle="popover" data-content="item was added to cart">( {{cartCount.count}} )</span>
     </a>
     <app-icon title="Filter" image="/assets/images/filter.png" class="hidden-xs" *ngIf="showFilterIcon"></app-icon>
   </div>
@@ -80,7 +79,7 @@
   <div class="left-part col-sm-4 col-xs-4 hidden-xs">
     <app-icon title="Menu" image="/assets/images/menu-black.png" (click)="openMenu()"></app-icon>
     <a [routerLink]="['/cart']" >
-      <app-icon title="Cart" image="/assets/images/cart-black.png" class="hidden-xs"></app-icon>
+      <app-icon title="Cart" image="/assets/images/cart-black.png" class="hidden-xs"></app-icon><span class="cart-count hidden-xs" data-toggle="popover" data-content="item was added to cart">( {{cartCount.count}} )</span>
     </a>
     <app-icon title="Filter" image="/assets/images/filter.png" class="hidden-xs" *ngIf="showFilterIcon" (click)="openFiltersMenu()"></app-icon>
    

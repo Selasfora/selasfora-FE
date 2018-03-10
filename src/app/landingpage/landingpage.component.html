@@ -1,6 +1,12 @@
 <div class="header">
   <app-header></app-header>
 </div>
+
+
+<div class="next-page" (click)="scrollPage()" *ngIf="pager <= 1">
+  <img src="/assets/images/chevron-grey.png">
+</div>
+
 <app-landing
   *ngFor="let page of pages; let i = index;"
   [page]=page
@@ -10,8 +16,6 @@
 
 <app-journal [landing]="true"></app-journal>
 
-<div class="next-page" (click)="scrollPage()">
-  <img src="/assets/images/chevron-grey.png">
-</div>
 
-<app-footer></app-footer>
+
+

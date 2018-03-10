@@ -1,9 +1,11 @@
 .next-page {
-  position: fixed;
+  position: absolute;
   bottom: 20px;
   cursor: pointer;
   width: 100%;
   text-align: center;
+  z-index:100
+
 }
 .header { display:block; z-index:10;
   position: fixed;
@@ -14,7 +16,15 @@
   text-align: center;
   width: 100%;
   background: #272caa;
-  padding: 50px 62px;
+  padding: 15px 62px;
+    .center-part
+      .img{
+        max-width:70px;
+        top:10px;
+      }
+    app-icon{
+      margin-top:6px
+    }
 
   &>div {
     padding-top: 37px;

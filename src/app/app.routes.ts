@@ -49,11 +49,11 @@ const appRoutes: Routes = [
   },
   {
     path: 'signup',
-    component: SignupComponent,
+    component: LoginComponent,
   },
    {
     path: 'verifyEmail',
-    component: SignupComponent,
+    component: LoginComponent,
   },
   {
     path: 'password-reset',

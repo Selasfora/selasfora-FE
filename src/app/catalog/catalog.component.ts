@@ -108,7 +108,8 @@ export class CatalogComponent implements OnInit {
 
     // set the correct type:
 
-   
+    this.mode = 'slide';
+    this.switchMode();
 
     clevertap.event.push("Products page viewed",{
       "product type":this.type
@@ -122,49 +123,9 @@ export class CatalogComponent implements OnInit {
     if(!res.length){
       this.requestRunning = false;
       return;}
-    Promise.all(
-    res.map((item:any)=> {
-      
-   
-   
-      
-      /**ensure translations */
-     
-      let translations = [
-        item.title,
-        item.body_html
 
-      ]
-     let t =  this.dynamicTranslations.getTranslation(translations,"html")
-     return t;
-      
-    }))
-    .then(translatedItems=>{
-      translatedItems.map((itm:any,idx)=>{
-
-        let obj = {};
-
-        res[idx].title = itm[0][0] || "";
-        res[idx].body_html = itm[0][1] || "";
-        this.list.push(res[idx]);
-      })
-
-      if(this.type == 'bracelet'){
-        this.mode = 'slide';
-        this.switchMode();
-      }
-      else  if(this.type == "charm" && this.list.length <= 9 ) {
-       
-        this.mode = 'slide';
-        this.switchMode();
-      }
-
+      this.list = res;
       this.requestRunning = false;
- 
-
-    })
-
-   
   }
 
   ngOnInit() {

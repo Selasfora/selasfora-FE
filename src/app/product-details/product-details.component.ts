@@ -11,7 +11,7 @@ import {TranslateService} from "@ngx-translate/core";
 import {DynamicTranslationService} from "../dynamic-translation.service";
 import { DropdownComponent} from '../dropdown/dropdown.component'
 declare var clevertap:any;
-
+declare var $:any;
 
 @Component({
   selector: 'app-product-details',
@@ -31,7 +31,9 @@ export class ProductDetailsComponent implements OnInit {
   open = false;
   collections:any[];
   sizeList : any[] =[];
-  private selectedVariant = null;
+  processing: boolean =true;
+  selectedVariant = null;
+  selectedVariantIndex = 0;
   public pages = [
     {
       imagePath: '/assets/images/03@2x.png',
@@ -89,7 +91,7 @@ export class ProductDetailsComponent implements OnInit {
             if(this.type == 'bracelet'){
              let sizes = data.variants.map((v,i)=>{
                return {
-               title : v.option1.split(" ")[0],
+               title : v.option1.split(" ")[0].split("").slice(0,3).join(""),
                subtitle :  v.option1.split(" ").slice(1, v.option1.split(" ").length).join(" "),
                varientIndex : i
                }
@@ -99,14 +101,18 @@ export class ProductDetailsComponent implements OnInit {
              this.ref.detectChanges();
 
             }
+
+            this.product = data;
+            this.processing = false
             
 
-            // translate the product details
-            this.dynamicTranslations.getTranslation([data.title,data.body_html],"html").then(res=>{
-              data.title = res[0][0]
-              data.body_html = res[0][1];
-              that.product = data;
-            })
+            // // translate the product details
+            // this.dynamicTranslations.getTranslation([data.title,data.body_html],"html").then(res=>{
+            //   data.title = res[0][0]
+            //   data.body_html = res[0][1];
+            //   that.product = data;
+            //   this.processing = false
+            // })
             
           }
         );
@@ -116,6 +122,7 @@ export class ProductDetailsComponent implements OnInit {
 
   selectVariant(variant){
   this.selectedVariant = this.product.variants[variant.varientIndex];
+  this.selectedVariantIndex = variant.varientIndex
   }
 
   ngAfterViewInit() {
@@ -146,6 +153,7 @@ export class ProductDetailsComponent implements OnInit {
         this._cart.updateUrl(data.checkoutUrl);
         this._cart.updateCount({ count: data.lineItemCount, price: data.subtotal });
         this._cart.updateBasketItems({items:data.lineItems});
+        if(window.innerWidth < 769 ){
         this.translate.get("SUCCESS_CART_ADD").subscribe((res:string)=>{
           
                       this.toastrService.success(
@@ -153,6 +161,16 @@ export class ProductDetailsComponent implements OnInit {
                         'Success!'
                       );
                     })
+        }
+        else {
+
+        
+        $(".cart-count").popover("show");
+        setTimeout(()=> {
+          $(".cart-count").popover("hide");
+        }, 3000)
+
+      }
       },
       (error) => {
         this.translate.get("ERROR_CART_ADD").subscribe((res:string)=>{

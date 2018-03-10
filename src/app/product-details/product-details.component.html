@@ -1,23 +1,28 @@
 <div class="header row">
-  <app-header page="black"></app-header>
+  <app-header page="black" showBack="true"></app-header>
 </div>
 
-<div class="row body">
+<div class="row body" [ngStyle]="{opacity: processing == true ? 0 : 1}">
   <div class="col-sm-3 col-sm-offset-1 col-xs-12">
-    <div class="title mobile-center">{{ product.title }}</div>
+    <div class="title mobile-center">{{ product.title || " " }}</div>
     <div class="price mobile-center">{{ product.variants[0].price }} USD</div>
-    <div class="desc hidden-xs" [innerHtml]="product.body_html | trustHtml"></div>
-    <div>
-      <app-dropdown *ngIf="type=='bracelet'"  (itemChange)="selectVariant($event)"  [itemList]="sizeList" class="hidden-xs" #selector></app-dropdown>
-    </div>
-    <div class="main-btn hidden-xs margin-top-20" (click)="addToCart(product)">
+    <div class="desc hidden-xs" [innerHtml]="(product.body_html || ' ' )| trustHtml"></div>
+    <h4  class="hidden-xs"  *ngIf="type=='bracelet'">Pick a size</h4>
+      <ul class="size-select  hidden-xs" *ngIf="type=='bracelet'">
+        <li *ngFor="let size of sizeList; let i = index; " (click)="selectVariant(size)" [ngClass]="{selected: i == selectedVariantIndex  }"
+          #selector>{{size.title}}</li>
+      </ul>
+
+    <div class="main-btn hidden-xs" (click)="addToCart(product)">
       + {{'COMMON_ADD_TO_CART' | translate}}
     </div>
 
     <div class="shipping hidden-xs">
       <div class="shipping-title">
-        <span class="style-guide" (click)="openShippingMenu()"> {{'PRODUCT_SHIPPING' | translate}} </span> <span *ngIf="type=='bracelet'">| <span class="style-guide" (click)="openMenu()">{{'PRODUCT_SIZE_GUIDE' | translate}}</span>
-        <app-size-guide [menuStatus]="open" (closeMenu)="closeMenu($event)"></app-size-guide>
+        <span class="style-guide" (click)="openShippingMenu()"> {{'PRODUCT_SHIPPING' | translate}} </span>
+        <span *ngIf="type=='bracelet'">|
+          <span class="style-guide" (click)="openMenu()">{{'PRODUCT_SIZE_GUIDE' | translate}}</span>
+          <app-size-guide [menuStatus]="open" (closeMenu)="closeMenu($event)"></app-size-guide>
         </span>
       </div>
       <div class="shipping-desc">
@@ -33,14 +38,21 @@
   <div class="col-xs-12 shipping visible-xs">
     <div class="desc" [innerHtml]="product.body_html | trustHtml"></div>
     <div class="shipping-title mobile-center">
-     <span class="style-guide" (click)="openShippingMenu()"> {{'PRODUCT_SHIPPING' | translate}}  </span> <span *ngIf="type=='bracelet'">| <span class="style-guide" (click)="openMenu()">{{'PRODUCT_SIZE_GUIDE' | translate}}</span>
+      <span class="style-guide" (click)="openShippingMenu()"> {{'PRODUCT_SHIPPING' | translate}} </span>
+      <span *ngIf="type=='bracelet'">|
+        <span class="style-guide" (click)="openMenu()">{{'PRODUCT_SIZE_GUIDE' | translate}}</span>
         <app-size-guide [menuStatus]="open" (closeMenu)="closeMenu($event)"></app-size-guide>
       </span>
     </div>
     <div class="shipping-desc mobile-center">
       {{ product.variants[0].shipping }}
     </div>
-    <div class="main-btn visible-xs margin-top-20" (click)="addToCart(product)">
+    <h4 class="visible-xs" style="text-align:center"  *ngIf="type=='bracelet'">Pick a size</h4>
+    <ul class="size-select visible-xs" *ngIf="type=='bracelet'">
+      <li *ngFor="let size of sizeList; let i = index; " (click)="selectVariant(size)" [ngClass]="{selected: i == selectedVariantIndex  }"
+         #selector>{{size.title}}</li>
+    </ul>
+    <div class="main-btn visible-xs margin-top-20" (click)="addToCart(product)" data-toggle="popover" data-content="item was added to cart">
       + {{'COMMON_ADD_TO_CART' | translate}}
     </div>
   </div>
@@ -52,35 +64,31 @@
     </div>
   </div>
   <div>
-    <app-dropdown *ngIf="type=='bracelet'" (itemChange)="selectVariant($event)"  [itemList]="sizeList" class="visible-xs" #selector></app-dropdown>
   </div>
- 
+
 </div>
 
-<div *ngIf="type=='bracelet'">
-  <app-landing
-    *ngFor="let page of pages; let i = index;"
-    [page]=page
-    [idx]=i
-  ></app-landing>
+<div *ngIf="type=='bracelet'" [ngStyle]="{opacity: processing == true ? 0 : 1}">
+  <app-landing *ngFor="let page of pages; let i = index;" [page]=page [idx]=i></app-landing>
 </div>
 
 <div class="suggestion"></div>
 
-  <!-- todo : add translations for colelctions -->
-  <div class="posts row margin0"   >
-    <div [ngStyle]="{'background':'url('+collection.image.src+')'} " [ngClass]=" (i== 0 && i%3 == 0 )?   'left col-xs-12 col-md-12 odd' : 'right right-charm col-xs-12 col-md-6'" *ngFor="let collection of collections; let i = index"  >
-    
-      <div class="content">
-        <div class="post-title">{{collection.title}}</div>
-        <div class="post-body" [innerHTML]="collection.body_html | trustHtml">
-      
-        </div>
-        <div class="button btn" [routerLink]="['/catalog/charm']" [queryParams]="{'collection':collection.handle}">Shop all charms</div>
+<!-- todo : add translations for colelctions -->
+<div class="posts row margin0">
+  <div [ngStyle]="{'background':'url('+collection.image.src+')'} " [ngClass]=" (i== 0 && i%3 == 0 )?   'left col-xs-12 col-md-12 odd' : 'right right-charm col-xs-12 col-md-6'"
+    *ngFor="let collection of collections; let i = index">
+
+    <div class="content">
+      <div class="post-title">{{collection.title}}</div>
+      <div class="post-body" [innerHTML]="collection.body_html | trustHtml">
+
       </div>
+      <div class="button btn" [routerLink]="['/catalog/charm']" [queryParams]="{'collection':collection.handle}">SHOP ALL CHARMS</div>
     </div>
-  
-      <!--
+  </div>
+
+  <!--
       <div class="right right-charm col-xs-12 col-md-6" *ngIf="type=='charm'" >
         <img src="/assets/images/right-image1.png">
         <div class="content">
@@ -104,8 +112,8 @@
       </div>
   
     -->
-    </div>
+</div>
 
-<app-footer></app-footer>
+
 
 <app-shipping-menu #shippingMenu></app-shipping-menu>

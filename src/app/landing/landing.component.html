@@ -42,9 +42,17 @@
     </a>
   </div>
   <img src="{{page.imagePath}}">
- 
 </div>
-
+<div class="row hidden-xs sell-points" *ngIf="idx==4">
+    <div class="col-md-6 delivery">
+      <h1>Delivery</h1>
+      <h4>Free two day delivery accross India</h4>
+    </div>
+    <div class="col-md-6 easy-returns">
+        <h1>Easy Returns</h1>
+        <h4>You can return selasfora bracelet within two weeks</h4>
+      </div>
+  </div>
 
 <div class="main-landing  visible-ipad-below" [ngStyle]="{ 'background-image': 'url(' + page.mobileImagePath + ')'}" id="{{idx}}">
   <div class="text-content" [ngStyle]="position">
