@@ -103,7 +103,13 @@ export class CartService {
 
   updateItemcount(item,count){
     const that = this;
-   return that.cart.updateLineItem(item,count)
+   return that.cart.updateLineItem(item,count).then(data=>{
+    that.cart = data;
+    that.checkoutURL.next(data.checkoutUrl);
+    that.basketCount.next({ count: that.cart.lineItemCount, price: that.cart.subtotal });
+    that.basketItems.next({ items: that.cart.lineItems });
+    return that.cart;
+   })
   }
 
   removeItem(item){

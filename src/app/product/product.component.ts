@@ -3,6 +3,7 @@ import { CartService } from '../cart.service';
 import { ToastrService } from 'toastr-ng2';
 import {TranslateService} from "@ngx-translate/core";
 declare var clevertap:any;
+declare var $:any;
 
 @Component({
   selector: 'app-product',
@@ -87,6 +88,12 @@ export class ProductComponent implements OnInit {
     this.addToCart(item);
   }
 
+  count(item){
+    let selected_items:any[]  = JSON.parse(localStorage.getItem('selected_items')||'[]');
+    let slectedCount = selected_items.filter(i=> i.id == item.id).length;
+    return slectedCount;
+  }
+
   storeItem(item){
      // add stuff to local storage 
     let selected_items:any[]  = JSON.parse(localStorage.getItem('selected_items')||'[]');
@@ -101,15 +108,32 @@ export class ProductComponent implements OnInit {
       cartItem:item
     }
 
-     selected_items.push(item_to_add);
+     if(selected_items.filter(i=> i.id == item_to_add.id).length == 0)
+      selected_items.push(item_to_add);
+     else 
+      return;
 
      localStorage.setItem('selected_items',JSON.stringify(selected_items));
-     this.translate.get("SUCCESS_ITEM_SELECTED").subscribe((res:string)=>{
-      
-                  this.toastrService.success(
-                    res,
-                    'Success!'
-                  );
-                })
+     if (selected_items.length == 2)
+     {
+
+      if(window.innerWidth > 768){
+        $("#mixmatchlink").popover("show");
+        setTimeout(()=> {
+          $("#mixmatchlink").popover("hide");
+        }, 3000)
+
+      }
+      else
+      {
+        this.translate.get("SUCCESS_ITEM_SELECTED").subscribe((res:string)=>{
+        
+                    this.toastrService.success(
+                      res,
+                      'Success!'
+                    );
+                  })
+        }
+      }
   }
 }

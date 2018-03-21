@@ -2,21 +2,21 @@
 
 <div *ngIf="step == 1">
   <div class="header row margin0">
-    <app-header page="mixmatch" [type]="type" [filter]="type == 'charm'" [showFilterIcon]="true"></app-header>
+    <app-header page="mixmatch"  [filter]="type == 'charm'" [showFilterIcon]="true"></app-header>
   </div>
   <app-catalog [type]="'bracelet'" [mode]="'slide'" isMixMatch="true" showCollections=false canAddToCart=false hideMainHeader="true"></app-catalog>
 </div>
 
 <div *ngIf="step == 2">
   <div class="header row margin0">
-    <app-header page="mixmatch" [type]="type" [filter]="type == 'charm'" [showFilterIcon]="true"></app-header>
+    <app-header page="mixmatch"  [filter]="type == 'charm'" [showFilterIcon]="true" ></app-header>
   </div>
   <app-catalog [type]="'charm'" [mode]="'slide'" isMixMatch="true" showCollections=false canAddToCart=false hideMainHeader="true"></app-catalog>
 </div>
 
 <div *ngIf="step == 3">
   <div class="header row margin0">
-    <app-header page="mixmatch" [type]="type" [filter]="type == 'charm'" [showFilterIcon]="false"></app-header>
+    <app-header page="mixmatch"  [filter]="type == 'charm'" [showFilterIcon]="false"></app-header>
   </div>
   <div class="body">
      <div *ngIf="!errorMessage" class="empty-charm-container" [dragula]='"bag-charms"' [dragulaModel]='emptyCharms'>
@@ -25,28 +25,9 @@
           </div>
         </div>
     <div class="col-xs-10 col-xs-offset-1 drawContainer" >
-      <div *ngIf="!errorMessage" class="bracelet" [ngStyle]="{'background':bracelet,'background-size':'contain'}" >
-        <div class="charm-container debug" >
-
-          <div class="c1 debug" [dragula]='"bag-charms"' [dragulaModel]='usedCharms1'>
-              <div class="charm" *ngFor="let charm of usedCharms1; let i=index;">
-            <img [attr.src]="charm.img[1].src" alt="">
-          </div>
-          </div>
-          <div class="c2 debug" [dragula]='"bag-charms"' [dragulaModel]='usedCharms2'>
-              <div class="charm" *ngFor="let charm of usedCharms2; let i=index;">
-            <img [attr.src]="charm.img[1].src" alt="">
-          </div>
-          </div>
-          <div class="c3 debug" [dragula]='"bag-charms"' [dragulaModel]='usedCharms3'>
-              <div class="charm" *ngFor="let charm of usedCharms3; let i=index;">
-            <img [attr.src]="charm.img[1].src" alt="">
-          </div>
-          </div>
+      <div class="bracelet"  id="canvas" #canvas>
 
 
-          
-        </div>
       </div>
       <div *ngIf="errorMessage" class="well well-warning">
         {{errorMessage | translate}}
@@ -58,10 +39,6 @@
     <a (click)="checkout()" *ngIf="!errorMessage" class="secondary-btn checkout">{{'COMMON_REVIEW_AND_CHECKOUT' | translate}}</a>
   </div>
 
-  <div class="store {{highlightStore && 'highlight'}}" [dragula]='"bag-charms"' [dragulaModel]='emptyCharms'>
-    <div class="charm" *ngFor="let charm of emptyCharms; let i=index;">
-      <img src="{{charm.img[0].src}}" alt="">
-    </div>
-  </div>
+
 </div>
 

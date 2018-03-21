@@ -1,5 +1,6 @@
 <div class="header row">
   <app-header page="black" showBack="true"></app-header>
+  <img  class="back-btn" src="/assets/images/icons/back.png"  (click)="goBack()">
 </div>
 
 <div class="row body" [ngStyle]="{opacity: processing == true ? 0 : 1}">

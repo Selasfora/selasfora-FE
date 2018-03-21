@@ -17,9 +17,8 @@
   </div>
 </div>
 
-<div *ngIf="page == 'black'" class="row">
+<div *ngIf="page == 'black'" class="row black">
   <div class="left-part col-sm-5 col-xs-4">
-      <img  class="back-btn" src="/assets/images/icons/back.png" *ngIf="showBack" (click)="goBack()">
     <app-icon title="Menu" image="/assets/images/menu-black.png" (click)="openMenu()" black="true"></app-icon>
     <a [routerLink]="['/cart']" >
       <app-icon title="Cart" image="/assets/images/cart-black.png" class="hidden-xs" black="true"></app-icon><span class="cart-count hidden-xs" data-toggle="popover" data-content="item was added to cart">( {{cartCount.count}} )</span>
@@ -46,7 +45,7 @@
   </div>
 </div>
 
-<div *ngIf="page == 'catalog'" class="catalog-header row">
+<div *ngIf="page == 'catalog'" class="catalog-header row black">
   <div class="left-part col-sm-4 col-xs-4 hidden-xs">
     <app-icon title="Menu" image="/assets/images/menu-black.png" (click)="openMenu()"></app-icon>
     <a [routerLink]="['/cart']" >
@@ -75,7 +74,7 @@
 
 <!-- mix match header -->
 
-<div *ngIf="page == 'mixmatch'" class="catalog-header row">
+<div *ngIf="page == 'mixmatch'" class="catalog-header row black">
   <div class="left-part col-sm-4 col-xs-4 hidden-xs">
     <app-icon title="Menu" image="/assets/images/menu-black.png" (click)="openMenu()"></app-icon>
     <a [routerLink]="['/cart']" >
@@ -85,18 +84,18 @@
    
   </div>
 
-  <div class="buttons col-xs-11  col-sm-6 col-md-6 text-center">
-    <a [routerLink]="['/mixmatch']" [queryParams]="{step:1}" class="transparent-btn" [class.active]="type == 'bracelet'">
-      {{'COMMON_BRACELTES' | translate}}
+  <div class="buttons col-xs-11  col-sm-6 col-md-6 text-center" style="margin-top:20px">
+    <a [routerLink]="['/mixmatch']" [queryParams]="{step:1}" class="transparent-btn" [ngStyle]="{'border-bottom':type == 'bracelet'? '2px solid #272caa':'','padding-bottom': type == 'bracelet'? '5px': ''}">
+      STEP 1
     </a>
-    <a [routerLink]="['/mixmatch']" [queryParams]="{step:2}" class="transparent-btn" [class.active]="type == 'charm'">
-      {{'COMMON_CHARMS' | translate}}
+    <a [routerLink]="['/mixmatch']" [queryParams]="{step:2}" class="transparent-btn" [ngStyle]="{'border-bottom':type == 'charm'? '2px solid #272caa':'','padding-bottom': type == 'charm'?'5px': ''}">
+      STEP 2
     </a>
-    <a [routerLink]="['/mixmatch']" [queryParams]="{step:3}" class="transparent-btn" [class.active]="type == 'mix'">{{'COMMON_MIXMATCH' | translate}}</a>
+    <a id="mixmatchlink" data-toggle="popover" data-content="View selection here!" [routerLink]="['/mixmatch']" [queryParams]="{step:3}" class="transparent-btn" [ngStyle]="{'border-bottom':type == 'mix'? '2px solid #272caa':'','padding-bottom': type == 'charm'? '5px':''}">STEP 3</a>
   </div>
-  
+    
 
-  <div class="right-part  col-sm-2 col-md-2 col-xs-1">
+  <div class="right-part  col-sm-2 col-md-2 col-xs-1" style="margin-top:20px">
     <button routerLink="/" type="button" class="close" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>

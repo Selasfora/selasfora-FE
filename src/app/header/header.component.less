@@ -1,13 +1,23 @@
 
+:host{
+  position:fixed;
+  z-index: 1;
+  width:100%;
+}
+
+.row{
+  padding:15px 40px;
+  &.black{
+  background: #f5f5f5;
+  .main-btn{
+    color:black;
+    font-weight: 600;
+  }
+  }
+}
 
 .left-part {
-  @media only screen and (min-width : 768px) {
-    padding-left: 0;
-    padding-top:15px;
-  }
-  @media only screen and (max-width : 767px) {
-    padding-top: 15px;
-  }
+padding-top:15px
 }
 
 .right-part {
@@ -22,9 +32,9 @@
     font-size: 13px;
     font-weight: 200;
     padding: 18px 42px;
-    &:hover {
-      color: white;
-    }
+    background: transparent;
+    margin-left: -44px;
+    font-family: sans-serif;
   }
 
   @media screen and(max-width:1024px) {
@@ -130,9 +140,9 @@ button.close {
     }
 
     @media screen and (max-width:768px){
-      margin-top: -12px;
-      padding-right: 20px;
       position: absolute;
+      right: 40px;
+      top: 0px;
   }
  
 }
@@ -189,15 +199,6 @@ app-icon[title="Filter"]{
   float:right;
 }
 
-.back-btn{
-  float:left;
-  width:26px;
-  margin:60px -40px -60px 30px;
-  cursor:pointer;
-  @media screen and (max-width:769px) {
-    margin:60px -47px -60px 30px
-  }
-}
 
 .cart-count{
   color: black;
@@ -208,4 +209,20 @@ app-icon[title="Filter"]{
 
 .product-container{
   margin-top:0;
+}
+
+
+@media screen and (max-width:769px){
+
+  .right-part
+    app-icon{
+      float:right;
+      margin-top:-10px;
+      margin-right:40px;
+
+    }
+}
+
+.active{
+  border-bottom: 2px solid black;
 }

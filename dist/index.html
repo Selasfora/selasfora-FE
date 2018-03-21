@@ -12,13 +12,9 @@
 
     styles.push(".vertical-align{transition:all 1s;display: flex; height: 100vh;justify-content: center;flex-direction: column;background: #272caa; position:fixed;z-index: 1000;}");
     styles.push(".center-align{display: flex;width: 100vw;justify-content: center; flex-direction: row;}");
-    styles.push(".main-splash{ height:50vw}");
     if (location.href == "http://" + location.host + "/") {
-      styles.push(".vertical-align{z-index:1}");
       styles.push(" app-header{ display: block; }");
-      styles.push(" app-header div > *:not(.splash){opacity: 0; }");
-      styles.push(".splash{position: absolute!important; top: 30vh!important;transform: scale(4); z-index: 1000; margin:auto; left:0;right:0; color:transparent;}");
-      styles.push(".main-splash{ display:none }");
+      styles.push(" .spinner > div { background-color: white!important; }");
     }
 
     if (location.href != "http://" + location.host + "/") {
@@ -67,7 +63,11 @@
   <!-- splash screen -->
   <div class="vertical-align">
     <div class="center-align">
-      <!-- <img class="main-splash" src ="/assets/images/logo@2x.png"> -->
+      <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
     </div>
   </div>
 
@@ -95,6 +95,53 @@
     border-right-color:  #272caa
   }
 
+  /*Huge thanks to @tobiasahlin at http://tobiasahlin.com/spinkit/ */
+.spinner {
+  margin: 100px auto 0;
+  width: 70px;
+  text-align: center;
+}
+
+.spinner > div {
+  width: 18px;
+  height: 18px;
+  background-color: #333;
+
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% { 
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 40% { 
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
+}
+
+
+.body{
+  padding-top:100px
+}
   </style>
 <script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="styles.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script></body>
 

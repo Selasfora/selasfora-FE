@@ -212,4 +212,9 @@ export class ProductDetailsComponent implements OnInit {
      localStorage.setItem('selected_items',JSON.stringify(selected_items));
   }*/
 
+  
+  goBack(){
+    window.history.back()
+  }
+
 }

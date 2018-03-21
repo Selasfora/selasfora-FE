@@ -3,10 +3,7 @@
   left: 0;
   top: 0;
   width: 375px;
-  overflow: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  overflow-y: auto;
   @media only screen and (max-width : 767px) {
     width: 300px;
   }
@@ -21,13 +18,16 @@
     font-weight: 600;
     text-align: left;
     padding-bottom: 25px;
-    padding-top: 30px;
+    padding-top: 100px;
     margin-bottom:-40px
   }
 }
 
 .out {
   left: -100%;
+  .bottom{
+    left:-100%;
+  }
 }
 
 .close {
@@ -177,10 +177,14 @@ label.css-label {
 }
 
 .bottom {
-  margin: -2vh -30px;
-  margin-top:20vh;
+  position: fixed;
+  width: 390px;
+  bottom: 0;
+  background: white;
+  left: 0;
+  transition: all 700ms ease-in-out;
   .main-btn {
-    padding: 25px 20px;
+    padding: 24px 20px;
     @media only screen and (max-width : 767px) {
       width: 149px;
       margin-top: 10px;

@@ -87,7 +87,7 @@ export class CatalogComponent implements OnInit {
     // if mixMatch // set eveyrthing fixed:
 
     if(this.router.url.indexOf("/mixmatch") >=0){
-      this.type = this.type || this.router.url.indexOf("/mixmatch?step=1") >=0 ? 'bracelet': '' || this.router.url.indexOf("/mixmatch?step=2") >=0 ? 'charm': '';
+      this.type = this.type || this.router.url.indexOf("/mixmatch?step=1") >=0 ? 'bracelet': 'mix' || this.router.url.indexOf("/mixmatch?step=2") >=0 ? 'charm': 'mix';
       this.showCollections = false;
       this.collections = null;
       this.showCatalog = true;

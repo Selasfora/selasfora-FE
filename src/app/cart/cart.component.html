@@ -1,10 +1,10 @@
-<ng2-slim-loading-bar [color]="'#272caa'" [height]="'4px'" *ngIf="!hideheader"></ng2-slim-loading-bar>
+
 <div class="cart-container">
 <div class="header row" *ngIf="!hideheader">
   <app-header page="black" [type]="type" [filter]="showFilter" [showFilterIcon]="showFilter" ></app-header>
 </div>
 
-  <div class="v-align">
+  <div class="body">
     <div class="c-align">
 
       <h1 class="cart-title">{{'CART_TITLE' | translate}}</h1>
@@ -28,9 +28,9 @@
               <div class="col-md-9 col-xs-9">
                   <table class="item-description">
                     <tr>
-                      <th>{{'CART_QTY' | translate}}</th><th>{{'CART_PRICE' | translate}}</th>
+                      <th> {{'CART_QTY' | translate}}</th><th>{{'CART_PRICE' | translate}}</th>
                     </tr>
-                    <tr><td>x{{item.quantity}}</td><td>{{item.price}}</td></tr>
+                    <tr><td><span class="change-qty" (click)="changeQty(item,-1)">-</span> x{{item.quantity}} <span class="change-qty" (click)="changeQty(item,1)">+</span></td><td>{{item.price}}</td></tr>
                   </table>
               </div>
               <div class="col-md-3 col-xs-3 reorder">

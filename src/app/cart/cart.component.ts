@@ -84,6 +84,12 @@ export class CartComponent implements OnInit {
 
       }
 
+      changeQty(item,count){
+        this.cartService.updateItemcount(item.id,item.quantity+count)
+        this.orderItems = (this.cartService.getCart().getValue() as any).items;
+        this.checkoutUrl = (this.cartService.getCheckoutUrl().getValue() as any).items;
+      }
+
 }
 
 
