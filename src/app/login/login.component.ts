@@ -52,15 +52,13 @@ export class LoginComponent implements OnInit {
 
   signupFormErrors = {
     'fname': [],
-    'lname': [],
     'email': [],
     'password': [],
-    'password2': []
   };
 
   window: any;
   subscription: any;
-
+  showTab:any;
   signupForm: FormGroup;
 
   sentConfirmation: boolean = false;
@@ -226,10 +224,9 @@ export class LoginComponent implements OnInit {
     
     this.signupForm = this.fb.group({
       fname: ['', Validators.required],
-      lname: ['', Validators.required],
       email: ['', [Validators.email, Validators.required]],
       password: ['', [Validators.required, Validators.minLength, Validators.maxLength]],
-      password2: ['', [Validators.required, Validators.minLength, Validators.maxLength]]
+     
     });
   
   }
@@ -381,9 +378,9 @@ onSubmitSignup() {
     let value = this.signupForm.value;
     model.email = value.email;
     model.password = value.password;
-    model.password_confirmation = value.password2;
-    model.first_name = value.fname;
-    model.last_name = value.lname;
+    model.password_confirmation = value.password;
+    model.first_name = value.fname.split(" ")[0];
+    model.last_name = value.fname.split(" ")[1];
     this.auth.signup(model)
       .subscribe(
         (data) => {
@@ -435,10 +432,7 @@ validateSignup() {
       }
 
   
-      if(this.signupForm.get('password2').value != this.signupForm.get('password').value){
-        this.signupFormErrors['password2'].push('ERROR_PASSWORD_NOT_MATCHING');
-        valid = false
-      }
+ 
   
       return valid;
     }

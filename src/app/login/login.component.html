@@ -9,125 +9,106 @@
     </a>
   </div>
   <div class="body">
-    <h1>{{'LOGIN_GETTNG_STARTED' | translate}}</h1>
+
     <div class="signin-options">
       <!-- <span>{{'COMMON_SIGNIN_WITH' | translate}}</span> -->
       <div class="login-icons">
-        <a class="facebook visible-xs " (click)="facebook()">
+        <a class="facebook " (click)="facebook()">
           <img src="/assets/images/icons/facebook.png">
+          <span>CONTINUE WITH FACEBOOK </span>
         </a>
-
-        <a class="facebook hidden-xs" (click)="facebook()">
-          LOGIN WITH FACEBOOK
-        </a>
-        <!--  <a class="twitter" (click)="twitter()">
-          <img src="/assets/images/icons/twitter.png">
-        </a> -->
-        <a class="google visible-xs ">
-          <img src="/assets/images/icons/google.png" (click)="signIn('google')">
-        </a>
-
-        <a class="google hidden-xs">
-          LOGIN WITH GOOGLE
+        <a class="google" (click)="signIn('google')">
+          <img src="/assets/images/icons/google.png">
+          <span>CONTINUE WITH GOOGLE </span>
         </a>
       </div>
     </div>
 
     <div class="row padding">
-      <div class="col-md-6 col-xs-12">
-        <h1>{{'COMMON_LOGIN_EMAIL' | translate}}</h1>
-        <form [formGroup]="loginForm" novalidate>
-          <label>Email</label>
-          <input type="email" id="email" name="email" class="form-control" formControlName="email">
-          <div *ngIf="formErrors.email.length" class="error-msg">
-            <div>{{ formErrors.email[0] | translate }}</div>
+      <div class="col-xs-12">
+        <div class="divider">
+          <p>OR</p>
+        </div>
+        <h4>Use your email</h4>
+        <div class="row signup-email-buttons">
+          <div class="col-xs-6">
+            <button [ngClass]="{active: showTab == 'login'}" (click)="showTab='login'">login</button>
           </div>
-
-          <label>
-            Password
-            <a routerLink="/password-reset" class="forgot">{{'COMMON_FORGOT_PASSWORD' | translate}}</a>
-          </label>
-          <input type="password" id="password" name="password" class="form-control" minlength="8" maxlength="25" formControlName="password">
-          <div *ngIf="formErrors.password.length" class="error-msg">
-            <div>{{ formErrors.password[0] | translate }}</div>
+          <div class="col-xs-6">
+            <button [ngClass]="{active: showTab == 'signup'}" (click)="showTab='signup'">signup</button>
+          </div>
+        </div>
+        <form [formGroup]="loginForm" novalidate *ngIf="showTab == 'login'">
+          <div class="col-xs-12">
+            <label>Email</label>
+            <input type="email" id="email" name="email" class="form-control" formControlName="email">
+            <div *ngIf="formErrors.email.length" class="error-msg">
+              <div>{{ formErrors.email[0] | translate }}</div>
+            </div>
+          </div>
+          <div class="col-xs-12">
+            <label>
+              Password
+              <a routerLink="/password-reset" class="forgot">{{'COMMON_FORGOT_PASSWORD' | translate}}</a>
+            </label>
+            <input type="password" id="password" name="password" class="form-control" minlength="8" maxlength="25" formControlName="password">
+            <div *ngIf="formErrors.password.length" class="error-msg">
+              <div>{{ formErrors.password[0] | translate }}</div>
+            </div>
           </div>
           <div class="login-error"></div>
           <div>
             <button type="submit" (click)="onSubmit()">{{'COMMON_LOGIN' | translate }}</button>
           </div>
         </form>
+
+        <form [formGroup]="signupForm" novalidate *ngIf="showTab == 'signup'">
+          <div class="row">
+            <div class="col-xs-12">
+              <label>Full name</label>
+              <input type="text" id="fname" name="fname" class="form-control" formControlName="fname">
+              <div *ngIf="signupFormErrors.fname.length" class="error-msg">
+                <div>{{ signupFormErrors.fname[0] | translate }}</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" class="form-control" formControlName="email">
+              <div *ngIf="signupFormErrors.email.length" class="error-msg">
+                <div>{{ signupFormErrors.email[0] | translate }}</div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-xs-12">
+              <label for="password">
+                Password
+              </label>
+              <input type="password" id="password" name="password" class="form-control" minlength="8" maxlength="25" formControlName="password">
+              <div *ngIf="signupFormErrors.password.length" class="error-msg">
+                <div>{{ signupFormErrors.password[0] |translate }}</div>
+              </div>
+            </div>
+          </div>
+          <div class="signup-error" *ngIf="errorMessage">{{errorMessage}}</div>
+          <div>
+            <button type="submit" (click)="onSubmitSignup()">{{ 'COMMON_SIGNUP' | translate}}</button>
+          </div>
+        </form>
       </div>
 
-      <div class="col-md-6 col-xs-12 grey-border">
-          <h1>{{'COMMON_SIGNUP_EMAIL' | translate}}</h1>
-          <form [formGroup]="signupForm" novalidate>
-            <div class="row">
-              <div class="col-md-12">
-                <label>First name</label>
-                <input type="text" id="fname" name="fname" class="form-control"
-                    formControlName="fname">
-                <div *ngIf="signupFormErrors.fname.length" class="error-msg">
-                  <div >{{ signupFormErrors.fname[0] | translate }}</div>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <label>Last name</label>
-                <input type="text" id="lname" name="lname" class="form-control"
-                    formControlName="lname">
-                <div *ngIf="signupFormErrors.lname.length" class="error-msg">
-                  <div >{{ signupFormErrors.lname[0] |translate }}</div>
-                </div>
-              </div>
-            </div>
-      
-            <div class="row">
-              <div class="col-md-12">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" class="form-control"
-                    formControlName="email">
-                <div *ngIf="signupFormErrors.email.length" class="error-msg">
-                  <div >{{ signupFormErrors.email[0] | translate }}</div>
-                </div>
-              </div>
-            </div>
-      
-      
-            <div class="row">
-              <div class="col-md-12">
-                <label for="password">
-                  Password
-                </label>
-                <input type="password" id="password" name="password" class="form-control"
-                    minlength="8" maxlength="25"
-                    formControlName="password">
-                <div *ngIf="signupFormErrors.password.length" class="error-msg">
-                  <div >{{ signupFormErrors.password[0] |translate }}</div>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <label for="password2">
-                  Re-enter Your Password
-                </label>
-                <input type="password" id="password2" name="password2" class="form-control"
-                    minlength="8" maxlength="25"
-                    formControlName="password2">
-                    <div *ngIf="signupFormErrors.password2.length" class="error-msg">
-                      <div >{{ signupFormErrors.password2[0] | translate }}</div>
-                    </div>
-              </div>
-            </div>
-            <div class="signup-error" *ngIf="errorMessage">{{errorMessage}}</div>
-            <div>
-              <button type="submit" (click)="onSubmitSignup()">{{ 'COMMON_SIGNUP' | translate}}</button>
-            </div>
-          </form>
-      </div>
+
     </div>
 
 
 
 
-    
+
   </div>
 </div>
 
@@ -151,5 +132,5 @@
       <a href="" class="return-link">{{'SIGNUP_RETURN' | translate}}</a>
     </div>
   </div>
-  
+
 </div>
