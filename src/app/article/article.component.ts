@@ -15,6 +15,11 @@ export class ArticleComponent implements OnInit {
   type:any;
   constructor(public service: AuthService, public route: ActivatedRoute, private router: Router, private dynamicTranslation: DynamicTranslationService) { }
 
+  goBack(){
+    window.history.back()
+  }
+
+
   ngOnInit() {
     this.route.paramMap
       .subscribe((data) => {

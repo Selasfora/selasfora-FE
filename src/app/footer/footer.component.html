@@ -1,10 +1,24 @@
 <div class="footer">
-  <div class="copyright col-sm-4">Copyright © Selasfora 2018</div>
-  <div class="link col-sm-4 text-center">
+  <div class="copyright col-sm-3">Copyright © Selasfora 2018</div>
+  <div class="link col-md-9 hidden-xs">
+    <a [routerLink]="['/terms']" class="right-separator">Terms and Conditions</a>
+    <a [routerLink]="['/privacy']" class="right-separator">Privacy policy</a>
     <a [routerLink]="['/contact']" class="right-separator">Contact</a>
     <a [routerLink]="['/journal']" class="right-separator">Journal</a>
-    <a [routerLink]="['/catalog/charm']">Shop Charms</a>
+    <a [routerLink]="['/catalog/charm']" class="right-separator">Shop Charms</a>
+    <a [routerLink]="['/catalog/bracelet']" class="right-separator">Shop Bracelets</a>
+    <a [routerLink]="['/mixmatch']" >Mix & Match</a>
   </div>
+
+  <div class="link col-sm-4 col-md-9 text-center visible-xs">
+      <a [routerLink]="['/terms']" class="right-separator">Terms and Conditions</a>
+      <a [routerLink]="['/privacy']" class="right-separator">Privacy policy</a>
+      <a [routerLink]="['/contact']" class="right-separator">Contact</a>
+      <a [routerLink]="['/journal']" class="right-separator">Journal</a>
+      <a [routerLink]="['/catalog/charm']" class="right-separator">Shop Charms</a>
+      <a [routerLink]="['/catalog/bracelet']" class="right-separator">Shop Bracelets</a>
+      <a [routerLink]="['/mixmatch']" >Mix & Match</a>
+    </div>
 
  
 </div>
