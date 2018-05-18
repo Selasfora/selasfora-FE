@@ -1,6 +1,6 @@
 <div class="btn main-btn{{isForm ? '-form' : ''}} {{showMenu}}" (click)="toggleMenu()">
-  {{selectedItem.title || selectedItem}}
   <i class="pull-right glyphicon glyphicon-chevron-{{!showMenu ? 'down' : 'up' }}"></i>
+  {{selectedItem.title || selectedItem}}
 </div>
 
 <div class="drop{{isForm ? '-form' : ''}} {{showMenu}}">

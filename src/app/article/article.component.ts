@@ -11,7 +11,9 @@ import 'rxjs/add/operator/switchMap';
 })
 export class ArticleComponent implements OnInit {
   id: string = '';
-  article: any = {};
+  article: any = {
+    body_html: "Loading.."
+  };
   type:any;
   constructor(public service: AuthService, public route: ActivatedRoute, private router: Router, private dynamicTranslation: DynamicTranslationService) { }
 

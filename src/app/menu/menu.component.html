@@ -10,7 +10,7 @@
     </li>
 
     <li class="header" *ngIf="isLoggedIn">
-      <a routerLink="/profile">
+      <a routerLink="/profile" >
         {{'MENU_GREETING' | translate}} {{ user.name.split()[0] }} !
         <br>
         <span class="profile-link">{{ 'MENU_YOUR_PROFILE' | translate }} ></span>
@@ -18,13 +18,13 @@
     </li>
 
     <li class="link">
-      <a routerLink="/catalog/bracelet">
+      <a routerLink="/catalog/bracelet" (click)="close()">
         {{'MENU_BRACELETS' | translate}}
       </a>
     </li>
 
     <li class="link">
-      <a routerLink="/catalog/charm">
+      <a routerLink="/catalog/charm" (click)="close()">
         {{'MENU_CHARMS' | translate}}
       </a>
     </li>

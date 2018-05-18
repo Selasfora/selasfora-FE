@@ -28,7 +28,6 @@
 <a class="main-btn show-on-hover hidden-xs"
 *ngIf="item.product_type == 'bracelet' && isMixMatch"
 [routerLink]="isMixMatch? ['/mixmatch'] : ['/catalog/charm']" [queryParams]=" isMixMatch ? {step:2}: null"
-style="padding-top:10px;"
 (click)="selectContinue(item)">
 + {{'COMMON_SELECT_AND_CONTINUE' | translate}}
 <span class="count" *ngIf="count(item) > 0 " style="margin:-42px 60px -26px;"> ✔  </span>

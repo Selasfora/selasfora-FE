@@ -1,11 +1,11 @@
 
 <div class="cart-container">
-<div class="header row" *ngIf="!hideheader">
+<div class="header" *ngIf="!hideheader">
   <app-header page="black" [type]="type" [filter]="showFilter" [showFilterIcon]="showFilter" ></app-header>
 </div>
 
   <div class="body">
-    <div class="c-align">
+    <div class="c-align" [ngStyle]="{'height': !orderItems? '100vh' : 'auto'}">
 
       <h1 class="cart-title">{{'CART_TITLE' | translate}}</h1>
       <div class="empty-cart" *ngIf="orderItems.length == 0 ">
@@ -17,7 +17,7 @@
       <div class="cart-contents" *ngIf="orderItems.length >=1">
        <!-- ordered items -->
   <div class="order-items-container row" >
-    <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4 order-item" *ngFor="let item of orderItems">
+    <div class="col-xs-12 col-xs-offset-0 col-md-4 col-md-offset-4 order-item" *ngFor="let item of orderItems">
       <div class="row">
         <div class="col-md-4 col-xs-4">
           <img [src]="item.p_image? item.p_image:null"/>
@@ -25,7 +25,7 @@
         <div class="col-md-8 col-xs-8">
           <h4 class="item-title">{{item.p_title}} <span>({{item.v_title}})</span></h4>
           <div class="row">
-              <div class="col-md-9 col-xs-9">
+              <div class="col-md-9 col-xs-10">
                   <table class="item-description">
                     <tr>
                       <th> {{'CART_QTY' | translate}}</th><th>{{'CART_PRICE' | translate}}</th>
@@ -33,7 +33,7 @@
                     <tr><td><span class="change-qty" (click)="changeQty(item,-1)">-</span> x{{item.quantity}} <span class="change-qty" (click)="changeQty(item,1)">+</span></td><td>{{item.price}}</td></tr>
                   </table>
               </div>
-              <div class="col-md-3 col-xs-3 reorder">
+              <div class="col-md-3 col-xs-2 reorder">
                 <a (click)="removeItem(item)">{{'CART_REMOVE' | translate}}</a>
               </div>
           </div>

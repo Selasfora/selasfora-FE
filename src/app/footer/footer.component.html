@@ -7,7 +7,7 @@
     <a [routerLink]="['/journal']" class="right-separator">Journal</a>
     <a [routerLink]="['/catalog/charm']" class="right-separator">Shop Charms</a>
     <a [routerLink]="['/catalog/bracelet']" class="right-separator">Shop Bracelets</a>
-    <a [routerLink]="['/mixmatch']" >Mix & Match</a>
+    <a [routerLink]="['/mixmatch']" [queryParams]="{step:1}">Mix & Match</a>
   </div>
 
   <div class="link col-sm-4 col-md-9 text-center visible-xs">
@@ -17,7 +17,7 @@
       <a [routerLink]="['/journal']" class="right-separator">Journal</a>
       <a [routerLink]="['/catalog/charm']" class="right-separator">Shop Charms</a>
       <a [routerLink]="['/catalog/bracelet']" class="right-separator">Shop Bracelets</a>
-      <a [routerLink]="['/mixmatch']" >Mix & Match</a>
+      <a [routerLink]="['/mixmatch']" [queryParams]="{step:1}" >Mix & Match</a>
     </div>
 
  

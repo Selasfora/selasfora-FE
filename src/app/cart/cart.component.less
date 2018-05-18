@@ -1,9 +1,10 @@
 
 
  
-  body{
+  .body{
     background:white;
     min-height:100vh;
+    padding-top:60px !important
   }
 
 
@@ -31,7 +32,6 @@
         text-align: center;
         background: white;
         padding: 30px 0 30px 0;
-        height:100vh;
         }
 
     .cart-title{
@@ -77,6 +77,7 @@
 
 
     .order-items-container{
+        margin:0;
         padding-top:30px;
         background:white;
         padding-bottom: 30px;
@@ -156,4 +157,15 @@
       font-family: sans-serif;
       font-size: 20px;
       cursor:pointer;
+    }
+
+    .footer
+    {
+      margin-top:200px
+    }
+
+    @media screen and (max-width:768px) {
+      .order-items-container{
+        padding:30px 10px;
+      }
     }

@@ -115,6 +115,10 @@ export class ProductDetailsComponent implements OnInit {
             // })
             
           }
+          ,
+          (err)=>{
+            this.router.navigate(["/404"])
+          }
         );
       }
     );
