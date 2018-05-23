@@ -1,39 +1,32 @@
 # Selasfora
 
-## Running the project:
+## Installation and  Running the project:
 
-You need to have `angular-cli` installed first, run:
+1. Install dependencies
 
-    npm install -g angular-cli
+    npm install 
 
-Clone the project:
+2. start the development server with npm start 
 
-    git clone https://github.com/indiez/selasfora-fe.git
+    npm start
 
-In terminal, navigate to the directory and install dependencies:
+3. navigate to http://localhost:4200
 
-    npm install
+## bulding for production and deployment 
 
-Once done, you can run the server:
+1. In the terminal , run the command 
 
-    ng serve
+    npm run build:prod
 
-In browser, navigate to http://localhost:4200
+2. login to AWS and navigate to S3 Bucket service under storage 
 
-## Current status:
+3. click on the staging.selasfora.com bucket
 
-1- Landing page working
+4. copy all contents for the dist folder created after the build here.
 
-2- Login page UI ready "/login"
+5. navigate to AWS cloud front service
 
-3- Signup page UI ready "/signup"
+6. select staging.selasfora ( click on check box )
 
-4- Reset password UI ready "/reset-password", waiting for integration
+7. go to the invalidations tab and create a new invalidation with " /* "
 
-5- sign up with google
-
-6- sign up with facebook
-
-7- scroll button on landing page, with animation
-
-8- mobile responsiveness
