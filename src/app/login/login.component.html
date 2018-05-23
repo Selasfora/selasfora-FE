@@ -39,6 +39,7 @@
           </div>
         </div>
         <form [formGroup]="loginForm" novalidate *ngIf="showTab == 'login'">
+          <div class="row">
           <div class="col-xs-12">
             <label>Email</label>
             <input type="email" id="email" name="email" class="form-control" formControlName="email">
@@ -46,6 +47,8 @@
               <div>{{ formErrors.email[0] | translate }}</div>
             </div>
           </div>
+        </div>
+        <div class="row">
           <div class="col-xs-12">
             <label>
               Password
@@ -55,6 +58,7 @@
             <div *ngIf="formErrors.password.length" class="error-msg">
               <div>{{ formErrors.password[0] | translate }}</div>
             </div>
+          </div>
           </div>
           <div class="login-error"></div>
           <div>
