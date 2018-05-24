@@ -372,6 +372,7 @@ export class LoginComponent implements OnInit {
 // signup funtions 
 
 onSubmitSignup() {
+  this.errorMessage = ""
   let valid = this.validateSignup();
   if(valid) {
     let model: any = {};
@@ -380,7 +381,7 @@ onSubmitSignup() {
     model.password = value.password;
     model.password_confirmation = value.password;
     model.first_name = value.fname.split(" ")[0];
-    model.last_name = value.fname.split(" ")[1];
+    model.last_name = value.fname.split(" ")[1] || " ";
     this.auth.signup(model)
       .subscribe(
         (data) => {
@@ -395,16 +396,11 @@ onSubmitSignup() {
         },
         (error) => {
 
-          let errMessage = error.error.message;
-          this.errorMessage = "";
-          if(errMessage == "Email has already been taken")
-            this.formErrors.email.push(errMessage);
-            else
-          this.errorMessage = errMessage;
+          this.errorMessage = error.error.message;
           // tell clever tap there was a signup error
              // send user signed up
              clevertap.event.push("User signup failed",{
-              "Error message":errMessage
+              "Error message":error.error.message
             });
         }
       );
@@ -431,7 +427,11 @@ validateSignup() {
   
       }
 
-  
+      if (form.value.fname.split(" ").length < 2){
+        this.signupFormErrors["fname"].push("Please enter your full name");
+        valid = false
+      }
+      
  
   
       return valid;
