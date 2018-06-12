@@ -84,6 +84,7 @@ export class ContactUsComponent implements OnInit {
       model.name = value.name;
       model.issue = value.issue;
       model.message = value.message;
+      model.subject = value.name + " : "+value.issue;
       this.auth.contactSubmit(model)
         .subscribe(
           (data) => {

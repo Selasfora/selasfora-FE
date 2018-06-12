@@ -19,7 +19,7 @@
     <app-header page="mixmatch"  [filter]="type == 'charm'" [showFilterIcon]="false"></app-header>
   </div>
   <div class="body">
-     <div *ngIf="!errorMessage" class="empty-charm-container" [dragula]='"bag-charms"' [dragulaModel]='emptyCharms'>
+     <div *ngIf="!errorMessage" class="empty-charm-container" >
           <div class="charm" *ngFor="let charm of emptyCharms; let i=index;">
             <img [attr.src]="charm.img[1].src" alt="">
           </div>

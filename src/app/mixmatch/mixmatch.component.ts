@@ -1,5 +1,4 @@
 import { Component, OnInit, ChangeDetectorRef, ViewChild, ElementRef, Renderer2 } from '@angular/core';
-import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { CartService } from '../cart.service';
 import * as THREE from 'three';
@@ -24,6 +23,7 @@ export class MixmatchComponent implements OnInit {
   highlightStore = false;
   checkoutUrl = '';
   step = 1;
+  private rendererId;
   private camera;
   private scene;
   private renderer
@@ -36,11 +36,10 @@ export class MixmatchComponent implements OnInit {
   private colors = [0xffffff,0x133468,254825]
   @ViewChild('canvas') canvas: ElementRef
 
-  constructor(private dragula: DragulaService, public route: ActivatedRoute, private router: Router,
+  constructor( public route: ActivatedRoute, private router: Router,
     private detector: ChangeDetectorRef, private ref: ElementRef, private _renderer: Renderer2,
     public _cart: CartService) {
-    this.dragula.setOptions('bag-charms', {});
-
+  
     // clear the local storage when the cart is loaded
 
     // clear local storage and the cart as well
@@ -108,8 +107,8 @@ export class MixmatchComponent implements OnInit {
       this.ring.add(s)
     }
 
-    let controls = new orbitControls(this.camera);
-    controls.enableRotate = false;
+    // let controls = new orbitControls(this.camera);
+    // controls.enableRotate = false;
     setTimeout(() => {
       this.canvas.nativeElement.appendChild(this.renderer.domElement);
       window.scene = this.scene;
@@ -164,14 +163,14 @@ export class MixmatchComponent implements OnInit {
     this.camera.lookAt(0, 0, 0)
     this.renderer.render(this.scene, this.camera);
 
-    requestAnimationFrame(this.animate.bind(this))
+    this.rendererId = requestAnimationFrame(this.animate.bind(this))
 
 
   }
 
   ngOnDestroy() {
     localStorage.setItem("selected_items", '[]');
-    this.dragula.destroy('bag-charms');
+    cancelAnimationFrame(this.rendererId);
   }
 
   ngOnInit() { }
